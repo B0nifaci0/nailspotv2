@@ -26,6 +26,20 @@ class Course extends Model
     use HasProfilePhoto;
 
     protected $guarded = ['id', 'status'];
+    protected $withCount = ['students', 'reviews'];
+
+    public function getRatingAttribute()
+    {
+        if ($this->reviews_count) {
+            return round($this->reviews->avg('rating'), 1);
+        }
+        return 6;
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
 
     public function reviews()
     {
