@@ -1,0 +1,28 @@
+.container {
+    @apply max-w-7xl mx-auto px-4;
+}
+
+.card {
+    @apply bg-white shadow-lg rounded overflow-hidden;
+}
+
+.card-body {
+    @apply px-6 py-4;
+}
+
+.my-button {
+    @apply block text-center w-full mt-4 bg-blue-500 text-white font-bold py-2 px-4;
+
+    /* border-b-4 border-blue-dark hover:border-blue rounded hover:bg-blue-light */
+}
+@media (min-width: 640px) {
+    .conatiner {
+        @apply px-6;
+    }
+}
+
+@media (min-width: 1024px) {
+    .conatiner {
+        @apply px-8;
+    }
+}

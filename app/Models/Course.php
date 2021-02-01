@@ -36,6 +36,19 @@ class Course extends Model
         return 6;
     }
 
+    public function scopeCategory($query, $category_id)
+    {
+        if ($category_id) {
+            return $query->whereCategoryId($category_id);
+        }
+    }
+    public function scopeLevel($query, $level_id)
+    {
+        if ($level_id) {
+            return $query->whereLevelId($level_id);
+        }
+    }
+
     public function getRouteKeyName()
     {
         return "slug";
@@ -78,7 +91,7 @@ class Course extends Model
 
     public function lessons()
     {
-        return $this->belongsToMany(Lesson::class);
+        return $this->hasMany(Lesson::class);
     }
 
     public function comments()

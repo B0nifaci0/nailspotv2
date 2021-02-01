@@ -3,7 +3,7 @@
         {{-- <video id="video_background" muted autoplay loop />
         <source src="{{asset('video/presentacion ns_2.mp4')}}" />
         </video /> --}}
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
+        <div class="container py-36">
             <div class="w-full md:w-3/4 lg:w-1/2">
                 <h1 class="text-black font-fold text-5xl"> Pagina de cursos</h1>
                 <p class="text-black text-lg mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum in
@@ -25,4 +25,6 @@
             </div>
         </div>
     </section>
+
+    @livewire('course-index')
 </x-app-layout>

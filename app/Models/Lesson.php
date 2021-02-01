@@ -13,6 +13,11 @@ class Lesson extends Model
 {
     use HasFactory;
 
+    // public function getCompletedAttribute()
+    // {
+    //     # code...
+    // }
+
     protected $guarded = ['id'];
 
     public function course()
