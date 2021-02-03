@@ -120,13 +120,12 @@ $nav_links =[
                         </x-slot>
 
                         <x-slot name="content">
-                            <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
-                            </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                Perfil
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('instructor.courses.index') }}">
+                                Instructor
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -212,9 +211,11 @@ $nav_links =[
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}"
                     :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    Perfil
                 </x-jet-responsive-nav-link>
-
+                <x-jet-responsive-nav-link href="{{ route('instructor.courses.index') }}">
+                    Instructor
+                </x-jet-responsive-nav-link>
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                 <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}"
                     :active="request()->routeIs('api-tokens.index')">
