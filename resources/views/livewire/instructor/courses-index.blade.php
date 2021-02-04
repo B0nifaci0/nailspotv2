@@ -1,9 +1,11 @@
 <div class="container py-8">
     <x-table-responsive>
 
-        <div class="px-6 py-4">
-            <input wire:keydown="clearPage" wire:model="search" type="text" class="form-input w-full shadow-sm"
+        <div class="px-6 py-4 flex">
+            <input wire:keydown="clearPage" wire:model="search" type="text" class="form-input flex-1 shadow-sm"
                 placeholder="Buscar ...">
+            <a href="{{route('instructor.courses.create')}}"
+                class="block text-center bg-red-500 text-white font-bold py-2 px-4 rounded ml-2">Crear nuevo curso</a>
         </div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
@@ -34,9 +36,18 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
+
+
+                            @isset($course->image)
                             <div class="flex-shrink-0 h-10 w-10">
                                 <img class="h-10 w-10 rounded-full" src="{{Storage::url($course->image->url)}}" alt="">
                             </div>
+                            @else
+                            <img class="h-10 w-10 rounded-full"
+                                src="https://brandominus.com/wp-content/uploads/2015/07/130830051724675381.jpg" alt="">
+                            @endisset
+
+
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">
                                     {{$course->name}}
@@ -104,7 +115,8 @@
 
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                        <a href="{{route('instructor.courses.edit', $course)}}"
+                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
                     </td>
                 </tr>
                 @empty

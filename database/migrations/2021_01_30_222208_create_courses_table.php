@@ -21,8 +21,8 @@ class CreateCoursesTable extends Migration
             $table->enum('status', [Course::BORRADOR, Course::REVISION, Course::PUBLICADO])->default(Course::BORRADOR);
             $table->string('slug');
             $table->double('price');
-            $table->date('start_date');
-            $table->date('end_date');
+            // $table->date('start_date');
+            // $table->date('end_date');
             $table->text('certificate_photo_path')->nullable();
             $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
