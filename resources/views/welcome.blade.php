@@ -48,7 +48,7 @@
             </div>
         </div>
         <video autoplay loop muted class="w-full">
-            <source src="{{asset('video/presentacion ns_2.mp4')}}" type="video/mp4" />
+            <source src="https://vimeo.com/manage/videos/506966668" type="video/mp4" />
         </video>
     </article>
 
