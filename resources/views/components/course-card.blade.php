@@ -1,11 +1,11 @@
 @props(['course'])
 
-<article class="card">
+<article class="card flex flex-col">
     <img class="h-41 sm:h-36 w-full object-cover" src="{{Storage::url($course->image->url)}}" alt="">
-    <div class="card-body">
+    <div class="card-body flex-1 flex flex-col">
         <h1 class="text-xl mb-2"> {{$course->name}}</h1>
-        <p class="text-sm"> {{Str::limit($course->description,32)}}</p>
-        <p class="text-gray-500 text-sm mb-2">Prof. {{$course->teacher->name}}</p>
+        <p class="text-sm"> {{Str::limit($course->description,50)}}</p>
+        <p class="text-gray-500 text-sm mb-2 mt-auto">Prof. {{$course->teacher->name}}</p>
         <div class="flex">
             @if ($course->rating!==6)
             <ul class="flex text-sm">
@@ -26,7 +26,11 @@
                 <i class="fas fa-users"></i>
                 {{($course->students_count)}}</p>
         </div>
-
+        @if ($course->price==0)
+        <p class="my-2 text-gray-400 font-bold"> Gratis</p>    
+        @else
+        <p class="my-2 text-gray-500 font-bold"> MXN$ {{$course->price}}</p>
+        @endif
         <a href="{{route('course.show',$course)}}" class="my-button">
             Más informacion
         </a>
