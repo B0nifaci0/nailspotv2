@@ -32,4 +32,9 @@ class CoursesIndex extends Component
     {
         $this->reset(['category_id', 'level_id']);
     }
+
+    public function clearPage()
+    {
+        $this->reset('page');
+    }
 }

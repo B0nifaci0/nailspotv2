@@ -262,9 +262,10 @@ return [
             'icon' => 'fas fa-fw fa-cogs',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Niveles',
+            'route'  => 'admin.levels.index',
+            'active' => ['admin/levels*'],
+            'icon' => 'fas fa-fw fa-chart-line',
         ],
         [
             'text'    => 'multilevel',

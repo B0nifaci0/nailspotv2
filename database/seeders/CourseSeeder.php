@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Requirement;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -21,6 +22,11 @@ class CourseSeeder extends Seeder
         $courses = Course::factory(50)->create();
 
         foreach ($courses as $course) {
+
+            Review::factory(5)->create([
+                'course_id' => $course->id
+            ]);
+
             Image::factory(1)->create([
                 'imageable_id' => $course->id,
                 'imageable_type' => Course::class
