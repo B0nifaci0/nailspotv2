@@ -3,6 +3,7 @@
     <x-slot name="course">
         {{$course->slug}}
     </x-slot>
+    
     <h1 class="text-2xl font-bold uppercase">
         Información del curso
     </h1>

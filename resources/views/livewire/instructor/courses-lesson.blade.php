@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-body bg-gray-200">
-        @foreach ($course->lessons as $item)
-        <article class="mt-4 ">
-            <div class="card">
+        @foreach ($course->lessons as $key=>$item)
+        <article class="mt-4 card" x-data="{open: false}">
+            <div>
                 <div class="card-body">
                     @if ($lesson->id == $item->id)
                     <div class="flex items-center">
@@ -19,7 +19,15 @@
                     @error('lesson.url')
                     <span class="text-sx text-red-500">{{$message}}</span>
                     @enderror
+                    <div class="flex items-center mt-4">
+                        <label class="w-32"> Descripcion</label>
+                        <textarea class="form-input w-full" wire:model="lesson.description"></textarea>
 
+                    </div>
+                    @error('lesson.description')
+                    <span class="text-sx text-red-500">{{$message}}</span>
+                    @enderror
+                    <br>
                     <div class="mt-4 flex justify-end">
                         <button class="text-center bg-red-500 text-white font-bold py-2 px-4
                                 rounded" wire:click="cancel()">Cancelar</button>
@@ -28,11 +36,11 @@
                     </div>
                     @else
                     <header>
-                        <h1>
+                        <h1 class="cursor-pointer" x-on:click="open = !open">
                             <i class="far fa-play-circle text-blue-500 mr-1"></i>
-                            Leccion: {{$item->name}}</h1>
+                            <strong>Leccion {{$key+1}}:</strong> {{$item->name}}</h1>
                     </header>
-                    <div>
+                    <div x-show="open">
                         <hr class="my-2">
                         <p class="text-sm">Enlace: <a class="text-blue-600" href="{{$item->url}}"
                                 target="_nlank">{{$item->url}}</a></p>
@@ -70,6 +78,14 @@
                             <input wire:model="url" type="text" class="form-input w-full">
                         </div>
                         @error('url')
+                        <span class="text-sx text-red-500">{{$message}}</span>
+                        @enderror
+                        <div class="flex items-center mt-4">
+                            <label class="w-32"> Descripcion</label>
+                            <textarea class="form-input w-full" wire:model="description"></textarea>
+
+                        </div>
+                        @error('description')
                         <span class="text-sx text-red-500">{{$message}}</span>
                         @enderror
                     </div>

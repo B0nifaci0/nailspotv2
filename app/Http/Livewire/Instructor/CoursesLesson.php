@@ -8,10 +8,11 @@ use Livewire\Component;
 
 class CoursesLesson extends Component
 {
-    public $course, $lesson, $name, $url;
+    public $course, $lesson, $name, $url, $description;
 
     protected $rules = [
         'lesson.name' => 'required',
+        'lesson.description' => 'required',
         'lesson.url' => ['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/']
     ];
 
@@ -31,6 +32,7 @@ class CoursesLesson extends Component
     {
         $rules = [
             'name' => 'required',
+            'description' => 'required',
             'url' => ['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/']
         ];
 
@@ -39,10 +41,11 @@ class CoursesLesson extends Component
         Lesson::create([
             'name' => $this->name,
             'url' => $this->url,
+            'description' => $this->description,
             'course_id' => $this->course->id
         ]);
 
-        $this->reset(['name', 'url']);
+        $this->reset(['name', 'url', 'description']);
         $this->course = Course::find($this->course->id);
     }
 
