@@ -25,7 +25,7 @@ class LessonFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'description' => $this->faker->sentence(),
-            'url' => 'https://youtu.be/jVGQ5KPYrog',
+            'url' => 'https://vimeo.com/506966668',
             'iframe' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/jVGQ5KPYrog" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
         ];
     }

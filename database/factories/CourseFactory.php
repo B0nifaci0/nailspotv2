@@ -36,7 +36,7 @@ class CourseFactory extends Factory
             'price' => $this->faker->randomNumber(2),
             // 'start_date' => $this->faker->date(),
             // 'end_date' => $this->faker->date(),
-            'user_id' => 1,
+            'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'level_id' => Level::all()->random()->id,
             'category_id' => Category::all()->random()->id,
         ];

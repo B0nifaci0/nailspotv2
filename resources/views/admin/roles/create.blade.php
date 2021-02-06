@@ -34,7 +34,8 @@
                     @endforeach
                 </select>
             </div>
-            <button class="btn btn-success" type="submit">Agregar</button> </form>
+            <button class="btn btn-success" type="submit">Agregar</button>
+        </form>
     </div>
 </div>
 @stop

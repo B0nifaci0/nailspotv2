@@ -254,11 +254,12 @@ return [
             'active' => ['admin/users*'],
             'can' => 'Leer usuarios'
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'OPCIONES DE CURSOS'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Categorias',
+            'route'  => 'admin.categories.index',
+            'active' => ['admin/categories*'],
+            'icon' => 'fas fa-fw fa-cogs',
         ],
         [
             'text' => 'change_password',

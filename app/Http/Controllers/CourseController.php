@@ -6,6 +6,7 @@ use App\Models\Course;
 
 class CourseController extends Controller
 {
+
     public function index()
     {
         return view('courses.index');
