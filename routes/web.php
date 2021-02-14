@@ -27,3 +27,8 @@ Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->n
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::get('pruebitas', function () {
+    return view('pruebitas');
+});

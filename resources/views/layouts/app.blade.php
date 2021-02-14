@@ -22,18 +22,6 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
 
-    <style>
-        @media only screen {
-            .video-title {
-                background-color: rgba(32, 2, 2, 0);
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-70%);
-                z-index: 2;
-            }
-        }
-    </style>
 
     <body class="font-sans antialiased">
         <x-jet-banner />

@@ -47,13 +47,13 @@
                 </button>
             </div>
         </div>
-        <video autoplay loop muted class="w-full">
+        {{-- <video autoplay loop muted class="w-full">
             <source src="https://vimeo.com/manage/videos/506966668" type="video/mp4" />
             <iframe
                 src="https://player.vimeo.com/video/506966668?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                 width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
                 allowfullscreen title="presentacion ns_2"></iframe>
-        </video>
+        </video> --}}
     </article>
 
     <section class="mt-24">

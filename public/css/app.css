@@ -32713,21 +32713,68 @@ select {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
   width: 100%;
-  /* border-b-4 border-blue-dark hover:border-blue rounded hover:bg-blue-light */
 }
 
 @media (min-width: 640px) {
-  .conatiner {
+  .container {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .conatiner {
+  .container {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+.video-title {
+  background: #000;
+}
+
+@media only screen and (min-width: 400px) {
+  .video-wrapper {
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    width: 100%;
+  }
+
+  .video-wrapper video {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .video-title {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+  }
+}
+
+.content-div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.image-cover {
+  height: 260px;
+}
+
+.content-div:hover .fd-cl {
+  opacity: 0.25;
+}
+
+.content-div:hover .fd-sh {
+  opacity: 1;
 }
 
 @media (min-width: 640px) {

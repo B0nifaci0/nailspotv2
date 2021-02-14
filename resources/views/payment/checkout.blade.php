@@ -1,7 +1,4 @@
 <x-app-layout>
-
-
-
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
         <h1 class="text-gray-500 text-3xl font-bold">Detalle del pedido</h1>
         <div class="card text-gray-500">
@@ -12,10 +9,13 @@
                     <p class="text-xl font-bold ml-auto">MXN$ {{$course->price}}</p>
                 </article>
                 <div class="flex justify-end mt-2 mb-4">
-                    <a href="" class="my-button">Comprar curso</a>
+                    <a href="{{route('payment.pay',$course)}}" class="my-button">Comprar curso</a>
                 </div>
                 <hr>
-                <p class="text-sm mt-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique quo vero ut aliquam distinctio, fugiat dignissimos obcaecati eveniet molestiae, aliquid voluptatem cum, neque vitae esse vel dolores sapiente expedita nihil. <a class="text-blue-400" href="">Terminos y condiciones.</a></p>
+                <p class="text-sm mt-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique quo vero ut
+                    aliquam distinctio, fugiat dignissimos obcaecati eveniet molestiae, aliquid voluptatem cum, neque
+                    vitae esse vel dolores sapiente expedita nihil. <a class="text-blue-400" href="">Terminos y
+                        condiciones.</a></p>
             </div>
         </div>
     </div>
