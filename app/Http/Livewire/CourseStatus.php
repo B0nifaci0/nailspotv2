@@ -63,12 +63,13 @@ class CourseStatus extends Component
 
     public function completed(Lesson $lesson)
     {
-        $this->lesson = $lesson;
-        if ($this->lesson->completed) {
-            $this->lesson->users()->detach(auth()->user()->id);
+        if ($lesson->completed) {
+            $lesson->users()->detach(auth()->user()->id);
         } else {
-            $this->lesson->users()->attach(auth()->user()->id);
+            $lesson->users()->attach(auth()->user()->id);
         }
+
         $this->current = Lesson::find($this->current->id);
+        $this->course = Course::find($this->course->id);
     }
 }

@@ -1,6 +1,6 @@
 <div class="mt-8">
-    <div class="container grid grid-cols-3 gap-8">
-        <div class="col-span-2">
+    <div class="container grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
             <div class="embed-responsive">
                 {!!$current->iframe!!}
             </div>
@@ -20,28 +20,43 @@
 
                 </div>
             </div>
-            ID: {{$this->index}}
         </div>
-        {{-- <div class="card">
+        <div class="card">
             <div class="card-body">
                 <h1>{{$course->name}}</h1>
-        <div class="flex items-center mb-2">
-            <img class="h-8 w-8 object-cover rounded-full shadow-lg" src="{{$course->teacher->profile_photo_url}}"
-                alt="">
-            <p class="text-gray-700 text-sm ml-2">{{$course->teacher->name}}</p>
+                <div class="flex items-center mb-2">
+                    <img class="h-8 w-8 object-cover rounded-full shadow-lg"
+                        src="{{$course->teacher->profile_photo_url}}" alt="">
+                    <p class="text-gray-700 text-sm ml-2">{{$course->teacher->name}}</p>
+                </div>
+            </div>
+            <label wire:click='completed({{$current}})'
+                class="flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
+                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                </svg>
+                <span class="mt-2 text-base leading-normal">Subir tarea</span>
+                {{-- <input type='file' class="hidden" /> --}}
+            </label>
+            <div class="card ">
+                <div class="card-body bg-yellow-200">
+                    @if (!$current->completed)
+                    (No culminada)
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
-</div> --}}
-</div>
 
-<section class="container p-5 place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-    @foreach ($course->lessons as $key=>$lesson)
-    <div class="bg-gray-900 shadow-lg rounded p-3 h-full w-full my-4">
-        <div class="group relative">
-            <img class="w-full md:w-90 block rounded" src="{{Storage::url($course->image->url)}}" />
-            <div
-                class="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly ">
-                {{-- <button
+    <section class="container p-5 place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        @foreach ($course->lessons as $key=>$item)
+        <div class="bg-gray-900 shadow-lg rounded p-3 h-full w-full my-4">
+            <div class="group relative">
+                <img class="w-full md:w-90 block rounded" src="{{Storage::url($course->image->url)}}" />
+                <div
+                    class="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly ">
+                    {{-- <button
                         class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-heart" viewBox="0 0 16 16">
@@ -50,34 +65,25 @@
                         </svg>
                     </button> --}}
 
-                <a wire:click='changeLesson({{$lesson}})'
-                    class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-play-circle-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
-                    </svg>
-                </a>
-
-                <a wire:click='completed({{$lesson}})'
-                    class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
-                        <path
-                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
-                    </svg>
-                </a>
+                    <a wire:click='changeLesson({{$item}})'
+                        class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                            class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="p-5 mt-auto">
+                <h3 class="text-white text-lg ">Lección:{{$key+1}}: {{$item->name}}</h3>
+                <p class="text-gray-400">{{$item->description}}</p>
+                @if ($item->completed)
+                (en la tabla)
+                @endif
             </div>
         </div>
-        <div class="p-5 mt-auto">
-            <h3 class="text-white text-lg ">Lección:{{$key+1}}: {{$lesson->name}}</h3>
-            <p class="text-gray-400">{{$lesson->description}}</p>
-            @if ($lesson->completed)
-            (en la tabla)
-            @endif
-        </div>
-    </div>
-    @endforeach
-</section>
+        @endforeach
+    </section>
 
 </div>
