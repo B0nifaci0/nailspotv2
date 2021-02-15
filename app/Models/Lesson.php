@@ -13,10 +13,10 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    // public function getCompletedAttribute()
-    // {
-    //     # code...
-    // }
+    public function getCompletedAttribute()
+    {
+        return $this->users->contains(auth()->user()->id);
+    }
 
     protected $guarded = ['id'];
 
