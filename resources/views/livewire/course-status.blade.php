@@ -12,14 +12,15 @@
                         src="{{$course->teacher->profile_photo_url}}" alt="">
                     <p class="text-gray-700 text-sm ml-2">{{$course->teacher->name}}</p>
                 </div>
-
-                <ul>
-                    @foreach ($course->lessons as $lesson)
-                    <li class="mt-3">{{$lesson->name}}</li>
-                    @endforeach
-                </ul>
             </div>
         </div>
     </div>
+
+    <section
+        class=" container p-5 place-items-center min-h-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        @foreach ($course->lessons as $key=>$lesson)
+        <x-lesson-card :lesson="$lesson" :course="$course" :key="$key" />
+        @endforeach
+    </section>
 
 </div>
