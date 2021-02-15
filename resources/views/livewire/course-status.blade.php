@@ -4,13 +4,23 @@
             <div class="embed-responsive">
                 {!!$current->iframe!!}
             </div>
-            {!!$current->name!!}
-            <br>
-            Previous: {{$this->previous}}
-            <br>
+            <h1 class="text-3xl text-gray-600 font-bold mt-4">
+                {!!$current->name!!}
+            </h1>
+            <div class="card">
+                <div class="card-body flex text-gray-500 font-bold">
+
+                    @if ($this->previous!==null)
+                    <a class="cursor-pointer" wire:click="changeLesson({{$this->previous}})">Lección Anterior</a>
+                    @endif
+
+                    @if ($this->next)
+                    <a wire:click="changeLesson({{$this->next}})" class="cursor-pointer ml-auto">Siguiente Lección </a>
+                    @endif
+
+                </div>
+            </div>
             ID: {{$this->index}}
-            <br>
-            Next: {{$this->next}}
         </div>
         {{-- <div class="card">
             <div class="card-body">
@@ -49,14 +59,14 @@
                     </svg>
                 </a>
 
-                {{-- <button
-                        class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-three-dots" viewBox="0 0 16 16">
-                            <path
-                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                        </svg>
-                    </button> --}}
+                <a wire:click='completed({{$lesson}})'
+                    class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                        class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                        <path
+                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                    </svg>
+                </a>
             </div>
         </div>
         <div class="p-5 mt-auto">
