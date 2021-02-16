@@ -23,7 +23,7 @@ class CoursesStudents extends Component
             ->where('name', 'LIKE', "%$this->search%")
             ->paginate(4);
 
-        return view('livewire.instructor.courses-students', compact('students'))->layout('layouts.instructor');
+        return view('livewire.instructor.courses-students', compact('students'))->layout('layouts.instructor', ['course' => $this->course]);
     }
 
     public function mount(Course $course)

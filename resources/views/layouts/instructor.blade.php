@@ -22,26 +22,13 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
 
-    <style>
-        @media only screen {
-            .video-title {
-                background-color: rgba(32, 2, 2, 0);
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-70%);
-                z-index: 2;
-            }
-        }
-    </style>
-
     <body class="font-sans antialiased">
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
-            <div class="container py-8 grid grid-cols-5">
+            <div class="container py-8 grid grid-cols-5 gap-6">
                 <aside>
                     <h1 class="mb-4 font-bold text-lg">Edicion del curso</h1>
                     <ul class="text-sm text-gray-600">
@@ -62,6 +49,32 @@
                             <a href="{{route('instructor.courses.students', $course)}}">Estudiantes</a>
                         </li>
                     </ul>
+                    @switch($course->status)
+                    @case(1)
+                    <form action="{{route('instructor.courses.status',$course)}}" method="post">
+                        @csrf
+                        <button
+                            class="uppercase px-4 py-2 rounded-full bg-red-600 text-blue-50 shadow-sm hover:shadow-lg">Solicitar
+                            aprovacion</button>
+                    </form>
+                    @break
+                    @case(2)
+                    <div class="card text-gray-500">
+                        <div class="card-body">
+                            En revisión
+                        </div>
+                    </div>
+                    @break
+                    @case(3)
+                    <div class="card text-gray-500">
+                        <div class="card-body">
+                            Publicado
+                        </div>
+                    </div>
+                    @break
+                    @default
+
+                    @endswitch
                 </aside>
                 <div class="col-span-4 card">
                     <main class="card-body text-gray-500">

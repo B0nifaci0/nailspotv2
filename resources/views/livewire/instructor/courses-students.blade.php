@@ -1,9 +1,4 @@
 <div>
-    {{-- Close your eyes. Count to one. That is how long forever feels. --}}
-
-    <x-slot name="course">
-        {{$course->slug}}
-    </x-slot>
 
     <h1 class="text-2xl font-bold uppercase mb-2">Estudiantes del curso</h1>
 

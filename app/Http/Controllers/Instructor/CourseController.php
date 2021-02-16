@@ -96,4 +96,11 @@ class CourseController extends Controller
 
         return view('instructor.courses.goals', compact('course'));
     }
+
+    public function status(Course $course)
+    {
+        $course->status = Course::REVISION;
+        $course->save();
+        return back();
+    }
 }
