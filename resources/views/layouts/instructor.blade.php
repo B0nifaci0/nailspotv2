@@ -55,7 +55,7 @@
                         @csrf
                         <button
                             class="uppercase px-4 py-2 rounded-full bg-red-600 text-blue-50 shadow-sm hover:shadow-lg">Solicitar
-                            aprovacion</button>
+                            aprobacion</button>
                     </form>
                     @break
                     @case(2)

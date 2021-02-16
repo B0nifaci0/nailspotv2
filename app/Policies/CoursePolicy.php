@@ -41,11 +41,19 @@ class CoursePolicy
         }
         return false;
     }
+
     public function valued(User $user, Course $course)
     {
         if (Review::whereUserId($user->id)->whereCourseId($course->id)->count()) {
             return false;
         }
         return true;
+    }
+    public function revision(User $user, Course $course)
+    {
+        if ($course->status == 2) {
+            return true;
+        }
+        return false;
     }
 }

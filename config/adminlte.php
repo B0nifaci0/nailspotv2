@@ -85,7 +85,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
 
@@ -255,6 +255,12 @@ return [
             'can' => 'Leer usuarios'
         ],
         ['header' => 'OPCIONES DE CURSOS'],
+        [
+            'text' => 'Pendientes de aprobación',
+            'route'  => 'admin.courses.index',
+            'active' => ['admin/courses*'],
+            'icon' => 'far fa-thumbs-up',
+        ],
         [
             'text' => 'Categorias',
             'route'  => 'admin.categories.index',
