@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Comment;
-use App\Models\Resource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,7 +12,10 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    public function getCompletedAttribute()
+    const ENTREGADA = 1;
+    const CALIFICADA = 3;
+
+    public function getProgressAttribute()
     {
         return $this->users->contains(auth()->user()->id);
     }
@@ -27,12 +29,8 @@ class Lesson extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function resource()
-    {
-        return $this->morphOne(Resource::class, 'resourceable');
+        return $this->belongsToMany(User::class)
+            ->withPivot('status');
     }
 
     public function comments()

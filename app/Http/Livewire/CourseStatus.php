@@ -19,7 +19,7 @@ class CourseStatus extends Component
         $this->course = $course;
 
         foreach ($course->lessons as $lesson) {
-            if (!$lesson->completed) {
+            if (!$lesson->progress) {
                 $this->current = $lesson;
                 break;
             }
@@ -61,15 +61,15 @@ class CourseStatus extends Component
         }
     }
 
-    public function completed(Lesson $lesson)
-    {
-        if ($lesson->completed) {
-            $lesson->users()->detach(auth()->user()->id);
-        } else {
-            $lesson->users()->attach(auth()->user()->id);
-        }
+    // public function completed(Lesson $lesson)
+    // {
+    //     if ($lesson->completed) {
+    //         $lesson->users()->detach(auth()->user()->id);
+    //     } else {
+    //         $lesson->users()->attach(auth()->user()->id);
+    //     }
 
-        $this->current = Lesson::find($this->current->id);
-        $this->course = Course::find($this->course->id);
-    }
+    //     $this->current = Lesson::find($this->current->id);
+    //     $this->course = Course::find($this->course->id);
+    // }
 }
