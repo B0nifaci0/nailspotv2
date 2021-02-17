@@ -24,7 +24,7 @@ Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->
 Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 

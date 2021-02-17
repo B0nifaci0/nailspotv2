@@ -19,10 +19,15 @@ class CourseStatus extends Component
         $this->course = $course;
 
         foreach ($course->lessons as $lesson) {
+
+
             if (!$lesson->progress) {
                 $this->current = $lesson;
                 break;
             }
+        }
+        if (!$this->current) {
+            $this->current = $course->lessons->last();
         }
 
         $this->authorize('enrolled', $course);
@@ -60,16 +65,4 @@ class CourseStatus extends Component
             return $this->course->lessons[$this->index - 1];
         }
     }
-
-    // public function completed(Lesson $lesson)
-    // {
-    //     if ($lesson->completed) {
-    //         $lesson->users()->detach(auth()->user()->id);
-    //     } else {
-    //         $lesson->users()->attach(auth()->user()->id);
-    //     }
-
-    //     $this->current = Lesson::find($this->current->id);
-    //     $this->course = Course::find($this->course->id);
-    // }
 }
