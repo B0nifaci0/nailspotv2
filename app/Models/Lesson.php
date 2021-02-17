@@ -12,25 +12,16 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    const ENTREGADA = 1;
-    const CALIFICADA = 3;
-
-    public function getProgressAttribute()
-    {
-        return $this->users->contains(auth()->user()->id);
-    }
-
     protected $guarded = ['id'];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
     public function course()
     {
         return $this->belongsTo(Course::class);
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class)
-            ->withPivot('status');
     }
 
     public function comments()

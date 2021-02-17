@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Task;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Profile;
@@ -83,5 +84,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

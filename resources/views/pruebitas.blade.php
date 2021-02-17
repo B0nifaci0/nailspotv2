@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -99,7 +99,7 @@
                 </div>
 
 
-                {{-- <div class="container py-32 mx-auto text-center sm:px-4">
+                <div class="container py-32 mx-auto text-center sm:px-4">
 
                     <h1
                         class="text-4xl font-extrabold leading-10 tracking-tight text-white sm:text-5xl sm:leading-none md:text-6xl xl:text-7xl">
@@ -120,10 +120,15 @@
                         </span>
                     </div>
                     <div class="mt-8 text-sm text-indigo-300">By signing up, you agree to our terms and services.</div>
-                </div> --}}
+                </div>
             </div>
         </header>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
     </body>
 
-</html>
+</html> --}}
+
+@foreach ($courses as $course)
+    {{$course->pivot->status}}
+    <br>
+@endforeach

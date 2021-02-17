@@ -4,6 +4,7 @@ use App\Http\Livewire\CourseStatus;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PruebitasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,4 @@ Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('pruebitas', function () {
-    return view('pruebitas');
-});
+Route::get('pruebitas', [PruebitasController::class, 'index'])->name('pruebitas');

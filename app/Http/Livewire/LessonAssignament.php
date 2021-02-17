@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Mail\Assignament;
 use App\Models\Lesson;
+use App\Models\Task;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Mail;
@@ -12,12 +13,13 @@ class LessonAssignament extends Component
 {
     use WithFileUploads;
 
-    public $lesson, $file, $user;
+    public $lesson, $file, $user, $task;
 
     public function mount(Lesson $lesson)
     {
         $this->user = auth()->user();
         $this->lesson = $lesson;
+        $this->task = $lesson->tasks()->whereUserId($this->user->id)->first();
     }
 
     public function render()
@@ -34,12 +36,11 @@ class LessonAssignament extends Component
 
         $url = $this->file->store('resource');
 
-        $this->lesson->users()->attach(auth()->user()->id, [
+        Task::create([
             'url' => $url,
             'user_id' => $this->user->id,
             'lesson_id' => $this->lesson->id
         ]);
-
 
         $this->lesson = Lesson::find($this->lesson->id);
 
