@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Instructor;
 
+use App\Models\Task;
 use App\Models\Course;
+use App\Models\Lesson;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,11 +21,26 @@ class CoursesIndex extends Component
             ->where('name', 'LIKE', "%$this->search%")
             ->latest('id')
             ->paginate(8);
+
         return view('livewire.instructor.courses-index', compact('courses'));
     }
 
     public function clearPage()
     {
         $this->reset('page');
+    }
+
+
+    public function getLessonProperty()
+    {
+        $lesson = Lesson::whereId(121)
+            ->with('tasks')
+            ->get()
+            ->pluck('tasks')
+            ->collapse()
+            ->where('status', Task::ENTREGADA)
+            ->count();
+
+        return $this->lesson = $lesson;
     }
 }

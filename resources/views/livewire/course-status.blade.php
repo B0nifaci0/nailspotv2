@@ -17,7 +17,6 @@
                     @if ($this->next)
                     <a wire:click="changeLesson({{$this->next}})" class="cursor-pointer ml-auto">Siguiente Lección </a>
                     @endif
-
                 </div>
             </div>
         </div>
@@ -37,7 +36,7 @@
     </div>
 
     <section class="container p-5 place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        @foreach ($course->lessons as $key=>$item)
+        @foreach ($lessons as $key=>$item)
         <div class="bg-gray-900 shadow-lg rounded p-3 h-full w-full my-4">
             <div class="group relative">
                 <img class="w-full md:w-90 block rounded" src="{{Storage::url($course->image->url)}}" />
@@ -65,9 +64,16 @@
             <div class="p-5 mt-auto">
                 <h3 class="text-white text-lg ">Lección:{{$key+1}}: {{$item->name}}</h3>
                 <p class="text-gray-400">{{$item->description}}</p>
-                @if ($item->progress)
-                <p class="text-white"> Tiene una tarea entregada</p>
+                {{-- {{$tasks}} --}}
+                @foreach ($tasks as $e)
+                @if ($e->lesson->id == $item->id && $e->user->id == auth()->user()->id)
+                @if ($e->status == 1)
+                <span class="bg-yellow-300"> Pendiente de calificar </span>
+                @else
+                <span class="bg-green-300"> Calificacion: {{$e->score}} </span>
                 @endif
+                @endif
+                @endforeach
             </div>
         </div>
         @endforeach

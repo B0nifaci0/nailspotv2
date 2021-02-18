@@ -116,13 +116,6 @@
                         @endswitch
 
                     </td>
-                    <td>
-                        <a class="px-3 py-2 mt-2 text-sm text-gray-700 bg-gray-100 rounded-lg sm:mt-0 hover:text-gray-800 focus:text-gray-800 hover:bg-gray-200"
-                            href="#"><span
-                                class="badge mb-3 bg-red-800 rounded-full px-2 py-1 text-center object-right-top text-white text-sm mr-1">
-                                {{-- {{dd($course)}} --}}
-                            </span>Tareas</a>
-                    </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('instructor.courses.edit', $course)}}"
                             class="text-indigo-600 hover:text-indigo-900">Edit</a>

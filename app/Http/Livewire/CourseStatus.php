@@ -11,16 +11,18 @@ class CourseStatus extends Component
 {
     use AuthorizesRequests;
 
-    public $course, $current, $lesson, $pruebita;
+    public $course, $current, $lesson, $tasks, $lessons;
 
 
     public function mount(Course $course)
     {
         $this->course = $course;
-        $this->current = $course->lessons()->first();
+        $this->lessons = $course->lessons()->with('tasks')->get();
+        $this->current = $course->lessons()->with('tasks')->first();
         // if (!$this->current) {
         //     $this->current = $course->lessons->last();
         // }
+        $this->tasks = $this->lessons->pluck('tasks')->collapse();
         $this->authorize('enrolled', $course);
     }
 
@@ -32,6 +34,7 @@ class CourseStatus extends Component
     public function changeLesson(Lesson $lesson)
     {
         $this->current = $lesson;
+        $this->tasks = $this->lessons->pluck('tasks')->collapse();
     }
 
     public function getIndexProperty()

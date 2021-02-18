@@ -13,6 +13,8 @@ class Lesson extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $withCount = ['tasks'];
+
 
     public function tasks()
     {

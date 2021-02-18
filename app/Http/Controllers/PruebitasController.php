@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lesson;
 use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\Lesson;
 
 class PruebitasController extends Controller
 {
@@ -25,7 +25,8 @@ class PruebitasController extends Controller
         // }
         // return $this->contador;
 
-        $lesson = Lesson::whereId(121)
+
+        $lesson = Course::lessons(121)
             ->with('tasks')
             ->get()
             ->pluck('tasks')
@@ -34,7 +35,11 @@ class PruebitasController extends Controller
             ->count();
 
 
-        return $lesson;
+        // $lesson = Lesson::whereId(121)->with('tasks')
+        //     ->get()
+        //     ->pluck('tasks');
+        // dd($lesson);
+        // return $lesson;
         return view('pruebitas', compact('courses'));
     }
 }
