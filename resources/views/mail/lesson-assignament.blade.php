@@ -12,7 +12,7 @@
         <h1>Tarea recibida</h1>
         <p>{{$student->name}} acaba de entregar una tarea de la lección: {{$lesson->name}}</p>
 
-        <a href="{{route('instructor.courses.students', $lesson->course)}}">Ir a calificar</a>
+        <a href="{{route('instructor.courses.tasks',[$lesson->course, $student])}}">Ir a calificar</a>
     </body>
 
 </html>

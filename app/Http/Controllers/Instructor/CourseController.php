@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Instructor;
 
+use App\Models\Task;
+use App\Models\User;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+
 
 class CourseController extends Controller
 {
@@ -84,9 +85,17 @@ class CourseController extends Controller
         return redirect()->route('instructor.courses.edit', $course);
     }
 
-    public function destroy(Course $course)
+    public function tasks(Course $course, User $student)
     {
-        //
+        $tasks = $course->lessons()
+            ->with('tasks')->get()
+            ->pluck('tasks')
+            ->collapse()
+            ->where('user_id', $student->id);
+
+        $this->authorize('dicatated', $course);
+
+        return view('instructor.courses.tasks', compact('tasks', 'student', 'course'));
     }
 
     public function goals(Course $course)

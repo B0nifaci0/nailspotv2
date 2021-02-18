@@ -1,7 +1,6 @@
 <div>
 
     <h1 class="text-2xl font-bold uppercase mb-2">Estudiantes del curso</h1>
-
     <x-table-responsive>
 
         <div class="px-6 py-4 ">
@@ -43,8 +42,8 @@
                     </td>
 
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{route('instructor.courses.edit', $student)}}"
-                            class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                        <a href="{{route('instructor.courses.tasks',[$course, $student])}}"
+                            class="text-indigo-600 hover:text-indigo-900">Tareas</a>
                     </td>
                 </tr>
                 @empty
