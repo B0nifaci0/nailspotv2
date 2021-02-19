@@ -19,7 +19,6 @@ class CoursesLesson extends Component
     public function mount(Course $course)
     {
         $this->course = $course;
-
         $this->lesson = new Lesson();
     }
 

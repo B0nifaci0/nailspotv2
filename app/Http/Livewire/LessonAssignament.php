@@ -34,8 +34,7 @@ class LessonAssignament extends Component
         ]);
 
 
-        $url = $this->file->store('resource');
-
+        $url = $this->file->store('resource', 'public');
         Task::create([
             'url' => $url,
             'user_id' => $this->user->id,

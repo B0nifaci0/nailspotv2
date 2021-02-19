@@ -87,15 +87,9 @@ class CourseController extends Controller
 
     public function tasks(Course $course, User $student)
     {
-        $tasks = $course->lessons()
-            ->with('tasks')->get()
-            ->pluck('tasks')
-            ->collapse()
-            ->where('user_id', $student->id);
-
         $this->authorize('dicatated', $course);
 
-        return view('instructor.courses.tasks', compact('tasks', 'student', 'course'));
+        return view('instructor.courses.tasks', compact('student', 'course'));
     }
 
     public function goals(Course $course)

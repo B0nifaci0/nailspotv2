@@ -29,18 +29,4 @@ class CoursesIndex extends Component
     {
         $this->reset('page');
     }
-
-
-    public function getLessonProperty()
-    {
-        $lesson = Lesson::whereId(121)
-            ->with('tasks')
-            ->get()
-            ->pluck('tasks')
-            ->collapse()
-            ->where('status', Task::ENTREGADA)
-            ->count();
-
-        return $this->lesson = $lesson;
-    }
 }

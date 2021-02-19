@@ -26,7 +26,7 @@ class PruebitasController extends Controller
         // return $this->contador;
 
 
-        $lesson = Course::lessons(121)
+        $lesson = Course::lessons()
             ->with('tasks')
             ->get()
             ->pluck('tasks')
