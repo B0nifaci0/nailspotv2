@@ -23,23 +23,24 @@
     </head>
 
 
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    <body class="text-gray-800 antialiased">
+        {{-- <x-jet-banner /> --}}
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        @livewire('navigation-menu')
 
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+        <main>
+            @yield('header')
+            {{ $slot }}
+        </main>
 
         @stack('modals')
+
+        <x-footer />
 
         @livewireScripts
 
         @isset($js)
-            {{$js}}
+        {{$js}}
         @endisset
     </body>
 

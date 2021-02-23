@@ -13,8 +13,8 @@ $nav_links =[
 ];
 @endphp
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 shadow">
-    <!-- Primary Navigation Menu -->
+<nav x-data="{ open: false }"
+    class="top-0 absolute z-50 w-full items-center justify-between px-2 py-3 navbar-expand-lg">
     <div class="container">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -107,14 +107,17 @@ $nav_links =[
                         </x-slot>
                     </x-jet-dropdown>
                     @else
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    <div class="hidden top-0 right-0 px-6 py-8 sm:block">
                         @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                         @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-
+                        <x-jet-nav-link href="{{ route('login') }}">
+                            Ingresar
+                        </x-jet-nav-link>
                         @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        <x-jet-nav-link href="{{ route('register') }}">
+                            Registrate
+                        </x-jet-nav-link>
                         @endif
                         @endauth
                     </div>
@@ -143,7 +146,7 @@ $nav_links =[
         <div class="pt-2 pb-3 space-y-1">
             @foreach ($nav_links as $nav_link)
             <x-jet-responsive-nav-link href="{{$nav_link['route']}}" :active="$nav_link['active']">
-                {{($nav_link['name']) }}
+                {{($nav_link['name']) }} hola
             </x-jet-responsive-nav-link>
 
             @endforeach
@@ -201,12 +204,12 @@ $nav_links =[
             </div>
         </div>
         @else
-        <div class="py-1 border-t border-gray-200">
+        <div class="py-1 border-t">
             <x-jet-responsive-nav-link href="{{route('login')}}" :active="request()->routeIs('login')">
-                Login
+                Ingresar
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{route('register')}}" :active="request()->routeIs('register')">
-                Register
+                Registrate
             </x-jet-responsive-nav-link>
 
         </div>

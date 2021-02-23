@@ -1,30 +1,35 @@
 <x-app-layout>
-    <section>
-        {{-- <video id="video_background" muted autoplay loop />
-        <source src="{{asset('video/presentacion ns_2.mp4')}}" />
-        </video /> --}}
-        <div class="container py-36">
-            <div class="w-full md:w-3/4 lg:w-1/2">
-                <h1 class="text-black font-fold text-5xl"> Pagina de cursos</h1>
-                <p class="text-black text-lg mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum in
-                    dolore quaerat dolorem unde at id. Fugit amet numquam deserunt quod ea quisquam aliquam vero
-                    perspiciatis magni, ipsum accusamus totam!</p>
-                <div class="relative text-gray-600 mt-4">
-                    <input type="search" name="serch" placeholder="Buscar..."
-                        class="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
-                    <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
-                        <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
-                            viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
-                            xml:space="preserve" width="512px" height="512px">
-                            <path
-                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                        </svg>
-                    </button>
+    @section('header')
+    <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
+        <div class="absolute top-0 w-full h-full bg-center bg-cover"
+            style='background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80");'>
+            <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
+        </div>
+        <div class="container relative mx-auto">
+            <div class="items-center flex flex-wrap">
+                <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+                    <div class="pr-12">
+                        <h1 class="text-white font-semibold text-5xl">
+                            Pagina de cursos.
+                        </h1>
+                        <p class="mt-4 text-lg text-gray-300">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum in
+                            dolore quaerat dolorem unde at id. Fugit amet numquam deserunt quod ea quisquam aliquam vero
+                            perspiciatis magni, ipsum accusamus totam!
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+            style="height: 70px; transform: translateZ(0px);">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                <polygon class="text-gray-300 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+    @endsection
 
     @livewire('courses-index')
 </x-app-layout>

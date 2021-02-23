@@ -26,13 +26,13 @@ class PruebitasController extends Controller
         // return $this->contador;
 
 
-        $lesson = Course::lessons()
-            ->with('tasks')
-            ->get()
-            ->pluck('tasks')
-            ->collapse()
-            ->where('status', Task::ENTREGADA)
-            ->count();
+        // $lesson = Course::lessons()
+        //     ->with('tasks')
+        //     ->get()
+        //     ->pluck('tasks')
+        //     ->collapse()
+        //     ->where('status', Task::ENTREGADA)
+        //     ->count();
 
 
         // $lesson = Lesson::whereId(121)->with('tasks')
@@ -40,6 +40,6 @@ class PruebitasController extends Controller
         //     ->pluck('tasks');
         // dd($lesson);
         // return $lesson;
-        return view('pruebitas', compact('courses'));
+        return view('pruebitas');
     }
 }
