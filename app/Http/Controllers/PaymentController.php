@@ -33,6 +33,7 @@ class PaymentController extends Controller
 
     public function pay(Course $course)
     {
+        return $course;
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
