@@ -18,7 +18,6 @@ class Category extends Model
         'name',
         'status',
         'category_photo_path'
-
     ];
 
     public function courses()

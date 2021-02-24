@@ -121,7 +121,7 @@
         </div>
     </section>
 
-    <section class="relative py-20">
+    <section class="relative py-10">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px; transform: translateZ(0px)">
             <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
@@ -131,7 +131,7 @@
         </div>
     </section>
 
-    <section class="pt-20 pb-48">
+    <section class="pb-40">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center text-center mb-24">
                 <div class="w-full lg:w-6/12 px-4">

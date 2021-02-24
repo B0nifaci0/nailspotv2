@@ -30,6 +30,5 @@
         </div>
     </div>
     @endsection
-
     @livewire('courses-index')
 </x-app-layout>

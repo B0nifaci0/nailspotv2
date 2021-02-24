@@ -25,9 +25,10 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
             @livewire('navigation-menu')
-
+            <div class="relative pt-16 flex content-center items-center justify-center">
+            </div>
             <div class="container py-8 grid grid-cols-5 gap-6">
                 <aside>
                     <h1 class="mb-4 font-bold text-lg">Edicion del curso</h1>

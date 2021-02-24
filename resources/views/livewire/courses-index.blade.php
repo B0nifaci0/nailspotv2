@@ -1,4 +1,4 @@
-<div>
+<div class="pt-20 pb-48">
     <div class="container flex text-gray-700">
         <button class="bg-white shadow rounded-lg h-12 px-4 mr-4" wire:click="clear">
             Todos los cursos
@@ -38,7 +38,7 @@
         <x-course-card :course="$course" />
         @endforeach
     </div>
-    <div class="max-w-7xl mx-auto lg:px-8 px-4 py-3 justify-between sm:px-6">
+    <div class="max-w-7xl mx-auto lg:px-8 px-4 py-3 justify-between sm:px-6 ">
         {{$courses->links()}}
     </div>
 </div>

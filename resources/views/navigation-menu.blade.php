@@ -146,7 +146,7 @@ $nav_links =[
         <div class="pt-2 pb-3 space-y-1">
             @foreach ($nav_links as $nav_link)
             <x-jet-responsive-nav-link href="{{$nav_link['route']}}" :active="$nav_link['active']">
-                {{($nav_link['name']) }} hola
+                {{($nav_link['name']) }}
             </x-jet-responsive-nav-link>
 
             @endforeach

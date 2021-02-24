@@ -1,4 +1,6 @@
 <x-app-layout>
+    <div class="relative pt-16 flex content-center items-center justify-center">
+    </div>
     <div class="container py-8">
         <div class="card">
             <div class="card-body">
