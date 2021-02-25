@@ -31,15 +31,14 @@ class PaymentController extends Controller
         return view('payment.checkout', compact('course'));
     }
 
-    public function pay(Course $course)
+    public function pay(Course $course, Request $request)
     {
-        return $course;
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
         $amount = new Amount();
-        $amount->setTotal($course->price);
+        $amount->setTotal($request->total);
         $amount->setCurrency('MXN');
 
         $transaction = new Transaction();

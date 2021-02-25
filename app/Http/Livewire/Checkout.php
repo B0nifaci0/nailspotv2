@@ -19,7 +19,9 @@ class Checkout extends Component
     public function render()
     {
         $coupon = Coupon::firstWhere('code', $this->search);
-        $this->current = $coupon;
+        if ($coupon) {
+            $this->current = $coupon;
+        }
         return view('livewire.checkout', compact('coupon'));
     }
 
@@ -27,15 +29,18 @@ class Checkout extends Component
     {
         $this->total = $this->course->price;
         $this->active = $this->current;
-        if ($this->active->type == 0) {
-            $this->total = $this->total - $this->active->discount;
-        } else {
-            $this->total = $this->total - ($this->total * $this->active->discount / 100);
+        if ($this->active) {
+            if ($this->active->type == 0) {
+                $this->total = $this->total - $this->active->discount;
+            } else {
+                $this->total = $this->total - ($this->total * $this->active->discount / 100);
+            }
         }
     }
 
     public function clearActive()
     {
         $this->reset('active');
+        $this->total = $this->course->price;
     }
 }
