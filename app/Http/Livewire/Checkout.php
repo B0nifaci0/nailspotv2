@@ -21,6 +21,8 @@ class Checkout extends Component
         $coupon = Coupon::firstWhere('code', $this->search);
         if ($coupon) {
             $this->current = $coupon;
+        } else {
+            $this->current = null;
         }
         return view('livewire.checkout', compact('coupon'));
     }
@@ -35,6 +37,8 @@ class Checkout extends Component
             } else {
                 $this->total = $this->total - ($this->total * $this->active->discount / 100);
             }
+        } else {
+            $this->active = null;
         }
     }
 
