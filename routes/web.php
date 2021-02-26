@@ -24,10 +24,4 @@ Route::get('curso/{course}', [CourseController::class, 'show'])->name('course.sh
 Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->middleware('auth')->name('course.enrolled');
 Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
 
-
-Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
 Route::get('pruebitas', [PruebitasController::class, 'index'])->name('pruebitas');
