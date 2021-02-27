@@ -10,6 +10,7 @@ use App\Models\Lesson;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Category;
+use App\Models\SaleDetail;
 use App\Models\Requirement;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Model;
@@ -102,5 +103,10 @@ class Course extends Model
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function saleDetails()
+    {
+        return $this->belongsToMany(SaleDetail::class);
     }
 }

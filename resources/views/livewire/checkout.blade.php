@@ -105,7 +105,8 @@
 
                         <form action="{{route('payment.pay',$course)}}" method="post">
                             @csrf
-                            <input name='total' type="text" wire:model='total' class='hidden'>
+                            <input name='finalprice' type="text" wire:model='total'>
+                            <input name='coupon' type="text" wire:model='couponId'>
                             <button type="submit"
                                 class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
                                 <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8"

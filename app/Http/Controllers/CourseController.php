@@ -24,6 +24,8 @@ class CourseController extends Controller
         return view('courses.show', compact('course', 'similares'));
     }
 
+
+    #cursos gratuitos
     public function enrolled(Course $course)
     {
         $course->students()->attach(auth()->user()->id);

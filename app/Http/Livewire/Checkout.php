@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public $course, $search, $active, $current, $total;
+    public $course, $search, $active, $current, $total, $couponId;
 
     public function mount(Course $course)
     {
@@ -37,8 +37,10 @@ class Checkout extends Component
             } else {
                 $this->total = $this->total - ($this->total * $this->active->discount / 100);
             }
+            $this->couponId = $this->active->id;
         } else {
             $this->active = null;
+            $this->couponId = null;
         }
     }
 

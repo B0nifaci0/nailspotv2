@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Profile;
+use App\Models\SaleDetail;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
@@ -89,5 +90,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function saleDetails()
+    {
+        return $this->belongsToMany(SaleDetail::class);
     }
 }

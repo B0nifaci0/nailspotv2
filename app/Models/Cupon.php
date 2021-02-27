@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SaleDetail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cupon extends Model
 {
@@ -11,8 +12,8 @@ class Cupon extends Model
 
     protected $guarded = ['id'];
 
-    public function courseDetails()
+    public function saleDetails()
     {
-        return $this->hasMany(CourseDetail::class);
+        return $this->belongsToMany(SaleDetail::class);
     }
 }
