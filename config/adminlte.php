@@ -65,10 +65,10 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -226,7 +226,7 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
@@ -257,7 +257,7 @@ return [
         [
             'text'        => 'Detalles ventas',
             'route'         => 'admin.sales',
-            'icon'        => 'fas fa-fw fa-users',
+            'icon'        => 'fas fa-wallet',
             'active' => ['admin/sales*'],
             'can' => 'Ver dashboard'
         ],

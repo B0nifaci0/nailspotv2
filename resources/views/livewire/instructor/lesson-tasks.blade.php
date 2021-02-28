@@ -15,11 +15,11 @@
                     </div>
                     <div>
                         @if ($item->status == 1)
-                        <a href='{{route('instructor.task.evaluate',$item)}}'
+                        <a href='{{route('instructor.task.show',$item)}}'
                             class="bg-yellow-300 font-bold text-black rounded-md p-2"> Pendiente</a>
                         @else
                         <a class="bg-green-600 font-bold text-black rounded-md p-2"
-                            href='{{route('instructor.task.evaluate',$item)}}'> Calificación:
+                            href='{{route('instructor.task.show',$item)}}'> Calificación:
                             {{$item->score}}</a>
                         @endif
                     </div>

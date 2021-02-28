@@ -96,4 +96,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(SaleDetail::class);
     }
+
+    public function adminlte_image()
+    {
+        return $this->profile_photo_url;
+    }
+
+    public function adminlte_desc()
+    {
+        if ($this->hasRole('Admin')) {
+            return 'Administrador';
+        } else if ($this->hasRole('Instructor')) {
+            return 'Instructor';
+        }
+    }
 }
