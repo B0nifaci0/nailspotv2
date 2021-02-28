@@ -254,6 +254,13 @@ return [
             'active' => ['admin/users*'],
             'can' => 'Leer usuarios'
         ],
+        [
+            'text'        => 'Detalles ventas',
+            'route'         => 'admin.sales',
+            'icon'        => 'fas fa-fw fa-users',
+            'active' => ['admin/sales*'],
+            'can' => 'Ver dashboard'
+        ],
         ['header' => 'OPCIONES DE CURSOS'],
         [
             'text' => 'Pendientes de aprobación',

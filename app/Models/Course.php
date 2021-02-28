@@ -27,7 +27,7 @@ class Course extends Model
     use HasProfilePhoto;
 
     protected $guarded = ['id', 'status'];
-    protected $withCount = ['students', 'reviews'];
+    protected $withCount = ['students', 'reviews', 'saleDetails'];
 
     public function getRatingAttribute()
     {
@@ -35,6 +35,11 @@ class Course extends Model
             return round($this->reviews->avg('rating'), 1);
         }
         return 6;
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->saleDetails->sum('final_price');
     }
 
     public function scopeCategory($query, $category_id)
@@ -107,6 +112,6 @@ class Course extends Model
 
     public function saleDetails()
     {
-        return $this->belongsToMany(SaleDetail::class);
+        return $this->hasMany(SaleDetail::class);
     }
 }

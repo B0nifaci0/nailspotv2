@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Category;
-use App\Models\User;
 use App\Models\Course;
 use App\Models\Level;
 use Illuminate\Support\Str;
@@ -33,7 +32,7 @@ class CourseFactory extends Factory
             'description' => $this->faker->catchPhrase,
             'status' => $this->faker->randomElement([Course::BORRADOR, Course::REVISION, Course::PUBLICADO]),
             'slug' => Str::slug($name),
-            'price' => $this->faker->randomNumber(2),
+            'price' => $this->faker->randomNumber(3),
             // 'start_date' => $this->faker->date(),
             // 'end_date' => $this->faker->date(),
             'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),

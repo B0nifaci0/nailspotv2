@@ -10,4 +10,12 @@ class Coupon extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    const VALOR = 1;
+    const PORCENTUAL = 2;
+
+    public function saleDetails()
+    {
+        return $this->hasMany(SaleDetail::class);
+    }
 }

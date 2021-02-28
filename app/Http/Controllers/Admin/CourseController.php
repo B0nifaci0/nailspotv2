@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Course;
 use App\Http\Controllers\Controller;
+use App\Models\SaleDetail;
 
 class CourseController extends Controller
 {
@@ -12,6 +13,17 @@ class CourseController extends Controller
     {
         $courses = Course::whereStatus(Course::REVISION)->paginate();
         return view('admin.courses.index', compact('courses'));
+    }
+
+    public function sales()
+    {
+        $courses = Course::has('saleDetails')->paginate();
+        return view('admin.courses.sales', compact('courses'));
+    }
+
+    public function details(Course $course)
+    {
+        return view('admin.courses.details', compact('course'));
     }
 
     public function show(Course $course)

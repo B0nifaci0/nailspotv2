@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\LevelSeeder;
+use Database\Seeders\CouponSeeder;
 use Database\Seeders\CourseSeeder;
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\PermissionSeeder;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(LevelSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(CouponSeeder::class);
         $this->call(CourseSeeder::class);
     }
 }

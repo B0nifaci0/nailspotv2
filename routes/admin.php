@@ -16,5 +16,8 @@ Route::resource('categories', CategoryController::class)->names('categories');
 Route::resource('levels', LevelController::class)->names('levels');
 Route::resource('coupons', CouponController::class)->names('coupons');
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('sales', [CourseController::class, 'sales'])->name('sales');
+Route::get('sales/details/{course}', [CourseController::class, 'details'])->name('details');
+
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
