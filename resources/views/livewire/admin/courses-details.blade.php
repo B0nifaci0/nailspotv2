@@ -14,12 +14,13 @@
                     @forelse ($courses as $course)
                     <tr>
                         <td>
-                            <img class="rounded-circle" src="{{ $course->teacher->profile_photo_url }}" />
+                            <img class="rounded-circle zoom" src="{{ $course->teacher->profile_photo_url}}"
+                                style="width: 100px; height: 100px;" />
                             {{$course->teacher->name}}</td>
                         <td>{{$course->name}}</td>
                         <td>{{$course->saleDetails->count()}}</td>
                         <td>${{$course->total}}</td>
-                        <td width="10px">
+                        <td width=" 10px">
                             <a class="btn btn-primary" href="{{route('admin.details',$course)}}">Detalles</a>
                         </td>
                     </tr>

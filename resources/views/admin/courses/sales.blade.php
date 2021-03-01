@@ -12,6 +12,11 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+    .zoom:hover {
+        transform: scale(1.5);
+    }
+</style>
 @stop
 
 @section('js')

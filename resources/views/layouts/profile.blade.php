@@ -37,7 +37,7 @@
                             class="leading-7 mb-1 border-l-4 @routeIs ('profile.show') border-indigo-400 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.show')}}">Informacion de usuario</a>
                         </li>
-                       <li
+                        <li
                             class="leading-7 mb-1 border-l-4 @routeIs ('profile.courses') border-indigo-400 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.courses')}}">Mis compras</a>
                         </li>

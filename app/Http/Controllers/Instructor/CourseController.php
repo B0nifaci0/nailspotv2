@@ -101,6 +101,7 @@ class CourseController extends Controller
 
     public function status(Course $course)
     {
+        
         $course->status = Course::REVISION;
         $course->save();
         return back();

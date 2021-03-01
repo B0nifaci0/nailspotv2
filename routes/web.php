@@ -34,3 +34,7 @@ Route::get('/perfil/delete', [ProfileController::class, 'delete'])
     ->name('profile.delete');
 Route::get('/perfil/cursos', [ProfileController::class, 'courses'])
     ->name('profile.courses');
+
+Route::get('perfil/cursos/{course}/tasks', [ProfileController::class, 'tasks'])->name('courses.tasks');
+
+Route::get('perfil/{task}/task', [ProfileController::class, 'task'])->name('task');
