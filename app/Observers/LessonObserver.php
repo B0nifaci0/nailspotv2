@@ -6,7 +6,6 @@ use App\Models\Lesson;
 
 class LessonObserver
 {
-
     public function creating(Lesson $lesson)
     {
         $url = $lesson->url;

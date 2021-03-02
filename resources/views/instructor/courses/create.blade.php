@@ -60,6 +60,13 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="mb-4 mt-4">
+                        <label>Url Video</label>
+                        <input type="text" name="url" class="form-input block w-full mt-1" />
+                        @error('url')
+                        <strong class="text-xs text-red-500">{{$message}}</strong>
+                        @enderror
+                    </div>
                     <h1 class="text-2xl font-bold mt-8 mb-2">Imagen del curso</h1>
                     <div class="grid grid-cols-2 gap-4">
                         <figure>
@@ -79,7 +86,6 @@
                             <input type="file" class="form-input w-full" id="file" name="image" accept="image/*">
                         </div>
                     </div>
-                    <input value="{{auth()->user()->id}}" type="hidden" name="user_id">
                     <div class="flex justify-end">
                         <button type="submit"
                             class="block text-center bg-blue-500 text-white font-bold py-2 px-4 rounded mt-10">Crear

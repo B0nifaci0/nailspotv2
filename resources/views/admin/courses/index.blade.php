@@ -18,7 +18,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Profesor</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th></th>
@@ -28,7 +28,9 @@
             <tbody>
                 @foreach ($courses as $course)
                 <tr>
-                    <td>{{$course->id}}</td>
+                    <td><img class="rounded-circle zoom" src="{{$course->teacher->profile_photo_url }}" />
+                        {{$course->teacher->name}}
+                    </td>
                     <td>{{$course->name}}</td>
                     <td>{{$course->category->name}}</td>
                     <td>
@@ -48,6 +50,11 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+    .zoom:hover {
+        transform: scale(1.5);
+    }
+</style>
 @stop
 
 @section('js')

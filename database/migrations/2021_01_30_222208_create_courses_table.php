@@ -18,6 +18,8 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->string('url');
+            $table->string('iframe');
             $table->enum('status', [Course::BORRADOR, Course::REVISION, Course::PUBLICADO])->default(Course::BORRADOR);
             $table->string('slug');
             $table->double('price');

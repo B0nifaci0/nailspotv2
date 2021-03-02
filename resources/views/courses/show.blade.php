@@ -2,8 +2,9 @@
 
     @section('header')
     <div class=" w-full lg:max-w-full lg:flex pt-20 p-2 bg-gray-300 relative">
-        <div class="h-72 lg:h-96 lg:w-1/2 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center"
-            style='background-image: url({{Storage::url($course->image->url)}})' title="Mountain">
+        <div
+            class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center">
+            {!!$course->iframe!!}
         </div>
         <div
             class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-gray-700 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal w-full text-white">

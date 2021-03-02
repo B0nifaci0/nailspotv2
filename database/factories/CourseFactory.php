@@ -33,6 +33,8 @@ class CourseFactory extends Factory
             'status' => $this->faker->randomElement([Course::BORRADOR, Course::REVISION, Course::PUBLICADO]),
             'slug' => Str::slug($name),
             'price' => $this->faker->randomNumber(3),
+            'url' => 'https://www.youtube.com/watch?v=PI3LAgGBxqU&ab_channel=QueenOfficial',
+            'iframe' => '<iframe width="736" height="552" src="https://www.youtube.com/embed/PI3LAgGBxqU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             // 'start_date' => $this->faker->date(),
             // 'end_date' => $this->faker->date(),
             'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),

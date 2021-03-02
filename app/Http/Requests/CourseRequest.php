@@ -27,6 +27,7 @@ class CourseRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'slug' => 'required',
+            'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
             'level_id' => 'required',
             'category_id' => 'required',
             'price' => 'required',

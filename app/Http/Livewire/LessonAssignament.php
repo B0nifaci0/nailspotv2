@@ -33,14 +33,12 @@ class LessonAssignament extends Component
             'file' => 'required'
         ]);
 
-
         $url = $this->file->store('resource', 'public');
         Task::create([
             'url' => $url,
             'user_id' => $this->user->id,
             'lesson_id' => $this->lesson->id
         ]);
-
 
         $mail = new Assignament($this->lesson, $this->user);
         Mail::to($this->lesson->course->teacher->email)->queue($mail);

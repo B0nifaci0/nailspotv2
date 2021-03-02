@@ -61,7 +61,13 @@
                 @enderror
             </div>
         </div>
-
+        <div class="mb-4 mt-4">
+            <label>Url Video</label>
+            <input type="text" name="url" value="{{old('url',$course->url)}}" class="form-input block w-full mt-1" />
+            @error('url')
+            <strong class="text-xs text-red-500">{{$message}}</strong>
+            @enderror
+        </div>
         <h1 class="text-2xl font-bold mt-8 mb-2">Imagen del curso</h1>
         <div class="grid grid-cols-2 gap-4">
             <figure>
