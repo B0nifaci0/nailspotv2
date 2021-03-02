@@ -17,7 +17,6 @@ class CategoryController extends Controller
 
     public function create()
     {
-
         return view('admin.categories.create');
     }
 
@@ -26,14 +25,8 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|unique:categories'
         ]);
-
-        $category = Category::create($request->all());
-        return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoria se creo con exito!');
-    }
-
-    public function show(Category $category)
-    {
-        return view('admin.categories.show', compact('category'));
+        Category::create($request->all());
+        return redirect()->route('admin.categories.index')->with('info', 'La categoria se creo con exito!');
     }
 
     public function edit(Category $category)
@@ -47,7 +40,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories,name,' . $category->id
         ]);
         $category->update($request->all());
-        return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoria se actualizo exito!');
+        return redirect()->route('admin.categories.index')->with('info', 'La categoria se actualizo exito!');
     }
 
     public function destroy(Category $category)

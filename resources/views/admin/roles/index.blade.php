@@ -62,6 +62,8 @@
 
 @section('js')
 <script>
-    console.log('Hi!'); 
+    $(document).ready(function(){
+    $(".alert").delay(3000).slideUp(300);
+    });
 </script>
 @stop

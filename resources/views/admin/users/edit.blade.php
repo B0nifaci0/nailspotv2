@@ -1,34 +1,37 @@
 @extends('adminlte::page')
 
-@section('title', 'Pruebita')
+@section('title', 'Asignar Rol')
 
 @section('content_header')
-<h1>Editar usuario</h1>
+<h1>Asignar Rol</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <h1 class="h-5">Nombre: </h1>
-        <p class="form-control">{{$user->name}}</p>
-        <h1 class="h-5">Lista de Roles</h1>
-        <strong>Permisos Actuales</strong>
-        <ul>
-            @foreach ($user->roles as $role)
-            <li>{{$role->name}}</li>
-            @endforeach
-        </ul>
-        <form method="POST" action="{{ route('admin.users.update',['user' => $user]) }}">
-            @csrf
-            @method('PATCH')
-            @foreach ($roles as $role)
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="roles[]" value="{{$role->id}}">
-                <label class="form-check-label">{{$role->name}}</label>
+        <div class="form-group">
+            {!! Form::label('inputname', 'Nombre') !!}
+            <p>{{$user->name}}</p>
+        </div>
+        {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT', 'class' =>
+        'form-horizontal']) !!}
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                @foreach ($roles as $role)
+                <div class="checkbox{{ $errors->has('roles') ? ' has-error' : '' }}">
+                    <label for="roles[]">
+                        {!! Form::checkbox('roles[]', $role->id, null) !!} {{$role->name}}
+                    </label>
+                </div>
+                @endforeach
+                <small class="text-danger">{{ $errors->first('roles') }}</small>
             </div>
-            @endforeach
-            <button type="submit" class="btn btn-primary mt-2">Asignar Rol</button>
-        </form>
+        </div>
+        <div class="btn-group pull-right">
+            {!! Form::reset("Limpiar", ['class' => 'btn btn-warning']) !!}
+            {!! Form::submit("Aceptar", ['class' => 'btn btn-success ml-2']) !!}
+        </div>
+        {!! Form::close() !!}
     </div>
 </div>
 @stop

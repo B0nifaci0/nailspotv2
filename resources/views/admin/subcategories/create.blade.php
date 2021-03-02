@@ -1,17 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Nuevo Cupón')
+@section('title', 'Crear categoria')
 
 @section('content_header')
-<h1>Nuevo Cupón</h1>
+<h1>Crear categoria</h1>
 @stop
 
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        {!! Form::open(['method' => 'POST', 'route' => 'admin.coupons.store', 'class' => 'form-horizontal']) !!}
-        @include('admin.coupons.partials.form')
+
+        {!! Form::open(['method' => 'POST', 'route' => 'admin.subcategories.store', 'class' => 'form-horizontal']) !!}
+        @include('admin.subcategories.partials.form')
         {!! Form::close() !!}
     </div>
 </div>

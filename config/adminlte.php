@@ -255,7 +255,19 @@ return [
             'can' => 'Leer usuarios'
         ],
         [
-            'text'        => 'Detalles ventas',
+            'text' => 'Niveles',
+            'route'  => 'admin.levels.index',
+            'active' => ['admin/levels*'],
+            'icon' => 'fas fa-fw fa-chart-line',
+        ],
+        [
+            'text' => 'Cupones',
+            'route'  => 'admin.coupons.index',
+            'active' => ['admin/coupons*'],
+            'icon' => 'fas fa-ticket-alt',
+        ],
+        [
+            'text'        => 'Ventas Cursos',
             'route'         => 'admin.sales',
             'icon'        => 'fas fa-wallet',
             'active' => ['admin/sales*'],
@@ -274,17 +286,12 @@ return [
             'active' => ['admin/categories*'],
             'icon' => 'fas fa-fw fa-cogs',
         ],
+        ['header' => 'OPCIONES DE COMPETENCIAS'],
         [
-            'text' => 'Niveles',
-            'route'  => 'admin.levels.index',
-            'active' => ['admin/levels*'],
-            'icon' => 'fas fa-fw fa-chart-line',
-        ],
-        [
-            'text' => 'Cupones',
-            'route'  => 'admin.coupons.index',
-            'active' => ['admin/coupons*'],
-            'icon' => 'fas fa-ticket-alt',
+            'text' => 'Categorias',
+            'route'  => 'admin.subcategories.index',
+            'active' => ['admin/subcategories*'],
+            'icon' => 'fas fa-layer-group',
         ],
     ],
 

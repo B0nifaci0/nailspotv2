@@ -15,19 +15,10 @@
 @endif
 <div class="card">
     <div class="card-body">
-        <form method="POST" action="{{ route('admin.levels.update',['level' => $level]) }}">
-            @csrf
-            @method('PATCH')
-            <label class=" col-form-label">Nombre</label>
-            <input type="text" class="form-control . {{($errors->has('name') ? 'is-invalid' : '')}}" name="name"
-                placeholder="Nombre ..." value="{{old('name',$level->name)}}">
-            @error('name')
-            <span class="invalid-feedback">
-                <strong>{{$message}}</strong>
-            </span>
-            @enderror
-            <button class="btn btn-primary mt-3" type="submit">Actualizar</button>
-        </form>
+        {!! Form::model($level, ['route' => ['admin.levels.update', $level], 'method' => 'PUT', 'class' =>
+        'form-horizontal']) !!}
+        @include('admin.levels.partials.form')
+        {!! Form::close() !!}
     </div>
 </div>
 @stop

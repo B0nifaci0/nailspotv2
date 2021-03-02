@@ -10,18 +10,10 @@
 
 <div class="card">
     <div class="card-body">
-        <form method="POST" action="{{ route('admin.categories.store') }}"">
-                @csrf
-            <label class=" col-form-label">Nombre</label>
-            <input type="text" class="form-control . {{($errors->has('name') ? 'is-invalid' : '')}}" name="name"
-                placeholder="Nombre ..." value="{{old('name')}}">
-            @error('name')
-            <span class="invalid-feedback">
-                <strong>{{$message}}</strong>
-            </span>
-            @enderror
-            <button class="btn btn-primary mt-3" type="submit">Agregar</button>
-        </form>
+
+        {!! Form::open(['method' => 'POST', 'route' => 'admin.categories.store', 'class' => 'form-horizontal']) !!}
+        @include('admin.categories.partials.form')
+        {!! Form::close() !!}
     </div>
 </div>
 @stop

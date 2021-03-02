@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Niveles')
+@section('title', 'Categorias')
 
 @section('content_header')
-<a href="{{route('admin.levels.create')}}" class="btn btn-secondary btn-sm float-right">Nuevo nivel</a>
+<a href="{{route('admin.subcategories.create')}}" class="btn btn-secondary btn-sm float-right">Nueva categoria</a>
 
-<h1>Lista de niveles</h1>
+<h1>Lista de categorias</h1>
 @stop
 
 @section('content')
@@ -25,15 +25,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($levels as $level)
+                @foreach ($subcategories as $subcategory)
                 <tr>
-                    <td>{{$level->id}}</td>
-                    <td>{{$level->name}}</td>
+                    <td>{{$subcategory->id}}</td>
+                    <td>{{$subcategory->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm" href="{{route('admin.levels.edit', $level)}}">Editar</a>
+                        <a class="btn btn-primary btn-sm"
+                            href="{{route('admin.subcategories.edit', $subcategory)}}">Editar</a>
                     </td>
                     <td width="10px">
-                        <form action="{{route('admin.levels.destroy',$level)}}" method="POST">
+                        <form action="{{route('admin.subcategories.destroy',$subcategory)}}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -47,7 +48,9 @@
 </div>
 
 @stop
-
+@section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 @section('js')
 <script>
     $(document).ready(function(){

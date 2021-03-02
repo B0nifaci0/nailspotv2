@@ -27,7 +27,7 @@ class LevelController extends Controller
         ]);
 
         $level = Level::create($request->all());
-        return redirect()->route('admin.levels.edit', $level)->with('info', 'El nivel se creo con exito!');
+        return redirect()->route('admin.levels.index', $level)->with('info', 'El nivel se creo con exito!');
     }
 
     public function show(Level $level)
@@ -46,12 +46,12 @@ class LevelController extends Controller
             'name' => 'required|unique:levels,name,' . $level->id
         ]);
         $level->update($request->all());
-        return redirect()->route('admin.levels.edit', $level)->with('info', 'La categoria se actualizo exito!');
+        return redirect()->route('admin.levels.index', $level)->with('info', 'El nivel se actualizo con exito!');
     }
 
     public function destroy(Level $level)
     {
         $level->delete();
-        return redirect()->route('admin.levels.index')->with('info', 'La categoria se elimino con exito!');
+        return redirect()->route('admin.levels.index')->with('info', 'El nivel se elimino con exito!');
     }
 }

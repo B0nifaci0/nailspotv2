@@ -17,6 +17,7 @@
         "laravel/jetstream": "^2.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.0",
         "paypal/paypal-checkout-sdk": "^1.0",

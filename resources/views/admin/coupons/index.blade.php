@@ -55,6 +55,10 @@
             </tbody>
         </table>
     </div>
+
+    <div class="card-footer">
+        {{$coupons->links('vendor.pagination.bootstrap-4')}}
+    </div>
 </div>
 
 @stop

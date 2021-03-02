@@ -8,11 +8,13 @@ use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
 
 Route::get('', [HomeController::class, 'index'])->middleware('can:Ver dashboard')->name('home');
 Route::resource('roles', RoleController::class)->names('roles');
 Route::resource('users', UserController::class)->names('users')->only(['index', 'edit', 'update']);
 Route::resource('categories', CategoryController::class)->names('categories');
+Route::resource('subcategories', SubcategoryController::class)->names('subcategories');
 Route::resource('levels', LevelController::class)->names('levels');
 Route::resource('coupons', CouponController::class)->names('coupons');
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');

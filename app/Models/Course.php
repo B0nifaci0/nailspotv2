@@ -48,6 +48,7 @@ class Course extends Model
             return $query->whereCategoryId($category_id);
         }
     }
+    
     public function scopeLevel($query, $level_id)
     {
         if ($level_id) {

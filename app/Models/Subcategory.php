@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Course;
+use App\Models\Competence;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class Subcategory extends Model
 {
     use HasFactory;
     use HasProfilePhoto;
 
     protected $guarded = ['id'];
 
-    public function courses()
+    public function competences()
     {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Competence::class);
     }
 }
