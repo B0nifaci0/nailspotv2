@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CompetenceController;
 use App\Http\Controllers\Admin\SubcategoryController;
 
 Route::get('', [HomeController::class, 'index'])->middleware('can:Ver dashboard')->name('home');
@@ -18,6 +19,8 @@ Route::resource('subcategories', SubcategoryController::class)->names('subcatego
 Route::resource('levels', LevelController::class)->names('levels');
 Route::resource('coupons', CouponController::class)->names('coupons');
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
+Route::resource('competences', CompetenceController::class)->names('competences');
+
 Route::get('sales', [CourseController::class, 'sales'])->name('sales');
 Route::get('sales/details/{course}', [CourseController::class, 'details'])->name('details');
 

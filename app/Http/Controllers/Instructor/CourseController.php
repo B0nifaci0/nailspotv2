@@ -36,22 +36,7 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-        $url = $request->url;
-        $patron = '%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x';
-        $array = preg_match($patron, $url, $parte);
-        $iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $parte[1] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-
-        $course = Course::create([
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'description' => $request->description,
-            'url' => $request->url,
-            'category_id' => $request->category_id,
-            'level_id' => $request->level_id,
-            'iframe' => $iframe,
-            'price' => $request->price,
-            'user_id' => auth()->user()->id,
-        ]);
+        $course = Course::create($request->all());
 
         if ($request->hasfile('image')) {
             $url = Storage::put('public/cursos', $request->file('image'));
@@ -80,14 +65,6 @@ class CourseController extends Controller
     public function update(CourseRequest $request, Course $course)
     {
         $this->authorize('dicatated', $course);
-
-        $url = $request->url;
-        $patron = '%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x';
-        $array = preg_match($patron, $url, $parte);
-        $iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $parte[1] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-
-        $course->iframe = $iframe;
-        $course->save();
 
         $course->update($request->all());
 

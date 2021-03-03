@@ -266,13 +266,6 @@ return [
             'active' => ['admin/coupons*'],
             'icon' => 'fas fa-ticket-alt',
         ],
-        [
-            'text'        => 'Ventas Cursos',
-            'route'         => 'admin.sales',
-            'icon'        => 'fas fa-wallet',
-            'active' => ['admin/sales*'],
-            'can' => 'Ver dashboard'
-        ],
         ['header' => 'OPCIONES DE CURSOS'],
         [
             'text' => 'Pendientes de aprobación',
@@ -286,7 +279,20 @@ return [
             'active' => ['admin/categories*'],
             'icon' => 'fas fa-fw fa-cogs',
         ],
+        [
+            'text'        => 'Ventas Cursos',
+            'route'         => 'admin.sales',
+            'icon'        => 'fas fa-wallet',
+            'active' => ['admin/sales*'],
+            'can' => 'Ver dashboard'
+        ],
         ['header' => 'OPCIONES DE COMPETENCIAS'],
+        [
+            'text' => 'Competencias',
+            'route'  => 'admin.competences.index',
+            'active' => ['admin/competences*'],
+            'icon' => 'fas fa-trophy',
+        ],
         [
             'text' => 'Categorias',
             'route'  => 'admin.subcategories.index',
@@ -400,18 +406,23 @@ return [
                 ],
             ],
         ],
-        'duallistbox' => [
+        'Datepicker' => [
             'active' => true,
             'files' => [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap4-duallistbox/4.0.2/bootstrap-duallistbox.css',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap4-duallistbox/4.0.2/jquery.bootstrap-duallistbox.min.js',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js',
                 ],
             ],
         ],
