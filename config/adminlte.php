@@ -299,6 +299,13 @@ return [
             'active' => ['admin/subcategories*'],
             'icon' => 'fas fa-layer-group',
         ],
+        [
+            'text' => 'Criterios',
+            'route'  => 'admin.criteria.index',
+            'active' => ['admin/criteria*'],
+            'icon' => 'fas fa-gavel',
+            
+        ],
     ],
 
     /*
