@@ -10,10 +10,11 @@
 
 <div class="card">
     <div class="card-body">
-        {!! Form::open(['method' => 'POST', 'route' => 'admin.competences.store', 'class' => 'form-horizontal',
-        'enctype' => 'multipart/form-data']) !!}
+        {!! Form::model($competence, ['route' => ['admin.competences.update', $competence], 'method' => 'PUT', 'class'
+        => 'form-horizontal','enctype' => 'multipart/form-data']) !!}
         @include('admin.competences.partials.form')
         {!! Form::close() !!}
+
     </div>
 </div>
 @stop
@@ -29,6 +30,6 @@
     });
 </script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-<script src="{{asset('js/instructor/competences/form.js')}}">
+<script src="{{asset('js/instructor/courses/form.js')}}">
 </script>
 @stop

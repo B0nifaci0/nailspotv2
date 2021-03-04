@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
+use App\Models\Criterion;
 
 class CompetenceController extends Controller
 {
@@ -23,7 +24,8 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
-        return view('admin.competences.create', compact('levels', 'subcategories'));
+        $criteria = Criterion::pluck('name', 'id');
+        return view('admin.competences.create', compact('levels', 'subcategories', 'criteria'));
     }
 
 
@@ -32,36 +34,52 @@ class CompetenceController extends Controller
         $request->validate([
             'name' => 'required|unique:competences'
         ]);
-
         $competence = Competence::create($request->all());
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('public/competences', $request->file('image'));
+            $url = Storage::put('competences', $request->file('image'));
             $competence->image()->create([
                 'url' => $url
             ]);
         }
-
         return redirect()->route('admin.competences.index')->with('info', 'La competencia se creo con exito!');
     }
 
-    public function edit(Subcategory $category)
+    public function edit(Competence $competence)
     {
-        return view('admin.competences.edit', compact('category'));
+        $levels = Level::pluck('name', 'id');
+        $subcategories = Subcategory::pluck('name', 'id');
+        $criteria = Criterion::pluck('name', 'id');
+        return view('admin.competences.edit', compact('levels', 'subcategories', 'criteria', 'competence'));
     }
 
-    public function update(Request $request, Subcategory $category)
+    public function update(Request $request, Competence $competence)
     {
         $request->validate([
-            'name' => 'required|unique:competences,name,' . $category->id
+            'name' => 'required|unique:competences,name,' . $competence->id
         ]);
-        $category->update($request->all());
+
+        $competence->update($request->all());
+
+        if ($request->hasfile('image')) {
+            $url = Storage::put('competences', $request->file('image'));
+            if ($competence->image) {
+                Storage::delete($competence->image->url);
+                $competence->image()->update([
+                    'url' => $url
+                ]);
+            } else {
+                $competence->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
         return redirect()->route('admin.competences.index')->with('info', 'La categoria se actualizo exito!');
     }
 
-    public function destroy(Subcategory $category)
+    public function destroy(Competence $competence)
     {
-        $category->delete();
-        return redirect()->route('admin.subcategories.index')->with('info', 'La categoria se elimino con exito!');
+        $competence->delete();
+        return redirect()->route('admin.competences.index')->with('info', 'La categoria se elimino con exito!');
     }
 }

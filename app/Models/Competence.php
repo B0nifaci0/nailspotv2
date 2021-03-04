@@ -23,7 +23,18 @@ class Competence extends Model
 
     public function setStartDateAttribute($value)
     {
+
         $this->attributes['start_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    }
+
+    public function getStartDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('m/d/Y');
+    }
+
+    public function getEndDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('m/d/Y');
     }
 
     public function setEndDateAttribute($value)

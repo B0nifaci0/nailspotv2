@@ -5,7 +5,7 @@
 </div>
 <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
     {!! Form::label('slug', 'Slug') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+    {!! Form::text('slug', null, ['class' => 'form-control', 'readonly' ]) !!}
     <small class="text-danger">{{ $errors->first('slug') }}</small>
 </div>
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
