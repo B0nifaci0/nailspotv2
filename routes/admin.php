@@ -24,14 +24,11 @@ Route::resource('coupons', CouponController::class)->names('coupons');
 Route::resource('competences', CompetenceController::class)->names('competences');
 Route::resource('criteria', CriterionController::class)->names('criteria');
 
-Route::get('{competence}/criteria', [CompetenceController::class, 'addCriteria'])->name('competences.add-criteria');
-Route::put('competence-criteria/{competence}', [CompetenceController::class, 'updateCriteria'])->name('competences.update-criteria');
-
-
-
 
 Route::get('sales', [CourseController::class, 'sales'])->name('sales');
 Route::get('sales/details/{course}', [CourseController::class, 'details'])->name('details');
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
+
+Route::get('competences/{competence}/judments', [CompetenceController::class,'criteria'])->name('competences.criteria');

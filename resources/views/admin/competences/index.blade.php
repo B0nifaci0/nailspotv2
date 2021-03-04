@@ -25,7 +25,6 @@
                     <th></th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach ($competences as $competence)
                 <tr>
@@ -36,11 +35,19 @@
                     <td>{{$competence->subcategory->name}}</td>
 
                     <td width="10px">
-                        <a class="btn btn-primary" href='{{ route('admin.competences.edit',$competence) }}'>Editar</a>
+                        <a class="btn btn-primary btn-sm"
+                            href='{{ route('admin.competences.edit',$competence) }}'>Editar</a>
                     </td>
                     <td width="10px">
-                        <a class="btn btn-info"
-                            href='{{ route('admin.competences.add-criteria',$competence) }}'>Criterios</a>
+                        <a class="btn btn-dark btn-sm"
+                            href='{{ route('admin.competences.criteria',$competence) }}'>Criterios</a>
+                    </td>
+                    <td width="10px">
+                        <form action="{{route('admin.competences.destroy',$competence)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -54,7 +61,7 @@
 </div>
 @stop
 
-@section('css')
+@section(' css')
 <link rel="stylesheet" href="/css/admin_custom.css">
 <style>
     .zoom:hover {

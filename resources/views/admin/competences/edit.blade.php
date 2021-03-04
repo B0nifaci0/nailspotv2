@@ -30,6 +30,6 @@
     });
 </script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-<script src="{{asset('js/instructor/courses/form.js')}}">
+<script src="{{asset('js/instructor/competences/form.js')}}">
 </script>
 @stop

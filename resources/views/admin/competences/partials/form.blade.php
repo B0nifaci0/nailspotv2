@@ -65,6 +65,21 @@
     {{-- <p class="help-block">Help block text</p> --}}
     <small class="text-danger">{{ $errors->first('image') }}</small>
 </div>
+
+<div class="form-group">
+    <strong>Criterios</strong>
+    <div class="col-sm-offset-3 col-sm-9">
+        @foreach ($criteria as $criterion)
+        <div class="checkbox{{ $errors->has('criteria') ? ' has-error' : '' }}">
+            <label for="critera[]">
+                {!! Form::checkbox('criteria[]', $criterion->id, null) !!} {{$criterion->name}}
+            </label>
+        </div>
+        @endforeach
+        <small class="text-danger">{{ $errors->first('criteria') }}</small>
+    </div>
+</div>
+
 {!! Form::hidden('user_id', auth()->user()->id) !!}
 <div class="btn-group pull-right">
     {!! Form::reset("Limpiar", ['class' => 'btn btn-warning']) !!}

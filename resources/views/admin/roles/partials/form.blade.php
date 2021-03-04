@@ -8,7 +8,7 @@
     <div class="col-sm-offset-3 col-sm-9">
         @foreach ($permissions as $permission)
         <div class="checkbox{{ $errors->has('permissions') ? ' has-error' : '' }}">
-            <label for="permission[]">
+            <label for="permissions[]">
                 {!! Form::checkbox('permissions[]', $permission->id, null) !!} {{$permission->name}}
             </label>
         </div>

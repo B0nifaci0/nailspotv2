@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Level;
+use App\Models\Criterion;
 use App\Models\Competence;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
-use App\Models\Criterion;
 
 class CompetenceController extends Controller
 {
@@ -28,20 +29,6 @@ class CompetenceController extends Controller
         return view('admin.competences.create', compact('levels', 'subcategories', 'criteria'));
     }
 
-    public function addCriteria(Competence $competence)
-    {
-        $criteria = Criterion::all();
-        return view('admin.competences.criteria.edit', compact('competence', 'criteria'));
-    }
-
-    public function updateCriteria(Request $request, Competence $competence)
-    {
-        if ($request->has('criteria')) {
-            $competence->criteria()->sync($request->criteria);
-        }
-        return redirect()->route('admin.competences.index')->with('info', 'Criterios actualizados satisfactoriamente');
-    }
-
     public function store(CompetenceRequest $request)
     {
         $request->validate([
@@ -49,6 +36,7 @@ class CompetenceController extends Controller
         ]);
 
         $competence = Competence::create($request->all());
+        $competence->criteria()->attach($request->criteria);
 
         if ($request->hasfile('image')) {
             $url = Storage::put('competences', $request->file('image'));
@@ -63,7 +51,7 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
-        $criteria = Criterion::pluck('name', 'id');
+        $criteria = Criterion::all();
         return view('admin.competences.edit', compact('levels', 'subcategories', 'criteria', 'competence'));
     }
 
@@ -74,6 +62,10 @@ class CompetenceController extends Controller
         ]);
 
         $competence->update($request->all());
+
+        if ($request->has('criteria')) {
+            $competence->criteria()->sync($request->criteria);
+        }
 
         if ($request->hasfile('image')) {
             $url = Storage::put('competences', $request->file('image'));
@@ -95,5 +87,11 @@ class CompetenceController extends Controller
     {
         $competence->delete();
         return redirect()->route('admin.competences.index')->with('info', 'La categoria se elimino con exito!');
+    }
+
+    public function criteria(Competence $competence)
+    {
+        $users = User::role('Juez')->pluck('name', 'id');
+        return view('admin.competences.criteria.edit', compact('competence', 'users'));
     }
 }
