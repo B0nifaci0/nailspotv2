@@ -34,8 +34,13 @@
                     </td>
                     <td>{{$competence->name}}</td>
                     <td>{{$competence->subcategory->name}}</td>
-                    <td>
+
+                    <td width="10px">
                         <a class="btn btn-primary" href='{{ route('admin.competences.edit',$competence) }}'>Editar</a>
+                    </td>
+                    <td width="10px">
+                        <a class="btn btn-info"
+                            href='{{ route('admin.competences.add-criteria',$competence) }}'>Criterios</a>
                     </td>
                 </tr>
                 @endforeach

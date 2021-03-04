@@ -24,16 +24,30 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
-        $criteria = Criterion::pluck('name', 'id');
+        $criteria = Criterion::all();
         return view('admin.competences.create', compact('levels', 'subcategories', 'criteria'));
     }
 
+    public function addCriteria(Competence $competence)
+    {
+        $criteria = Criterion::all();
+        return view('admin.competences.criteria.edit', compact('competence', 'criteria'));
+    }
+
+    public function updateCriteria(Request $request, Competence $competence)
+    {
+        if ($request->has('criteria')) {
+            $competence->criteria()->sync($request->criteria);
+        }
+        return redirect()->route('admin.competences.index')->with('info', 'Criterios actualizados satisfactoriamente');
+    }
 
     public function store(CompetenceRequest $request)
     {
         $request->validate([
             'name' => 'required|unique:competences'
         ]);
+
         $competence = Competence::create($request->all());
 
         if ($request->hasfile('image')) {

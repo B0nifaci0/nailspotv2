@@ -66,12 +66,12 @@ class RoleController extends Controller
             $role->permissions()->sync($request->permissions);
         }
 
-        return redirect()->route('admin.roles.edit', $role)->with('message', 'Rol editado satisfactoriamente');
+        return redirect()->route('admin.roles.edit')->with('message', 'Rol editado satisfactoriamente');
     }
 
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->route('admin.roles.index', $role)->with('message', 'El rol se elimino con exito');
+        return redirect()->route('admin.roles.index')->with('message', 'El rol se elimino con exito');
     }
 }

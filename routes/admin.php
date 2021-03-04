@@ -10,9 +10,11 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CriterionController;
 use App\Http\Controllers\Admin\CompetenceController;
+use App\Http\Controllers\Admin\CompetenceCriterionController;
 use App\Http\Controllers\Admin\SubcategoryController;
 
 Route::get('', [HomeController::class, 'index'])->middleware('can:Ver dashboard')->name('home');
+
 Route::resource('roles', RoleController::class)->names('roles');
 Route::resource('users', UserController::class)->names('users')->only(['index', 'edit', 'update']);
 Route::resource('categories', CategoryController::class)->names('categories');
@@ -21,6 +23,11 @@ Route::resource('levels', LevelController::class)->names('levels');
 Route::resource('coupons', CouponController::class)->names('coupons');
 Route::resource('competences', CompetenceController::class)->names('competences');
 Route::resource('criteria', CriterionController::class)->names('criteria');
+
+Route::get('{competence}/criteria', [CompetenceController::class, 'addCriteria'])->name('competences.add-criteria');
+Route::put('competence-criteria/{competence}', [CompetenceController::class, 'updateCriteria'])->name('competences.update-criteria');
+
+
 
 
 Route::get('sales', [CourseController::class, 'sales'])->name('sales');

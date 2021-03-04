@@ -66,4 +66,9 @@ class Competence extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    public function criteria()
+    {
+        return $this->belongsToMany(Criterion::class);
+    }
 }
