@@ -20,7 +20,6 @@
         "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.0",
-        "paypal/paypal-checkout-sdk": "^1.0",
         "paypal/rest-api-sdk-php": "^1.14",
         "spatie/laravel-permission": "^4.0"
     },
