@@ -14,6 +14,11 @@
     {{session('info')}}
 </div>
 @endif
+@if(session('warning'))
+<div class="alert alert-warning">
+    {{session('warning')}}
+</div>
+@endif
 <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -53,26 +58,28 @@
 <div class="card">
     <div class="card-body">
         <table class="table table-striped">
+            @foreach ($competition_users as $judge)
             <thead>
-                <tr>
-                    <th>Criterio</th>
-                    <th>Juez</th>
+                <tr class="text-center">
+                    <th>{{$judge->name}}</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($competition_criteria as $criterion)
+                @foreach ($judge->criteria as $criterion)
                 <tr>
-                    <td>{{$criterion->name}}</td>
-                    <td>{{$criterion->users()->first()->name}}</td>
-
+                    <td>
+                        {{$criterion->name}}
+                    </td>
                     <td width="10px">
-                        <form action="{{route('admin.competences.destroycriteria',$criterion)}}" method="POST">
+                        <form action="{{route('admin.competences.criteria.destroy',[$criterion,$competence,$judge])}}"
+                            method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
                 </tr>
+                @endforeach
                 @endforeach
             </tbody>
         </table>

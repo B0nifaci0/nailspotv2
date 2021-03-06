@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
-use App\Models\CompetenceCriteria;
-use App\Models\CompetenceCriterion;
 
 class CompetenceController extends Controller
 {
@@ -94,22 +92,29 @@ class CompetenceController extends Controller
     {
         $criteria = Criterion::pluck('name', 'id');
         $judges = User::role('Juez')->pluck('name', 'id');
-        $competition_criteria = $competence->criteria()->with('users')->get();
+        $competition_users = $competence->users()->with('criteria')->get()->unique('criteria');
 
-        return view('admin.competences.criteria.index', compact('competence', 'judges', 'criteria', 'competition_criteria'));
+        return view('admin.competences.criteria.index', compact('competence', 'judges', 'criteria', 'competition_users'));
     }
 
     public function assignJudge(Request $request)
     {
         $competence = Competence::find($request->competence_id);
+
+        if ($competence->users->find($request->judge_id)->criteria->find($request->criterion_id)) {
+            return redirect()->route('admin.competences.index-criteria', $competence)->with('warning', 'El juez ya cuenta con ese criterio asignado!');
+        }
+
         $competence->criteria()->attach($request->criterion_id, ['user_id' => $request->judge_id]);
 
         return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido agregado con exito!');
     }
 
-    public function deleteCriteria($criterion)
+    public function destroyCriteria(Criterion $criterion, Competence $competence, User $user)
     {
 
-        return $criterion;
+        $criterion->users()->detach($user, ['competence_id' => $competence->id]);
+
+        return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido eliminado con exito!');
     }
 }
