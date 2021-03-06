@@ -31,4 +31,7 @@ Route::get('courses', [CourseController::class, 'index'])->name('courses.index')
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
 
-Route::get('competences/{competence}/judments', [CompetenceController::class,'criteria'])->name('competences.criteria');
+Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
+Route::post('competences/assign-judge', [CompetenceController::class, 'assignJudge'])->name('competences.assign-judge');
+
+Route::delete('competences/{criterion}', [CompetenceController::class, 'deleteCriteria'])->name('competences.destroycriteria');

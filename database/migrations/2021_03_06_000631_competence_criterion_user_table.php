@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CompetenceCriterionTable extends Migration
+class CompetenceCriterionUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CompetenceCriterionTable extends Migration
      */
     public function up()
     {
-        Schema::create('competence_criterion', function (Blueprint $table) {
+        Schema::create('competence_criterion_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('competence_id')->references('id')->on('competences')->cascadeOnDelete();
             $table->foreignId('criterion_id')->references('id')->on('criteria')->cascadeOnDelete();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CompetenceCriterionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competence_criterion');
+        Schema::dropIfExists('competence_criterion_user');
     }
 }

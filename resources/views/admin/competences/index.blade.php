@@ -19,7 +19,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Profesor</th>
+                    <th>Creado por</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th></th>
@@ -40,7 +40,7 @@
                     </td>
                     <td width="10px">
                         <a class="btn btn-dark btn-sm"
-                            href='{{ route('admin.competences.criteria',$competence) }}'>Criterios</a>
+                            href='{{ route('admin.competences.index-criteria',$competence) }}'>Criterios</a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.competences.destroy',$competence)}}" method="POST">

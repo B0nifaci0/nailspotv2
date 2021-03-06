@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
+use App\Models\CompetenceCriteria;
+use App\Models\CompetenceCriterion;
 
 class CompetenceController extends Controller
 {
@@ -25,8 +27,7 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
-        $criteria = Criterion::all();
-        return view('admin.competences.create', compact('levels', 'subcategories', 'criteria'));
+        return view('admin.competences.create', compact('levels', 'subcategories'));
     }
 
     public function store(CompetenceRequest $request)
@@ -36,7 +37,6 @@ class CompetenceController extends Controller
         ]);
 
         $competence = Competence::create($request->all());
-        $competence->criteria()->attach($request->criteria);
 
         if ($request->hasfile('image')) {
             $url = Storage::put('competences', $request->file('image'));
@@ -44,6 +44,7 @@ class CompetenceController extends Controller
                 'url' => $url
             ]);
         }
+
         return redirect()->route('admin.competences.index')->with('info', 'La competencia se creo con exito!');
     }
 
@@ -89,9 +90,26 @@ class CompetenceController extends Controller
         return redirect()->route('admin.competences.index')->with('info', 'La categoria se elimino con exito!');
     }
 
-    public function criteria(Competence $competence)
+    public function indexCriteria(Competence $competence)
     {
-        $users = User::role('Juez')->pluck('name', 'id');
-        return view('admin.competences.criteria.edit', compact('competence', 'users'));
+        $criteria = Criterion::pluck('name', 'id');
+        $judges = User::role('Juez')->pluck('name', 'id');
+        $competition_criteria = $competence->criteria()->with('users')->get();
+
+        return view('admin.competences.criteria.index', compact('competence', 'judges', 'criteria', 'competition_criteria'));
+    }
+
+    public function assignJudge(Request $request)
+    {
+        $competence = Competence::find($request->competence_id);
+        $competence->criteria()->attach($request->criterion_id, ['user_id' => $request->judge_id]);
+
+        return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido agregado con exito!');
+    }
+
+    public function deleteCriteria($criterion)
+    {
+
+        return $criterion;
     }
 }

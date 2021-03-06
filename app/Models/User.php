@@ -6,6 +6,8 @@ use App\Models\Task;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Profile;
+use App\Models\Criterion;
+use App\Models\Competence;
 use App\Models\SaleDetail;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -119,5 +121,17 @@ class User extends Authenticatable implements MustVerifyEmail
         } else if ($this->hasRole('Instructor')) {
             return 'Instructor';
         }
+    }
+
+    //competence_criterion_user
+
+    public function criteria()
+    {
+        return $this->belongsToMany(Criterion::class, 'competence_criterion_user');
+    }
+
+    public function competences()
+    {
+        return $this->belongsToMany(Competence::class, 'competence_criterion_user');
     }
 }

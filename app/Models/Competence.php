@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Level;
-use App\Models\Subcategory;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Image;
+use App\Models\Level;
+use App\Models\Criterion;
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,6 +29,11 @@ class Competence extends Model
         $this->attributes['start_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
     }
 
+    public function setEndDateAttribute($value)
+    {
+        $this->attributes['end_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    }
+
     public function getStartDateAttribute($value)
     {
         return Carbon::parse($value)->format('m/d/Y');
@@ -37,19 +44,15 @@ class Competence extends Model
         return Carbon::parse($value)->format('m/d/Y');
     }
 
-    public function setEndDateAttribute($value)
+    //Competence_student
+    public function students()
     {
-        $this->attributes['end_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+        return $this->belongsToMany(User::class);
     }
 
     public function teacher()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function students()
-    {
-        return $this->belongsToMany(User::class);
     }
 
     public function subcategory()
@@ -67,8 +70,14 @@ class Competence extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    //competence_criterion_user
+
     public function criteria()
     {
-        return $this->belongsToMany(Criterion::class);
+        return $this->belongsToMany(Criterion::class, 'competence_criterion_user');
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'competence_criterion_user');
     }
 }

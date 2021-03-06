@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\CompetenceCriteria;
+
 class PruebitasController extends Controller
 {
-    public $contador = 0;
     public function index()
     {
         $user = auth()->user();
         $details = $user->saleDetails;
-
-        return view('pruebitas',compact('details'));
+        return CompetenceCriteria::all();
+        return view('pruebitas', compact('details'));
     }
 }
