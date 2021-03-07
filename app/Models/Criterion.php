@@ -18,10 +18,10 @@ class Criterion extends Model
 
     public function competences()
     {
-        return $this->belongsToMany(Competence::class, 'competence_criterion_user');
+        return $this->belongsToMany(Competence::class, 'competence_criterion_user')->withPivot('user_id');;
     }
     public function users()
     {
-        return $this->belongsToMany(User::class, 'competence_criterion_user');
+        return $this->belongsToMany(User::class, 'competence_criterion_user')->withPivot('competence_id');
     }
 }

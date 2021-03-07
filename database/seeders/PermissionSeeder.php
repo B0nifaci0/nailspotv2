@@ -14,6 +14,8 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+
+        //courses
         Permission::create([
             'name' => 'Crear cursos',
         ]);
@@ -26,6 +28,8 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'name' => 'Eliminar cursos',
         ]);
+
+        //Admin
         Permission::create([
             'name' => 'Ver dashboard',
         ]);
@@ -47,5 +51,11 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'name' => 'Editar usuarios',
         ]);
+
+        //competences
+        Permission::create([
+            'name' => 'Leer competencias',
+        ]);
+        
     }
 }

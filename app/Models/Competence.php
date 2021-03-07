@@ -8,12 +8,14 @@ use App\Models\Image;
 use App\Models\Level;
 use App\Models\Criterion;
 use App\Models\Subcategory;
+use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Competence extends Model
 {
     use HasFactory;
+    use HasProfilePhoto;
 
     protected $guarded = ['id'];
 
@@ -70,14 +72,15 @@ class Competence extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+
     //competence_criterion_user
 
     public function criteria()
     {
-        return $this->belongsToMany(Criterion::class, 'competence_criterion_user');
+        return $this->belongsToMany(Criterion::class, 'competence_criterion_user')->withPivot('user_id');;
     }
     public function users()
     {
-        return $this->belongsToMany(User::class, 'competence_criterion_user');
+        return $this->belongsToMany(User::class, 'competence_criterion_user')->withPivot('criterion_id');
     }
 }

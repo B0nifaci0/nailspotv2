@@ -31,6 +31,12 @@
             </div>
             <div class="container py-8 grid grid-cols-5 gap-6">
                 <aside>
+                    <a href="{{ route('instructor.courses.index')}}"
+                        class="py-2 px-3 w-full flex items-center focus:outline-none">
+                        <span class="ml-2 text-sm font-medium">
+                            Todos mis cursos
+                        </span>
+                    </a>
                     <h1 class="mb-4 font-bold text-lg">Edicion del curso</h1>
                     <ul class="text-sm text-gray-600">
                         <li

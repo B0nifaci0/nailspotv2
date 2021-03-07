@@ -66,7 +66,7 @@ class RoleController extends Controller
             $role->permissions()->sync($request->permissions);
         }
 
-        return redirect()->route('admin.roles.edit')->with('message', 'Rol editado satisfactoriamente');
+        return redirect()->route('admin.roles.index')->with('message', 'Rol editado satisfactoriamente');
     }
 
     public function destroy(Role $role)

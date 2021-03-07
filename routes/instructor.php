@@ -5,7 +5,6 @@ use App\Http\Livewire\Instructor\CoursesStudents;
 use App\Http\Controllers\Instructor\TaskController;
 use App\Http\Livewire\Instructor\CoursesCurriculum;
 use App\Http\Controllers\Instructor\CourseController;
-use App\Models\Task;
 
 Route::redirect('', 'courses');
 

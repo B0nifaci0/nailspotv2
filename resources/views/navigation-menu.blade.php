@@ -32,12 +32,6 @@ $nav_links =[
                         {{$nav_link['name']}}
                     </x-jet-nav-link>
                     @endforeach
-                    @can('Leer cursos')
-                    <x-jet-nav-link href="{{ route('instructor.courses.index') }}"
-                        :active="request()->routeIs('instructor.course*')">
-                        Mis cursos
-                    </x-jet-nav-link>
-                    @endcan
                 </div>
             </div>
 
@@ -80,6 +74,11 @@ $nav_links =[
                             @can('Leer cursos')
                             <x-jet-dropdown-link href="{{ route('instructor.courses.index') }}">
                                 Instructor
+                            </x-jet-dropdown-link>
+                            @endcan
+                            @can('Leer competencias')
+                            <x-jet-dropdown-link href="{{ route('judge.competences.index') }}">
+                                Juez
                             </x-jet-dropdown-link>
                             @endcan
                             @can('Ver dashboard')

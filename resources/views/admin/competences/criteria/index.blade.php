@@ -58,28 +58,29 @@
 <div class="card">
     <div class="card-body">
         <table class="table table-striped">
-            @foreach ($competition_users as $judge)
             <thead>
-                <tr class="text-center">
-                    <th>{{$judge->name}}</th>
+                <tr>
+                    <th>Competencia</th>
+                    <th>Juez</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($judge->criteria as $criterion)
+                @foreach ($competence_criteria as $item)
                 <tr>
                     <td>
-                        {{$criterion->name}}
+                        {{$item->criterion->name}}
+                    </td>
+                    <td>
+                        {{$item->user->name}}
                     </td>
                     <td width="10px">
-                        <form action="{{route('admin.competences.criteria.destroy',[$criterion,$competence,$judge])}}"
-                            method="POST">
+                        <form action="{{route('admin.competences.criteria.destroy',$item->id)}}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
                 </tr>
-                @endforeach
                 @endforeach
             </tbody>
         </table>

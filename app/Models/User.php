@@ -127,11 +127,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function criteria()
     {
-        return $this->belongsToMany(Criterion::class, 'competence_criterion_user');
+        return $this->belongsToMany(Criterion::class, 'competence_criterion_user')->withPivot('competence_id');;
     }
 
     public function competences()
     {
-        return $this->belongsToMany(Competence::class, 'competence_criterion_user');
+        return $this->belongsToMany(Competence::class, 'competence_criterion_user')->withPivot('criterion_id');;
     }
 }

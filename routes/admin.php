@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CriterionController;
 use App\Http\Controllers\Admin\CompetenceController;
-use App\Http\Controllers\Admin\CompetenceCriterionController;
 use App\Http\Controllers\Admin\SubcategoryController;
 
 Route::get('', [HomeController::class, 'index'])->middleware('can:Ver dashboard')->name('home');
@@ -33,5 +32,4 @@ Route::post('courses/{course}/approved', [CourseController::class, 'approved'])-
 
 Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
 Route::post('competences/assign-judge', [CompetenceController::class, 'assignJudge'])->name('competences.assign-judge');
-
-Route::delete('competences/{criterion}/{competence}/{user}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
+Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
