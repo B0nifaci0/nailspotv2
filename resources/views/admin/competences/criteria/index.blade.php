@@ -35,8 +35,8 @@
 
             <div class="modal-body">
                 <div class="col-sm form-group{{ $errors->has('judges') ? ' has-error' : '' }}">
-                    {!! Form::label('judge_id', 'Juez') !!}
-                    {!! Form::select('judge_id', $judges, null, ['id' => 'judges', 'class' => 'form-control']) !!}
+                    {!! Form::label('user_id', 'Juez') !!}
+                    {!! Form::select('user_id', $judges, null, ['id' => 'judges', 'class' => 'form-control']) !!}
                     <small class="text-danger">{{ $errors->first('judges') }}</small>
                 </div>
                 <div class="col-sm form-group{{ $errors->has('criteria') ? ' has-error' : '' }}">

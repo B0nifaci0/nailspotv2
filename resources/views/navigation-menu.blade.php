@@ -9,6 +9,11 @@ $nav_links =[
 'name' => 'Cursos',
 'route' => route('courses.index'),
 'active' => request()->routeIs('course*')
+],
+[
+'name' => 'Competencias',
+'route' => route('competences.index'),
+'active' => request()->routeIs('competence*')
 ]
 ];
 @endphp

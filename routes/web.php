@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebitasController;
+use App\Http\Controllers\CompetenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 Route::get('curso/{course}', [CourseController::class, 'show'])->name('course.show');
 
+Route::get('competencias', [CompetenceController::class, 'index'])->name('competences.index');
+
+
 Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->middleware('auth')->name('course.enrolled');
 Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
 
@@ -35,6 +39,6 @@ Route::get('/perfil/delete', [ProfileController::class, 'delete'])
 Route::get('/perfil/cursos', [ProfileController::class, 'courses'])
     ->name('profile.courses');
 
-Route::get('perfil/cursos/{course}/tasks', [ProfileController::class, 'tasks'])->name('courses.tasks');
+Route::get('perfil/cursos/{course}/tareas', [ProfileController::class, 'tasks'])->name('courses.tasks');
 
-Route::get('perfil/{task}/task', [ProfileController::class, 'task'])->name('task');
+Route::get('perfil/tareas/{task}', [ProfileController::class, 'task'])->name('task');

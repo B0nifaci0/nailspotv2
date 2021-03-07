@@ -2,11 +2,11 @@
 
     <div class="card mt-5">
         <div class="card-body mt-5">
-            @foreach ($details as $detail)
-                {{$detail->course->name}}
-                <br>
-                <br>
-                <br>
+            @foreach ($competences as $competence)
+            {{$competence}}
+            <br>
+            <br>
+            <br>
             @endforeach
         </div>
     </div>

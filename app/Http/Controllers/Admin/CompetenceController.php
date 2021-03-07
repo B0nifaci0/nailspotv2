@@ -102,15 +102,12 @@ class CompetenceController extends Controller
     public function assignJudge(Request $request)
     {
         $competence = Competence::find($request->competence_id);
-        $competence_user = $competence->users->find($request->judge_id);
 
-        if ($competence_user) {
-            if ($competence_user->criteria->find($request->criterion_id)) {
-                return redirect()->route('admin.competences.index-criteria', $competence)->with('warning', 'El juez ya cuenta con ese criterio asignado!');
-            }
+        if (CompetenceCriterionUser::exist($request)->first()) {
+            return redirect()->route('admin.competences.index-criteria', $competence)->with('warning', 'El juez ya cuenta con ese criterio asignado!');
         }
 
-        $competence->criteria()->attach($request->criterion_id, ['user_id' => $request->judge_id]);
+        CompetenceCriterionUser::create($request->all());
 
         return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido agregado con exito!');
     }

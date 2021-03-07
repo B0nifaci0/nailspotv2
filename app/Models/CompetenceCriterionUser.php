@@ -14,6 +14,8 @@ class CompetenceCriterionUser extends Model
 
     protected $table = 'competence_criterion_user';
 
+    protected $guarded = ['id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -27,5 +29,12 @@ class CompetenceCriterionUser extends Model
     public function criterion()
     {
         return $this->belongsTo(Criterion::class);
+    }
+
+    public function scopeExist($query, $request)
+    {
+        return $query->whereCompetenceId($request->competence_id)
+            ->whereCriterionId($request->criterion_id)
+            ->whereUserId($request->user_id)->first();
     }
 }

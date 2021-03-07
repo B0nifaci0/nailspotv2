@@ -6,9 +6,9 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
-use App\Models\Criterion;
 use App\Models\Subcategory;
 use Laravel\Jetstream\HasProfilePhoto;
+use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,6 +23,20 @@ class Competence extends Model
     public function getRouteKeyName()
     {
         return "slug";
+    }
+
+    public function scopeSubcategory($query, $subcategory_id)
+    {
+        if ($subcategory_id) {
+            return $query->whereSubcategoryId($subcategory_id);
+        }
+    }
+
+    public function scopeLevel($query, $level_id)
+    {
+        if ($level_id) {
+            return $query->whereLevelId($level_id);
+        }
     }
 
     public function setStartDateAttribute($value)
@@ -77,10 +91,10 @@ class Competence extends Model
 
     public function criteria()
     {
-        return $this->belongsToMany(Criterion::class, 'competence_criterion_user')->withPivot('user_id');;
+        return $this->hasMany(CompetenceCriterionUser::class);
     }
     public function users()
     {
-        return $this->belongsToMany(User::class, 'competence_criterion_user')->withPivot('criterion_id');
+        return $this->hasMany(CompetenceCriterionUser::class);
     }
 }
