@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Coupon;
 use PayPal\Api\Payer;
+use App\Models\Coupon;
 use App\Models\Course;
-use App\Models\SaleDetail;
 use PayPal\Api\Amount;
 use PayPal\Api\Payment;
+use App\Models\Competence;
+use App\Models\SaleDetail;
 use PayPal\Api\Transaction;
 use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
-use PayPal\Api\Details;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\PaymentExecution;
 use PayPal\Auth\OAuthTokenCredential;
@@ -29,12 +29,21 @@ class PaymentController extends Controller
             )
         );
     }
-    public function checkout(Course $course)
+    public function checkoutCourse(Course $course)
     {
-        return view('payment.checkout', compact('course'));
+        if ($course->students->contains(auth()->user()->id)) {
+            return back();
+        }
+        return view('payment.courses.checkout', compact('course'));
     }
 
-    public function pay(Course $course, Request $request)
+    public function checkoutCompetence(Competence $competence)
+    {
+        return $competence;
+        return view('payment.competences.checkout', compact('competence'));
+    }
+
+    public function payCourse(Course $course, Request $request)
     {
 
         $coupon = Coupon::find($request->coupon);
@@ -54,8 +63,8 @@ class PaymentController extends Controller
         $transaction->setAmount($amount);
 
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl(route('payment.approved', [$course, $coupon]))
-            ->setCancelUrl(route('payment.checkout', $course));
+        $redirectUrls->setReturnUrl(route('payment.course.approved', [$course, $coupon]))
+            ->setCancelUrl(route('payment.course.checkout', $course));
 
         $payment = new Payment();
         $payment->setIntent('sale')
@@ -71,7 +80,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function approved(Request $request, Course $course, Coupon $coupon)
+    public function approvedCourse(Request $request, Course $course, Coupon $coupon)
     {
         if ($coupon) {
             if ($coupon->type == 0) {

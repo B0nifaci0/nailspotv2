@@ -18,7 +18,7 @@ class Competence extends Model
     use HasProfilePhoto;
 
     protected $guarded = ['id'];
-
+    protected $withCount = ['students'];
 
     public function getRouteKeyName()
     {

@@ -12,7 +12,7 @@
                 x-on:click.away="open=false" wire:click="clearPage">
                 @foreach ($subcategories as $category)
                 <a class="cursor-pointer transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-blue-500 hover:text-white"
-                    wire:click="$set('category_id',{{$category->id}})" x-on:click="open= false">{{$category->name}}
+                    wire:click="$set('subcategory_id',{{$category->id}})" x-on:click="open= false">{{$category->name}}
                 </a>
                 @endforeach
             </div>
@@ -27,12 +27,24 @@
                 x-on:click.away="open=false" wire:click="clearPage">
                 @foreach ($levels as $level)
                 <a class="cursor-pointer transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-blue-500 hover:text-white"
-                    wire:click="$set('category_id',{{$level->id}})" x-on:click="open= false">{{$level->name}}</a>
+                    wire:click="$set('level_id',{{$level->id}})" x-on:click="open= false">{{$level->name}}</a>
                 @endforeach
             </div>
-        </div>
-    </div>
 
+        </div>
+        @if ($subcategory)
+        <div class='right-0 w-10 mt-2 py-2'>
+            <p class='items-center text-sm text-gray-500'>{{$subcategory->name}}</p>
+        </div>
+        @endif
+
+        @if ($level_selected)
+        <div class='right-0 w-10 mt-2 py-2'>
+            <p class='items-center text-sm text-gray-500'>{{$level_selected->name}}</p>
+        </div>
+        @endif
+
+    </div>
     <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mt-6">
         @forelse ($competences as $competence)
         <x-competence-card :competence="$competence" />

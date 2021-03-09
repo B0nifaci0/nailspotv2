@@ -10,8 +10,7 @@
 
 <div class="card">
     <div class="card-body">
-        {!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'PUT', 'class' =>
-        'form-horizontal']) !!}
+        {!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'PUT']) !!}
         @include('admin.categories.partials.form')
         {!! Form::close() !!}
     </div>

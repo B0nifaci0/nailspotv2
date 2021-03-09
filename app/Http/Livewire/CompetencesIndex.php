@@ -14,13 +14,17 @@ class CompetencesIndex extends Component
     use WithPagination;
 
 
-    public $subcategory_id;
-    public $level_id;
+    public $subcategory_id, $subcategory;
+    public $level_id, $level_selected;
 
     public function render()
     {
         $subcategories = Subcategory::all();
         $levels = Level::all();
+
+        $this->subcategory = Subcategory::find($this->subcategory_id);
+        $this->level_selected = Level::find($this->level_id);
+
 
         $competences = Competence::whereDate('end_date', '>=', Carbon::today()->toDateString())
             ->subcategory($this->subcategory_id)

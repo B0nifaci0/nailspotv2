@@ -17,13 +17,14 @@ class CourseStatus extends Component
     public function mount(Course $course)
     {
         $this->course = $course;
+        $this->authorize('enrolled', $course);
+
         $this->lessons = $course->lessons()->with('tasks')->get();
         $this->current = $course->lessons()->with('tasks')->first();
         // if (!$this->current) {
         //     $this->current = $course->lessons->last();
         // }
         $this->tasks = $this->lessons->pluck('tasks')->collapse();
-        $this->authorize('enrolled', $course);
     }
 
     public function render()

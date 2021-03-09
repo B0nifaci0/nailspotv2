@@ -124,9 +124,12 @@
                             el
                             curso</a>
                         @else
-                        <p class="text-2xl text-gray-500 font-bold mt-3 mb-2"> MXN$ {{$course->price}}</p>
-                        <a href="{{route('payment.course.checkout', $course)}}" class="my-button">Comprar este
-                            curso</a>
+                        <form method="POST" action="{{route('course.enrolled',$course)}}">
+                            @csrf
+                            <p class="text-2xl text-gray-500 font-bold mt-3 mb-2"> MXN$ {{$course->price}}</p>
+                            <a href="{{route('payment.checkout', $course)}}" class="my-button">Comprar este
+                                curso</a>
+                        </form>
                         @endcan
                     </div>
                 </section>

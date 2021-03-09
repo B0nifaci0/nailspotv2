@@ -27,6 +27,7 @@ Route::get('competencias', [CompetenceController::class, 'index'])->name('compet
 
 
 Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->middleware('auth')->name('course.enrolled');
+
 Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
 
 Route::get('pruebitas', [PruebitasController::class, 'index'])->name('pruebitas');

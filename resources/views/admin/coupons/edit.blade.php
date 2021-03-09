@@ -15,8 +15,7 @@
 @endif
 <div class="card">
     <div class="card-body">
-        {!! Form::model($coupon, ['route' => ['admin.coupons.update', $coupon], 'method' => 'PUT', 'class' =>
-        'form-horizontal']) !!}
+        {!! Form::model($coupon, ['route' => ['admin.coupons.update', $coupon], 'method' => 'PUT']) !!}
         @include('admin.coupons.partials.form')
         {!! Form::close() !!}
     </div>

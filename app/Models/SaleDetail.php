@@ -28,4 +28,10 @@ class SaleDetail extends Model
     {
         return $this->belongsTo(Coupon::class);
     }
+
+    public function scopyExist($query, $user_id, $coupon_id)
+    {
+        return $query->whereUserId($user_id)
+            ->whereCouponId($coupon_id);
+    }
 }

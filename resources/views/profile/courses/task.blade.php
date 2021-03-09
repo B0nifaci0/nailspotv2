@@ -32,12 +32,11 @@
         </figure>
         @if ($task->score)
         <div>
-            <label>Calificacion</label>
-            <h1>{{$task->score}}</h1>
+            <h1 class='font-bold'>Calificacion: {{$task->score}}</h1>
         </div>
         @else
         <div>
-            <h1>No Calificada</h1>
+            <h1 class='font-bold'>No Calificada</h1>
         </div>
         @endif
     </div>
