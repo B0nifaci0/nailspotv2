@@ -17,7 +17,7 @@
                             <img class="rounded-circle zoom" src="{{ $course->teacher->profile_photo_url}}" />
                             {{$course->teacher->name}}</td>
                         <td>{{$course->name}}</td>
-                        <td>{{$course->saleDetails->count()}}</td>
+                        <td>{{$course->sales->count()}}</td>
                         <td>${{$course->total}}</td>
                         <td width=" 10px">
                             <a class="btn btn-primary" href="{{route('admin.details',$course)}}">Detalles</a>

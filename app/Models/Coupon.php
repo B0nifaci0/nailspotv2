@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Sale;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Coupon extends Model
 {
@@ -14,8 +15,8 @@ class Coupon extends Model
     const VALOR = 1;
     const PORCENTUAL = 2;
 
-    public function saleDetails()
+    public function sales()
     {
-        return $this->hasMany(SaleDetail::class);
+        return $this->hasMany(Sale::class);
     }
 }

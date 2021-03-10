@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Course;
-use App\Models\SaleDetail;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -22,8 +21,9 @@ class SaleDetails extends Component
 
     public function render()
     {
-        $details = SaleDetail::whereCourseId($this->course->id)->paginate();
-        return view('livewire.admin.sale-details',compact('details'));
+        $details = $this->course->sales()->paginate();
+
+        return view('livewire.admin.sale-details', compact('details'));
     }
 
     public function clearPage()

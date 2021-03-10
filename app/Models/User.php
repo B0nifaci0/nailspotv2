@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Sale;
 use App\Models\Task;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Profile;
-use App\Models\Criterion;
-use App\Models\Competence;
-use App\Models\SaleDetail;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\CompetenceCriterionUser;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -79,11 +78,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Course::class);
     }
 
-    // public function competences_dictated()
-    // {
-    //     return $this->hasMany(Course::class);
-    // }
-
     public function competences_enrolled()
     {
         return $this->belongsToMany(Course::class);
@@ -104,9 +98,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Task::class);
     }
 
-    public function saleDetails()
+    public function sales()
     {
-        return $this->hasMany(SaleDetail::class);
+        return $this->hasMany(Sale::class);
     }
 
     public function adminlte_image()

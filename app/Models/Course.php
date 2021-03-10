@@ -10,7 +10,6 @@ use App\Models\Lesson;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Category;
-use App\Models\SaleDetail;
 use App\Models\Requirement;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +26,7 @@ class Course extends Model
     use HasProfilePhoto;
 
     protected $guarded = ['id', 'status'];
-    protected $withCount = ['students', 'reviews', 'saleDetails'];
+    protected $withCount = ['students', 'reviews', 'sales'];
 
     public function getRatingAttribute()
     {
@@ -39,7 +38,7 @@ class Course extends Model
 
     public function getTotalAttribute()
     {
-        return $this->saleDetails->sum('final_price');
+        return $this->sales->sum('final_price');
     }
 
     public function scopeCategory($query, $category_id)
@@ -48,7 +47,7 @@ class Course extends Model
             return $query->whereCategoryId($category_id);
         }
     }
-    
+
     public function scopeLevel($query, $level_id)
     {
         if ($level_id) {
@@ -111,8 +110,8 @@ class Course extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function saleDetails()
+    public function sales()
     {
-        return $this->hasMany(SaleDetail::class);
+        return $this->morphMany(Sale::class, 'saleable');
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use PayPal\Api\Payer;
 use App\Models\Coupon;
 use App\Models\Course;
 use PayPal\Api\Amount;
 use PayPal\Api\Payment;
 use App\Models\Competence;
-use App\Models\SaleDetail;
 use PayPal\Api\Transaction;
 use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
@@ -102,9 +102,10 @@ class PaymentController extends Controller
         $payment->execute($execution, $this->apiContext);
         $course->students()->attach(auth()->user()->id);
 
-        SaleDetail::create([
+        Sale::create([
             'user_id' => auth()->user()->id,
-            'course_id' => $course->id,
+            'saleable_id' => $course->id,
+            'saleable_type' => Course::class,
             'coupon_id' => $coupon->id ? $coupon->id : null,
             'final_price' => $final_price
         ]);

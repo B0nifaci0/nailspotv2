@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use App\Models\Course;
-use App\Models\SaleDetail;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -31,9 +31,10 @@ class CourseController extends Controller
     {
         $course->students()->attach(auth()->user()->id);
 
-        SaleDetail::create([
+        Sale::create([
             'user_id' => auth()->user()->id,
-            'course_id' => $course->id,
+            'saleable_id' => $course->id,
+            'saleable_type' => Course::class,
             'coupon_id' => $request->coupon_id,
             'final_price' => 0
         ]);

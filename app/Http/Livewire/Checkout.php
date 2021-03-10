@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Sale;
 use App\Models\Coupon;
 use App\Models\Course;
 use Livewire\Component;
-use App\Models\SaleDetail;
 
 class Checkout extends Component
 {
@@ -34,7 +34,7 @@ class Checkout extends Component
         $this->active = $this->current;
 
         if ($this->active) {
-            $this->exist = SaleDetail::whereUserId(auth()->user()->id)->whereCouponId($this->active->id)->first();
+            $this->exist = Sale::whereUserId(auth()->user()->id)->whereCouponId($this->active->id)->first();
 
             if ($this->exist) {
                 $this->resetErrorBag();

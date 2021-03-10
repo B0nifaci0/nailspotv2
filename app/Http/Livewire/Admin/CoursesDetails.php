@@ -13,7 +13,7 @@ class CoursesDetails extends Component
 
     public function render()
     {
-        $courses = Course::has('saleDetails')->paginate();
+        $courses = Course::has('sales')->paginate();
         return view('livewire.admin.courses-details', compact('courses'));
     }
 }

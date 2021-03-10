@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Goal;
+use App\Models\Sale;
 use App\Models\Image;
 use App\Models\Course;
 use App\Models\Lesson;
-use App\Models\Requirement;
 use App\Models\Review;
-use App\Models\SaleDetail;
+use App\Models\Requirement;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -45,8 +45,9 @@ class CourseSeeder extends Seeder
                 'course_id' => $course->id
             ]);
 
-            SaleDetail::factory(4)->create([
-                'course_id' => $course->id
+            Sale::factory(4)->create([
+                'saleable_id' => $course->id,
+                'saleable_type' => Course::class
             ]);
         }
     }
