@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Coupon;
-use App\Models\SaleDetail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CouponFactory extends Factory
