@@ -7,6 +7,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebitasController;
 use App\Http\Controllers\CompetenceController;
+use App\Http\Livewire\CompetenceStatus;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,16 @@ Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 Route::get('curso/{course}', [CourseController::class, 'show'])->name('course.show');
 
 Route::get('competencias', [CompetenceController::class, 'index'])->name('competences.index');
+Route::get('competence/{competence}', [CompetenceController::class, 'show'])->name('competence.show');
+Route::get('competencia/{competence}/estatus', [CompetenceController::class, 'status'])->middleware('auth')->name('competence.status');
 
 
 Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->middleware('auth')->name('course.enrolled');
+Route::post('competence/{competence}/enrolled', [CompetenceController::class, 'enrolled'])->middleware('auth')->name('competence.enrolled');
+
 
 Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
+
 
 Route::get('pruebitas', [PruebitasController::class, 'index'])->name('pruebitas');
 

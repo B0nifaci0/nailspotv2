@@ -13,7 +13,6 @@ class CompetencesIndex extends Component
 {
     use WithPagination;
 
-
     public $subcategory_id, $subcategory;
     public $level_id, $level_selected;
 
@@ -25,8 +24,8 @@ class CompetencesIndex extends Component
         $this->subcategory = Subcategory::find($this->subcategory_id);
         $this->level_selected = Level::find($this->level_id);
 
-
         $competences = Competence::whereDate('end_date', '>=', Carbon::today()->toDateString())
+            ->status(Competence::PUBLICADO)
             ->subcategory($this->subcategory_id)
             ->level($this->level_id)
             ->latest('id')->paginate(8);

@@ -13,7 +13,7 @@
         <p class="my-2 text-gray-500 font-bold"> MXN$ {{$competence->price}}</p>
         @endif
 
-        <a href="{{route('payment.competence.checkout', $competence)}}" class="my-button">Participar</a>
+        <a href="{{route('competence.show', $competence)}}" class="my-button">Información</a>
 
     </div>
 </article>

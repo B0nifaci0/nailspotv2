@@ -22,6 +22,7 @@
                     <th>Creado por</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
+                    <th>Estatus</th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,6 +34,19 @@
                     </td>
                     <td>{{$competence->name}}</td>
                     <td>{{$competence->subcategory->name}}</td>
+                    <td>
+                        @switch($competence->status)
+                        @case(1)
+                        Borrador
+                        @break
+                        @case(2)
+                        Publicado
+                        @break
+                        @case(3)
+                        Finalizado
+                        @break
+                        @endswitch
+                    </td>
 
                     <td width="10px">
                         <a class="btn btn-primary btn-sm"
@@ -47,6 +61,24 @@
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                    <td width="10px">
+                        <form action="{{route('admin.publish',$competence)}}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="btn btn-sm @if($competence->status == 1) btn-success @else btn-danger @endif ">
+                                @switch($competence->status)
+                                @case(1)
+                                Publicar
+                                @break
+                                @case(2)
+                                Volver a borrador
+                                @break
+                                @default
+
+                                @endswitch
+                            </button>
                         </form>
                     </td>
                 </tr>

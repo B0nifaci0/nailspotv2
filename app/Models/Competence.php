@@ -17,6 +17,10 @@ class Competence extends Model
     use HasFactory;
     use HasProfilePhoto;
 
+    const BORRADOR = 1;
+    const PUBLICADO = 2;
+    const FINALIZADO = 3;
+
     protected $guarded = ['id'];
     protected $withCount = ['students'];
 
@@ -36,6 +40,13 @@ class Competence extends Model
     {
         if ($level_id) {
             return $query->whereLevelId($level_id);
+        }
+    }
+
+    public function scopeStatus($query, $status)
+    {
+        if ($status) {
+            return $query->whereStatus($status);
         }
     }
 
@@ -85,7 +96,6 @@ class Competence extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
-
 
     //competence_criterion_user
 

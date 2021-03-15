@@ -9,7 +9,10 @@ use Database\Seeders\LevelSeeder;
 use Database\Seeders\CouponSeeder;
 use Database\Seeders\CourseSeeder;
 use Database\Seeders\CategorySeeder;
+use Database\Seeders\CriterionSeeder;
+use Database\Seeders\CompetenceSeeder;
 use Database\Seeders\PermissionSeeder;
+use Database\Seeders\SubcategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +30,9 @@ class DatabaseSeeder extends Seeder
         $this->call(LevelSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(CouponSeeder::class);
+        $this->call(SubcategorySeeder::class);
+        $this->call(CriterionSeeder::class);
         $this->call(CourseSeeder::class);
+        $this->call(CompetenceSeeder::class);
     }
 }

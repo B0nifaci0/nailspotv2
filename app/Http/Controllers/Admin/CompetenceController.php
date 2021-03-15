@@ -68,7 +68,7 @@ class CompetenceController extends Controller
         }
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('public/competences', $request->file('image'));
+            $url = Storage::put('competences', $request->file('image'));
             if ($competence->image) {
                 Storage::delete($competence->image->url);
                 $competence->image()->update([
@@ -118,5 +118,16 @@ class CompetenceController extends Controller
         $competence = Competence::find($item->competence->id);
         $item->delete();
         return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido eliminado con exito!');
+    }
+
+    public function publish(Competence $competence)
+    {
+        if ($competence->status == Competence::PUBLICADO) {
+            $competence->status = Competence::BORRADOR;
+        } else {
+            $competence->status = Competence::PUBLICADO;
+        }
+        $competence->save();
+        return back()->with('info', 'Estatus actualizado');
     }
 }

@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-sm form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
-                {!! Form::label('end_date', 'Fecha Inicio') !!}
+                {!! Form::label('end_date', 'Fecha Fin') !!}
                 {!! Form::text('end_date', null, ['class' => 'form-control']) !!}
                 <small class="text-danger">{{ $errors->first('end_date') }}</small>
             </div>

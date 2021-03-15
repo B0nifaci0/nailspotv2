@@ -39,7 +39,9 @@ class PaymentController extends Controller
 
     public function checkoutCompetence(Competence $competence)
     {
-        return $competence;
+        if ($competence->students->contains(auth()->user()->id)) {
+            return back();
+        }
         return view('payment.competences.checkout', compact('competence'));
     }
 
@@ -51,13 +53,9 @@ class PaymentController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
-        // $details = new Details();
-        // $details->setSubtotal(strval($course->price));
-
         $amount = new Amount();
         $amount->setTotal($request->finalprice);
         $amount->setCurrency('MXN');
-        // $amount->setDetails($details);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount);
@@ -79,6 +77,41 @@ class PaymentController extends Controller
             echo $ex->getData();
         }
     }
+
+    public function payCompetence(Competence $competence, Request $request)
+    {
+
+        $coupon = Coupon::find($request->coupon);
+
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+
+        $amount = new Amount();
+        $amount->setTotal($request->finalprice);
+        $amount->setCurrency('MXN');
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount);
+
+        $redirectUrls = new RedirectUrls();
+        $redirectUrls->setReturnUrl(route('payment.competence.approved', [$competence, $coupon]))
+            ->setCancelUrl(route('payment.competence.checkout', $competence));
+
+        $payment = new Payment();
+        $payment->setIntent('sale')
+            ->setPayer($payer)
+            ->setTransactions(array($transaction))
+            ->setRedirectUrls($redirectUrls);
+
+        try {
+            $payment->create($this->apiContext);
+            return redirect()->away($payment->getApprovalLink());
+        } catch (PayPalConnectionException $ex) {
+            echo $ex->getData();
+        }
+    }
+
+
 
     public function approvedCourse(Request $request, Course $course, Coupon $coupon)
     {
@@ -111,5 +144,38 @@ class PaymentController extends Controller
         ]);
 
         return redirect()->route('course.status', $course);
+    }
+
+    public function approvedCompetence(Request $request, Competence $competence, Coupon $coupon)
+    {
+        if ($coupon) {
+            if ($coupon->type == 0) {
+                $final_price = $competence->price - $coupon->discount;
+            } else {
+                $final_price = $competence->price - ($competence->price * $coupon->discount / 100);
+            }
+        } else {
+            $final_price = $competence->price;
+        }
+
+        $paymentId = $_GET['paymentId'];
+        $payment = Payment::get($paymentId, $this->apiContext);
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId($_GET['PayerID']);
+
+
+        $payment->execute($execution, $this->apiContext);
+        $competence->students()->attach(auth()->user()->id);
+
+        Sale::create([
+            'user_id' => auth()->user()->id,
+            'saleable_id' => $competence->id,
+            'saleable_type' => Competence::class,
+            'coupon_id' => $coupon->id ? $coupon->id : null,
+            'final_price' => $final_price
+        ]);
+
+        return redirect()->route('competences.index');
     }
 }

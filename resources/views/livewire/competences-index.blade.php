@@ -1,7 +1,7 @@
 <div class="pt-20 pb-48">
     <div class="container flex text-gray-700">
         <button class="bg-white shadow rounded-lg h-12 px-4 mr-4" wire:click="clear">
-            Todos los cursos
+            Todas las competencias
         </button>
         <div class="relative" x-data="{open: false}">
             <button class="block bg-white shadow rounded-lg h-12 px-4 mr-4 overflow-hidden focos:outline-none"

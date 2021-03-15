@@ -32,4 +32,6 @@ Route::post('courses/{course}/approved', [CourseController::class, 'approved'])-
 
 Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
 Route::post('competences/assign-judge', [CompetenceController::class, 'assignJudge'])->name('competences.assign-judge');
+Route::post('{competence}/publish', [CompetenceController::class, 'publish'])->name('publish');
+
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
