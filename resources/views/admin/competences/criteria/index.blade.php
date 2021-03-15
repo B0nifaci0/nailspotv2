@@ -5,7 +5,7 @@
 @section('content_header')
 <button type="button" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#modal-default">
     Asignar Criterio </button>
-<h1>Asigancion de criterios para {{$competence->name}}</h1>
+<h1>Asignación de criterios para {{$competence->name}}</h1>
 @stop
 
 @section('content')

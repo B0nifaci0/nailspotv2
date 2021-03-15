@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
 use App\Models\Task;
+use App\Models\Course;
+use App\Models\Competence;
 use Illuminate\Http\Request;
+
 
 class ProfileController extends Controller
 {
+
     public function security(Request $request)
     {
         return view('profile.security', [
@@ -26,9 +29,31 @@ class ProfileController extends Controller
 
     public function courses()
     {
-        $user = auth()->user();
-        $details = $user->saleDetails()->paginate(5);
-        return view('profile.courses.index', compact('details'));
+        $courses = Course::whereHas('sales', function ($query) {
+            $user = auth()->user();
+            return $query->where('user_id', $user->id);
+        })->with('sales', function ($query) {
+            $user = auth()->user();
+            return $query->where('user_id', $user->id);
+        })->paginate(8);
+
+        return view('profile.courses.index', compact('courses'));
+    }
+
+    public function competences()
+    {
+        $competences = Competence::whereHas('sales', function ($query) {
+            $user = auth()->user();
+            return $query->where('user_id', $user->id);
+        })->with(
+            'sales',
+            function ($query) {
+                $user = auth()->user();
+                return $query->where('user_id', $user->id);
+            }
+        )->paginate(8);
+
+        return view('profile.competences.index', compact('competences'));
     }
 
     public function tasks(Course $course)

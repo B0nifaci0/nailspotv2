@@ -23,3 +23,4 @@ Route::get('download/task/{task}', [TaskController::class, 'download'])->name('d
 Route::get('courses/{course}/students', CoursesStudents::class)->middleware('can:Actualizar cursos')->name('courses.students');
 
 Route::post('courses/{course}/status', [CourseController::class, 'status'])->name('courses.status');
+

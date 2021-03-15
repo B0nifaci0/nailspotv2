@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Sale;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
 use App\Models\Subcategory;
-use Laravel\Jetstream\HasProfilePhoto;
 use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Competence extends Model
 {
     use HasFactory;
-    use HasProfilePhoto;
 
     const BORRADOR = 1;
     const PUBLICADO = 2;
@@ -97,7 +96,10 @@ class Competence extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    //competence_criterion_user
+    public function sales()
+    {
+        return $this->morphMany(Sale::class, 'saleable');
+    }
 
     public function criteria()
     {

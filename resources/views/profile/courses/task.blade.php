@@ -4,7 +4,7 @@
         <h1 class="text-2xl font-bold uppercase">
             Detalles tarea
         </h1>
-        <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('courses.tasks', $course) }}'>Ver todas </a>
+        <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('profile.courses.tasks', $course) }}'>Ver todas </a>
 
     </div>
     <hr class="mt-2 mb-6" />

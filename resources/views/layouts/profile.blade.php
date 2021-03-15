@@ -39,7 +39,11 @@
                         </li>
                         <li
                             class="leading-7 mb-1 border-l-4 @routeIs ('profile.courses') border-indigo-400 @else border-transparent @endif pl-2">
-                            <a href="{{route('profile.courses')}}">Mis compras</a>
+                            <a href="{{route('profile.courses')}}">Cursos Adquiridos</a>
+                        </li>
+                        <li
+                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.competences') border-indigo-400 @else border-transparent @endif pl-2">
+                            <a href="{{route('profile.competences')}}">Competencias</a>
                         </li>
                         <li
                             class="leading-7 mb-1 border-l-4 @routeIs ('profile.security') border-indigo-400 @else border-transparent @endif pl-2">

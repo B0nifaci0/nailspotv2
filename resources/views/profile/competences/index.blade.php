@@ -3,7 +3,7 @@
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Curso
+                    Competencia
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Descripcion
@@ -18,13 +18,13 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @forelse ($courses as $course)
+            @forelse ($competences as $competence)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
-                        @isset($course->image)
+                        @isset($competence->image)
                         <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="{{Storage::url($course->image->url)}}" alt="">
+                            <img class="h-10 w-10 rounded-full" src="{{Storage::url($competence->image->url)}}" alt="">
                         </div>
                         @else
                         <img class="h-10 w-10 rounded-full"
@@ -32,28 +32,27 @@
                         @endisset
                         <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900">
-                                <a href="{{route('course.status',$course)}}">
-                                    {{$course->name}}</a>
+                                <a href="{{route('competence.status',$competence)}}">
+                                    {{$competence->name}}</a>
 
                             </div>
                             <div class="text-sm text-gray-500">
-                                {{$course->category->name}}
+                                {{$competence->subcategory->name}}
                             </div>
                         </div>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">{!!$course->description!!}</div>
+                    <div class="text-sm text-gray-900">{!!$competence->description!!}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">$ {{$course->sales->first()->final_price}}</div>
+                    <div class="text-sm text-gray-900">$ {{$competence->sales->first()->final_price}}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{$course->sales->first()->created_at}}
+                    {{$competence->sales->first()->created_at}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="{{route('profile.courses.tasks',$course)}}"
-                        class="text-indigo-600 hover:text-indigo-900">Tareas</a>
+
                 </td>
             </tr>
             @empty
@@ -69,6 +68,6 @@
     </table>
 
     <div class="px-6 py-4">
-        {{$courses->links()}}
+        {{$competences->links()}}
     </div>
 </x-profile-layout>

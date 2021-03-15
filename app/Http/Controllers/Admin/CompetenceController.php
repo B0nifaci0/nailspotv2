@@ -38,7 +38,7 @@ class CompetenceController extends Controller
         $competence = Competence::create($request->all());
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('competences', $request->file('image'));
+            $url = Storage::put('public/competences', $request->file('image'));
             $competence->image()->create([
                 'url' => $url
             ]);
@@ -68,7 +68,7 @@ class CompetenceController extends Controller
         }
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('competences', $request->file('image'));
+            $url = Storage::put('public/competences', $request->file('image'));
             if ($competence->image) {
                 Storage::delete($competence->image->url);
                 $competence->image()->update([

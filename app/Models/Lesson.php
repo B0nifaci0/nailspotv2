@@ -16,7 +16,6 @@ class Lesson extends Model
     protected $guarded = ['id'];
     protected $withCount = ['tasks'];
 
-
     public function tasks()
     {
         return $this->hasMany(Task::class);

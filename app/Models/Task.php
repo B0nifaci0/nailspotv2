@@ -26,8 +26,8 @@ class Task extends Model
         return $this->belongsTo(Lesson::class);
     }
 
-    // public function image()
-    // {
-    //     return $this->morphOne(Image::class, 'imageable');
-    // }
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

@@ -11,7 +11,6 @@ use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Category;
 use App\Models\Requirement;
-use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,7 +22,6 @@ class Course extends Model
     const PUBLICADO = 3;
 
     use HasFactory;
-    use HasProfilePhoto;
 
     protected $guarded = ['id', 'status'];
     protected $withCount = ['students', 'reviews', 'sales'];

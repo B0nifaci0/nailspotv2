@@ -33,11 +33,13 @@ class CompetenceController extends Controller
             'final_price' => 0
         ]);
 
-        return redirect()->route('competence.index');
+        return redirect()->route('competences.index');
     }
 
     public function status(Competence $competence)
     {
-        return view('competences.status');
+        $this->authorize('enrolled', $competence);
+
+        return view('competences.status', compact('competence'));
     }
 }

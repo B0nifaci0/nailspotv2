@@ -70,6 +70,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->name('payment.')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/payment.php'));
+
+            Route::middleware('web', 'auth', 'verified')
+                ->prefix('perfil')
+                ->name('profile.')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/profile.php'));
         });
     }
 
