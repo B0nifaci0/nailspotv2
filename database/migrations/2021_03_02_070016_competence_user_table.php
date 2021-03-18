@@ -16,6 +16,7 @@ class CompetenceUserTable extends Migration
         Schema::create('competence_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+
             $table->foreignId('competence_id')->references('id')->on('competences')->cascadeOnDelete();
             $table->timestamps();
         });

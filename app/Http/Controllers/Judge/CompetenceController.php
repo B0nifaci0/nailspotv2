@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Judge;
 
 use App\Http\Controllers\Controller;
 use App\Models\Competence;
+use App\Models\CompetenceUser;
 use Illuminate\Http\Request;
 
 class CompetenceController extends Controller
@@ -20,6 +21,7 @@ class CompetenceController extends Controller
 
     public function participants(Competence $competence)
     {
-        return $competence->students;
+        $participants = CompetenceUser::whereCompetenceId($competence->id)->get();
+        return $participants;
     }
 }

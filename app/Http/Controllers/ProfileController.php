@@ -6,6 +6,8 @@ use App\Models\Task;
 use App\Models\Course;
 use App\Models\Competence;
 use Illuminate\Http\Request;
+use App\Models\CompetenceUser;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProfileController extends Controller
@@ -71,5 +73,22 @@ class ProfileController extends Controller
     {
         $course = $task->lesson->course;
         return view('profile.courses.task', compact('task', 'course'));
+    }
+
+    public function resources(Competence $competence)
+    {
+        $resource = CompetenceUser::whereCompetenceId($competence->id)->whereUserId(auth()->user()->id)->first();
+        return view('profile.competences.resources', compact('resource'));
+    }
+
+    public function image(Request $request, CompetenceUser $resource)
+    {
+        if ($request->hasfile('image')) {
+            $url = Storage::put('public/competences/resources', $request->file('image'));
+            $resource->images()->create([
+                'url' => $url
+            ]);
+        }
+        return back();
     }
 }
