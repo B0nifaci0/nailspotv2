@@ -11,16 +11,16 @@
                         <th></th>
                     </tr>
                 <tbody>
-                    @forelse ($courses as $course)
+                    @forelse ($competences as $competence)
                     <tr>
                         <td>
-                            <img class="rounded-circle zoom" src="{{ $course->teacher->profile_photo_url}}" />
-                            {{$course->teacher->name}}</td>
-                        <td>{{$course->name}}</td>
-                        <td>{{$course->sales->count()}}</td>
-                        <td>${{$course->total}}</td>
+                            <img class="rounded-circle zoom" src="{{ $competence->teacher->profile_photo_url}}" />
+                            {{$competence->teacher->name}}</td>
+                        <td>{{$competence->name}}</td>
+                        <td>{{$competence->sales->count()}}</td>
+                        <td>${{$competence->total}}</td>
                         <td width=" 10px">
-                            <a class="btn btn-primary" href="{{route('admin.sales.courses.details',$course)}}">Detalles</a>
+                            <a class="btn btn-primary" href="{{route('admin.sales.competences.details',$competence)}}">Detalles</a>
                         </td>
                     </tr>
                     @empty
@@ -35,7 +35,7 @@
         </div>
 
         <div class="card-footer">
-            {{$courses->links()}}
+            {{$competences->links()}}
         </div>
     </div>
 </div>

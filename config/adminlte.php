@@ -281,9 +281,9 @@ return [
         ],
         [
             'text'        => 'Ventas Cursos',
-            'route'         => 'admin.sales',
+            'route'         => 'admin.sales.courses',
             'icon'        => 'fas fa-wallet',
-            'active' => ['admin/sales*'],
+            'active' => ['admin/sales/course*'],
             'can' => 'Ver dashboard'
         ],
         ['header' => 'OPCIONES DE COMPETENCIAS'],
@@ -304,7 +304,14 @@ return [
             'route'  => 'admin.criteria.index',
             'active' => ['admin/criteria*'],
             'icon' => 'fas fa-gavel',
-            
+
+        ],
+        [
+            'text'        => 'Ventas Competencias',
+            'route'         => 'admin.sales.competences',
+            'icon'        => 'fas fa-wallet',
+            'active' => ['admin/sales/competence*'],
+            'can' => 'Ver dashboard'
         ],
     ],
 

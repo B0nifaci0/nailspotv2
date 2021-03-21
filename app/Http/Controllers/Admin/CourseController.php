@@ -16,8 +16,7 @@ class CourseController extends Controller
 
     public function sales()
     {
-        $courses = Course::has('sales')->paginate();
-        return view('admin.courses.sales', compact('courses'));
+        return view('admin.courses.sales');
     }
 
     public function details(Course $course)

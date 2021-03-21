@@ -70,6 +70,11 @@ class Competence extends Model
         return Carbon::parse($value)->format('m/d/Y');
     }
 
+    public function getTotalAttribute()
+    {
+        return $this->sales->sum('final_price');
+    }
+
     //Competence_student
     public function students()
     {

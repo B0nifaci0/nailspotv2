@@ -11,9 +11,7 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Criterio
                     </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Evaluar
+                    <th>
                     </th>
                 </tr>
             </thead>
@@ -46,7 +44,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <a href="{{route('judge.competences.participants', $item->competence)}}"
-                            class="text-indigo-600 hover:text-indigo-900">Participantes</a>
+                            class="text-indigo-600 hover:text-indigo-900">Ir a calificar</a>
                     </td>
                 </tr>
                 @empty

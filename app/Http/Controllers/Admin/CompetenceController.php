@@ -130,4 +130,14 @@ class CompetenceController extends Controller
         $competence->save();
         return back()->with('info', 'Estatus actualizado');
     }
+
+    public function sales()
+    {
+        return view('admin.competences.sales');
+    }
+
+    public function details(Competence $competence)
+    {
+        return view('admin.competences.details', compact('competence'));
+    }
 }

@@ -24,8 +24,8 @@ Route::resource('competences', CompetenceController::class)->names('competences'
 Route::resource('criteria', CriterionController::class)->names('criteria');
 
 
-Route::get('sales', [CourseController::class, 'sales'])->name('sales');
-Route::get('sales/details/{course}', [CourseController::class, 'details'])->name('details');
+Route::get('sales/courses', [CourseController::class, 'sales'])->name('sales.courses');
+Route::get('sales/course/{course}', [CourseController::class, 'details'])->name('sales.courses.details');
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
@@ -33,5 +33,8 @@ Route::post('courses/{course}/approved', [CourseController::class, 'approved'])-
 Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
 Route::post('competences/assign-judge', [CompetenceController::class, 'assignJudge'])->name('competences.assign-judge');
 Route::post('{competence}/publish', [CompetenceController::class, 'publish'])->name('publish');
+Route::get('sales/competences', [CompetenceController::class, 'sales'])->name('sales.competences');
+Route::get('sales/competence/{competence}', [CompetenceController::class, 'details'])->name('sales.competences.details');
+
 
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
