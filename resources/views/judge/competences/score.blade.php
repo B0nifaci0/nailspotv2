@@ -1,4 +1,4 @@
-<x-profile-layout>
+<x-app-layout>
 
     <div x-data="{ imgModal : false, imgModalSrc : '', imgModalDesc : '' }">
         <template
@@ -30,32 +30,21 @@
             </div>
         </template>
     </div>
-
-    <div class="flex justify-between">
+    <div class="relative pt-16 flex content-center items-center justify-center">
+    </div>
+    <div class="container py-8">
         <h1 class="text-2xl font-bold uppercase">
-            Competencia {{$resource->competence->name}}
+            Competencia {{$participant->competence->name}} Criterio {{$criterion->name}}
         </h1>
-        <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('profile.competences') }}'>Ver
-            todas
-        </a>
-    </div>
-    <hr class="mt-2 mb-6" />
-    <div class="mb-4">
-    </div>
+        <a href="{{route('judge.competences.participants', [$participant->competence, $criterion])}}"
+            class="text-indigo-600 hover:text-indigo-900">Regresar</a>
+        <hr class="mt-2 mb-6" />
 
-    <h1 class="text-2xl font-bold mt-8 mb-2">Recursos</h1>
-    @if ($resource->images_count <3) <form action="{{ route('profile.image', $resource) }}" method="post"
-        enctype="multipart/form-data">
-        @csrf
-        Selecciona una imagen
-        <input type="file" name="image" id="fileToUpload">
-        <button type="submit">Enviar</button>
-        </form>
-        @endif
+        <h1 class="text-2xl font-bold mt-8 mb-2">Recursos</h1>
 
         <div x-data="{}" class="px-2">
             <div class="flex -mx-2">
-                @foreach ($resource->images as $image)
+                @foreach ($participant->images as $image)
                 <div class="w-1/6 px-2">
                     <div class="bg-gray-400">
                         <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
@@ -67,5 +56,29 @@
                 @endforeach
             </div>
         </div>
+        <form method="POST" action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}">
+            @csrf
+            <div class="grid grid-cols-2 gap-4">
+                @if ($participant->score)
+                <div>
+                    <label>Calificacion</label>
+                    <input type="text" readonly value="{{$participant->score->value}}" class="form-input">
+                </div>
+                @else
+                <div>
+                    <label>Calificacion</label>
+                    <select name="score" class="form-input block w-full mt-1">
+                        @for ($i = 1; $i < 11; $i++) <option>{{$i}}
+                            </option>
+                            @endfor
+                    </select>
+                </div>
+                <button type="submit"
+                    class="block text-center bg-blue-500 text-white font-bold py-2 px-4 rounded">Calificar</button>
+                @endif
+            </div>
 
-</x-profile-layout>
+        </form>
+    </div>
+
+</x-app-layout>

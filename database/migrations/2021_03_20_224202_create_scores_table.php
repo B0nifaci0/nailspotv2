@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CompetenceUserTable extends Migration
+class CreateScoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CompetenceUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('competence_user', function (Blueprint $table) {
+        Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('competence_id')->references('id')->on('competences')->cascadeOnDelete();
+            $table->foreignId('competence_user_id')->references('id')->on('competence_user')->cascadeOnDelete();
+            $table->foreignId('competence_criterion_user_id')->references('id')->on('competence_criterion_user')->cascadeOnDelete();
+            $table->integer('value');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CompetenceUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competence_user');
+        Schema::dropIfExists('scores');
     }
 }

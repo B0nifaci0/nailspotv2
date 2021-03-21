@@ -43,7 +43,7 @@
                         {{$item->criterion->name}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="{{route('judge.competences.participants', $item->competence)}}"
+                        <a href="{{route('judge.competences.participants',['competence'=> $item->competence, 'criterion' => $item->criterion])}}"
                             class="text-indigo-600 hover:text-indigo-900">Ir a calificar</a>
                     </td>
                 </tr>

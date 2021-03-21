@@ -45,10 +45,14 @@ class CourseSeeder extends Seeder
                 'course_id' => $course->id
             ]);
 
-            Sale::factory(4)->create([
+            $sales = Sale::factory(4)->create([
                 'saleable_id' => $course->id,
                 'saleable_type' => Course::class
             ]);
+
+            foreach ($sales as $sale) {
+                $course->students()->attach($sale->user->id);
+            }
         }
     }
 }
