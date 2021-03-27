@@ -3,7 +3,21 @@
 @section('title', 'Nueva competencia')
 
 @section('content_header')
-<h1>Nueva competencia</h1>
+<form action="{{route('admin.publish',$competence)}}" method="POST">
+    @csrf
+    <button type="submit"
+        class="btn btn-sm float-right @if($competence->status == 1) btn-success @else btn-danger @endif ">
+        @switch($competence->status)
+        @case(1)
+        Publicar
+        @break
+        @case(2)
+        Volver a borrador
+        @break
+        @endswitch
+    </button>
+</form>
+<h1>Editar competencia</h1>
 @stop
 
 @section('content')

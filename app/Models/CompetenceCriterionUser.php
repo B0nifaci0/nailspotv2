@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Score;
 use App\Models\Criterion;
 use App\Models\Competence;
 use Illuminate\Database\Eloquent\Model;
@@ -36,5 +37,10 @@ class CompetenceCriterionUser extends Model
         return $query->whereCompetenceId($request->competence_id)
             ->whereCriterionId($request->criterion_id)
             ->whereUserId($request->user_id)->first();
+    }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
     }
 }

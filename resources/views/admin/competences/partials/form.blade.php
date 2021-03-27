@@ -66,6 +66,12 @@
     <small class="text-danger">{{ $errors->first('image') }}</small>
 </div>
 
+<figure>
+    @isset($competence->image)
+    <img id="picture" src="{{Storage::url($competence->image->url)}}" class="img-fluid">
+    @endisset
+</figure>
+
 {!! Form::hidden('user_id', auth()->user()->id) !!}
 <div class="btn-group pull-right">
     {!! Form::reset("Limpiar", ['class' => 'btn btn-warning']) !!}

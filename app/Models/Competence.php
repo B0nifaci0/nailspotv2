@@ -7,6 +7,8 @@ use App\Models\Sale;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
+use App\Models\Score;
+use App\Models\Criterion;
 use App\Models\Subcategory;
 use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +23,7 @@ class Competence extends Model
     const FINALIZADO = 3;
 
     protected $guarded = ['id'];
-    protected $withCount = ['students'];
+    protected $withCount = ['students', 'criteria'];
 
     public function getRouteKeyName()
     {
@@ -75,6 +77,11 @@ class Competence extends Model
         return $this->sales->sum('final_price');
     }
 
+    public function getScoreAttribute()
+    {
+        return $this->criteria_count * 10;
+    }
+
     //Competence_student
     public function students()
     {
@@ -108,10 +115,18 @@ class Competence extends Model
 
     public function criteria()
     {
-        return $this->hasMany(CompetenceCriterionUser::class);
+        return $this->belongsToMany(Criterion::class, 'competence_criterion_user');
     }
+
     public function users()
+    {
+        return $this->belongsToMany(User::class, 'competence_criterion_user');
+    }
+
+    public function competenceCriterionUser()
     {
         return $this->hasMany(CompetenceCriterionUser::class);
     }
+
+
 }

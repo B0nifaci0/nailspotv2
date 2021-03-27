@@ -37,13 +37,13 @@
                     <td>
                         @switch($competence->status)
                         @case(1)
-                        Borrador
+                        <span class='badge badge-danger'>Borrador</span>
                         @break
                         @case(2)
-                        Publicado
+                        <span class='badge badge-success'>Publicado</span>
                         @break
                         @case(3)
-                        Finalizado
+                        <span class='badge badge-warning'>Finalizado</span>
                         @break
                         @endswitch
                     </td>
@@ -63,23 +63,10 @@
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
-                    <td width="10px">
-                        <form action="{{route('admin.publish',$competence)}}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                class="btn btn-sm @if($competence->status == 1) btn-success @else btn-danger @endif ">
-                                @switch($competence->status)
-                                @case(1)
-                                Publicar
-                                @break
-                                @case(2)
-                                Volver a borrador
-                                @break
-                                @default
-
-                                @endswitch
-                            </button>
-                        </form>
+                    <td>
+                        <a class='btn btn-danger btn-sm'
+                            href="{{ route('admin.reports.competences.score', $competence) }}"><i
+                                class="fas fa-file-pdf"></i></a>
                     </td>
                 </tr>
                 @endforeach

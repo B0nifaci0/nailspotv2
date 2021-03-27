@@ -13,22 +13,7 @@ class CompetencesIndex extends Component
 
     public function render()
     {
-
-        $user = auth()->user();
-
-        $competences = CompetenceCriterionUser::with('competence.criteria')
-            ->get()
-            ->pluck('competence.criteria')
-            ->collapse('competence')
-            ->where('user_id', $user->id)
-            ->sortByDesc('id')
-            ->unique();
-
-        // $competences = CompetenceCriterionUser::whereUserId($user->id)
-        //     ->with('competence')
-        //     ->where('name', 'LIKE', "%$this->search%")
-        //     ->paginate(8);
-
+        $competences = CompetenceCriterionUser::whereUserId(auth()->user()->id)->get();
         return view('livewire.judge.competences-index', compact('competences'));
     }
 

@@ -31,8 +31,8 @@ class CompetenceUser extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function score()
+    public function scores()
     {
-        return $this->hasOne(Score::class);
+        return $this->hasMany(Score::class);
     }
 }

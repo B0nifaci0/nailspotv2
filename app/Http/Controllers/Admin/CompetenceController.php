@@ -55,7 +55,7 @@ class CompetenceController extends Controller
         return view('admin.competences.edit', compact('levels', 'subcategories', 'criteria', 'competence'));
     }
 
-    public function update(Request $request, Competence $competence)
+    public function update(CompetenceRequest $request, Competence $competence)
     {
         $request->validate([
             'name' => 'required|unique:competences,name,' . $competence->id

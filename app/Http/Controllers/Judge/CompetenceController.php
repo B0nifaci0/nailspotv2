@@ -9,6 +9,7 @@ use App\Models\CompetenceUser;
 use App\Models\Criterion;
 use App\Models\Score;
 use Illuminate\Http\Request;
+use PayPal\Api\Participant;
 
 class CompetenceController extends Controller
 {
@@ -30,7 +31,15 @@ class CompetenceController extends Controller
 
     public function show(CompetenceUser $participant, Criterion $criterion)
     {
-        return view('judge.competences.score', compact('participant', 'criterion'));
+        foreach ($participant->scores as $score) {
+            if ($score->competenceCriterionUser->criterion->id == $criterion->id) {
+                $score = $score->value;
+                break;
+            } else {
+                $score = null;
+            }
+        }
+        return view('judge.competences.score', compact('participant', 'criterion', 'score'));
     }
 
     public function score(CompetenceUser $participant, Criterion $criterion, Request $request)

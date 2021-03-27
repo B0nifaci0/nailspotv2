@@ -59,10 +59,9 @@
         <form method="POST" action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}">
             @csrf
             <div class="grid grid-cols-2 gap-4">
-                @if ($participant->score)
+                @if ($score)
                 <div>
-                    <label>Calificacion</label>
-                    <input type="text" readonly value="{{$participant->score->value}}" class="form-input">
+                    <label>Calificacion {{$score}}</label>
                 </div>
                 @else
                 <div>

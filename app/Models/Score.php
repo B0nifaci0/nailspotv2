@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Competence;
 use App\Models\CompetenceUser;
 use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,6 @@ class Score extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-
 
     public function competenceUser()
     {

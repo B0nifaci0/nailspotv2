@@ -18,15 +18,20 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{$key+1}}
                         </td>
-                        @if ($participant->score)
-                        <td class='px-6 py-4 whitespace-nowrap text-sm font-medium'>Calificado</td> @else
-                        <td class='px-6 py-4 whitespace-nowrap text-sm font-medium'>No calificado</td>
+                        @forelse ($participant->scores as $score)
+                        @if ($score->competenceCriterionUser->criterion->id == $criterion->id &&
+                        $score->competenceCriterionUser->user->id == auth()->user()->id)
+                        <td class='px-6 py-4 whitespace-nowrap text-sm font-medium'>Calificado</td>
                         @endif
-
+                        @empty
+                        <td class='px-6 py-4 whitespace-nowrap text-sm font-medium'>No entregado</td>
+                        @endforelse
+                        @if ($participant->images_count >0)
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <a href="{{route('judge.competences.show', ['participant'=>$participant, 'criterion'=> $criterion])}}"
                                 class="text-indigo-600 hover:text-indigo-900">Ver trabajo</a>
                         </td>
+                        @endif
                     </tr>
                     @empty
                     <tr class="px-6 py-4">
