@@ -30,12 +30,11 @@ class CompetenceController extends Controller
 
     public function show(CompetenceUser $participant, Criterion $criterion)
     {
+        $score = null;
         foreach ($participant->scores as $score) {
             if ($score->competenceCriterionUser->criterion->id == $criterion->id) {
                 $score = $score->value;
                 break;
-            } else {
-                $score = null;
             }
         }
         return view('judge.competences.score', compact('participant', 'criterion', 'score'));
