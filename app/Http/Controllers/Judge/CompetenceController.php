@@ -9,7 +9,6 @@ use App\Models\CompetenceUser;
 use App\Models\Criterion;
 use App\Models\Score;
 use Illuminate\Http\Request;
-use PayPal\Api\Participant;
 
 class CompetenceController extends Controller
 {
