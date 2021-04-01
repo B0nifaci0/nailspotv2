@@ -26,7 +26,7 @@
     <body class="text-gray-800 antialiased">
         {{-- <x-jet-banner /> --}}
 
-        @livewire('navigation-menu')
+        @livewire('navigation')
 
         <main>
             @yield('header')
