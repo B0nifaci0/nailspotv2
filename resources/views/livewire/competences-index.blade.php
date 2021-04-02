@@ -1,4 +1,4 @@
-<div class="pt-20 pb-48">
+<div class="pt-10 pb-48 bg-gray-900">
     <div class="container flex text-gray-700">
         <button class="bg-white shadow rounded-lg h-12 px-4 mr-4" wire:click="clear">
             Todas las competencias
@@ -50,7 +50,7 @@
         <x-competence-card :competence="$competence" />
         @empty
     </div>
-    <div class="container">
+    <div class="container text-white text-xl">
         <p>No existen competencias con esos criterios</p>
     </div>
     @endforelse
