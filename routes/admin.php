@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CriterionController;
 use App\Http\Controllers\Admin\CompetenceController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Report\DetailsCourseController;
 use App\Http\Controllers\Report\TableCompetencesController;
 
 Route::get('', [HomeController::class, 'index'])->middleware('can:Ver dashboard')->name('home');
@@ -41,3 +42,5 @@ Route::get('sales/competence/{competence}', [CompetenceController::class, 'detai
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
 
 Route::get('report/{competence}/score', TableCompetencesController::class)->name('reports.competences.score');
+Route::get('report/{course}/details',DetailsCourseController::class)->name('reports.course.details');
+

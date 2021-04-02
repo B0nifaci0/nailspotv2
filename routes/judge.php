@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Judge\CompetenceController;
 
-Route::redirect('', 'competences');
+Route::redirect('', 'judge/competences');
 
 Route::get('competences', [CompetenceController::class, 'index'])->name('competences.index');
 

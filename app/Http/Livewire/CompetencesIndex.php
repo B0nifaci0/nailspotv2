@@ -13,24 +13,22 @@ class CompetencesIndex extends Component
 {
     use WithPagination;
 
-    public $subcategory_id, $subcategory;
-    public $level_id, $level_selected;
+    public $subcategory_id, $subcategory, $level_id;
 
     public function render()
     {
         $subcategories = Subcategory::all();
-        $levels = Level::all();
+
 
         $this->subcategory = Subcategory::find($this->subcategory_id);
-        $this->level_selected = Level::find($this->level_id);
 
         $competences = Competence::whereDate('end_date', '>=', Carbon::today()->toDateString())
             ->status(Competence::PUBLICADO)
             ->subcategory($this->subcategory_id)
-            ->level($this->level_id)
+            ->level(auth()->user()->level_id)
             ->latest('id')->paginate(8);
 
-        return view('livewire.competences-index', compact('competences', 'levels', 'subcategories'));
+        return view('livewire.competences-index', compact('competences', 'subcategories'));
     }
 
     public function clear()

@@ -8,6 +8,7 @@
                         <th>Alumno</th>
                         <th>Cupón</th>
                         <th>Precio final</th>
+                        <th>Fecha compra</th>
                     </tr>
                 <tbody>
                     @forelse ($details as $detail)
@@ -18,6 +19,7 @@
                         </td>
                         <td>"{{($detail->coupon) ? $detail->coupon->code : 'N/A'}}"</td>
                         <td>${{$detail->final_price}}</td>
+                        <td>{{$detail->created_at}}</td>
 
                     </tr>
                     @empty
