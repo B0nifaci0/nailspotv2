@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Competence;
-use App\Models\CompetenceCriterionUser;
+use App\Models\Course;
 
 class PruebitasController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $competences = CompetenceCriterionUser::whereUserId($user->id)->get();
-
-        return $competences;
+        $course = Course::find(4);
+        $lessons = $course->lessons()->where('final',1)->count();
+        return $lessons;
     }
 }

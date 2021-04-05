@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body bg-gray-200">
-        @foreach ($course->lessons as $key=>$item)
+        @foreach ($course->lessons->sortBy('final') as $key=>$item)
         <article class="mt-4 card" x-data="{open: false}">
             <div>
                 <div class="card-body">
@@ -22,7 +22,6 @@
                     <div class="flex items-center mt-4">
                         <label class="w-32"> Descripcion</label>
                         <textarea class="form-input w-full" wire:model="lesson.description"></textarea>
-
                     </div>
                     @error('lesson.description')
                     <span class="text-sx text-red-500">{{$message}}</span>
@@ -39,6 +38,13 @@
                         <h1 class="cursor-pointer" x-on:click="open = !open">
                             <i class="far fa-play-circle text-blue-500 mr-1"></i>
                             <strong>Leccion {{$key+1}}:</strong> {{$item->name}}</h1>
+                        @if (!$course->final)
+                        Leccion Final: <i class="fas fa-toggle-off text-2xl" wire:click='check({{$item}})'></i>
+                        @endif
+                        @if ($item->final==1)
+                        Leccion Final: <i class="fas fa-toggle-on text-2xl text-blue-500"
+                            wire:click='uncheck({{$item}})'></i>
+                        @endif
                     </header>
                     <div x-show="open">
                         <hr class="my-2">
@@ -56,7 +62,6 @@
             </div>
         </article>
         @endforeach
-
         <div x-data="{open: false}" class="mt-4">
             <a x-show="!open" x-on:click="open = true" class="flex items-center cursor-pointer">
                 <i class="far fa-plus-square text-2xl text-red-500 mr-2"></i>
@@ -83,7 +88,6 @@
                         <div class="flex items-center mt-4">
                             <label class="w-32"> Descripcion</label>
                             <textarea class="form-input w-full" wire:model="description"></textarea>
-
                         </div>
                         @error('description')
                         <span class="text-sx text-red-500">{{$message}}</span>
@@ -91,14 +95,12 @@
                     </div>
                     <div class="flex justify-end">
                         <button class="bg-red-500 text-white font-bold py-2 px-4
-                                rounded">Cancelar</button>
+                                rounded" x-on:click="open = false">Cancelar</button>
                         <button class="text-white font-bold py-2 px-4
                                     rounded bg-green-500 ml-2" wire:click="store()">Agregar</button>
                     </div>
                 </div>
             </article>
         </div>
-
-
     </div>
 </div>

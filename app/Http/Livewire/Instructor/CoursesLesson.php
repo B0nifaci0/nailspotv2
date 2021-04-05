@@ -72,4 +72,22 @@ class CoursesLesson extends Component
         $lesson->delete();
         $this->course = Course::find($this->course->id);
     }
+
+    public function check(Lesson $lesson)
+    {
+        $lesson->update([
+            'final' => true
+        ]);
+
+        $this->course = Course::find($this->course->id);
+    }
+
+    public function uncheck(Lesson $lesson)
+    {
+        $lesson->update([
+            'final' => false
+        ]);
+
+        $this->course = Course::find($this->course->id);
+    }
 }
