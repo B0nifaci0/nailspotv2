@@ -8,7 +8,7 @@ use Livewire\Component;
 class CoursesReviews extends Component
 {
     public $course_id, $comment;
-    public $rating = 0;
+    public $rating = 0; 
 
 
     public function mount(Course $course)

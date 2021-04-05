@@ -106,7 +106,6 @@
     </head>
 
     <body>
-        <div>
 
             <div>
                 <h1>Curso "{{$course->name}}"</h1>
@@ -144,9 +143,6 @@
                     <br>
                 </table>
             </div>
-        </div>
-
-
     </body>
 
 </html>

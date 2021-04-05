@@ -16,7 +16,7 @@ Route::get('courses/{course}/goals', [CourseController::class, 'goals'])->name('
 
 Route::get('courses/{course}/{student}/tasks', [CourseController::class, 'tasks'])->name('courses.tasks');
 
-Route::get('courses/{task}/show', [TaskController::class, 'show'])->name('task.show');
+Route::get('courses/tasks/{task}/', [TaskController::class, 'show'])->name('task.show');
 Route::patch('courses/{task}/score', [TaskController::class, 'update'])->name('task.score');
 Route::get('download/task/{task}', [TaskController::class, 'download'])->name('download.tasks');
 

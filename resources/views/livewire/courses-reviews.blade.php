@@ -4,7 +4,7 @@
     @can('enrolled', $course)
     <article>
 
-        @can('values', $course)
+        @can('valued', $course)
 
         <textarea wire:model="comment" rows="3" class="form-input w-full" placeholder="Reseña..."></textarea>
         <div class="flex">

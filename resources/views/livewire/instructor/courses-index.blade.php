@@ -39,9 +39,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
-
-
-                            @isset($course->image)
+                           @isset($course->image)
                             <div class="flex-shrink-0 h-10 w-10">
                                 <img class="h-10 w-10 rounded-full" src="{{Storage::url($course->image->url)}}" alt="">
                             </div>
@@ -118,7 +116,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('instructor.courses.edit', $course)}}"
-                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            class="text-indigo-600 hover:text-indigo-900">Ver más</a>
                     </td>
                 </tr>
                 @empty

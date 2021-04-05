@@ -67,7 +67,6 @@
         </div>
     </form>
 
-    <x-slot name="js">
-
-    </x-slot>
+    @livewire('profile.comments', ['task' => $task])
+    
     </x-app-layout>
