@@ -17,8 +17,10 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <div class="bg-cover bg-center bg-no-repeat" style="background-image: url(img/log2.jpg)">
+            <div class="font-sans text-gray-900 antialiased">    
+                {{ $slot }}
+        </div>
         </div>
     </body>
 </html>
