@@ -1,4 +1,7 @@
-<div class="pt-20 pb-48">
+<div class="mx-auto bg-gray-900">
+    <h1 class="text-6xl text-white font-bold mx-auto text-center py-10">Nuevos Cursos</h1>
+</div>
+<div class="pt-20 pb-48 bg-gray-900">
     <div class="container flex text-gray-700">
         <button class="bg-white shadow rounded-lg h-12 px-4 mr-4" wire:click="clear">
             Todos los cursos
@@ -8,7 +11,7 @@
                 x-on:click="open=true">
                 Categoria
             </button>
-            <div class="absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl" x-show="open"
+            <div class="relative right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl" x-show="open"
                 x-on:click.away="open=false" wire:click="clearPage">
                 @foreach ($categories as $category)
                 <a class="cursor-pointer transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-blue-500 hover:text-white"
@@ -23,7 +26,7 @@
                 x-on:click="open=true">
                 Niveles
             </button>
-            <div class="absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl" x-show="open"
+            <div class="relative right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl" x-show="open"
                 x-on:click.away="open=false" wire:click="clearPage">
                 @foreach ($levels as $level)
                 <a class="cursor-pointer transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-blue-500 hover:text-white"
