@@ -19,15 +19,15 @@ class CompetencesIndex extends Component
     {
         $subcategories = Subcategory::all();
 
-
         $this->subcategory = Subcategory::find($this->subcategory_id);
-
         $competences = Competence::whereDate('end_date', '>=', Carbon::today()->toDateString())
             ->status(Competence::PUBLICADO)
-            ->subcategory($this->subcategory_id)
-            ->level(auth()->user()->level_id)
+            ->subcategory($this->subcategory_id);
+        if (auth()->user()) {
+            $competences = $competences->level(auth()->user()->level_id);
+        }
+        $competences = $competences
             ->latest('id')->paginate(8);
-
         return view('livewire.competences-index', compact('competences', 'subcategories'));
     }
 
