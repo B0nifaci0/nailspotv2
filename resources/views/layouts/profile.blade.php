@@ -26,7 +26,7 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-200">
-            @livewire('navigation-menu')
+            @livewire('navigation')
             <div class="relative pt-16 flex content-center items-center justify-center">
             </div>
             <div class="container py-8 grid grid-cols-5 gap-6">
