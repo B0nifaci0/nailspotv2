@@ -4,7 +4,9 @@
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
-
+        <div class="flex-shrink-0 flex items-center justify-center pb-6">
+            <p class="text-xl">Registrarse</p>
+        </div>
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">

@@ -1,12 +1,16 @@
 <x-guest-layout>
     @livewire('navigation')
+
+    
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4 bg-gray-100" />
-
+        <div class="flex-shrink-0 flex items-center justify-center pb-6">
+            <p class="text-xl">Iniciar Sesión</p>
+        </div>
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
@@ -16,6 +20,7 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
@@ -29,13 +34,13 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-white">{{ __('Recuérdame') }}</span>
+                    <span class="ml-2 text-sm text-gray-900">{{ __('Recuérdame') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-white hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-900 hover:text-gray-400" href="{{ route('password.request') }}">
                         {{ __('¿Olvidaste tu contraseña?') }}
                     </a>
                 @endif
