@@ -13,7 +13,7 @@
                 <h5 class="text-lg mt-0 mb-2 text-indigo-100">Tenemos la opción correcta para ti, escribenos a través de
                     facebook, instagram o por correo electrónico y te responderemos cuanto antes.
                 </h5>
-                <div class="mt-6">
+                <div class="pt-5 pb-5">
                     <a
                         href="https://www.instagram.com/nailspotoficial/" class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                         type="button">

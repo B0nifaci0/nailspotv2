@@ -11,6 +11,8 @@
         <div class="flex-shrink-0 flex items-center justify-center pb-6">
             <p class="text-xl">Iniciar Sesión</p>
         </div>
+        <x-jet-validation-errors class="mb-4 transparent " />
+
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}

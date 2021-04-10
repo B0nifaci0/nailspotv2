@@ -1,42 +1,45 @@
-<div class="flex justify-center my-6 mt-20">
-
-    <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
-        <div class="flex-1">
-            <table class="w-full text-sm lg:text-base" cellspacing="0">
-                <thead>
-                    <tr class="h-12 uppercase">
-                        <th class="hidden md:table-cell"></th>
-                        <th class="text-left">Nombre</th>
-                        <th class="text-right">Descripción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="hidden pb-4 md:table-cell">
-                            <a href="#">
-                                <img src="{{Storage::url($course->image->url)}}" class="w-24 rounded" alt="Thumbnail">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <p class="mb-2 md:ml-4">{{$course->name}}</p>
-                            </a>
-                        </td>
-                        <td class="text-right">
-                            <span class="text-sm lg:text-base font-medium">
-                                {{$course->description}}
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr class="pb-6 mt-6">
-            <div class="my-4 mt-6 -mx-2 lg:flex">
-                <div class="lg:px-2 lg:w-1/2">
-                    <div class="p-4 bg-gray-100 rounded-full">
+<div class=" w-full lg:max lg:flex pt-12 p-4 bg-gray-900 relative">
+    <div class="w-full sm:w-1/2 md:w-2/3 mx-auto flex flex-col">
+        <section class="card rounded-xl">
+            <div class="p-4 flex-1 flex flex-col" style="" >
+                <h1 class="text-gray-900 text-3xl text-center front-bold">Antes de comprar</h1>
+                <br>
+                <table class=" text-sm lg:text-base" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="hidden md:table-cell"></th>
+                            <th class="text-left  ">Nombre</th>
+                            
+                            <th class="text-right">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="hidden pb-4 md:table-cell">
+                                <a href="#">
+                                    <img src="{{Storage::url($course->image->url)}}" class="w-24 rounded" alt="Thumbnail">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <p class="mb-2 md:ml-4 text-3xl ">{{$course->name}}</p>
+                                </a>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-xl  font-medium">
+                                    {{$course->description}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="pb-6 mt-6">
+                <div class="my-4 mt-6 -mx-2 lg:flex">
+                    <div class="lg:px-2 lg:w-1/2">
+                        <div class="p-4 bg-gray-100 rounded-full">
                         <h1 class="ml-2 font-bold uppercase">Cupón</h1>
-                    </div>
-                    <div class="p-4">
+                        </div>
+                        <div class="p-4">
                         <p class="mb-4 italic">Si tienes el codigo de un cupon onegaishimasu ingresalo aqui.</p>
                         <div class="justify-center md:flex">
                             <div class="flex items-center w-full h-13 pl-3  bg-gray-100 border rounded-full">
@@ -60,13 +63,13 @@
                         @error('cuponNotFound')
                         <span class="error text-red-500">{{ $message }}</span>
                         @enderror
+                        </div>
                     </div>
-                </div>
-                <div class="lg:px-2 lg:w-1/2">
-                    <div class="p-4 bg-gray-100 rounded-full">
-                        <h1 class="ml-2 font-bold uppercase">Detalles</h1>
-                    </div>
-                    <div class="p-4">
+                    <div class="lg:px-2 lg:w-1/2" >
+                        <div class="p-4 bg-gray-100 rounded-full">
+                            <h1 class="ml-2 font-bold uppercase">Detalles</h1>
+                        </div>
+                        <div class="p-4">
                         @if ($active)
                         <div class="flex justify-between border-b">
                             <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
@@ -136,9 +139,10 @@
                                 </button>
                             </form>
                             @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>
