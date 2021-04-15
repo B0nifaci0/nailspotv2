@@ -25,7 +25,7 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-purple-500">
+        <div class="min-h-screen bg-gradient-to-r from-purple-800  to-pink-600">
             @livewire('navigation')
             <div class="relative pt-16 flex content-center items-center justify-center">
             </div>
