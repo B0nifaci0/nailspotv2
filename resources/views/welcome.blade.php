@@ -18,11 +18,11 @@
             </video>
     </header>
     @endsection
-    <section class="pt-5 pb-5 bg-gray-900 mx-auto">
+    <section class="pt-5 pb-5 bg-purple-800 mx-auto">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center text-center mb-24">
                 <div class="w-full lg:w-6/12 px-4">
-                    <h2 class="text-4xl font-semibold text-white">Equipo</h2>
+                    <h2 class="text-4xl font-bold text-white">Nuestro Equipo</h2>
                     <p class="text-lg leading-relaxed m-4 text-white">
                         Lleva tu conocimiento a otro nivel, con nuestro equipo de trabajo.
                     </p>
@@ -51,6 +51,28 @@
                         </div>
                     </div>
                 </div>
+                <!--<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
+                    <div class="px-6">
+                        <img alt="..." src="https://nailspot.mx/static/img/equipo/diplomados.cc99cd477f79.jpg"
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                        <div class="pt-6 text-center">
+                            <h5 class="text-xl font-bold text-white">Mango Manolo</h5>
+                            <p class="mt-1 text-sm  text-white uppercase font-semibold">
+                                Uñas
+                            </p>
+                            <div class="mt-6">
+                            <button
+                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                    type="button">
+                                    <a href="https://www.facebook.com/mangomanolo/" class="fab fa-facebook"></a></button><button
+                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                    type="button">
+                                    <a  href="https://www.instagram.com/mango_manolo/" class="fab fa-instagram"></a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/nailing.587ae5648772.jpg"
@@ -97,7 +119,7 @@
         </div>
     </section>
 
-    <section class="pb-20 relative block bg-gradient-to-b from-purple-800  to-pink-600">
+    <section class="pb-20 relative block bg-purple-800">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px; transform: translateZ(0px)">
             <!--<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
