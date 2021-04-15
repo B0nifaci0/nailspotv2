@@ -34,23 +34,23 @@
                     <h1 class="mb-4 font-bold text-lg">Perfil de Usuario</h1>
                     <ul class="text-sm text-white">
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.show') border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.show') border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.show')}}">Informacion de usuario</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.courses') border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.courses') border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.courses')}}">Cursos Adquiridos</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.competences') border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.competences') border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.competences')}}">Competencias</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.security') border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.security') border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.security')}}">Seguridad</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.delete') border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('profile.delete') border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('profile.delete')}}">Eliminar cuenta</a>
                         </li>
                     </ul>
