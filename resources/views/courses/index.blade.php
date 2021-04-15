@@ -11,8 +11,8 @@
             case 0:{
                 $("#slider-1").fadeOut(400);
                 $("#slider-2").delay(400).fadeIn(400);
-                $("#sButton1").removeClass("bg-purple-800");
-                $("#sButton2").addClass("bg-purple-800");
+                $("#sButton1").removeClass("bg-purple-600");
+                $("#sButton2").addClass("bg-purple-600");
             cont=1;
         
             break;
@@ -22,8 +22,8 @@
         
                 $("#slider-2").fadeOut(400);
                 $("#slider-1").delay(400).fadeIn(400);
-                $("#sButton2").removeClass("bg-purple-800");
-                $("#sButton1").addClass("bg-purple-800");
+                $("#sButton2").removeClass("bg-purple-600");
+                $("#sButton1").addClass("bg-purple-600");
            
             cont=0;
                 
@@ -44,8 +44,8 @@
 
         $("#slider-2").fadeOut(400);
         $("#slider-1").delay(400).fadeIn(400);
-        $("#sButton2").removeClass("bg-purple-800");
-        $("#sButton1").addClass("bg-purple-800");
+        $("#sButton2").removeClass("bg-purple-600");
+        $("#sButton1").addClass("bg-purple-600");
         reinitLoop(4000);
         cont=0
 
@@ -54,8 +54,8 @@
         function sliderButton2(){
         $("#slider-1").fadeOut(400);
         $("#slider-2").delay(400).fadeIn(400);
-        $("#sButton1").removeClass("bg-purple-800");
-        $("#sButton2").addClass("bg-purple-800");
+        $("#sButton1").removeClass("bg-purple-600");
+        $("#sButton2").addClass("bg-purple-600");
         reinitLoop(4000);
         cont=1
         
@@ -63,7 +63,7 @@
 
         $(window).ready(function(){
             $("#slider-2").hide();
-            $("#sButton1").addClass("bg-purple-800");
+            $("#sButton1").addClass("bg-purple-600");
 
 
             loopSlider();
@@ -75,7 +75,7 @@
         
         });
   </script>
-    <div class="sliderAx  bg-pink-600">
+    <div class="sliderAx bg-purple-800">
         <div id="slider-1" class=" mx-auto">
             <div class="bg-cover bg-center  opacity-75 text-white py-72 px-10 object-fill" style='background-image: url("https://media-nailspot.s3.amazonaws.com/media/CACHE/images/courses/6236d801-efb3-4e91-bf8c-34f3b3ccc57a/2964d9c36e85927e9bfd44744bc74833.png");'>
                 <div class="md:w-1/2">
@@ -100,8 +100,8 @@
             <br>
         </div>
         <div  class="flex justify-between w-12 mx-auto pb-2">
-            <button id="sButton1" onclick="sliderButton1()" class="bg-purple-400 rounded-full w-4 pb-2 " ></button>
-            <button id="sButton2" onclick="sliderButton2() " class="bg-purple-400 rounded-full w-4 p-2"></button>
+            <button id="sButton1" onclick="sliderButton1()" class="bg-white rounded-full w-4 pb-2 " ></button>
+            <button id="sButton2" onclick="sliderButton2() " class="bg-white rounded-full w-4 p-2"></button>
         </div>
     </div>
     @endsection
