@@ -32,10 +32,10 @@
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/certificacion.f2f983c602a6.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
                         <div class="pt-6 text-center">
                             <h5 class="text-xl font-bold text-white">Yohana Rivas</h5>
-                            <p class="mt-1 text-sm  text-white uppercase font-semibold text-white">
+                            <p class="mt-1 text-sm uppercase font-semibold text-white">
                                 Diseñádor
                             </p>
                             <div class="mt-6">
@@ -53,30 +53,8 @@
                 </div>
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
-                        <img alt="..." src="https://nailspot.mx/static/img/equipo/diplomados.cc99cd477f79.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
-                        <div class="pt-6 text-center">
-                            <h5 class="text-xl font-bold text-white">Mango Manolo</h5>
-                            <p class="mt-1 text-sm  text-white uppercase font-semibold">
-                                Uñas
-                            </p>
-                            <div class="mt-6">
-                            <button
-                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a href="https://www.facebook.com/mangomanolo/" class="fab fa-facebook"></a></button><button
-                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a  href="https://www.instagram.com/mango_manolo/" class="fab fa-instagram"></a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
-                    <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/nailing.587ae5648772.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
                         <div class="pt-6 text-center">
                             <h5 class="text-xl font-bold text-white">Renato Ortiz</h5>
                             <p class="mt-1 text-sm  text-white  uppercase font-semibold">
@@ -97,7 +75,7 @@
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/shopping.d4a9f46a85f5.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
                         <div class="pt-6 text-center">
                             <h5 class="text-xl font-bold text-white">Aaron Amaro</h5>
                             <p class="mt-1 text-sm text-white  uppercase font-semibold">
