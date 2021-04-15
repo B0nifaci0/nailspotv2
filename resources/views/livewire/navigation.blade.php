@@ -65,7 +65,7 @@
                         From: "transform opacity-100 scale-100"
                         To: "transform opacity-0 scale-95"
                     -->
-                <div x-show="open" x-on:click.away="open = false" class="absolute z-30 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                <div x-show="open" x-on:click.away="open = false" class="absolute z-30 origin-top-right right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                     <x-jet-dropdown-link href="{{ route('profile.show') }}">
                         Perfil
                     </x-jet-dropdown-link>
