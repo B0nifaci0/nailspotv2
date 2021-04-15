@@ -1,7 +1,7 @@
 <x-app-layout>
      @section('header')
     <!--COmienza prueba--->
-    <div class="w-full lg:max lg:flex pt-20 p-2 bg-gray-900 relative"> 
+    <div class="w-full lg:max lg:flex pt-20 p-2 bg-purple-800 relative"> 
         <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4 ">
             <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center">
                 <div class=" mx-auto flex-1 flex flex-col" style="">
@@ -52,7 +52,7 @@
         </div>
     </div>
     @endsection
-    <div class="bg-gray-900">
+    <div class="bg-purple-800">
         <h1 class="text-6xl text-white text-center">Conoce el curso... </h1>
         <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
             <div class="order-2 lg:col-span-2 transform hover:scale-105 ">
@@ -124,7 +124,7 @@
                             curso</a>
                         @else
                         <p class="text-2xl text-center text-gray-500 font-bold mt-3 mb-2"> $ {{$course->price}} MXN</p>
-                        <a href="{{route('payment.course.checkout', $course)}}" class="my-button">Comprar este
+                        <a href="{{route('payment.course.checkout', $course)}}" class="block text-center w-full mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl">Comprar este
                             curso</a>
                         @endcan
                     </div>

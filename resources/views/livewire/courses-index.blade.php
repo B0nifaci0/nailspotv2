@@ -1,7 +1,7 @@
-<div class="mx-auto bg-gray-900">
+<div class="mx-auto bg-purple-800">
     <h1 class="text-6xl text-white font-bold mx-auto text-center py-10">Nuevos Cursos</h1>
 </div>
-<div class="pt-20 pb-48 bg-gray-900">
+<div class="pt-20 pb-12 bg-purple-800">
     <div class="container flex text-gray-700">
         <button class="bg-white shadow rounded-lg h-12 px-4 mr-4" wire:click="clear">
             Todos los cursos
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mt-6">
+    <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
         @foreach ($courses as $course)
         <x-course-card :course="$course" />
         @endforeach

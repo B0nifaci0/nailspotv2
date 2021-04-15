@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="w-full lg:max lg:flex pt-20 p-2 bg-gray-900 relative">
+    <div class="w-full lg:max lg:flex pt-20 p-2 bg-purple-800 relative">
         <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4">
             <section>
                 <div class="flex-none bg-cover rounded-t  lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center">
@@ -68,10 +68,10 @@
        @endif
     </div>
     <!--Aqui termina la primera parte --->
-    <div class="bg-gray-900">
+    <div class="bg-purple-800">
         <h2 class="text-center text-5xl text-white py-4">Información del curso</h2>
     </div>
-    <div class="bg-gray-900 ">
+    <div class="bg-purple-800 ">
         <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
             <div class="order-2 lg:col-span-1 transform hover:scale-105 ">
                 <section class="card mt-5 mb-5 ml-4 mr-4">
@@ -111,7 +111,7 @@
                     </div>
                     <form action="{{route('admin.courses.approved',$course)}}" method="post">
                         @csrf
-                        <button type="submit" class="my-button rounded-xl ">Aprobar</button>
+                        <button type="submit" class="block text-center w-full mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Aprobar</button>
                     </form>
                 </div>
             </section>
