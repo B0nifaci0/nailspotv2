@@ -91,7 +91,7 @@
         </div>
         <div class="flex justify-end">
             <button type="submit"
-                class="block text-center bg-blue-500 text-white font-bold py-2 px-4 rounded">Actualizar
+                class="block text-center bg-pink-600 text-white font-bold py-2 px-4 rounded">Actualizar
                 informacion</button>
         </div>
     </form>

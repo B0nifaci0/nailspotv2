@@ -7,7 +7,6 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4 bg-gray-100" />
         <div class="flex-shrink-0 flex items-center justify-center pb-6">
             <p class="text-xl">Iniciar Sesión</p>
         </div>

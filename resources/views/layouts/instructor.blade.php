@@ -25,34 +25,34 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-200">
-            @livewire('navigation-menu')
+        <div class="min-h-screen bg-gradient-to-r from-purple-800  to-pink-600">
+            @livewire('navigation')
             <div class="relative pt-16 flex content-center items-center justify-center">
             </div>
             <div class="container py-8 grid grid-cols-5 gap-6">
                 <aside>
                     <a href="{{ route('instructor.courses.index')}}"
                         class="py-2 px-3 w-full flex items-center focus:outline-none">
-                        <span class="ml-2 text-sm font-medium">
+                        <span class="text-white ml-2 text-sm font-medium hover:bg-pink-400 hover:text-white px-3 py-3 rounded-md">
                             Todos mis cursos
                         </span>
                     </a>
                     <h1 class="mb-4 font-bold text-lg">Edicion del curso</h1>
-                    <ul class="text-sm text-gray-600">
+                    <ul class="text-sm text-white">
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.edit', $course) border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.edit', $course) border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('instructor.courses.edit', $course)}}">Informacion del curso</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.curriculum', $course) border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.curriculum', $course) border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('instructor.courses.curriculum', $course)}}">Lecciones del curso</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.goals', $course) border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.goals', $course) border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('instructor.courses.goals', $course)}}">Metas del curso</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.students', $course) border-indigo-400 @else border-transparent @endif pl-2">
+                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.students', $course) border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('instructor.courses.students', $course)}}">Estudiantes</a>
                         </li>
                     </ul>
@@ -61,7 +61,7 @@
                     <form action="{{route('instructor.courses.status',$course)}}" method="post">
                         @csrf
                         <button
-                            class="uppercase px-4 py-2 rounded-full bg-red-600 text-blue-50 shadow-sm hover:shadow-lg">Solicitar
+                            class="uppercase px-4 py-2 rounded-full bg-pink-600 text-blue-50 shadow-sm hover:shadow-lg">Solicitar
                             aprobacion</button>
                     </form>
                     @break

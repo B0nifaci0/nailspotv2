@@ -18,11 +18,11 @@
             </video>
     </header>
     @endsection
-    <section class="pt-5 pb-5 bg-gray-900 mx-auto">
+    <section class="pt-5 pb-5 bg-purple-800 mx-auto">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center text-center mb-24">
                 <div class="w-full lg:w-6/12 px-4">
-                    <h2 class="text-4xl font-semibold text-white">Equipo</h2>
+                    <h2 class="text-4xl font-bold text-white">Nuestro Equipo</h2>
                     <p class="text-lg leading-relaxed m-4 text-white">
                         Lleva tu conocimiento a otro nivel, con nuestro equipo de trabajo.
                     </p>
@@ -32,10 +32,10 @@
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/certificacion.f2f983c602a6.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
                         <div class="pt-6 text-center">
                             <h5 class="text-xl font-bold text-white">Yohana Rivas</h5>
-                            <p class="mt-1 text-sm  text-white uppercase font-semibold text-white">
+                            <p class="mt-1 text-sm uppercase font-semibold text-white">
                                 Diseñádor
                             </p>
                             <div class="mt-6">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
+                <!--<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/diplomados.cc99cd477f79.jpg"
                             class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
@@ -72,11 +72,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/nailing.587ae5648772.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
                         <div class="pt-6 text-center">
                             <h5 class="text-xl font-bold text-white">Renato Ortiz</h5>
                             <p class="mt-1 text-sm  text-white  uppercase font-semibold">
@@ -97,7 +97,7 @@
                 <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
                     <div class="px-6">
                         <img alt="..." src="https://nailspot.mx/static/img/equipo/shopping.d4a9f46a85f5.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
+                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
                         <div class="pt-6 text-center">
                             <h5 class="text-xl font-bold text-white">Aaron Amaro</h5>
                             <p class="mt-1 text-sm text-white  uppercase font-semibold">
@@ -119,7 +119,7 @@
         </div>
     </section>
 
-    <section class="pb-20 relative block bg-gradient-to-b from-purple-800  to-pink-600">
+    <section class="pb-20 relative block bg-purple-800">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px; transform: translateZ(0px)">
             <!--<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
