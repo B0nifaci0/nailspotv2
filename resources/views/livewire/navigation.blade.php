@@ -38,7 +38,6 @@
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="#" class="text-gray-300  hover:bg-purple-400  hover:text-white px-3 py-3 rounded-md text-base font-medium">Nosotros</a>
                         <a href="{{ route('courses.index') }}" class="text-gray-300  hover:bg-purple-400 hover:text-white px-3 py-3 rounded-md text-base font-medium">Cursos</a>
-                        <a href="#" class="text-gray-300  hover:bg-purple-400 hover:text-white px-3 py-3 rounded-md text-base font-medium">Categorías</a>
                         <a href="{{ route('competences.index') }}" class="text-gray-300  hover:bg-purple-400 hover:text-white px-3 py-3 rounded-md text-base font-medium">Competencias</a>
                         <a href="#" class="text-gray-300  hover:bg-purple-400 hover:text-white px-3 py-3 rounded-md text-base font-medium">Contacto</a>
                     </div>
@@ -89,7 +88,6 @@
                         {{ __('API Tokens') }}
                     </x-jet-dropdown-link>
                     @endif
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Configuraciones</a>
                     <form method="POST" action="{{ route('logout') }}">
                     @csrf
                         <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="event.preventDefault();
