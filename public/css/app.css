@@ -32709,7 +32709,7 @@ select {
 
 .my-button {
   --tw-bg-opacity: 1;
-  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
   display: block;
   font-weight: 700;
   margin-top: 1rem;

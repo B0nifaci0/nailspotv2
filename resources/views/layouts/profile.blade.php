@@ -57,7 +57,7 @@
 
                 </aside>
                 <div class="col-span-4 card">
-                    <main class="card-body text-gray-500">
+                    <main class="card-body  text-gray-500">
                         {{$slot}}
                     </main>
                 </div>
