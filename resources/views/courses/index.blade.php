@@ -88,7 +88,7 @@
             <br>
         </div>
         <div id="slider-2" class=" mx-auto">
-            <div class="bg-cover bg-center  opacity-75 text-white py-72 px-10 object-fill" style='background-image: 
+            <div class="bg-cover bg-auto  opacity-75 text-white py-72 px-10 object-fill" style='background-image: 
             url("https://images.unsplash.com/photo-1617289749213-c2a7b44f6523?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1914&q=80");'>
                 <div class="md:w-1/2">
                     <p class="font-bold text-md uppercase">Competencia 2</p>
