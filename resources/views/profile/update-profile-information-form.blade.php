@@ -64,7 +64,7 @@
             {{ __('Saved.') }}
         </x-jet-action-message>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+        <x-jet-button class="bg-pink-600" wire:loading.attr="disabled" wire:target="photo">
             {{ __('Guardar') }}
         </x-jet-button>
     </x-slot>
