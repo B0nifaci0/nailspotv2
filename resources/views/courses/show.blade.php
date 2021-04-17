@@ -2,7 +2,7 @@
      @section('header')
     <!--COmienza prueba--->
     <div class="w-full lg:max lg:flex pt-20 p-2 bg-purple-800 relative"> 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4 ">
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4 mt-5 ">
             <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center">
                 <div class=" mx-auto flex-1 flex flex-col" style="">
                 {!!$course->iframe!!}
@@ -53,9 +53,21 @@
     </div>
     @endsection
     <div class="bg-purple-800">
-        <h1 class="text-6xl text-white text-center">Conoce el curso... </h1>
-        <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
-            <div class="order-2 lg:col-span-2 transform hover:scale-105 ">
+        <h1 class="text-4xl text-white text-center">Conoce el curso... </h1>
+            <div class="order-2">
+                <div class="card-body flex-1 flex flex-col">
+                    <section class="card mb-8 ml-2 mr-2 ">
+                        <h1 href="#" class="text-5xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
+                        <ul class="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-2 2xl:grid-cols-2  gap-x-2 gap-y-2 mx-auto">
+                            @foreach ($course->lessons as $lesson)
+                            <li class="text-gray-900 text-bold text-xl text-center"> {!!$course->iframe!!} - {{$lesson->name}}</li>
+                            @endforeach
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        <div class="grid lg:grid-cols-4 grid grid-cols-1  gap-4">
+            <div class="order-2 lg:col-span-2 ">
                 <section class="card mt-5 mb-5 ml-4 mr-4">
                     <div class="card-body roundedxl">
                         <h1 class="text-5xl text-gray-700 font-bold mb-3 text-center">Lo que aprenderas en este curso...</h1>
@@ -68,7 +80,7 @@
                 </section>
             </div>
             <div class="order-2">
-                <section class=" card mt-5 mb-5 ml-4 mr-4 transform hover:scale-105">
+                <section class=" card mt-5 mb-5 ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 class="font-bold text-3xl text-center">Requisitos</h1>
                         <ul class="list-disc list-inside">
@@ -79,22 +91,8 @@
                     </div>
                 </section>
             </div>
-        </div>
-        <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
             <div class="order-2">
-                <section class="card mb-8 ml-4 mr-4 transform hover:scale-105">
-                    <div class="card-body">
-                        <h1 href="#" class="text-3xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
-                        <ul>
-                            @foreach ($course->lessons as $lesson)
-                            <li class="text-gray-700 text-base"> - {{$lesson->name}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </section>
-            </div>
-            <div class="order-2">
-                <section class="card  mb-5 ml-4 mr-4 transform hover:scale-105">
+                <section class="card  mt-5 mb-5 ml-4 mr-4">
                     <div class="card-body">
                         <h1 class="font-bold text-3xl text-center">Descripción</h1>
                         <div class="text-gray-700 text-base">
@@ -103,9 +101,23 @@
                     </div>
                 </section>
             </div>
+        </div>
+        <div class="grid lg:grid-cols-4 grid grid-cols-1 gap-4">
+            <!--<div class="order-2">
+                <section class="card mb-8 ml-4 mr-4 transform hover:scale-105">
+                    <div class="card-body">
+                        <h1 href="#" class="text-3xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
+                        <ul>
+                            @foreach ($course->lessons as $lesson)
+                            <li class="text-gray-700 text-base"> {!!$course->iframe!!} - {{$lesson->name}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </section>
+            </div>-->
             <!---->
             <div class="order-2 lg:col-span-1 ">
-                <section class="card mb-5 ml-4 mr-4 transform hover:scale-105">
+                <section class="card mb-5 ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 class="mb-4 text-3xl text-center font-bold text-gray-700">Autor</h1>
                         <div class="flex items-center justify-center text-gray-700">
@@ -130,17 +142,17 @@
                     </div>
                 </section>
             </div>
-        </div>
-        <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
+        <!--</div>
+        <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">-->
             <div class="order-2 lg:col-span-2 ">
-                <section class="card mb-12 ml-4 mr-4 transform hover:scale-105">
+                <section class="card mb-12 ml-4 mr-4 ">
                     <div class="card-body">
                         @livewire('courses-reviews', ['course' => $course])
                     </div>
                 </section >
             </div>
             <div class="order-2">
-                <aside class=" card lg:block ml-4 mr-4 transform hover:scale-105">
+                <aside class=" card lg:block ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 class="mb-4 text-4xl text-center font-bold text-gray-700">Similares </h1>
                         @foreach ($similares as $similar)

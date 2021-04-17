@@ -75,16 +75,16 @@
         
         });
   </script>
-    <div class="sliderAx bg-purple-800">
+    <div class=" bg-purple-800">
         <div id="slider-1" class=" mx-auto">
-            <div class="bg-cover bg-center  opacity-75 text-white py-72 px-10 object-fill" style='background-image: url("https://media-nailspot.s3.amazonaws.com/media/CACHE/images/courses/6236d801-efb3-4e91-bf8c-34f3b3ccc57a/2964d9c36e85927e9bfd44744bc74833.png");'>
+            <div class="bg-cover bg-auto  opacity-75 text-white py-72 px-10 object-fill" style='background-image: url("https://media-nailspot.s3.amazonaws.com/media/CACHE/images/courses/6236d801-efb3-4e91-bf8c-34f3b3ccc57a/2964d9c36e85927e9bfd44744bc74833.png");'>
                 <div class="md:w-1/2">
-                    <p class="font-bold text-2xl uppercase">Competencia 1</p>
+                    <p class="font-bold text-2xl uppercase ">Competencia 1</p>
                     <p class="text-6xl font-bold">Hello world</p>
                     <p class="text-3xl mb-10 leading-none">Carousel with TailwindCSS </p>
-                    <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Ver más</a>
+                    <a href="#" class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Ver más</a>
                 </div>  
-            </div> <!-- container -->
+            </div> <!--container -->
             <br>
         </div>
         <div id="slider-2" class=" mx-auto">
@@ -94,9 +94,9 @@
                     <p class="font-bold text-md uppercase">Competencia 2</p>
                     <p class="text-6xl font-bold">Hello world</p>
                     <p class="text-3xl mb-10 leading-none">Carousel with TailwindCSS </p>
-                    <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Ver más</a>
+                    <a href="#" class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Ver más</a>
                 </div>
-            </div> <!-- container -->
+            </div> <!--container -->
             <br>
         </div>
         <div  class="flex justify-between w-12 mx-auto pb-2">
