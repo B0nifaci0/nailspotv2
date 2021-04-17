@@ -5,7 +5,7 @@
             <input wire:keydown="clearPage" wire:model="search" type="text" class="form-input flex-1 shadow-sm"
                 placeholder="Buscar ...">
             <a href="{{route('instructor.courses.create')}}"
-                class="block text-center bg-red-500 text-white font-bold py-2 px-4 rounded ml-2">Crear nuevo curso</a>
+                class="transform hover:scale-105 block text-center bg-pink-600  text-white font-bold py-2 px-4 rounded ml-2">Crear nuevo curso</a>
         </div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">

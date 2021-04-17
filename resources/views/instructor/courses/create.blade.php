@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="relative pt-16 flex content-center items-center justify-center">
+    <div class="relative  pt-16 flex content-center items-center justify-center">
     </div>
     <div class="container py-8">
         <div class="card">
@@ -88,7 +88,7 @@
                     </div>
                     <div class="flex justify-end">
                         <button type="submit"
-                            class="block text-center bg-blue-500 text-white font-bold py-2 px-4 rounded mt-10">Crear
+                            class="block text-center bg-pink-600 text-white font-bold py-2 px-4 rounded mt-10">Crear
                             informacion</button>
                     </div>
                     <input type="hidden" name="user_id" value='{{auth()->user()->id}}'>
