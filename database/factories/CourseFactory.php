@@ -33,7 +33,7 @@ class CourseFactory extends Factory
             'status' => $this->faker->randomElement([Course::BORRADOR, Course::REVISION, Course::PUBLICADO]),
             'slug' => Str::slug($name),
             'price' => $this->faker->randomNumber(3),
-            'url' => 'https://www.youtube.com/watch?v=PI3LAgGBxqU&ab_channel=QueenOfficial',
+            'url' => 'https://www.youtube.com/watch?v=TZE9gVF1QbA',
             'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'level_id' => Level::all()->random()->id,
             'category_id' => Category::all()->random()->id,
