@@ -11,7 +11,7 @@ class CourseObserver
         $url = $course->url;
         $patron = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i';
         $array = preg_match($patron, $url, $videoId);
-        $course->iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $videoId[1] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        $course->iframe = '<iframe  src="https://www.youtube.com/embed/' . $videoId[1] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     }
 
     public function updating(Course $course)
@@ -19,7 +19,7 @@ class CourseObserver
         $url = $course->url;
         $patron = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i';
         $array = preg_match($patron, $url, $videoId);
-        $course->iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $videoId[1] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        $course->iframe = '<iframe  src="https://www.youtube.com/embed/' . $videoId[1] . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     }
 
     /**
