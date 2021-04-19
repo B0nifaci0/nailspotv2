@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Factory;
 use App\Models\Goal;
 use App\Models\Sale;
 use App\Models\Image;
@@ -18,8 +19,12 @@ class CourseSeeder extends Seeder
      *
      * @return void
      */
+    protected $model = Image::class;
+    
+    
     public function run()
     {
+        $faker = Factory::create();
         $courses = Course::factory(10)->create();
 
         foreach ($courses as $course) {
@@ -28,9 +33,10 @@ class CourseSeeder extends Seeder
                 'course_id' => $course->id
             ]);
 
-            Image::factory(1)->create([
+            $course->image()->create([
                 'imageable_id' => $course->id,
-                'imageable_type' => Course::class
+                'imageable_type' => Course::class,
+                'url' => 'courses/' . $faker->image(public_path('storage/courses'), 400, 300, null, false)
             ]);
 
             Requirement::factory(4)->create([

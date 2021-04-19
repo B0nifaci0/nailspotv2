@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Factory;
 use App\Models\Sale;
 use App\Models\Image;
 use App\Models\Competence;
@@ -16,6 +17,7 @@ class CompetenceSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Factory::create();
         $competences = Competence::factory(10)->create();
 
         foreach ($competences as $competence) {
@@ -25,6 +27,11 @@ class CompetenceSeeder extends Seeder
                 'saleable_type' => Competence::class
             ]);
 
+            $competence->image()->create([
+                'imageable_id' => $competence->id,
+                'imageable_type' => Competence::class,
+                'url' => 'competences/' . $faker->image(public_path('storage/competences'), 400, 300, null, false)
+            ]);
             foreach ($sales as $sale) {
                 $competence->students()->attach($sale->user->id);
             }

@@ -7,8 +7,8 @@ use App\Models\Sale;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
-use App\Models\Score;
 use App\Models\Criterion;
+use App\Models\Certificate;
 use App\Models\Subcategory;
 use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
@@ -128,5 +128,9 @@ class Competence extends Model
         return $this->hasMany(CompetenceCriterionUser::class);
     }
 
+    public function certificate()
+    {
+        return $this->morphOne(Certificate::class, 'certificateable');
+    }
 
 }

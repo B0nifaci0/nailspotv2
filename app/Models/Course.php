@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Goal;
+use App\Models\Sale;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
@@ -10,6 +11,7 @@ use App\Models\Lesson;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Category;
+use App\Models\Certificate;
 use App\Models\Requirement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -116,5 +118,10 @@ class Course extends Model
     public function sales()
     {
         return $this->morphMany(Sale::class, 'saleable');
+    }
+
+    public function certificate()
+    {
+        return $this->morphOne(Certificate::class, 'certificateable');
     }
 }

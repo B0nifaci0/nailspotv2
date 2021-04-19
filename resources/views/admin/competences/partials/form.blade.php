@@ -26,7 +26,6 @@
                 {!! Form::text('start_date', null, ['class' => 'form-control']) !!}
                 <small class="text-danger">{{ $errors->first('start_date') }}</small>
             </div>
-
             <div class="col-sm form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
                 {!! Form::label('end_date', 'Fecha Fin') !!}
                 {!! Form::text('end_date', null, ['class' => 'form-control']) !!}
@@ -42,7 +41,6 @@
             {!! Form::text('price', null, ['class' => 'form-control']) !!}
             <small class="text-danger">{{ $errors->first('price') }}</small>
         </div>
-
         <div class="col-sm form-group{{ $errors->has('subcategory_id') ? ' has-error' : '' }}">
             {!! Form::label('subcategory_id', 'Categoria') !!}
             {!! Form::select('subcategory_id', $subcategories, null, ['id' => 'subcategory_id', 'class' =>
@@ -59,19 +57,24 @@
         </div>
     </div>
 </div>
+<div class="form-group{{ $errors->has('pdf') ? ' has-error' : '' }}">
+    {!! Form::label('pdf', 'Certificado') !!}
+    {!! Form::file('pdf', ['class'=> 'form-input w-full']) !!}
+    @isset($competence->certificate)
+    <iframe src="{{Storage::url($competence->certificate->url)}}"> </iframe>
+    @endisset
+    <small class="text-danger">{{ $errors->first('pdf') }}</small>
+</div>
 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
     {!! Form::label('image', 'Selecciona una imagen') !!}
     {!! Form::file('image') !!}
-    {{-- <p class="help-block">Help block text</p> --}}
     <small class="text-danger">{{ $errors->first('image') }}</small>
+    <figure>
+        @isset($competence->image)
+        <img id="file" src="{{Storage::url($competence->image->url)}}" class="img-fluid">
+        @endisset
+    </figure>
 </div>
-
-<figure>
-    @isset($competence->image)
-    <img id="picture" src="{{Storage::url($competence->image->url)}}" class="img-fluid">
-    @endisset
-</figure>
-
 {!! Form::hidden('user_id', auth()->user()->id) !!}
 <div class="btn-group pull-right">
     {!! Form::reset("Limpiar", ['class' => 'btn btn-warning']) !!}

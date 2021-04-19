@@ -33,7 +33,7 @@ class CompetenceFactory extends Factory
             'price' => $this->faker->randomNumber(3),
             'start_date' => now()->format('m/d/Y'),
             'end_date' => now()->format('m/d/Y'),
-            'url' => 'https://www.youtube.com/watch?v=PI3LAgGBxqU&ab_channel=QueenOfficial',
+            'url' => 'https://www.youtube.com/watch?v=TZE9gVF1QbA',
             'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'level_id' => Level::all()->random()->id,
             'subcategory_id' => Subcategory::all()->random()->id,

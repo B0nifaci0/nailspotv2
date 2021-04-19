@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Instructor;
 
-use App\Models\Task;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\Course;
@@ -29,8 +28,8 @@ class CourseController extends Controller
 
     public function create()
     {
-        $categories = Category::get();
-        $levels = Level::get();
+        $levels = Level::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
         return view('instructor.courses.create', compact('categories', 'levels'));
     }
 
@@ -41,6 +40,13 @@ class CourseController extends Controller
         if ($request->hasfile('image')) {
             $url = Storage::put('public/courses', $request->file('image'));
             $course->image()->create([
+                'url' => $url
+            ]);
+        }
+
+        if ($request->hasfile('pdf')) {
+            $url = Storage::put('public/certificates', $request->file('pdf'));
+            $course->certificate()->create([
                 'url' => $url
             ]);
         }
@@ -56,9 +62,8 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $this->authorize('dicatated', $course);
-
-        $categories = Category::get();
-        $levels = Level::get();
+        $levels = Level::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
         return view('instructor.courses.edit', compact('course', 'categories', 'levels'));
     }
 
@@ -82,6 +87,21 @@ class CourseController extends Controller
             }
         }
 
+        if ($request->hasfile('pdf')) {
+            $url = Storage::put('public/certificates', $request->file('pdf'));
+            if ($course->certificate) {
+                Storage::delete($course->certificate->url);
+                $course->certificate()->update([
+                    'url' => $url
+                ]);
+            } else {
+                $course->certificate()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+
         return redirect()->route('instructor.courses.edit', $course);
     }
 
@@ -101,7 +121,6 @@ class CourseController extends Controller
 
     public function status(Course $course)
     {
-
         $course->status = Course::REVISION;
         $course->save();
         return back();
