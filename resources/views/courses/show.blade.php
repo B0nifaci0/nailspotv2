@@ -2,17 +2,17 @@
      @section('header')
     <!--COmienza prueba--->
     <div class="w-full lg:max lg:flex pt-20 p-2 bg-purple-800 relative"> 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4 mt-5 ">
-            <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center">
-                <div class=" mx-auto flex-1 flex flex-col" style="">
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4  ">
+            <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-auto">
+                <div class=" embed-responsive">
                 {!!$course->iframe!!}
                 </div>
             </div>
         </div>
-        <div class="w-full sm:w-1/2 md:w-2/3 flex flex-col  ">
-            <section class="card mt-5 mb-5 ml-4 mr-4">
+        <div class="card-body flex-1 flex flex-col  ">
+            <section class="card">
                 <div class="p-4 flex-1 flex flex-col" style="">
-                    <h1 class="mb-2 text-6xl text-center justify-items-center">{{$course->name}}</h1>
+                    <h1 class="mb-2 text-5xl text-center justify-items-center">{{$course->name}}</h1>
                     <h2 class="ml-5 text-xl mb-3">{{$course->description}}</h2>
                     <div class="mb-2 text-grey-darker text-sm flex-1">
                        <p class="ml-5 mb-3"> Nivel: {{ $course->level->name}}</p>
@@ -37,43 +37,42 @@
                                 class="fas fa-star text-{{$course->rating>= 5 ? 'yellow' : 'gray'}}-400"></i>
                         </li>
                     </ul>
-                    <span class="text-white">{{$course->rating}}</span>
+                    <span class="text-gray-700 ml-5"> {{$course->rating}}</span>
                     @endif
-                    <div class="flex items-center ml-5 mb-6">
+                    <!--<div class="flex items-center ml-5 mb-6">
                         <img class="w-12 h-12 rounded-full mr-4" src="{{$course->teacher->profile_photo_url}}"
                         alt="Avatar of Writer">
                         <div class="text-sm ">
                         <p class=" leading-none">{{$course->teacher->name}}</p>
                         <p class="">Publicado: {{$course->created_at->format('d-m-Y')}}</p>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </section>  
         </div>
     </div>
     @endsection
     <div class="bg-purple-800">
-        <h1 class="text-4xl text-white text-center">Conoce el curso... </h1>
-            <div class="order-2">
-                <div class="card-body flex-1 flex flex-col">
-                    <section class="card mb-8 ml-2 mr-2 ">
-                        <h1 href="#" class="text-5xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
-                        <ul class="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-2 2xl:grid-cols-2  gap-x-2 gap-y-2 mx-auto">
-                            @foreach ($course->lessons as $lesson)
-                            <li class="text-gray-900 text-bold text-xl text-center"> {!!$course->iframe!!} - {{$lesson->name}}</li>
-                            @endforeach
-                        </ul>
-                    </section>
-                </div>
-            </div>
-        <div class="grid lg:grid-cols-4 grid grid-cols-1  gap-4">
+        <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
             <div class="order-2 lg:col-span-2 ">
                 <section class="card mt-5 mb-5 ml-4 mr-4">
                     <div class="card-body roundedxl">
-                        <h1 class="text-5xl text-gray-700 font-bold mb-3 text-center">Lo que aprenderas en este curso...</h1>
+                        <h1 class="text-3xl text-gray-700 font-bold mb-3 text-center">Lo que aprenderas en este curso...</h1>
                         <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 ">
                             @foreach ($course->goals as $goal)
                             <li class="text-gray-700 text-xl"> - {{$goal->name}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <div class="order-2">
+                <section class="card mb-8 ml-4 mr-4 mt-5">
+                    <div class="card-body">
+                        <h1 href="#" class="text-3xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
+                        <ul>
+                            @foreach ($course->lessons as $lesson)
+                            <li class="text-gray-700 text-base"> - {{$lesson->name}}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -101,23 +100,8 @@
                     </div>
                 </section>
             </div>
-        </div>
-        <div class="grid lg:grid-cols-4 grid grid-cols-1 gap-4">
-            <!--<div class="order-2">
-                <section class="card mb-8 ml-4 mr-4 transform hover:scale-105">
-                    <div class="card-body">
-                        <h1 href="#" class="text-3xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
-                        <ul>
-                            @foreach ($course->lessons as $lesson)
-                            <li class="text-gray-700 text-base"> {!!$course->iframe!!} - {{$lesson->name}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </section>
-            </div>-->
-            <!---->
             <div class="order-2 lg:col-span-1 ">
-                <section class="card mb-5 ml-4 mr-4 ">
+                <section class="card  mt-5 mb-5 ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 class="mb-4 text-3xl text-center font-bold text-gray-700">Autor</h1>
                         <div class="flex items-center justify-center text-gray-700">
@@ -142,6 +126,9 @@
                     </div>
                 </section>
             </div>
+        </div>
+        <div class="grid lg:grid-cols-4 grid grid-cols-1 gap-4">
+            <!---->
         <!--</div>
         <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">-->
             <div class="order-2 lg:col-span-2 ">
@@ -151,7 +138,7 @@
                     </div>
                 </section >
             </div>
-            <div class="order-2">
+            <div class="order-2 lg:col-span-2">
                 <aside class=" card lg:block ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 class="mb-4 text-4xl text-center font-bold text-gray-700">Similares </h1>

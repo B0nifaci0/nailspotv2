@@ -1,14 +1,14 @@
-<div class="mt-8">
+<div class="bg-purple-800 pt-10">
     <div class="container grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2">
-            <div class="embed-responsive">
+            <div class="embed-responsive rounded-xl">
                 {!!$current->iframe!!}
             </div>
-            <h1 class="text-3xl text-gray-600 font-bold mt-4">
+            <h1 class="text-2xl text-white font-bold pt-5 pb-5">
                 {!!$current->name!!}
             </h1>
             <div class="card">
-                <div class="card-body flex text-gray-500 font-bold">
+                <div class="card-body flex text-gray-700 font-bold">
 
                     @if ($this->previous!==null)
                     <a class="cursor-pointer" wire:click="changeLesson({{$this->previous}})">Lección Anterior</a>
@@ -20,16 +20,16 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        <div class="card rounded-xl">
             <div class="card-body">
-                <h1>{{$course->name}}</h1>
+                <h1 class="text-bold text-2xl text-center mb-5">{{$course->name}}</h1>
                 <div class="flex items-center mb-2">
-                    <img class="h-8 w-8 object-cover rounded-full shadow-lg"
+                    <img class="h-10 w-10 object-cover rounded-full shadow-lg"
                         src="{{$course->teacher->profile_photo_url}}" alt="">
                     <p class="text-gray-700 text-sm ml-2">{{$course->teacher->name}}</p>
                 </div>
             </div>
-            <div>
+            <div class="card rounded-xl">
                 @livewire('lesson-assignament',['lesson' => $current], key($current->id))
             </div>
         </div>
@@ -61,8 +61,8 @@
                     </a>
                 </div>
             </div>
-            <div class="p-5 mt-auto">
-                <h3 class="text-white text-lg ">Lección
+            <div class="p-5 mt-auto ">
+                <h3 class="text-white text-xl ">Lección
                     @if ($item->final==1)
                     final
                     @endif
