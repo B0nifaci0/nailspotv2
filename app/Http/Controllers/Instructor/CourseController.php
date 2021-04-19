@@ -100,22 +100,18 @@ class CourseController extends Controller
                 ]);
             }
         }
-
-
         return redirect()->route('instructor.courses.edit', $course);
     }
 
     public function tasks(Course $course, User $student)
     {
         $this->authorize('dicatated', $course);
-
         return view('instructor.courses.tasks', compact('student', 'course'));
     }
 
     public function goals(Course $course)
     {
         $this->authorize('dicatated', $course);
-
         return view('instructor.courses.goals', compact('course'));
     }
 

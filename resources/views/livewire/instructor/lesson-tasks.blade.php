@@ -10,7 +10,11 @@
                         <header>
                             <h1>
                                 <i class="far fa-play-circle text-blue-500 mr-1"></i>
-                                <strong>Leccion:</strong> {{$item->lesson->name}}</h1>
+                                @if ($item->lesson->final)
+                                <strong>Leccion Final:</strong> {{$item->lesson->name}}</h1>
+                            @else
+                            <strong>Leccion :</strong> {{$item->lesson->name}}</h1>
+                            @endif
                         </header>
                     </div>
                     <div>
