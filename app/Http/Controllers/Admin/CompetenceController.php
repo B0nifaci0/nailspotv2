@@ -44,7 +44,14 @@ class CompetenceController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.competences.index')->with('info', 'La competencia se creo con exito!');
+        if ($request->hasfile('pdf')) {
+            $cert = Storage::put('public/certificates', $request->file('pdf'));
+            $competence->certificate()->create([
+                'url' => $cert
+            ]);
+        }
+
+        return redirect()->route('admin.competences.edit', $competence)->with('info', 'La competencia se creo con exito!');
     }
 
     public function edit(Competence $competence)
@@ -80,7 +87,22 @@ class CompetenceController extends Controller
                 ]);
             }
         }
-        return redirect()->route('admin.competences.index')->with('info', 'La categoria se actualizo exito!');
+
+        if ($request->hasfile('pdf')) {
+            $url = Storage::put('public/certificates', $request->file('pdf'));
+            if ($competence->certificate) {
+                Storage::delete($competence->certificate->url);
+                $competence->certificate()->update([
+                    'url' => $url
+                ]);
+            } else {
+                $competence->certificate()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.competences.edit', $competence)->with('info', 'La competencia se actualizo con exito!');
     }
 
     public function destroy(Competence $competence)

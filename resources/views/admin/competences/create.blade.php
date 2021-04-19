@@ -5,9 +5,7 @@
 @section('content_header')
 <h1>Nueva competencia</h1>
 @stop
-
 @section('content')
-
 <div class="card">
     <div class="card-body">
         {!! Form::open(['method' => 'POST', 'route' => 'admin.competences.store', 'class' => 'form-horizontal',
@@ -17,11 +15,6 @@
     </div>
 </div>
 @stop
-
-@section('css')
-
-@stop
-
 @section('js')
 <script>
     $('.input-daterange').datepicker({

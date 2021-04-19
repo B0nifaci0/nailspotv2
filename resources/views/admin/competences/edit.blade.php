@@ -25,18 +25,12 @@
 <div class="card">
     <div class="card-body">
         {!! Form::model($competence, ['route' => ['admin.competences.update', $competence], 'method' => 'PUT', 'class'
-        => 'form-horizontal','enctype' => 'multipart/form-data']) !!}
+        => 'form-horizontal','files' => true]) !!}
         @include('admin.competences.partials.form')
         {!! Form::close() !!}
-
     </div>
 </div>
 @stop
-
-@section('css')
-
-@stop
-
 @section('js')
 <script>
     $('.input-daterange').datepicker({
