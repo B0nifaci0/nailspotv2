@@ -49,9 +49,9 @@
                     <div class="text-sm text-gray-900">$ {{$competence->sales->first()->final_price}}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{$competence->sales->first()->created_at}}
+                    {{$competence->sales->first()->created_at->format('d-m-Y')}}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
+                <td class="px-6 py-4 whitespace-nowrap">
                     <a href="{{ route('profile.resources', $competence) }}"> <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">Entregable</button> </a>
                 </td>
             </tr>

@@ -114,13 +114,13 @@
                             </div>
                         </div>
                         @can('enrolled',$course)
-                        <a href="{{route('course.status',$course)}}" type="submit" class="my-button mt-4">Continuar
+                        <a href="{{route('course.status',$course)}}" type="submit" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">Continuar
                             con
                             el
                             curso</a>
                         @else
                         <p class="text-2xl text-center text-gray-500 font-bold mt-3 mb-2"> $ {{$course->price}} MXN</p>
-                        <a href="{{route('payment.course.checkout', $course)}}" class="block text-center w-full mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl">Comprar este
+                        <a href="{{route('payment.course.checkout', $course)}}" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">Comprar este
                             curso</a>
                         @endcan
                     </div>

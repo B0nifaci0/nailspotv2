@@ -37,7 +37,7 @@
 
     <section class="container p-5 place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         @foreach ($lessons as $item)
-        <div class="bg-gray-900 shadow-lg rounded p-3 h-full w-full my-4">
+        <div class="bg-white shadow-lg rounded p-3 h-full w-full my-4">
             <div class="group relative">
                 <img class="w-full md:w-90 block rounded" src="{{Storage::url($course->image->url)}}" />
                 <div
@@ -62,12 +62,12 @@
                 </div>
             </div>
             <div class="p-5 mt-auto ">
-                <h3 class="text-white text-xl ">Lección
+                <h3 class="text-gray-800 text-xl ">Lección
                     @if ($item->final==1)
                     final
                     @endif
                     : {{$item->name}}</h3>
-                <p class="text-gray-400">{{$item->description}}</p>
+                <p class="text-gray-800 text-md">{{$item->description}}</p>
                 {{-- {{$tasks}} --}}
                 @foreach ($tasks as $e)
                 @if ($e->lesson->id == $item->id && $e->user->id == auth()->user()->id)

@@ -69,11 +69,11 @@
                                 </div>
                             </div>
                             @can('enrolled',$competence)
-                            <a href="{{route('competence.status',$competence)}}" type="submit"
-                                class="my-button mt-4">Continuar</a>
+                            <a href="{{route('profile.competences')}}" type="submit"
+                                class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">Continuar</a>
                             @else
                             <p class="text-2xl text-gray-500 font-bold mt-3 mb-2 text-center"> $ {{$competence->price}} MXN</p>
-                            <a href="{{route('payment.competence.checkout', $competence)}}" class="my-button">Participar  </a>
+                            <a href="{{route('payment.competence.checkout', $competence)}}" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">Participar  </a>
                             @endcan
                     </div>
                 </section>
