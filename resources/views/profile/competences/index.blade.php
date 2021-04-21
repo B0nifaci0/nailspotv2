@@ -51,8 +51,8 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                     {{$competence->sales->first()->created_at}}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="{{ route('profile.resources', $competence) }}">Entregable</a>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
+                    <a href="{{ route('profile.resources', $competence) }}"> <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">Entregable</button> </a>
                 </td>
             </tr>
             @empty
