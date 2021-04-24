@@ -26,7 +26,6 @@ class LessonTasks extends Component
             ->pluck('tasks')
             ->collapse()
             ->where('user_id', $student->id);
-        // dd($this->tasks);
         $this->task = new Task();
     }
 
