@@ -80,12 +80,11 @@
             <div class="bg-cover bg-auto  opacity-75 text-white py-72 px-10 object-fill"
                 style='background-image: url("https://media-nailspot.s3.amazonaws.com/media/CACHE/images/courses/6236d801-efb3-4e91-bf8c-34f3b3ccc57a/2964d9c36e85927e9bfd44744bc74833.png");'>
                 <div class="md:w-1/2">
-                    <p class="font-bold text-2xl uppercase ">Competencia 1</p>
-                    <p class="text-6xl font-bold">Hello world</p>
-                    <p class="text-3xl mb-10 leading-none">Carousel with TailwindCSS </p>
+                    <p class="font-bold text-2xl uppercase ">Curso 1</p>
+                    <p class="text-6xl font-bold">Nailspot</p>
+                    <p class="text-3xl mb-10 leading-none">Formate con nuestros cursos </p>
                     <a href="#"
-                        class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Ver
-                        más</a>
+                        class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Más información</a>
                 </div>
             </div>
             <!--container -->
@@ -96,12 +95,11 @@
                 style='background-image: 
             url("https://images.unsplash.com/photo-1617289749213-c2a7b44f6523?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1914&q=80");'>
                 <div class="md:w-1/2">
-                    <p class="font-bold text-md uppercase">Competencia 2</p>
-                    <p class="text-6xl font-bold">Hello world</p>
-                    <p class="text-3xl mb-10 leading-none">Carousel with TailwindCSS </p>
+                    <p class="font-bold text-md uppercase">Curso 2</p>
+                    <p class="text-6xl font-bold">Nailspot</p>
+                    <p class="text-3xl mb-10 leading-none">Formate con nuestros cursos </p>
                     <a href="#"
-                        class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Ver
-                        más</a>
+                        class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Más información</a>
                 </div>
             </div>
             <!--container -->
