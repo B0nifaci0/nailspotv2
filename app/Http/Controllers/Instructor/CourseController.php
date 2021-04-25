@@ -38,14 +38,14 @@ class CourseController extends Controller
         $course = Course::create($request->all());
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('/courses', $request->file('image'));
+            $url = Storage::disk('public')->put('courses', $request->file('image'));
             $course->image()->create([
                 'url' => $url
             ]);
         }
 
         if ($request->hasfile('pdf')) {
-            $url = Storage::put('/certificates', $request->file('pdf'));
+            $url = Storage::disk('public')->put('certificates', $request->file('pdf'));
             $course->certificate()->create([
                 'url' => $url
             ]);
@@ -74,7 +74,7 @@ class CourseController extends Controller
         $course->update($request->all());
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('public/courses', $request->file('image'));
+            $url = Storage::disk('public')->put('courses', $request->file('image'));
             if ($course->image) {
                 Storage::delete($course->image->url);
                 $course->image()->update([
@@ -88,7 +88,7 @@ class CourseController extends Controller
         }
 
         if ($request->hasfile('pdf')) {
-            $url = Storage::put('public/certificates', $request->file('pdf'));
+            $url = Storage::disk('public')->put('certificates', $request->file('pdf'));
             if ($course->certificate) {
                 Storage::delete($course->certificate->url);
                 $course->certificate()->update([

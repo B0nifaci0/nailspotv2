@@ -1,7 +1,6 @@
 const userName = document.getElementById("name");
 const submitBtn = document.getElementById("submitBtn");
 const url = document.getElementById('url').value;
-console.log(url)
 
 const { PDFDocument, rgb, degrees } = PDFLib;
 
@@ -48,7 +47,7 @@ const generatePDF = async (name) => {
   // Draw a string of text diagonally across the first page
   firstPage.drawText(name, {
     x: 150,
-    y: 270,
+    y: 300,
     size: 44,
     font: SanChezFont,
     color: rgb(0, 0, 0),
@@ -56,7 +55,6 @@ const generatePDF = async (name) => {
 
   // Serialize the PDFDocument to bytes (a Uint8Array)
   const pdfBytes = await pdfDoc.save();
-  console.log("Creado Correctamente");
 
   // this was for creating uri and showing in iframe
 

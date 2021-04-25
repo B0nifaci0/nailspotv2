@@ -7,7 +7,7 @@
                 <input type="hidden" name="Name" id="name" value="{{auth()->user()->name}}">
                 <input type="hidden" id="url" value="{{$course->certificate->url}}">
                 <button id="submitBtn" class="bg-blue-600 font-bold text-white rounded-md p-2">Obtener
-                    certiicado</button>
+                    certificado</button>
             </div>
             @endcan
         </div>
@@ -23,7 +23,11 @@
                             <header>
                                 <h1>
                                     <i class="far fa-play-circle text-blue-500 mr-1"></i>
-                                    <strong>Leccion:</strong> {{$item->lesson->name}}</h1>
+                                    @if ($item->lesson->final)
+                                    <strong>Leccion Final:</strong> {{$item->lesson->name}}</h1>
+                                    @else
+                                    <strong>Leccion :</strong> {{$item->lesson->name}}</h1>
+                                    @endif
                             </header>
                         </div>
                         <div>
