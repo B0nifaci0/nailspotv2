@@ -25,38 +25,43 @@ class TaskController extends Controller
             'score' => $request->score,
             'status' => Task::CALIFICADA
         ]);
+        $user = $task->user;
 
         $task->save();
         $mail = new GradedAssignament($task->lesson);
-        Mail::to($task->user->email)->queue($mail);
+        Mail::to($user->email)->queue($mail);
 
-        $tasks = Task::whereUserId(auth()->user()->id)
+        $tasks = Task::whereUserId($user->id)
             ->whereStatus(2)->get();
 
-        $lessons = $task->lesson->course->lessons->count();
+        $course = $task->lesson->course;
+
+        $lessons = $course->lessons->count();
 
         if ($lessons == $tasks->count()) {
             $average = 0;
             $sum = 0;
             $final = 0;
+            $exist = 0;
             foreach ($tasks as $item) {
                 if ($item->lesson->final) {
                     $final = $item->score;
+                    $exist = 1;
                 } else {
                     $sum = $sum + $item->score;
                 }
             }
-            $average = $sum / ($tasks->count() - 1);
-            $final = ($average + $final) / 2;
-
-            if ($final >= 8) {
-                $approved = new CourseApproved($task->lesson->course);
-                Mail::to($task->user->email)->queue($approved);
-            } else {
-                return "no pasas";
+            if ($exist == 1) {
+                $average = $sum / ($tasks->count() - 1);
+                $final = ($average + $final) / 2;
+                if ($final >= 8) {
+                    $approved = new CourseApproved($course);
+                    Mail::to($user->email)->queue($approved);
+                    $certificate = $course->certificate;
+                    $certificate->students()->attach(auth()->user()->id);
+                }
             }
         }
-
         return back();
     }
 

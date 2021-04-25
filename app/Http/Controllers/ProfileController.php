@@ -66,7 +66,7 @@ class ProfileController extends Controller
             ->collapse()
             ->where('user_id', auth()->user()->id);
 
-        return view('profile.courses.tasks', compact('tasks'));
+        return view('profile.courses.tasks', compact('tasks', 'course'));
     }
 
     public function task(Task $task)

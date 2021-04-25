@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Certificate extends Model
 {
@@ -14,5 +15,10 @@ class Certificate extends Model
     public function certificateable()
     {
         return $this->morphTo();
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

@@ -1,5 +1,7 @@
 const userName = document.getElementById("name");
 const submitBtn = document.getElementById("submitBtn");
+const url = document.getElementById('url').value;
+console.log(url)
 
 const { PDFDocument, rgb, degrees } = PDFLib;
 
@@ -22,7 +24,8 @@ submitBtn.addEventListener("click", () => {
 });
 
 const generatePDF = async (name) => {
-  const existingPdfBytes = await fetch("storage/certificates/cert.pdf").then((res) =>
+
+  const existingPdfBytes = await fetch('/' + url).then((res) =>
     res.arrayBuffer()
   );
 
@@ -31,7 +34,7 @@ const generatePDF = async (name) => {
   pdfDoc.registerFontkit(fontkit);
 
   //get font
-  const fontBytes = await fetch("./Sanchez-Regular.ttf").then((res) =>
+  const fontBytes = await fetch("/Sanchez-Regular.ttf").then((res) =>
     res.arrayBuffer()
   );
 
@@ -67,7 +70,7 @@ const generatePDF = async (name) => {
       type: "application/pdf;charset=utf-8",
     }
   );
- saveAs(file);
+  saveAs(file);
 };
 
 // init();
