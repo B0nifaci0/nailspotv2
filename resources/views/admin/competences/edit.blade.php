@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nueva competencia')
+@section('title', 'Editar competencia')
 
 @section('content_header')
 <form action="{{route('admin.publish',$competence)}}" method="POST">
@@ -35,7 +35,9 @@
 <script>
     $('.input-daterange').datepicker({
         language: "es",
+        format: "yyyy-mm-dd"
     });
+
 </script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
 <script src="{{asset('js/admin/competences/form.js')}}">

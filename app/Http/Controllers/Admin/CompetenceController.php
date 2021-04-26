@@ -58,8 +58,7 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
-        $criteria = Criterion::all();
-        return view('admin.competences.edit', compact('levels', 'subcategories', 'criteria', 'competence'));
+        return view('admin.competences.edit', compact('levels', 'subcategories', 'competence'));
     }
 
     public function update(CompetenceRequest $request, Competence $competence)

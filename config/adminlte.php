@@ -427,7 +427,7 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css',
-                ],
+                ], 
                 [
                     'type' => 'js',
                     'asset' => false,

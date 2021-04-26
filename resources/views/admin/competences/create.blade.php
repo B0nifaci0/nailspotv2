@@ -19,6 +19,7 @@
 <script>
     $('.input-daterange').datepicker({
         language: "es",
+        format: "yyyy-mm-dd"
     });
 </script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
