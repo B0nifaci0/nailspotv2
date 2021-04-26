@@ -50,18 +50,42 @@
         Selecciona una imagen
         <!--<input type="file" name="image" id="fileToUpload">-->
         <div class="flex w-full  items-center justify-center bg-grey-lighter">
-            <label class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-purple-800 cursor-pointer hover:bg-purple-700 mb-8 mt-8 hover:text-white ">
+            <label
+                class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-purple-800 cursor-pointer hover:bg-purple-700 mb-8 mt-8 hover:text-white ">
                 <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                    <path
+                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                 </svg>
                 <span class="mt-2 text-base leading-normal">Selecciona un archivo</span>
                 <input type='file' class="hidden" name="image" id="fileToUpload" />
             </label>
         </div>
-        <button  class="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-800 hover:border-transparent rounded block text-center w-full mt-4 rounded-xl" type="submit">Enviar</button>
+        <button
+            class="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-800 hover:border-transparent rounded block text-center w-full mt-4 rounded-xl"
+            type="submit">Enviar</button>
         </form>
         @endif
 
+        <table class="min-w-full divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th>Criterio</th>
+                    <th>Calificacion</th>
+                </tr>
+            </thead>
+        </table>
+        <tbody>
+            @foreach ($resource->scores as $score)
+            <tr>
+                <td>
+                    {{$score->competenceCriterionUser->criterion->name}}:
+                </td>
+                <td>
+                    {{$score->value}}
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
         <div x-data="{}" class="px-2 mt-8 mb-8 ">
             <div class="flex -mx-2">
                 @foreach ($resource->images as $image)
@@ -69,7 +93,8 @@
                     <div class="">
                         <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
                             class="cursor-pointer">
-                            <img alt="Placeholder" class="object-fit w-full rounded-xl" src="{{Storage::url($image->url)}}">
+                            <img alt="Placeholder" class="object-fit w-full rounded-xl"
+                                src="{{Storage::url($image->url)}}">
                         </a>
                     </div>
                 </div>
