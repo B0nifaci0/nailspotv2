@@ -38,14 +38,14 @@ class CompetenceController extends Controller
         $competence = Competence::create($request->all());
 
         if ($request->hasfile('image')) {
-            $url = Storage::put('public/competences', $request->file('image'));
+            $url = Storage::disk('public')->put('competences', $request->file('image'));
             $competence->image()->create([
                 'url' => $url
             ]);
         }
 
         if ($request->hasfile('pdf')) {
-            $cert = Storage::put('public/certificates', $request->file('pdf'));
+            $cert = Storage::disk('public')->put('certificates', $request->file('pdf'));
             $competence->certificate()->create([
                 'url' => $cert
             ]);
@@ -70,12 +70,8 @@ class CompetenceController extends Controller
 
         $competence->update($request->all());
 
-        if ($request->has('criteria')) {
-            $competence->criteria()->sync($request->criteria);
-        }
-
         if ($request->hasfile('image')) {
-            $url = Storage::put('public/competences', $request->file('image'));
+            $url = Storage::disk('public')->put('competences', $request->file('image'));
             if ($competence->image) {
                 Storage::delete($competence->image->url);
                 $competence->image()->update([
@@ -89,7 +85,7 @@ class CompetenceController extends Controller
         }
 
         if ($request->hasfile('pdf')) {
-            $url = Storage::put('public/certificates', $request->file('pdf'));
+            $url = Storage::disk('public')->put('certificates', $request->file('pdf'));
             if ($competence->certificate) {
                 Storage::delete($competence->certificate->url);
                 $competence->certificate()->update([
