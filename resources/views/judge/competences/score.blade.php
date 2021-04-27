@@ -30,54 +30,58 @@
             </div>
         </template>
     </div>
-    <div class="relative pt-16 flex content-center items-center justify-center">
+    <div class="relative pt-16 flex content-center items-center justify-center bg-purple-800">
     </div>
-    <div class="container py-8">
-        <h1 class="text-2xl font-bold uppercase">
-            Competencia {{$participant->competence->name}} Criterio {{$criterion->name}}
-        </h1>
-        <a href="{{route('judge.competences.participants', [$participant->competence, $criterion])}}"
-            class="text-indigo-600 hover:text-indigo-900">Regresar</a>
-        <hr class="mt-2 mb-6" />
+    <div class="bg-purple-800 pt-8 pb-8">
+        <div class="container bg-white rounded">
+            <h1 class="text-2xl font-bold uppercase">
+                Competencia {{$participant->competence->name}} Criterio {{$criterion->name}}
+            </h1>
+            <a href="{{route('judge.competences.participants', [$participant->competence, $criterion])}}"
+                class="text-indigo-600 hover:text-indigo-900 float-right text-lg">Regresar </a>
+            <!--<hr class="mt-2 mb-6" />-->
 
-        <h1 class="text-2xl font-bold mt-8 mb-2">Recursos</h1>
+            <h1 class="text-2xl font-bold mt-8 mb-2">Recursos</h1>
 
-        <div x-data="{}" class="px-2">
-            <div class="flex -mx-2">
-                @foreach ($participant->images as $image)
-                <div class="w-1/6 px-2">
-                    <div class="bg-gray-400">
-                        <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
-                            class="cursor-pointer">
-                            <img alt="Placeholder" class="object-fit w-full" src="{{Storage::url($image->url)}}">
-                        </a>
+            <div x-data="{}" class="px-2">
+                <div class="flex -mx-2">
+                    @foreach ($participant->images as $image)
+                    <div class="w-2/6 px-2">
+                        <div class="bg-gray-400">
+                            <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
+                                class="cursor-pointer">
+                                <img alt="Placeholder" class="object-fit w-full" src="{{Storage::url($image->url)}}">
+                            </a>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
-        <form method="POST" action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}">
-            @csrf
-            <div class="grid grid-cols-2 gap-4">
-                @if ($score)
-                <div>
-                    <label>Calificacion {{$score}}</label>
+            <form method="POST" action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}" class="pb-5 pt-5">
+                @csrf
+                <div class="grid grid-cols-2 gap-4">
+                    @if ($score)
+                    <div>
+                        <span class="text-xl text-gray-900 font-bold">Calificacion {{$score}}</span>
+                    </div>
+                    @else
+                    <div>
+                        <label>Calificacion</label>
+                        <select name="score" class="form-input block w-full mt-1">
+                            @for ($i = 1; $i < 11; $i++) <option>{{$i}}
+                                </option>
+                                @endfor
+                        </select>
+                    </div>
+                    <button type="submit"
+                        class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">
+                        Calificar
+                    </button>
+                    @endif
                 </div>
-                @else
-                <div>
-                    <label>Calificacion</label>
-                    <select name="score" class="form-input block w-full mt-1">
-                        @for ($i = 1; $i < 11; $i++) <option>{{$i}}
-                            </option>
-                            @endfor
-                    </select>
-                </div>
-                <button type="submit"
-                    class="block text-center bg-blue-500 text-white font-bold py-2 px-4 rounded">Calificar</button>
-                @endif
-            </div>
 
-        </form>
+            </form>
+        </div>
     </div>
 
 </x-app-layout>

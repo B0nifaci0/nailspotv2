@@ -45,7 +45,7 @@
 
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('instructor.courses.tasks',[$course, $student])}}"
-                            class="text-indigo-600 hover:text-indigo-900">Tareas</a>
+                            class="text-indigo-600 hover:text-indigo-900 "><button class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Tareas</button></a>
                     </td>
                 </tr>
                 @empty

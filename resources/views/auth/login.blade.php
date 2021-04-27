@@ -18,7 +18,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST"  onsubmit="return submitUserForm();" action="{{ route('login') }}">
             @csrf
 
             
@@ -38,7 +38,13 @@
                     <span class="ml-2 text-sm text-gray-900">{{ __('Recuérdame') }}</span>
                 </label>
             </div>
-
+            <div class="form-group mt-5 ">
+                    {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!}
+            </div>
+            <div class="bg-red-100 border border-red-400 mt-5 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">La casilla de verificación "No soy un robot" es requerida!</span>
+            </div>
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-900 hover:text-gray-400" href="{{ route('password.request') }}">

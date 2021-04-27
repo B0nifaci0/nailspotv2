@@ -34,7 +34,7 @@
                 <span class="text-sm text-red-500">{{$message}}</span>
                 @enderror
                 <div class="flex justify-end mt-2">
-                    <button class="bg-pink-600 text-white p-2 rounded">Agregar Requerimiento</button>
+                    <button class="bg-pink-600 hover:bg-pink-700 text-white p-2 mt-5 rounded">Agregar Requerimiento</button>
                 </div>
             </form>
         </div>

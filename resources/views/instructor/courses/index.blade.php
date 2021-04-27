@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="relative pt-16 flex content-center items-center justify-center">
+    <div class="relative pt-16 bg-purple-800 flex content-center items-center justify-center">
     </div>
     @livewire('instructor.courses-index')
 </x-app-layout>

@@ -52,7 +52,7 @@
         @endif
 
         <div class="flex items-center mt-5">
-            <x-jet-button class="bg-pink-600" wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-jet-button class="bg-pink-600 hover:bg-pink-700" wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Cerrar sesión en otras sesiones del navegador') }}
             </x-jet-button>
 

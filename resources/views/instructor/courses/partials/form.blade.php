@@ -51,14 +51,14 @@
         <img id="picture" src="https://brandominus.com/wp-content/uploads/2015/07/130830051724675381.jpg"
             class="w-full h-64 object-cover object-center">
         @endisset
-        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+        <div class=" mt-5 form-group {{ $errors->has('image') ? ' has-error' : '' }}">
             {!! Form::file('image', ['id' => 'file']) !!}
             <small class="text-danger">{{ $errors->first('image') }}</small>
         </div>
     </figure>
     <div class="form-group{{ $errors->has('pdf') ? ' has-error' : '' }}">
         {!! Form::label('pdf', 'Certificado') !!}
-        {!! Form::file('pdf', ['class'=> 'form-input w-full']) !!}
+        {!! Form::file('pdf', ['class'=> 'form-input w-full mt-5']) !!}
         <small class="text-danger">{{ $errors->first('pdf') }}</small>
     </div>
 </div>
