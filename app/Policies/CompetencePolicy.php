@@ -33,4 +33,12 @@ class CompetencePolicy
     {
         return $competence->students->contains($user->id);
     }
+
+    public function level(User $user, Competence $competence)
+    {
+        if ($competence->level->id == $user->level->id) {
+            return true;
+        }
+        return false;
+    }
 }
