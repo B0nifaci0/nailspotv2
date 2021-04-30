@@ -5,7 +5,7 @@
 @section('content_header')
 <a href="{{route('admin.criteria.create')}}" class="btn btn-secondary btn-sm float-right">Nuevo Criterio</a>
 
-<h1>Lista de criterios</h1>
+<h1 class="text-center text-bold">Lista de criterios</h1>
 @stop
 
 @section('content')
@@ -30,7 +30,7 @@
                     <td>{{$criterion->id}}</td>
                     <td>{{$criterion->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                             href="{{route('admin.criteria.edit', $criterion)}}">Editar</a>
                     </td>
                     <td width="10px">

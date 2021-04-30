@@ -4,7 +4,7 @@
 
 
 @section('content_header')
-<h1>Lista de Usuarios</h1>
+<h1 class="text-bold text-center">Lista de Usuarios</h1>
 @stop
 
 @section('content')

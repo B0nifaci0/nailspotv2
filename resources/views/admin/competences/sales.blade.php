@@ -3,7 +3,7 @@
 @section('title', 'Cursos Vendidos')
 
 @section('content_header')
-<h1>Competencias Vendidas</h1>
+<h1 class="text-center text-bold">Competencias Vendidas</h1>
 @stop
 
 @section('content')

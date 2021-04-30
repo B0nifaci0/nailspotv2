@@ -3,7 +3,7 @@
 @section('title', 'Editar Nivel')
 
 @section('content_header')
-<h1>Editar nivel</h1>
+<h1 class="text-bold text-center">Editar nivel</h1>
 @stop
 
 @section('content')

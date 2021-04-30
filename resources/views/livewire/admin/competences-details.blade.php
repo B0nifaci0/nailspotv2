@@ -20,7 +20,7 @@
                         <td>{{$competence->sales->count()}}</td>
                         <td>${{$competence->total}}</td>
                         <td width=" 10px">
-                            <a class="btn btn-primary" href="{{route('admin.sales.competences.details',$competence)}}">Detalles</a>
+                            <a class="btn btn-outline-info" href="{{route('admin.sales.competences.details',$competence)}}">Detalles</a>
                         </td>
                     </tr>
                     @empty

@@ -3,7 +3,7 @@
 @section('title', 'Nueva competencia')
 
 @section('content_header')
-<h1>Nueva competencia</h1>
+<h1 class="text-center text-bold">Nueva competencia</h1>
 @stop
 @section('content')
 <div class="card">

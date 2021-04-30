@@ -5,7 +5,7 @@
 @section('content_header')
 <a href="{{route('admin.coupons.create')}}" class="btn btn-secondary btn-sm float-right">Agregar cupón</a>
 
-<h1>Lista de cupones</h1>
+<h1 class="text-bold text-center">Lista de cupones</h1>
 @stop
 
 @section('content')
@@ -41,7 +41,7 @@
                     <td>{{$coupon->discount}}%</td>
                     @endif
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm" href="{{route('admin.coupons.edit', $coupon)}}">Editar</a>
+                        <a class="btn btn-secondary btn-sm" href="{{route('admin.coupons.edit', $coupon)}}">Editar</a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.coupons.destroy',$coupon)}}" method="POST">

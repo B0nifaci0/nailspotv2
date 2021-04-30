@@ -3,7 +3,7 @@
 @section('title', 'Detalles de venta')
 
 @section('content_header')
-<h1>Detalles de venta</h1>
+<h1 class="text-bold text-center">Detalles de venta</h1>
 @stop
 
 @section('content')
@@ -52,7 +52,7 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-danger">
                 <a href="{{ route('admin.reports.course.details', $course) }}" >
-                    Generar Reporte <i class="fas fa-arrow-circle-right"></i>
+                    Generar Reporte 
                 </a>
             <div class="icon">
                 <i class="fas fa-file-pdf"></i>

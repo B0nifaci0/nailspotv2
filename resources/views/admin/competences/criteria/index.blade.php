@@ -5,7 +5,7 @@
 @section('content_header')
 <button type="button" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#modal-default">
     Asignar Criterio </button>
-<h1>Asignación de criterios para {{$competence->name}}</h1>
+<h1 class="text-center text-bold">Asignación de criterios para {{$competence->name}}</h1>
 @stop
 
 @section('content')
@@ -24,7 +24,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Criterio</h5>
+                <h5 class="modal-title text-center text-bold" id="exampleModalLabel">Editar Criterio</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

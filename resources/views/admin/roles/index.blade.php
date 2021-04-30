@@ -3,7 +3,7 @@
 @section('title', 'Roles')
 
 @section('content_header')
-<h1>Lista de roles</h1>
+<h1 class="text-center text-bold">Lista de roles</h1>
 @stop
 
 @section('content')
@@ -16,11 +16,11 @@
 
 <div class="card">
 
-    <div class="card-header">
-        <a href="{{route('admin.roles.create')}}"> Crear role</a>
+    <div class="card-header text-right text-bold text-lg">
+        <a href="{{route('admin.roles.create')}}"> Crear rol</a>
     </div>
-    <div class="card-body">
-        <table class="table table-striped">
+    <div class="card-body ">
+        <table class="table  table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
