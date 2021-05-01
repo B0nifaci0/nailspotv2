@@ -24,8 +24,9 @@
                 <div class="flex-none bg-cover rounded-t  rounded text-center overflow-hidden bg-center">
                     <div class=" mx-auto flex-1 flex flex-col">
                         <figure>
-                            @if($course->image)
-                            <img class="h-60 w-full object-cover" src="{{Storage::url($course->image->url)}}" alt="">
+                            @if($course->iframe)
+                            
+                            {!!$course->iframe!!}
                             @endif
                         </figure>
                     </div>
@@ -156,7 +157,7 @@
                         <h1 href="#" class="text-2xl text-gray-700 font-bold mb-3">Lecciones</h1>
                         <ul>
                             @forelse ($course->lessons as $lesson)
-                            <li class="text-gray-700 text-base"> - {{$lesson->name}}</li>
+                            <li class="text-gray-700 text-base"> - {!!$lesson->iframe!!}</li>
                             @empty
                             <h1>No hay lecciones registradas</h1>
                             @endforelse
@@ -164,7 +165,7 @@
                     </div>
                 </section>
             </div>
-            <!---->
+
         </div>
     </div>
 
