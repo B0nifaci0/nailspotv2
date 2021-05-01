@@ -1,4 +1,3 @@
-<!-- Esta seccion sirve para ver los alumnos que adquirieron el curso -->
 <div>
 
     <h1 class="text-2xl font-bold uppercase mb-2">Estudiantes del curso</h1>
@@ -43,12 +42,10 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{$student->email}}</div>
                     </td>
-                    <!-- Aqui se encuentra el boton de tareas -->
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('instructor.courses.tasks',[$course, $student])}}"
                             class="text-indigo-600 hover:text-indigo-900 "><button class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Tareas</button></a>
                     </td>
-                    <!-- Aqui termina el boton de tareas -->
                 </tr>
                 @empty
                 <tr class="px-6 py-4">
