@@ -1,5 +1,5 @@
-<!-- En esta seccion se nos muestra un listado de criterios asignados a cada juez -->
 <div class="bg-purple-800">
+<!-- En esta seccion se nos muestra un listado de criterios asignados a cada juez -->
     <h1 class="text-center text-white text-xl font-bold">Lista de Criterios</h1>
 </div>
 <div class="bg-purple-800 pt-8 pb-12">
@@ -69,4 +69,4 @@
         </x-table-responsive>
     </div>
 </div>
-<!-- EAqui termina la seccion de los criterios asiganados por competencia -->
+<!-- Aqui termina la seccion de los criterios asiganados por competencia -->
