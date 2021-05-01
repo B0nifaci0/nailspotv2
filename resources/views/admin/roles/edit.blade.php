@@ -3,7 +3,7 @@
 @section('title', 'Editar rol')
 
 @section('content_header')
-<h1>Editar Rol</h1>
+<h1 class="text-bold text-center">Editar Rol</h1>
 @stop
 
 @section('content')

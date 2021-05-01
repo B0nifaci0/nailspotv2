@@ -18,7 +18,7 @@
             </x-jet-danger-button>
         </div>
 
-        <!-- Delete User Confirmation Modal -->
+        <!-- Eliminar modal de confirmación de usuario -->
         <x-jet-dialog-modal wire:model="confirmingUserDeletion">
             <x-slot name="title">
                 {{ __('Borrar cuenta') }}

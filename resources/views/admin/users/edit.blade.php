@@ -3,7 +3,7 @@
 @section('title', 'Asignar Rol')
 
 @section('content_header')
-<h1>Asignar Rol</h1>
+<h1 class="text-bold text-center ">Asignar Rol</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="card-body">
         <div class="form-group">
             {!! Form::label('inputname', 'Nombre') !!}
-            <p>{{$user->name}}</p>
+            <p class="font-italic">{{$user->name}}</p>
         </div>
         {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT', 'class' =>
         'form-horizontal']) !!}

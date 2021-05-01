@@ -17,7 +17,7 @@
         @endswitch
     </button>
 </form>
-<h1>Editar competencia</h1>
+<h1 class="text-center text-bold">Editar competencia</h1>
 @stop
 
 @section('content')

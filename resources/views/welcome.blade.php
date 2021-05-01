@@ -1,13 +1,16 @@
 <x-app-layout>
     @section('header')
+    <!-- Aqui comienza el encabezado, el cual contiene un video y dos botones para ver los cursos o registarse -->
     <header class="relative flex md:justify-start sm:justify-center items-center h-screen overflow-hidden">
         <div class="md:w-1/2  mb-10 md:mb-0 text-blond z-20 px-20 py-48 text-5xl text-white ">
             Unete a nosotros!
             <p class="text-blond py-6 text-lg text-white mb-2">La mejor opcion desde casa!</p>
+            <!-- Si aun no estas logueado se mostrara el boton registar y si ya estas loguead ya no lo mostrara -->
             @auth
             @else
             <button href="/" class="bg-purple-600 hover:bg-purple-700 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('register') }}">Registrate</a></button>
             @endauth
+            <!-- aqui termina la validacion de inicio de sesion -->
             <button class="bg-pink-500 hover:bg-pink-600 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('courses.index') }}">Ver todos los cursos</a></button>
             </div>
             <video autoplay loop muted class="absolute z-10 md:w-64 w-auto min-w-full min-h-full max-w-none">
@@ -17,7 +20,9 @@
                 Your browser does not support the video tag.
             </video>
     </header>
+    <!-- Aqui termina el encabezado -->
     @endsection
+    <!-- Aqui comienza la seccion de equipo -->
     <section class="pt-5 pb-5 bg-purple-800 mx-auto">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center text-center mb-24">
@@ -118,7 +123,8 @@
             </div>
         </div>
     </section>
-
+    <!-- Aqui termina la seccion de equipo -->
+    <!-- Esta es la seccion de Nuevos cursos -->
     <section class="pb-20 relative block bg-purple-800">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px; transform: translateZ(0px)">
@@ -144,7 +150,7 @@
             </div>
         </div>
     </section>
-
+    <!-- Aqui termina la seccion cursos nuevos -->
 
     {{-- <section class="mt-24">
         <div class="container py-36">

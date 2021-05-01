@@ -1,13 +1,12 @@
-
 <nav class="bg-gradient-to-r from-purple-800  to-pink-600" x-data="{open: false}">
     <div class="max-w-7x1 mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <!-- Mobile menu button-->
+                <!-- Botón de menú móvil-->
                 <button x-on:click="open= true" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <!--
-                        Icon when menu is closed.
+                       Icono cuando el menú está cerrado.
 
                         Heroicon name: outline/menu
 
@@ -35,7 +34,8 @@
                 </a>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    
+                        <!-- Accesos rapidos a las paginas del sitio -->
                         <a href="#" class="text-gray-300  hover:bg-purple-400  hover:text-white px-3 py-3 rounded-md text-base font-medium">Nosotros</a>
                         <a href="{{ route('courses.index') }}" class="text-gray-300  hover:bg-purple-400 hover:text-white px-3 py-3 rounded-md text-base font-medium">Cursos</a>
                         <a href="{{ route('competences.index') }}" class="text-gray-300  hover:bg-purple-400 hover:text-white px-3 py-3 rounded-md text-base font-medium">Competencias</a>
@@ -45,7 +45,7 @@
             </div>
             @auth
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <!-- Profile dropdown -->
+                <!-- Menú desplegable de perfil -->
                 <div class="ml-3 relative" x-data="{ open: false}">
                     <div>
                         <button x-on:click="open = true" type="button" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
@@ -55,7 +55,7 @@
                     </div>
 
                     <!--
-                        Dropdown menu, show/hide based on menu state.
+                        Menú desplegable, mostrar / ocultar según el estado del menú.
 
                         Entering: "transition ease-out duration-100"
                         From: "transform opacity-0 scale-95"
@@ -108,9 +108,10 @@
         </div>
         @endauth
     </div>
-    <!-- Mobile menu, show/hide based on menu state. -->
+    <!-- Menú móvil, mostrar / ocultar según el estado del menú. -->
     <div class="sm:hidden" x-show="open" x-on:click.away="open = false" >
         <div class="px-2 pt-2 pb-3 space-y-1">
+            <!-- Accesos rapidos a las paginas del sitio -->
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cursos</a>

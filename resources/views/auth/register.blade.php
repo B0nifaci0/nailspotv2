@@ -1,5 +1,7 @@
 <x-guest-layout>
+   
     @livewire('navigation')
+    <!-- Aqui empieza el formulario de registro -->
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -107,4 +109,5 @@
             </div>
         </form>
     </x-jet-authentication-card>
+    <!-- Aqui termina el formulario de registro -->
 </x-guest-layout>

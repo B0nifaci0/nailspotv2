@@ -5,7 +5,7 @@
 @section('content_header')
 <a href="{{route('admin.levels.create')}}" class="btn btn-secondary btn-sm float-right">Nuevo nivel</a>
 
-<h1>Lista de niveles</h1>
+<h1 class="text-bold text-center">Lista de niveles</h1>
 @stop
 
 @section('content')
@@ -30,7 +30,7 @@
                     <td>{{$level->id}}</td>
                     <td>{{$level->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm" href="{{route('admin.levels.edit', $level)}}">Editar</a>
+                        <a class="btn btn-secondary btn-sm" href="{{route('admin.levels.edit', $level)}}">Editar</a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.levels.destroy',$level)}}" method="POST">

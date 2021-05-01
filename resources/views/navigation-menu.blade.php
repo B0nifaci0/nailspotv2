@@ -30,7 +30,7 @@ $nav_links =[
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Links de Navegacion -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @foreach ($nav_links as $nav_link)
                     <x-jet-nav-link href="{{ $nav_link['route']}}" :active="$nav_link['active']">
@@ -42,7 +42,7 @@ $nav_links =[
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
 
-                <!-- Settings Dropdown -->
+                <!-- Menú desplegable de configuración -->
                 <div class="ml-3 relative">
 
                     @auth
@@ -72,7 +72,7 @@ $nav_links =[
                         </x-slot>
 
                         <x-slot name="content">
-
+                        <!-- Administración de cuentas -->  
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 Perfil
                             </x-jet-dropdown-link>
@@ -99,7 +99,7 @@ $nav_links =[
 
                             <div class="border-t border-gray-100"></div>
 
-                            <!-- Authentication -->
+                            <!-- Autenticacion -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
@@ -129,7 +129,7 @@ $nav_links =[
                 </div>
             </div>
 
-            <!-- Hamburger -->
+            <!-- Boton para desplegar el menu de navegacion -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -145,7 +145,7 @@ $nav_links =[
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
+    <!-- Menú de navegación responsivo -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @foreach ($nav_links as $nav_link)
@@ -156,7 +156,7 @@ $nav_links =[
             @endforeach
         </div>
 
-        <!-- Responsive Settings Options -->
+        <!-- Opciones de configuración responsiva -->
         @auth
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -174,7 +174,7 @@ $nav_links =[
             </div>
 
             <div class="mt-3 space-y-1">
-                <!-- Account Management -->
+                <!-- Administración de cuentas -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}"
                     :active="request()->routeIs('profile.show')">
                     Perfil
@@ -196,7 +196,7 @@ $nav_links =[
                 </x-jet-responsive-nav-link>
                 @endif
 
-                <!-- Authentication -->
+                <!-- Autenticacion -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
