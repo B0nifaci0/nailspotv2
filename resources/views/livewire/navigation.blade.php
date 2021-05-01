@@ -1,4 +1,3 @@
-<!-- En esta seccion se muestra el Menu de navegacion del sitio-->
 <nav class="bg-gradient-to-r from-purple-800  to-pink-600" x-data="{open: false}">
     <div class="max-w-7x1 mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
