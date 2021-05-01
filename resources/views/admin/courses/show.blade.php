@@ -17,11 +17,11 @@
        </div>
        @endif
     </div>
-    <h1 class=" text-white bg-purple-800 text-bold text-5xl text-center ">Aprobar Curso</h1>
-    <div class="w-full lg:max lg:flex pt-20 p-2 bg-purple-800 relative">
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4">
-            <section>
-                <div class="flex-none bg-cover rounded-t  lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center">
+    <h1 class=" text-white bg-purple-800 text-bold text-5xl text-center pt-5">Aprobar Curso</h1>
+    <div class=" md:flex pt-10 p-2 bg-purple-800 relative">
+        <div class="sm:w-2/2 md:w-1/3 lg:w-1/4 xl:w-2/5">
+            <section class="card mt-5 mb-5 m-4">
+                <div class="flex-none bg-cover rounded-t  rounded text-center overflow-hidden bg-center">
                     <div class=" mx-auto flex-1 flex flex-col">
                         <figure>
                             @if($course->image)
@@ -32,7 +32,7 @@
                 </div>
             </section>
         </div>
-        <div class="w-full sm:w-1/2 md:w-2/3 flex flex-col ">
+        <div class="sm:w-2/2 md:w-2/3 lg:w-3/4 xl:w-3/5">
             <section class="card mt-5 mb-5 ml-4 mr-4">
                 <div class="p-4 flex-1 flex flex-col" style="">
                     <h1 class="mb-2 text-4xl text-center justify-items-center">{{$course->name}}</h1>
@@ -74,7 +74,7 @@
     </div>
     <div class="bg-purple-800 ">
         <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
-            <div class="order-2 lg:col-span-1 transform hover:scale-105 ">
+            <div class="order-2 lg:col-span-1  ">
                 <section class="card mt-5 mb-5 ml-4 mr-4">
                     <div class="card-body">
                         <h1 class="font-bold text-3xl text-center">Descripción</h1>
@@ -84,7 +84,7 @@
                 </section>
             </div>
             <div class="order-2">
-                <section class=" card mt-5 mb-5 ml-4 mr-4 transform hover:scale-105">
+                <section class=" card mt-5 mb-5 ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 class="font-bold text-3xl text-center">Requisitos</h1>
                         <ul class="list-disc list-inside">
@@ -98,7 +98,7 @@
                 </section>
             </div>
             <div class="order-2">
-            <section class="card mt-5 mb-5 ml-4 mr-4 transform hover:scale-105">
+            <section class="card mt-5 mb-5 ml-4 mr-4 ">
                 <div class="card-body">
                     <h1 class="mb-4 text-xl font-bold text-gray-700">Autor</h1>
                     <div class="flex items-center text-gray-700">
@@ -119,8 +119,8 @@
             </div>
         </div>
         <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
-            <div class="order-2 lg:col-span-2 transform hover:scale-105">
-                <section class="card  mb-5 ml-4 mr-4 transform hover:scale-105">
+            <div class="order-2 lg:col-span-2 ">
+                <section class="card  mb-5 ml-4 mr-4 ">
                     <div class="card-body rounded-xl">
                         <h1 class="text-2xl text-gray-700 font-bold mb-3">Lo que aprenderas
                             en este curso...</h1>
@@ -135,7 +135,7 @@
                 </section>
             </div>
             <div class="order-2">
-                <section class="card mb-8 ml-4 mr-4 transform hover:scale-105">
+                <section class="card mb-8 ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 href="#" class="text-2xl text-gray-700 font-bold mb-3">Lecciones</h1>
                          <ul>

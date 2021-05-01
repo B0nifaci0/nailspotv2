@@ -5,7 +5,7 @@
 @section('content_header')
 <a href="{{route('admin.subcategories.create')}}" class="btn btn-secondary btn-sm float-right">Nueva categoria</a>
 
-<h1>Lista de categorias</h1>
+<h1 class="text-center text-bold">Lista de categorias</h1>
 @stop
 
 @section('content')
@@ -14,6 +14,14 @@
     {{(session('info'))}}
 </div>
 @endif
+
+<style>
+
+.micolor {
+    color: 'red',
+}
+</style>
+
 <div class="card">
     <div class="card-body">
         <table class="table table-stripe">
@@ -30,7 +38,7 @@
                     <td>{{$subcategory->id}}</td>
                     <td>{{$subcategory->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                             href="{{route('admin.subcategories.edit', $subcategory)}}">Editar</a>
                     </td>
                     <td width="10px">

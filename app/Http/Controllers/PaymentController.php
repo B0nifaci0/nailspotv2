@@ -39,6 +39,9 @@ class PaymentController extends Controller
 
     public function checkoutCompetence(Competence $competence)
     {
+
+        $this->authorize('level', $competence);
+
         if ($competence->students->contains(auth()->user()->id)) {
             return back();
         }

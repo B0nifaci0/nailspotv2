@@ -4,7 +4,7 @@
 
 @section('content_header')
 <a href="{{route('admin.competences.create')}}" class="btn btn-secondary btn-sm float-right">Nueva Competencia</a>
-<h1>Competencias</h1>
+<h1 class="text-center text-bold">Competencias</h1>
 @stop
 
 @section('content')
@@ -49,7 +49,7 @@
                     </td>
 
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                             href='{{ route('admin.competences.edit',$competence) }}'>Editar</a>
                     </td>
                     <td width="10px">

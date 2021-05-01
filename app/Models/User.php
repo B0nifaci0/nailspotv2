@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Sale;
 use App\Models\Task;
+use App\Models\Level;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Profile;
@@ -102,6 +103,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 
     public function adminlte_image()

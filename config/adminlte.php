@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => env('APP_NAME', 'laravel'),
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => env('APP_NAME', 'Nailspot'),
+    'logo_img' => '/img/nail.png', 
+    'logo_img_class' => 'brand-image ',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_xl_class' => 'brand-image-md',
+    'logo_img_alt' => 'nailspot',
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-pink',
     'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => false,
@@ -121,12 +121,12 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
-    'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_brand' => 'bg-pink', //Esta clase sirve para el fondo del content 
+    'classes_brand_text' => '', //sirve para colores de texto 
+    'classes_content_wrapper' => '', //background de contenido
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-pink elevation-4',//sirve para el color del sidebar
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -144,7 +144,7 @@ return [
     |
     */
 
-    'sidebar_mini' => true,
+    'sidebar_mini' => false,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
@@ -235,9 +235,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => ' Dashboard',
+            'text'        => ' Inicio',
             'route'         => 'admin.home',
-            'icon'        => 'fas fa-fw fa-tachometer-alt',
+            'icon'        => 'fas fa-fw fa-home',
             'can' => 'Ver dashboard'
         ],
         [

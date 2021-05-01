@@ -1,7 +1,7 @@
 @props(['course'])
 
 <article class="card flex flex-col ">
-    <img class="h-41 sm:h-36 w-full object-cover" src="{{Storage::url($course->image->url)}}" alt="">
+    <img class="w-full" src="{{Storage::url($course->image->url)}}" alt="">
     <div class="card-body flex-1 flex flex-col ">
         <h1 class="text-2xl mb-2 text-center"> {{$course->name}}</h1>
         <p class="text-md"> {!!Str::limit($course->description,50)!!}</p>

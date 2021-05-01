@@ -1,16 +1,18 @@
-<x-app-layout>
+<x-app-layout> 
      @section('header')
     <!--COmienza prueba--->
-    <div class="w-full lg:max lg:flex pt-20 p-2 bg-purple-800 relative"> 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-4  ">
-            <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-auto">
-                <div class=" embed-responsive">
-                {!!$course->iframe!!}
+    <div class="md:flex pt-10 p-2 bg-purple-800 relative"> 
+        <div class="sm:w-2/2 md:w-1/3 lg:w-2/4 xl:w-2/5  ">
+            <section class="card mt-5 mb-5 m-4">
+                <div class="flex-none bg-cover rounded-t  rounded text-center overflow-hidden bg-center">
+                    <div class=" embed-responsive">
+                    {!!$course->iframe!!}
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
-        <div class="card-body flex-1 flex flex-col  ">
-            <section class="card">
+        <div class="sm:w-2/2 md:w-2/3 lg:w-2/4 xl:w-3/5  ">
+            <section class="card mt-5 mb-5 ml-4 mr-4">
                 <div class="p-4 flex-1 flex flex-col" style="">
                     <h1 class="mb-2 text-5xl text-center justify-items-center">{{$course->name}}</h1>
                     <h2 class="ml-5 text-xl mb-3">{{$course->description}}</h2>

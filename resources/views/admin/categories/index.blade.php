@@ -5,7 +5,7 @@
 @section('content_header')
 <a href="{{route('admin.categories.create')}}" class="btn btn-secondary btn-sm float-right">Nueva categoria</a>
 
-<h1>Lista de categorias</h1>
+<h1 class="text-center text-bold ">Lista de categorias</h1>
 @stop
 
 @section('content')
@@ -30,7 +30,7 @@
                     <td>{{$category->id}}</td>
                     <td>{{$category->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-primary btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                             href="{{route('admin.categories.edit', $category)}}">Editar</a>
                     </td>
                     <td width="10px">
