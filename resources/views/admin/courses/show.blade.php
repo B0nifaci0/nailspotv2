@@ -98,29 +98,39 @@
                 </section>
             </div>
             <div class="order-2">
-            <section class="card mt-5 mb-5 ml-4 mr-4 ">
-                <div class="card-body">
-                    <h1 class="mb-4 text-xl font-bold text-gray-700">Autor</h1>
-                    <div class="flex items-center text-gray-700">
-                        <img src="{{$course->teacher->profile_photo_url}}" alt="avatar"
-                            class="w-12 h-12 object-cover rounded-full shadow-lg mx-4">
-                        <div>
-                            <h1 class="font-bold mx-1 hover:underline">{{$course->teacher->name}}</h1>
-                            <span class="text-sm font-light">Publicado
-                                {{$course->created_at->format('d-m-Y')}}</span>
-                        </div>
-                        <form action="{{route('admin.courses.approved',$course)}}" method="post">
-                            @csrf
-                            <button type="submit"
-                                class="block text-center mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Aprobar</button>
-                        </form>
+                <section class="card mt-5 mb-5 ml-4 mr-4 ">
+                    <div class="card-body">
+                        <h1 class="mb-4 text-xl font-bold text-gray-700">Autor</h1>
+                        <div class="flex items-center text-gray-700">
+                            <img src="{{$course->teacher->profile_photo_url}}" alt="avatar"
+                                class="w-12 h-12 object-cover rounded-full shadow-lg mx-4">
+                            <div>
+                                <h1 class="font-bold mx-1 hover:underline">{{$course->teacher->name}}</h1>
+                                <span class="text-sm font-light">Publicado
+                                    {{$course->created_at->format('d-m-Y')}}</span>
+                            </div>
+                            <form action="{{route('admin.courses.approved',$course)}}" method="post">
+                                @csrf
+                                <button type="submit"
+                                    class="block text-center mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Aprobar</button>
+                            </form>
 
-                        <form action="{{route('admin.courses.disapproved',$course)}}" method="post">
-                            @csrf
-                            <button type="submit"
-                                class="block text-center mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Rechazar</button>
-                        </form>
-                    </div>
+                            {!! Form::open(['method' => 'POST', 'route' => 'admin.courses.disapproved', 'class' =>
+                            'form-horizontal'])
+                            !!}
+                            <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                                {!! Form::label('body', 'Input label') !!}
+                                {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => 'required'])
+                                !!}
+                                <small class="text-danger">{{ $errors->first('body') }}</small>
+                            </div>
+                            {!! Form::hidden('course', $course->id) !!}
+                            <div class="btn-group pull-right">
+                                {!! Form::submit('Add', ['class' => 'block text-center mt-4 bg-pink-600 text-white
+                                font-bold py-2 px-4 rounded-xl']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
                 </section>
             </div>
         </div>

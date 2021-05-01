@@ -31,7 +31,7 @@ Route::get('sales/course/{course}', [CourseController::class, 'details'])->name(
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
-Route::post('courses/{course}/disapproved', [CourseController::class, 'disapproved'])->name('courses.disapproved');
+Route::post('courses/disapproved', [CourseController::class, 'disapproved'])->name('courses.disapproved');
 
 
 Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');

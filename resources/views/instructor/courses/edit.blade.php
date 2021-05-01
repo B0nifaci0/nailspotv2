@@ -19,4 +19,4 @@
         <script src="{{asset('js/instructor/courses/form.js')}}">
         </script>
     </x-slot>
-    </x-app-layout>
+</x-instructor-layout>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Course;
+use App\Models\Comment;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
@@ -43,9 +45,17 @@ class CourseController extends Controller
         return redirect()->route('admin.courses.index')->with('info', "Curso Publicado");;
     }
 
-    public function disapproved(Course $course)
+    public function disapproved(Request $request)
     {
+        $course = Course::find($request->course);
         $this->authorize('revision', $course);
+
+        Comment::create([
+            'body' =>  $request->body,
+            'commentable_id' => $course->id,
+            'commentable_type' => Course::class,
+            'user_id' => auth()->user()->id,
+        ]);
 
         $course->status = 1;
         $course->save();

@@ -121,4 +121,9 @@ class CourseController extends Controller
         $course->save();
         return back();
     }
+
+    public function comments(Course $course)
+    {
+        return view('instructor.courses.comments',compact('course'));
+    }
 }
