@@ -1,9 +1,9 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="form">
-        <!-- Profile Photo -->
+        <!-- Foto de perfil -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
-                <!-- Profile Photo File Input -->
+                <!-- Entrada de archivo de foto de perfil -->
                 <input type="file" class="hidden"
                             wire:model="photo"
                             x-ref="photo"
@@ -18,12 +18,12 @@
 
                 <x-jet-label for="photo" class="text-gray-900" value="{{ __('Foto') }}" />
 
-                <!-- Current Profile Photo -->
+                <!-- Foto de perfil actual -->
                 <div class="mt-2" x-show="! photoPreview">
                     <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
-                <!-- New Profile Photo Preview -->
+                <!-- Vista previa de la nueva foto de perfil -->
                 <div class="mt-2" x-show="photoPreview">
                     <span class="block rounded-full w-20 h-20"
                           x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
@@ -44,14 +44,14 @@
             </div>
         @endif
 
-        <!-- Name -->
+        <!-- Nombre -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" class="text-gray-900" value="{{ __('Nombre') }}" />
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
-        <!-- Email -->
+        <!-- Correo -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" class="text-gray-900" value="{{ __('Correo') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />

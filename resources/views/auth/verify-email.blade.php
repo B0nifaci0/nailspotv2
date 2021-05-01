@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <!-- Aqui se encuentra la card en donde solicita verificar el correo -->
     <div class="bg-purple-800">
         <x-jet-authentication-card>
         <x-slot name="logo">
@@ -40,4 +41,5 @@
             </div>
         </x-jet-authentication-card>
     </div>
+    <!-- Aqui termina la card en donde solicita verificar el correo -->
 </x-guest-layout>

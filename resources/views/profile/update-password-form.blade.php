@@ -1,3 +1,4 @@
+ <!-- Actualizar contraseña -->
 <x-jet-form-section submit="updatePassword">
     <x-slot name="title">
         {{ __('Actualizar contraseña') }}

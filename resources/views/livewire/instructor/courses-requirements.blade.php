@@ -1,3 +1,4 @@
+<!-- En esta seccion muestra los requerimientos del curso -->
 <section>
     <h1 class="text-2xl uppercase text-bold">Requerimientos del curso</h1>
     <hr class="mb-6 mt-2">
@@ -25,7 +26,7 @@
         </div>
     </article>
     @endforeach
-
+<!-- Esta seccion sirve para agregar un requerimiento -->
     <article class="card">
         <div class="card-body">
             <form wire:submit.prevent="store">
@@ -39,5 +40,5 @@
             </form>
         </div>
     </article>
-
+<!-- Aqui termina la seccion de agregar requerimiento -->
 </section>

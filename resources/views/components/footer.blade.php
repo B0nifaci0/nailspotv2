@@ -1,3 +1,4 @@
+<!-- En esta seccion se encuentra el pie de pagina del sitio (footer) -->
 <footer class="relative text-indigo-100 bg-gradient-to-b from-purple-800  to-pink-600 pt-8 pb-6">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px; transform: translateZ(0px)">
@@ -8,6 +9,7 @@
         </div>
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
+            <!-- En este apartado se encuentra el logo y informacion descriptiva del sitio y los iconos de instagram y facebook -->
             <div class="w-full lg:w-6/12 px-4">
                 <h4 class="text-3xl font-semibold">Nailspot</h4>
                 <h5 class="text-lg mt-0 mb-2 text-indigo-100">Tenemos la opción correcta para ti, escribenos a través de
@@ -23,6 +25,8 @@
                         <i class="flex fab fa-facebook-square"></i></a>
                 </div>
             </div>
+            <!-- Aqui termina el apartado del logo y informacion descriptiva -->
+            <!-- En esta seccion se encuentran los menus de cuenta, nailspot y acerca de en donde se encuentran accesos rapidos -->
             <div class="w-full lg:w-6/12 px-4">
                 <div class="flex flex-wrap items-top mb-6">
                     <div class="w-full lg:w-4/12 px-4 ml-auto">
@@ -38,6 +42,7 @@
                             </li>
                         </ul>
                     </div>
+                    
                     <div class="w-full lg:w-4/12 px-4 ml-auto">
                         <span class="block uppercase text-indigo-100 text-sm font-bold mb-2">Nailspot</span>
                         <ul class="list-unstyled">
@@ -66,6 +71,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Aqui termina la seccion en donde se encuentran los menus de cuenta, nailspot y acerca de en donde se encuentran accesos rapidos -->
         </div>
         <hr class="my-6 border-gray-400" />
         <div class="flex flex-wrap items-center md:justify-between justify-center">
@@ -78,3 +84,4 @@
         </div>
     </div>
 </footer>
+<!-- Aqui termina la seccion del pie de pagina del sitio (footer) -->

@@ -1,3 +1,4 @@
+<!-- En esta seccion se nos muestra un listado de criterios asignados a cada juez -->
 <div class="bg-purple-800">
     <h1 class="text-center text-white text-xl font-bold">Lista de Criterios</h1>
 </div>
@@ -47,10 +48,12 @@
                         <td>
                             {{$item->criterion->name}}
                         </td>
+                        <!-- Con este boton podemos ir a calificar la competencia -->
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <a href="{{route('judge.competences.participants',['competence'=> $item->competence, 'criterion' => $item->criterion])}}"
                                 class="text-indigo-600 hover:text-indigo-900"><button class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Ir a calificar</button></a>
                         </td>
+                        <!-- Aqui termina el boton para calificar la competencia -->
                     </tr>
                     @empty
                     <tr class="px-6 py-4">
@@ -66,3 +69,4 @@
         </x-table-responsive>
     </div>
 </div>
+<!-- EAqui termina la seccion de los criterios asiganados por competencia -->

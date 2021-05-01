@@ -1,3 +1,4 @@
+<!-- En esta seccion se muetran las lecciones agregadas -->
 <div class="card">
     <div class="card-body bg-gray-200">
         @foreach ($course->lessons->sortBy('final') as $key=>$item)
@@ -67,6 +68,7 @@
                 <i class="far fa-plus-square text-2xl text-red-500 mr-2"></i>
                 Agregar Lección
             </a>
+            <!-- En esta seccion sirve para agregar nuevas lecciones -->
             <article class="card" x-show="open">
                 <div class="card-body">
                     <h1 class="text-xl font-bold mb-4">Agregar nueva Lección</h1>
@@ -101,6 +103,7 @@
                     </div>
                 </div>
             </article>
+            <!-- Aqui termina la seccion de agregar lecciones  -->
         </div>
     </div>
 </div>
