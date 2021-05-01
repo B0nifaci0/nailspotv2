@@ -2,6 +2,17 @@ document
     .getElementById("name")
     .addEventListener("keyup", slugChange);
 
+document
+    .getElementById('price')
+    .addEventListener('keypress', numberValidate)
+
+function numberValidate(e) {
+    var key = window.event ? e.which : e.keyCode;
+    if (key < 48 || key > 57) {
+        e.preventDefault();
+    }
+}
+
 function slugChange() {
     name = document.getElementById("name").value;
     document.getElementById("slug").value = slug(name);
@@ -34,9 +45,9 @@ ClassicEditor
     });
 
 //Cambiar imagen
-document.getElementById("file").addEventListener('change', cambiarImagen);
+document.getElementById("file").addEventListener('change', changeImage);
 
-function cambiarImagen(event) {
+function changeImage(event) {
     var file = event.target.files[0];
 
     var reader = new FileReader();

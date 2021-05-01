@@ -42,4 +42,14 @@ class CourseController extends Controller
 
         return redirect()->route('admin.courses.index')->with('info', "Curso Publicado");;
     }
+
+    public function disapproved(Course $course)
+    {
+        $this->authorize('revision', $course);
+
+        $course->status = 1;
+        $course->save();
+
+        return redirect()->route('admin.courses.index')->with('info', "Curso no publicado");
+    }
 }
