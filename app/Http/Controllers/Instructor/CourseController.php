@@ -51,7 +51,7 @@ class CourseController extends Controller
             ]);
         }
 
-        return redirect()->route('instructor.courses.edit', $course);
+        return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se creo con exito!');
     }
 
     public function show(Course $course)
@@ -100,7 +100,7 @@ class CourseController extends Controller
                 ]);
             }
         }
-        return redirect()->route('instructor.courses.edit', $course);
+        return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se actualizo con exito!');
     }
 
     public function tasks(Course $course, User $student)
@@ -124,6 +124,6 @@ class CourseController extends Controller
 
     public function comments(Course $course)
     {
-        return view('instructor.courses.comments',compact('course'));
+        return view('instructor.courses.comments', compact('course'));
     }
 }
