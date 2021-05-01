@@ -21,7 +21,7 @@ class CreateTasksTable extends Migration
             $table->enum('status', [Task::ENTREGADA, Task::CALIFICADA])->default(Task::ENTREGADA);
             $table->integer('score')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('lesson_id')->references('id')->on('lessons')->cascadeOnDelete();
+            $table->foreignId('course_id')->references('id')->on('courses')->cascadeOnDelete();
             $table->timestamps();
         });
     }

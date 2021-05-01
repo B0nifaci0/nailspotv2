@@ -14,12 +14,6 @@ class Lesson extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $withCount = ['tasks'];
-
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
-    }
 
     public function course()
     {

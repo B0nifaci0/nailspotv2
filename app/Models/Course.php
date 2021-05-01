@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Goal;
 use App\Models\Sale;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
@@ -68,6 +69,11 @@ class Course extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 
     public function teacher()
