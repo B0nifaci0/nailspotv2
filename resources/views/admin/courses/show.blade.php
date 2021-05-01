@@ -1,21 +1,21 @@
 <x-app-layout>
     <div class=" grid grid-cols-1 lg:grid-cols-3  bg-purple-800 ">
-       @if (session('info'))
-       <div class="lg:col-span-3" x-data="{open: true}" x-show="open">
-           <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-               <strong class="font-bold">Ocurrio un error!</strong>
-               <span class="block sm:inline">{{session('info')}}</span>
-               <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                   <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
-                       viewBox="0 0 20 20" x-on:click="open = false">
-                       <title>Close</title>
-                       <path
-                           d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-                   </svg>
-               </span>
-           </div>
-       </div>
-       @endif
+        @if (session('info'))
+        <div class="lg:col-span-3" x-data="{open: true}" x-show="open">
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Ocurrio un error!</strong>
+                <span class="block sm:inline">{{session('info')}}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20" x-on:click="open = false">
+                        <title>Close</title>
+                        <path
+                            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+        @endif
     </div>
     <h1 class=" text-white bg-purple-800 text-bold text-5xl text-center pt-5">Aprobar Curso</h1>
     <div class=" md:flex pt-10 p-2 bg-purple-800 relative">
@@ -24,9 +24,10 @@
                 <div class="flex-none bg-cover rounded-t  rounded text-center overflow-hidden bg-center">
                     <div class=" mx-auto flex-1 flex flex-col">
                         <figure>
-                            @if($course->image)
-                                <img class="h-60 w-full object-cover" src="{{Storage::url($course->image->url)}}" alt="">
-                            @endif         
+                            @if($course->iframe)
+                            
+                            {!!$course->iframe!!}
+                            @endif
                         </figure>
                     </div>
                 </div>
@@ -39,9 +40,9 @@
                     <h2 class="ml-5 text-xl mb-3">{{$course->description}}</h2>
                     <div class="mb-2 text-grey-darker text-sm flex-1">
                         <p class="ml-5 mb-3"> Nivel: {{ $course->level->name}}</p>
-                           <p class="ml-5 mb-3">Categoria: {{ $course->category->name}}</p>
-                           <p class="ml-5 mb-3">Matriculados: <i class="fas fa-users"></i>
-                                {{($course->students_count)}}</p>
+                        <p class="ml-5 mb-3">Categoria: {{ $course->category->name}}</p>
+                        <p class="ml-5 mb-3">Matriculados: <i class="fas fa-users"></i>
+                            {{($course->students_count)}}</p>
                         @if ($course->rating!==6)
                         <ul class="flex text-sm ml-5">
                             <li class="mr-1"><i
@@ -79,8 +80,8 @@
                     <div class="card-body">
                         <h1 class="font-bold text-3xl text-center">Descripción</h1>
                         <div class="text-gray-700 text-base">
-                        {!! $course->description !!}
-                    </div>
+                            {!! $course->description !!}
+                        </div>
                 </section>
             </div>
             <div class="order-2">
@@ -89,7 +90,7 @@
                         <h1 class="font-bold text-3xl text-center">Requisitos</h1>
                         <ul class="list-disc list-inside">
                             @forelse ($course->requirements as $requirement)
-                                <li class="text-gray-700 text-base">{{$requirement->name}}</li>
+                            <li class="text-gray-700 text-base">{{$requirement->name}}</li>
                             @empty
                             <li>No hay requerimentos registrados</li>
                             @endforelse
@@ -98,24 +99,40 @@
                 </section>
             </div>
             <div class="order-2">
-            <section class="card mt-5 mb-5 ml-4 mr-4 ">
-                <div class="card-body">
-                    <h1 class="mb-4 text-xl font-bold text-gray-700">Autor</h1>
-                    <div class="flex items-center text-gray-700">
-                        <img src="{{$course->teacher->profile_photo_url}}" alt="avatar"
-                            class="w-12 h-12 object-cover rounded-full shadow-lg mx-4">
-                        <div>
-                            <h1 class="font-bold mx-1 hover:underline">{{$course->teacher->name}}</h1>
-                            <span class="text-sm font-light">Publicado
-                                {{$course->created_at->format('d-m-Y')}}</span>
+                <section class="card mt-5 mb-5 ml-4 mr-4 ">
+                    <div class="card-body">
+                        <h1 class="mb-4 text-xl font-bold text-gray-700">Autor</h1>
+                        <div class="flex items-center text-gray-700">
+                            <img src="{{$course->teacher->profile_photo_url}}" alt="avatar"
+                                class="w-12 h-12 object-cover rounded-full shadow-lg mx-4">
+                            <div>
+                                <h1 class="font-bold mx-1 hover:underline">{{$course->teacher->name}}</h1>
+                                <span class="text-sm font-light">Publicado
+                                    {{$course->created_at->format('d-m-Y')}}</span>
+                            </div>
+                            <form action="{{route('admin.courses.approved',$course)}}" method="post">
+                                @csrf
+                                <button type="submit"
+                                    class="block text-center mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Aprobar</button>
+                            </form>
+
+                            {!! Form::open(['method' => 'POST', 'route' => 'admin.courses.disapproved', 'class' =>
+                            'form-horizontal'])
+                            !!}
+                            <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                                {!! Form::label('body', 'Input label') !!}
+                                {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => 'required'])
+                                !!}
+                                <small class="text-danger">{{ $errors->first('body') }}</small>
+                            </div>
+                            {!! Form::hidden('course', $course->id) !!}
+                            <div class="btn-group pull-right">
+                                {!! Form::submit('Add', ['class' => 'block text-center mt-4 bg-pink-600 text-white
+                                font-bold py-2 px-4 rounded-xl']) !!}
+                            </div>
+                            {!! Form::close() !!}
                         </div>
-                    </div>
-                    <form action="{{route('admin.courses.approved',$course)}}" method="post">
-                        @csrf
-                        <button type="submit" class="block text-center w-full mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Aprobar</button>
-                    </form>
-                </div>
-            </section>
+                </section>
             </div>
         </div>
         <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
@@ -138,9 +155,9 @@
                 <section class="card mb-8 ml-4 mr-4 ">
                     <div class="card-body">
                         <h1 href="#" class="text-2xl text-gray-700 font-bold mb-3">Lecciones</h1>
-                         <ul>
+                        <ul>
                             @forelse ($course->lessons as $lesson)
-                                <li class="text-gray-700 text-base"> - {{$lesson->name}}</li>
+                            <li class="text-gray-700 text-base"> - {!!$lesson->iframe!!}</li>
                             @empty
                             <h1>No hay lecciones registradas</h1>
                             @endforelse
@@ -148,7 +165,7 @@
                     </div>
                 </section>
             </div>
-            <!---->
+
         </div>
     </div>
 

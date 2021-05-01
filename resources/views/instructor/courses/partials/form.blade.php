@@ -32,7 +32,7 @@
     </div>
     <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
         {!! Form::label('price', 'Precio') !!}
-        {!! Form::text('price', null, ['class' => 'form-input block w-full mt-1 text-center'])
+        {!! Form::text('price', null, ['class' => 'form-input block w-full mt-1 text-center','id'=>'price'])
         !!}
         <small class="text-danger">{{ $errors->first('price') }}</small>
     </div>

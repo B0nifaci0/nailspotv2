@@ -32,7 +32,7 @@ class CourseRequest extends FormRequest
             'category_id' => 'required',
             'user_id' => 'required',
             'price' => 'required',
-            'image' => 'image'
+            'image' => 'required|image|dimensions:width=200,height=100'
         ];
     }
 }

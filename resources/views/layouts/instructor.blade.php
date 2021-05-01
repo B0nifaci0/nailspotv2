@@ -33,7 +33,8 @@
                 <aside>
                     <a href="{{ route('instructor.courses.index')}}"
                         class="py-2 px-3 w-full flex items-center focus:outline-none">
-                        <span class="text-white ml-2 text-sm font-medium hover:bg-pink-400 hover:text-white px-3 py-3 rounded-md">
+                        <span
+                            class="text-white ml-2 text-sm font-medium hover:bg-pink-400 hover:text-white px-3 py-3 rounded-md">
                             Todos mis cursos
                         </span>
                     </a>
@@ -55,6 +56,15 @@
                             class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.students', $course) border-pink-600 @else border-transparent @endif pl-2">
                             <a href="{{route('instructor.courses.students', $course)}}">Estudiantes</a>
                         </li>
+                        <li
+                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.comments', $course) border-pink-600 @else border-transparent @endif pl-2">
+                            <a href="{{route('instructor.courses.comments', $course)}}">Comentarios admin</a>
+                        </li>
+                        <li
+                            class="leading-7 mb-1 border-l-4 pl-2">
+                            <a href="{{route('instructor.courses.comments', $course)}}">Tareas</a>
+                        </li>
+                        
                     </ul>
                     @switch($course->status)
                     @case(1)

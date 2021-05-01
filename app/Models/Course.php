@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Goal;
 use App\Models\Sale;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Level;
@@ -70,6 +71,11 @@ class Course extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function teacher()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -107,7 +113,7 @@ class Course extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function image()

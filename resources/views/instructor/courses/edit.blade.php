@@ -1,5 +1,10 @@
 <x-instructor-layout :course="$course">
 
+    @if(session('info'))
+    <div class="alert alert-success">
+        {{session('info')}}
+    </div>
+    @endif
     <h1 class="text-2xl font-bold uppercase">
         Información del curso
     </h1>
@@ -19,4 +24,4 @@
         <script src="{{asset('js/instructor/courses/form.js')}}">
         </script>
     </x-slot>
-    </x-app-layout>
+</x-instructor-layout>
