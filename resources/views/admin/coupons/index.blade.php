@@ -3,7 +3,7 @@
 @section('title', 'Cupones')
 
 @section('content_header')
-<a href="{{route('admin.coupons.create')}}" class="btn btn-secondary btn-sm float-right">Agregar cupón</a>
+<a href="{{route('admin.coupons.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
 
 <h1 class="text-bold text-center">Lista de cupones</h1>
 @stop
@@ -41,13 +41,13 @@
                     <td>{{$coupon->discount}}%</td>
                     @endif
                     <td width="10px">
-                        <a class="btn btn-secondary btn-sm" href="{{route('admin.coupons.edit', $coupon)}}">Editar</a>
+                        <a class="btn btn-secondary btn-sm" href="{{route('admin.coupons.edit', $coupon)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.coupons.destroy',$coupon)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>

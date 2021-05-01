@@ -29,7 +29,7 @@
                             @endforeach
                         </td>
                         <td width="10px">
-                            <a class="btn btn-secondary" href="{{route('admin.users.edit',$user->id)}}">Editar</a>
+                            <a class="btn btn-secondary" href="{{route('admin.users.edit',$user->id)}}"><i class="far fa-edit"></i></a>
                         </td>
                     </tr>
                     @empty

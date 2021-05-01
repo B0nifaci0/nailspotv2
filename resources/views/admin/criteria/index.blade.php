@@ -3,7 +3,7 @@
 @section('title', 'Criterios')
 
 @section('content_header')
-<a href="{{route('admin.criteria.create')}}" class="btn btn-secondary btn-sm float-right">Nuevo Criterio</a>
+<a href="{{route('admin.criteria.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
 
 <h1 class="text-center text-bold">Lista de criterios</h1>
 @stop
@@ -31,13 +31,13 @@
                     <td>{{$criterion->name}}</td>
                     <td width="10px">
                         <a class="btn btn-secondary btn-sm"
-                            href="{{route('admin.criteria.edit', $criterion)}}">Editar</a>
+                            href="{{route('admin.criteria.edit', $criterion)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.criteria.destroy',$criterion)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>

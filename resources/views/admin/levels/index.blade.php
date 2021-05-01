@@ -3,7 +3,7 @@
 @section('title', 'Niveles')
 
 @section('content_header')
-<a href="{{route('admin.levels.create')}}" class="btn btn-secondary btn-sm float-right">Nuevo nivel</a>
+<a href="{{route('admin.levels.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
 
 <h1 class="text-bold text-center">Lista de niveles</h1>
 @stop
@@ -30,13 +30,13 @@
                     <td>{{$level->id}}</td>
                     <td>{{$level->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-secondary btn-sm" href="{{route('admin.levels.edit', $level)}}">Editar</a>
+                        <a class="btn btn-secondary btn-sm" href="{{route('admin.levels.edit', $level)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.levels.destroy',$level)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>

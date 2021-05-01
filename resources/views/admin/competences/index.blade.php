@@ -3,7 +3,7 @@
 @section('title', 'Competencias')
 
 @section('content_header')
-<a href="{{route('admin.competences.create')}}" class="btn btn-secondary btn-sm float-right">Nueva Competencia</a>
+<a href="{{route('admin.competences.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
 <h1 class="text-center text-bold">Competencias</h1>
 @stop
 
@@ -50,17 +50,17 @@
 
                     <td width="10px">
                         <a class="btn btn-secondary btn-sm"
-                            href='{{ route('admin.competences.edit',$competence) }}'>Editar</a>
+                            href='{{ route('admin.competences.edit',$competence) }}'><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <a class="btn btn-dark btn-sm"
-                            href='{{ route('admin.competences.index-criteria',$competence) }}'>Criterios</a>
+                            href='{{ route('admin.competences.index-criteria',$competence) }}'><i class="fas fa-gavel"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.competences.destroy',$competence)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                     <td>

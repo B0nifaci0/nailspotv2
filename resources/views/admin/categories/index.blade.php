@@ -3,7 +3,7 @@
 @section('title', 'Categorias')
 
 @section('content_header')
-<a href="{{route('admin.categories.create')}}" class="btn btn-secondary btn-sm float-right">Nueva categoria</a>
+<a href="{{route('admin.categories.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
 
 <h1 class="text-center text-bold ">Lista de categorias</h1>
 @stop
@@ -31,13 +31,13 @@
                     <td>{{$category->name}}</td>
                     <td width="10px">
                         <a class="btn btn-secondary btn-sm"
-                            href="{{route('admin.categories.edit', $category)}}">Editar</a>
+                            href="{{route('admin.categories.edit', $category)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.categories.destroy',$category)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
