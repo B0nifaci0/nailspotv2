@@ -74,33 +74,33 @@
         
         });
   </script>
-    <div class=" bg-purple-800">
-        <div id="slider-1" class=" mx-auto">
-            <div class="bg-cover bg-auto  opacity-75 text-white py-72 px-10 object-fill" style='background-image: url("https://media-nailspot.s3.amazonaws.com/media/CACHE/images/courses/6236d801-efb3-4e91-bf8c-34f3b3ccc57a/2964d9c36e85927e9bfd44744bc74833.png");'>
+    <div class="bg-purple-800 ">
+        <div id="slider-1" class="mx-auto ">
+            <div class="object-fill px-10 text-white bg-auto bg-cover opacity-75 py-72" style='background-image: url("https://media-nailspot.s3.amazonaws.com/media/CACHE/images/courses/6236d801-efb3-4e91-bf8c-34f3b3ccc57a/2964d9c36e85927e9bfd44744bc74833.png");'>
                 <div class="md:w-1/2">
-                    <p class="font-bold text-2xl uppercase ">Competencia 1</p>
+                    <p class="text-2xl font-bold uppercase ">Competencia 1</p>
                     <p class="text-6xl font-bold">Nailspot</p>
-                    <p class="text-3xl mb-10 leading-none">Conoce nuestra competencia </p>
-                    <a href="#" class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Participar</a>
+                    <p class="mb-10 text-3xl leading-none">Conoce nuestra competencia </p>
+                    <a href="#" class="px-8 py-4 text-xs font-bold text-white uppercase bg-purple-500 rounded hover:bg-gray-200 hover:text-gray-800">Participar</a>
                 </div>  
             </div> <!--container -->
             <br>
         </div>
-        <div id="slider-2" class=" mx-auto">
-            <div class="bg-cover bg-auto  opacity-75 text-white py-72 px-10 object-fill" style='background-image: 
+        <div id="slider-2" class="mx-auto ">
+            <div class="object-fill px-10 text-white bg-auto bg-cover opacity-75 py-72" style='background-image: 
             url("https://images.unsplash.com/photo-1617289749213-c2a7b44f6523?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1914&q=80");'>
                 <div class="md:w-1/2">
-                    <p class="font-bold text-md uppercase">Competencia 2</p>
+                    <p class="font-bold uppercase text-md">Competencia 2</p>
                     <p class="text-6xl font-bold">Nailspot</p>
-                    <p class="text-3xl mb-10 leading-none">Conoce nuestra Competencia</p>
-                    <a href="#" class="bg-purple-500 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Participar</a>
+                    <p class="mb-10 text-3xl leading-none">Conoce nuestra Competencia</p>
+                    <a href="#" class="px-8 py-4 text-xs font-bold text-white uppercase bg-purple-500 rounded hover:bg-gray-200 hover:text-gray-800">Participar</a>
                 </div>
             </div> <!--container -->
             <br>
         </div>
-        <div  class="flex justify-between w-12 mx-auto pb-2">
-            <button id="sButton1" onclick="sliderButton1()" class="bg-white rounded-full w-4 pb-2 " ></button>
-            <button id="sButton2" onclick="sliderButton2() " class="bg-white rounded-full w-4 p-2"></button>
+        <div  class="flex justify-between w-12 pb-2 mx-auto">
+            <button id="sButton1" onclick="sliderButton1()" class="w-4 pb-2 bg-white rounded-full " ></button>
+            <button id="sButton2" onclick="sliderButton2() " class="w-4 p-2 bg-white rounded-full"></button>
         </div>
     </div>
     @endsection

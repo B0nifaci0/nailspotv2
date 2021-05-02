@@ -17,23 +17,19 @@ class Task extends Model
 
     protected $guarded = ['id'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+  
     public function course()
     {
         return $this->belongsTo(Course::class);
     }
 
-    public function image()
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
-
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

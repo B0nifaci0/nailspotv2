@@ -27,7 +27,7 @@ class Course extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'status'];
-    protected $withCount = ['students', 'reviews', 'sales'];
+    protected $withCount = ['students', 'reviews', 'sales','tasks'];
 
     public function getRatingAttribute()
     {

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\TasksUser;
 use App\Models\Task;
 use App\Models\Course;
 use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Models\CompetenceUser;
+use App\Models\TaskUser;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -74,15 +76,35 @@ class ProfileController extends Controller
 
     public function resources(Competence $competence)
     {
-        $resource = CompetenceUser::whereCompetenceId($competence->id)->whereUserId(auth()->user()->id)->first();
+        $resource = CompetenceUser::whereCompetenceId($competence->id)
+            ->firstWhere('user_id', auth()->user()->id);
         return view('profile.competences.resources', compact('resource'));
     }
 
-    public function image(Request $request, CompetenceUser $resource)
+    public function competenceImage(Request $request, CompetenceUser $resource)
     {
         if ($request->hasfile('image')) {
-            $url = Storage::put('public/competences/resources', $request->file('image'));
+            $url = Storage::disk('public')->put('competences/resources', $request->file('image'));
             $resource->images()->create([
+                'url' => $url
+            ]);
+        }
+        return back();
+    }
+
+    public function courseImage(Request $request, Task $task)
+    {
+        $user = auth()->user();
+        if (!$task->students->contains($user->id)) {
+            $task->students()->attach($user->id);
+        }
+
+        $taskUser = TaskUser::whereTaskId($task->id)
+            ->firstWhere('user_id', $user->id);
+
+        if ($request->hasfile('image')) {
+            $url = Storage::disk('public')->put('course/tasks', $request->file('image'));
+            $taskUser->images()->create([
                 'url' => $url
             ]);
         }

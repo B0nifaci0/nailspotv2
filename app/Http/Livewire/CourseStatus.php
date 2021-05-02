@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\TaskUser;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -11,7 +12,7 @@ class CourseStatus extends Component
 {
     use AuthorizesRequests;
 
-    public $course, $current, $lesson, $lessons;
+    public $course, $current, $lessons, $taskUser;
 
 
     public function mount(Course $course)
@@ -21,6 +22,7 @@ class CourseStatus extends Component
 
         $this->lessons = $course->lessons()->get();
         $this->current = $course->lessons()->first();
+        
     }
 
     public function render()
@@ -31,7 +33,6 @@ class CourseStatus extends Component
     public function changeLesson(Lesson $lesson)
     {
         $this->current = $lesson;
-        $this->tasks = $this->lessons;
     }
 
     public function getIndexProperty()

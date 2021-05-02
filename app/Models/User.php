@@ -95,10 +95,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
+    
     public function tasks()
     {
         return $this->hasMany(Task::class);
     }
+
 
     public function sales()
     {
