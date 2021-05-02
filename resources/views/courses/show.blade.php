@@ -1,28 +1,28 @@
 <x-app-layout> 
      @section('header')
     <!--COmienza prueba--->
-    <div class="md:flex pt-10 p-2 bg-purple-800 relative"> 
-        <div class="sm:w-2/2 md:w-1/3 lg:w-2/4 xl:w-2/5  ">
-            <section class="card mt-5 mb-5 m-4">
-                <div class="flex-none bg-cover rounded-t  rounded text-center overflow-hidden bg-center">
+    <div class="relative p-2 pt-10 bg-purple-800 md:flex"> 
+        <div class="sm:w-2/2 md:w-1/3 lg:w-2/4 xl:w-2/5 ">
+            <section class="m-4 mt-5 mb-5 card">
+                <div class="flex-none overflow-hidden text-center bg-center bg-cover rounded rounded-t">
                     <div class=" embed-responsive">
                     {!!$course->iframe!!}
                     </div>
                 </div>
             </section>
         </div>
-        <div class="sm:w-2/2 md:w-2/3 lg:w-2/4 xl:w-3/5  ">
-            <section class="card mt-5 mb-5 ml-4 mr-4">
-                <div class="p-4 flex-1 flex flex-col" style="">
+        <div class="sm:w-2/2 md:w-2/3 lg:w-2/4 xl:w-3/5 ">
+            <section class="mt-5 mb-5 ml-4 mr-4 card">
+                <div class="flex flex-col flex-1 p-4" style="">
                     <h1 class="mb-2 text-5xl text-center justify-items-center">{{$course->name}}</h1>
-                    <h2 class="ml-5 text-xl mb-3">{{$course->description}}</h2>
-                    <div class="mb-2 text-grey-darker text-sm flex-1">
-                       <p class="ml-5 mb-3"> Nivel: {{ $course->level->name}}</p>
-                       <p class="ml-5 mb-3">Categoria: {{ $course->category->name}}</p>
-                       <p class="ml-5 mb-3">Matriculados: <i class="fas fa-users"></i>
+                    <h2 class="mb-3 ml-5 text-xl">{{$course->description}}</h2>
+                    <div class="flex-1 mb-2 text-sm text-grey-darker">
+                       <p class="mb-3 ml-5"> Nivel: {{ $course->level->name}}</p>
+                       <p class="mb-3 ml-5">Categoria: {{ $course->category->name}}</p>
+                       <p class="mb-3 ml-5">Matriculados: <i class="fas fa-users"></i>
                             {{($course->students_count)}}</p>
                     @if ($course->rating!==6)
-                    <ul class="flex text-sm ml-5">
+                    <ul class="flex ml-5 text-sm">
                         <li class="mr-1"><i
                                 class="fas fa-star text-{{$course->rating>= 1 ? 'yellow' : 'gray'}}-400"></i>
                         </li>
@@ -39,13 +39,13 @@
                                 class="fas fa-star text-{{$course->rating>= 5 ? 'yellow' : 'gray'}}-400"></i>
                         </li>
                     </ul>
-                    <span class="text-gray-700 ml-5"> {{$course->rating}}</span>
+                    <span class="ml-5 text-gray-700"> {{$course->rating}}</span>
                     @endif
-                    <!--<div class="flex items-center ml-5 mb-6">
-                        <img class="w-12 h-12 rounded-full mr-4" src="{{$course->teacher->profile_photo_url}}"
+                    <!--<div class="flex items-center mb-6 ml-5">
+                        <img class="w-12 h-12 mr-4 rounded-full" src="{{$course->teacher->profile_photo_url}}"
                         alt="Avatar of Writer">
                         <div class="text-sm ">
-                        <p class=" leading-none">{{$course->teacher->name}}</p>
+                        <p class="leading-none ">{{$course->teacher->name}}</p>
                         <p class="">Publicado: {{$course->created_at->format('d-m-Y')}}</p>
                         </div>
                     </div>-->
@@ -55,110 +55,110 @@
     </div>
     @endsection
     <div class="bg-purple-800">
-        <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <div class="order-2 lg:col-span-2 ">
-                <section class="card mt-5 mb-5 ml-4 mr-4">
+                <section class="mt-5 mb-5 ml-4 mr-4 card">
                     <div class="card-body roundedxl">
-                        <h1 class="text-3xl text-gray-700 font-bold mb-3 text-center">Lo que aprenderas en este curso...</h1>
+                        <h1 class="mb-3 text-3xl font-bold text-center text-gray-700">Lo que aprenderas en este curso...</h1>
                         <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 ">
                             @foreach ($course->goals as $goal)
-                            <li class="text-gray-700 text-xl"> - {{$goal->name}}</li>
+                            <li class="text-xl text-gray-700"> - {{$goal->name}}</li>
                             @endforeach
                         </ul>
                     </div>
                 </section>
             </div>
             <div class="order-2">
-                <section class="card mb-8 ml-4 mr-4 mt-5">
+                <section class="mt-5 mb-8 ml-4 mr-4 card">
                     <div class="card-body">
-                        <h1 href="#" class="text-3xl text-gray-700 font-bold mb-3 text-center">Contenido del curso</h1>
+                        <h1 href="#" class="mb-3 text-3xl font-bold text-center text-gray-700">Contenido del curso</h1>
                         <ul>
                             @foreach ($course->lessons as $lesson)
-                            <li class="text-gray-700 text-base"> - {{$lesson->name}}</li>
+                            <li class="text-base text-gray-700"> - {{$lesson->name}}</li>
                             @endforeach
                         </ul>
                     </div>
                 </section>
             </div>
             <div class="order-2">
-                <section class=" card mt-5 mb-5 ml-4 mr-4 ">
+                <section class="mt-5 mb-5 ml-4 mr-4  card">
                     <div class="card-body">
-                        <h1 class="font-bold text-3xl text-center">Requisitos</h1>
+                        <h1 class="text-3xl font-bold text-center">Requisitos</h1>
                         <ul class="list-disc list-inside">
                             @foreach ($course->requirements as $requirement)
-                            <li class="text-gray-700 text-base">{{$requirement->name}}</li>
+                            <li class="text-base text-gray-700">{{$requirement->name}}</li>
                             @endforeach
                         </ul>
                     </div>
                 </section>
             </div>
             <div class="order-2">
-                <section class="card  mt-5 mb-5 ml-4 mr-4">
+                <section class="mt-5 mb-5 ml-4 mr-4 card">
                     <div class="card-body">
-                        <h1 class="font-bold text-3xl text-center">Descripción</h1>
-                        <div class="text-gray-700 text-base">
+                        <h1 class="text-3xl font-bold text-center">Descripción</h1>
+                        <div class="text-base text-gray-700">
                             {{$course->description}}
                         </div>
                     </div>
                 </section>
             </div>
             <div class="order-2 lg:col-span-1 ">
-                <section class="card  mt-5 mb-5 ml-4 mr-4 ">
+                <section class="mt-5 mb-5 ml-4 mr-4 card ">
                     <div class="card-body">
-                        <h1 class="mb-4 text-3xl text-center font-bold text-gray-700">Autor</h1>
+                        <h1 class="mb-4 text-3xl font-bold text-center text-gray-700">Autor</h1>
                         <div class="flex items-center justify-center text-gray-700">
                             <img src="{{$course->teacher->profile_photo_url}}" alt="avatar"
-                                class="w-16 h-16 object-cover rounded-full shadow-lg mx-4">
+                                class="object-cover w-16 h-16 mx-4 rounded-full shadow-lg">
                             <div >
-                                <h1 class="font-bold mx-1 hover:underline text-2xl">{{$course->teacher->name}}</h1>
+                                <h1 class="mx-1 text-2xl font-bold hover:underline">{{$course->teacher->name}}</h1>
                                 <span class="text-xl font-light">Publicado
                                     {{$course->created_at->format('d-m-Y')}}</span>
                             </div>
                         </div>
                         @can('enrolled',$course)
-                        <a href="{{route('course.status',$course)}}" type="submit" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">Continuar
+                        <a href="{{route('course.status',$course)}}" type="submit" class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">Continuar
                             con
                             el
                             curso</a>
                         @else
-                        <p class="text-2xl text-center text-gray-500 font-bold mt-3 mb-2"> $ {{$course->price}} MXN</p>
-                        <a href="{{route('payment.course.checkout', $course)}}" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">Comprar este
+                        <p class="mt-3 mb-2 text-2xl font-bold text-center text-gray-500"> $ {{$course->price}} MXN</p>
+                        <a href="{{route('payment.course.checkout', $course)}}" class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">Comprar este
                             curso</a>
                         @endcan
                     </div>
                 </section>
             </div>
         </div>
-        <div class="grid lg:grid-cols-4 grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
             <!---->
         <!--</div>
-        <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">-->
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">-->
             <div class="order-2 lg:col-span-2 ">
-                <section class="card mb-12 ml-4 mr-4 ">
+                <section class="mb-12 ml-4 mr-4 card ">
                     <div class="card-body">
                         @livewire('courses-reviews', ['course' => $course])
                     </div>
                 </section >
             </div>
             <div class="order-2 lg:col-span-2">
-                <aside class=" card lg:block ml-4 mr-4 ">
+                <aside class="ml-4 mr-4  card lg:block">
                     <div class="card-body">
-                        <h1 class="mb-4 text-4xl text-center font-bold text-gray-700">Similares </h1>
+                        <h1 class="mb-4 text-4xl font-bold text-center text-gray-700">Similares </h1>
                         @foreach ($similares as $similar)
-                        <article class=" flex mb-6 mt-4 ">
-                        <img class="h-32 w-40 object-cover" src="{{Storage::url($similar->image->url)}}">
+                        <article class="flex mt-4 mb-6 ">
+                        <img class="object-cover w-40 h-32" src="{{Storage::url($similar->image->url)}}">
                         <div class="ml-2">
                         <h1>
-                            <a class="font-bold text-gray-500 mb-3"
+                            <a class="mb-3 font-bold text-gray-500"
                                 href="{{route('course.show',$similar)}}">{{Str::limit($similar->name,40)}}</a>
                         </h1>
                         <div class="flex items-center mb-2">
-                            <img class="h-8 w-8 object-cover rounded-full shadow-lg"
+                            <img class="object-cover w-8 h-8 rounded-full shadow-lg"
                                 src="{{$similar->teacher->profile_photo_url}}" alt="">
-                            <p class="text-gray-700 text-sm ml-2">{{$similar->teacher->name}}</p>
+                            <p class="ml-2 text-sm text-gray-700">{{$similar->teacher->name}}</p>
                         </div>
                         @if ($similar->rating!=6)
-                        <p class="text-sm"><i class="fas fa-star text-yellow-400 mr-2"></i>{{$similar->rating}}
+                        <p class="text-sm"><i class="mr-2 text-yellow-400 fas fa-star"></i>{{$similar->rating}}
                         </p>
                         @endif
                         </div>

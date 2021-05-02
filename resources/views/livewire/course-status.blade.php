@@ -1,36 +1,43 @@
-<div class="bg-purple-800 pt-10">
-    <div class="container grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="pt-10 bg-purple-800">
+    <div class="container grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div class="lg:col-span-2">
             <div class="embed-responsive rounded-xl">
                 {!!$current->iframe!!}
             </div>
-            <h1 class="text-2xl text-white font-bold pt-5 pb-5">
+            <h1 class="pt-5 pb-5 text-2xl font-bold text-white">
                 {!!$current->name!!}
             </h1>
             <div class="card">
-                <div class="card-body flex text-gray-700 font-bold">
+                <div class="flex font-bold text-gray-700 card-body">
 
                     @if ($this->previous!==null)
                     <a class="cursor-pointer" wire:click="changeLesson({{$this->previous}})">Lección Anterior</a>
                     @endif
 
                     @if ($this->next)
-                    <a wire:click="changeLesson({{$this->next}})" class="cursor-pointer ml-auto">Siguiente Lección </a>
+                    <a wire:click="changeLesson({{$this->next}})" class="ml-auto cursor-pointer">Siguiente Lección </a>
                     @endif
                 </div>
             </div>
         </div>
+        <div class="text-white">
+            <p>Tareas</p>
+            @foreach ($course->tasks as $key=>$item)
+            Tarea {{$key+1}}:{{$item->title}}
+            {{$item->description}}
+            <br>
+            @endforeach
+        </div>
     </div>
 
-    <section class="container p-5 place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <section class="container grid grid-cols-1 gap-4 p-5 place-items-center sm:grid-cols-2 md:grid-cols-3">
         @foreach ($lessons as $item)
-        <div class="bg-white shadow-lg rounded p-3 h-full w-full my-4">
-            <div class="group relative">
-                <img class="w-full md:w-90 block rounded" src="{{Storage::url($course->image->url)}}" />
+        <div class="w-full h-full p-3 my-4 bg-white rounded shadow-lg">
+            <div class="relative group">
+                <img class="block w-full rounded md:w-90" src="{{Storage::url($course->image->url)}}" />
                 <div class="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center 
                     <a wire:click='changeLesson({{$item}})'
-                        class=" hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0
-                    group-hover:opacity-100 transition cursor-pointer">
+                        class="text-white transition transform translate-y-3 opacity-0 cursor-pointer  hover:scale-110 group-hover:translate-y-0 group-hover:opacity-100">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-play-circle-fill" viewBox="0 0 16 16">
                         <path
@@ -40,11 +47,12 @@
                 </div>
             </div>
             <div class="p-5 mt-auto ">
-                <h3 class="text-gray-800 text-xl ">Lección
+                <h3 class="text-xl text-gray-800 ">Lección
                     : {{$item->name}}</h3>
                 <p class="text-gray-800 text-md">{{$item->description}}</p>
 
             </div>
+
         </div>
         @endforeach
     </section>

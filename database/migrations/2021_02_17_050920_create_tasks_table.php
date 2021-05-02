@@ -17,10 +17,9 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->enum('status', [Task::ENTREGADA, Task::CALIFICADA])->default(Task::ENTREGADA);
-            $table->integer('score')->nullable();
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string('title');
+            $table->string('description');
+            $table->integer('quantity');
             $table->foreignId('course_id')->references('id')->on('courses')->cascadeOnDelete();
             $table->timestamps();
         });

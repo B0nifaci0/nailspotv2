@@ -60,10 +60,7 @@ class ProfileController extends Controller
 
     public function tasks(Course $course)
     {
-        $tasks = $course->lessons()
-            ->with('tasks')->get()
-            ->pluck('tasks')
-            ->collapse()
+        $tasks = $course->tasks
             ->where('user_id', auth()->user()->id);
 
         return view('profile.courses.tasks', compact('tasks', 'course'));

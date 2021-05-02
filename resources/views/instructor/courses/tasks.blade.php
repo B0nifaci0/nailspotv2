@@ -1,5 +1,5 @@
 <x-instructor-layout :course="$course">
     <div class="my-8">
-        @livewire('instructor.lesson-tasks', ['course' => $course, 'student' =>$student])
+        @livewire('instructor.courses-tasks', ['course' => $course])
     </div>
 </x-instructor-layout>

@@ -61,8 +61,8 @@
                             <a href="{{route('instructor.courses.comments', $course)}}">Comentarios admin</a>
                         </li>
                         <li
-                            class="leading-7 mb-1 border-l-4 pl-2">
-                            <a href="{{route('instructor.courses.comments', $course)}}">Tareas</a>
+                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.tasks', $course) border-pink-600 @else border-transparent @endif pl-2">
+                            <a href="{{route('instructor.courses.tasks', $course)}}">Tareas</a>
                         </li>
                         
                     </ul>

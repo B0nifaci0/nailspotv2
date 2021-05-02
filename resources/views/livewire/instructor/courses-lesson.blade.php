@@ -38,13 +38,7 @@
                         <h1 class="cursor-pointer" x-on:click="open = !open">
                             <i class="far fa-play-circle text-blue-500 mr-1"></i>
                             <strong>Leccion {{$key+1}}:</strong> {{$item->name}}</h1>
-                        @if (!$course->final)
-                        Leccion Final: <i class="fas fa-toggle-off text-2xl" wire:click='check({{$item}})'></i>
-                        @endif
-                        @if ($item->final==1)
-                        Leccion Final: <i class="fas fa-toggle-on text-2xl text-blue-500"
-                            wire:click='uncheck({{$item}})'></i>
-                        @endif
+                       
                     </header>
                     <div x-show="open">
                         <hr class="my-2">

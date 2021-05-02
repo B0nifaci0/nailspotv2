@@ -103,11 +103,11 @@ class CourseController extends Controller
         return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se actualizo con exito!');
     }
 
-    public function tasks(Course $course, User $student)
-    {
-        $this->authorize('dicatated', $course);
-        return view('instructor.courses.tasks', compact('student', 'course'));
-    }
+    // public function tasks(Course $course, User $student)
+    // {
+    //     $this->authorize('dicatated', $course);
+    //     return view('instructor.courses.tasks', compact('student', 'course'));
+    // }
 
     public function goals(Course $course)
     {
@@ -126,4 +126,12 @@ class CourseController extends Controller
     {
         return view('instructor.courses.comments', compact('course'));
     }
+
+
+    public function tasks(Course $course)
+    {
+        $this->authorize('dicatated', $course);
+        return view('instructor.courses.tasks', compact('course'));
+    }
+
 }
