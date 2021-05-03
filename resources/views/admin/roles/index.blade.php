@@ -14,11 +14,20 @@
 </div>
 @endif
 
+@section('css')
+    <style>
+        .tooltip { top: 0; }
+    </style>
+@endsection
+
+
 <div class="card">
 
+    <!--Inicia el Agregar-->
     <div class="card-header text-right text-bold text-lg">
-        <a href="{{route('admin.roles.create')}}"><i class="fas fa-plus"></i></a>
+        <a class="btn btn-info" data-toggle="tooltip" title="Agregar" href="{{route('admin.roles.create')}}"><i class="fas fa-plus"></i></a>
     </div>
+    <!--Aqui termina el agregar-->
     <div class="card-body ">
         <table class="table  table-striped">
             <thead>
@@ -34,13 +43,13 @@
                     <td>{{$role->id}}</td>
                     <td>{{$role->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-secondary" href="{{route('admin.roles.edit',$role->id)}}"><i class="far fa-edit"></i></a>
+                        <a class="btn btn-secondary" data-toggle="tooltip" title="Editar" href="{{route('admin.roles.edit',$role->id)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.roles.destroy',$role)}}" method="POST">
                             @method('delete')
                             @csrf
-                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-danger" type="submit" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -65,5 +74,10 @@
     $(document).ready(function(){
     $(".alert").delay(3000).slideUp(300);
     });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
 </script>
 @stop

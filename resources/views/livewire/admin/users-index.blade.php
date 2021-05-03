@@ -1,5 +1,4 @@
 <div>
-
     <div class="card">
         <div class="card-header">
             <input wire:keydown="clearPage" wire:model="search" type="text" width="100%" class="form-control"
@@ -29,7 +28,7 @@
                             @endforeach
                         </td>
                         <td width="10px">
-                            <a class="btn btn-secondary" href="{{route('admin.users.edit',$user->id)}}"><i class="far fa-edit"></i></a>
+                            <a class="btn btn-secondary" data-toggle="tooltip" title="Editar" href="{{route('admin.users.edit',$user->id)}}"><i class="far fa-edit"></i></a>
                         </td>
                     </tr>
                     @empty
@@ -48,3 +47,11 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+@endsection

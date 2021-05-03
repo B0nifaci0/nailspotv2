@@ -3,7 +3,7 @@
 @section('title', 'Categorias')
 
 @section('content_header')
-<a href="{{route('admin.subcategories.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
+<a href="{{route('admin.subcategories.create')}}" class="btn btn-info  float-right" data-toggle="tooltip" title="Nueva Categoría"><i class="fas fa-plus"></i></a>
 
 <h1 class="text-center text-bold">Lista de categorias</h1>
 @stop
@@ -15,12 +15,15 @@
 </div>
 @endif
 
-<style>
+@section('css')
+    <style>
+        .tooltip { top: 0; }
 
-.micolor {
-    color: 'red',
-}
-</style>
+        .micolor {
+            color: 'red',
+        }
+    </style>
+@endsection
 
 <div class="card">
     <div class="card-body">
@@ -38,14 +41,14 @@
                     <td>{{$subcategory->id}}</td>
                     <td>{{$subcategory->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-secondary btn-sm"
+                        <a class="btn btn-secondary " data-toggle="tooltip" title="Editar"
                             href="{{route('admin.subcategories.edit', $subcategory)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.subcategories.destroy',$subcategory)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            <button type="submit" class="btn btn-danger " data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -63,6 +66,10 @@
 <script>
     $(document).ready(function(){
     $(".alert").delay(3000).slideUp(300);
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 @stop

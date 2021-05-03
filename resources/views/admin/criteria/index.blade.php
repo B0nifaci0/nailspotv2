@@ -3,7 +3,7 @@
 @section('title', 'Criterios')
 
 @section('content_header')
-<a href="{{route('admin.criteria.create')}}" class="btn btn-secondary btn-sm float-right"><i class="fas fa-plus"></i></a>
+<a href="{{route('admin.criteria.create')}}" class="btn btn-info float-right" data-toggle="tooltip" title="Nuevo Criterio"><i class="fas fa-plus"></i></a>
 
 <h1 class="text-center text-bold">Lista de criterios</h1>
 @stop
@@ -14,6 +14,12 @@
     {{(session('info'))}}
 </div>
 @endif
+@section('css')
+    <style>
+        .tooltip { top: 0; }
+
+    </style>
+@endsection
 <div class="card">
     <div class="card-body">
         <table class="table table-stripe">
@@ -30,14 +36,14 @@
                     <td>{{$criterion->id}}</td>
                     <td>{{$criterion->name}}</td>
                     <td width="10px">
-                        <a class="btn btn-secondary btn-sm"
+                        <a class="btn btn-secondary " data-toggle="tooltip" title="Editar"
                             href="{{route('admin.criteria.edit', $criterion)}}"><i class="far fa-edit"></i></a>
                     </td>
                     <td width="10px">
                         <form action="{{route('admin.criteria.destroy',$criterion)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            <button type="submit" class="btn btn-danger" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -55,6 +61,9 @@
 <script>
     $(document).ready(function(){
     $(".alert").delay(3000).slideUp(300);
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 @stop
