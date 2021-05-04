@@ -18,11 +18,11 @@
         @endif
     </div>
     <h1 class=" text-white bg-purple-800 text-bold text-5xl text-center pt-5">Aprobar Curso</h1>
-    <div class=" md:flex pt-10 p-2 bg-purple-800 relative">
-        <div class="sm:w-2/2 md:w-1/3 lg:w-1/4 xl:w-2/5">
+    <div class=" relative p-2 pt-10 bg-purple-800 md:flex">
+        <div class="sm:w-2/2 md:w-1/3 lg:w-2/4 xl:w-2/5">
             <section class="card mt-5 mb-5 m-4">
                 <div class="flex-none bg-cover rounded-t  rounded text-center overflow-hidden bg-center">
-                    <div class=" mx-auto flex-1 flex flex-col">
+                    <div class=" embed-responsive">
                         <figure>
                             @if($course->iframe)
                             
@@ -33,8 +33,8 @@
                 </div>
             </section>
         </div>
-        <div class="sm:w-2/2 md:w-2/3 lg:w-3/4 xl:w-3/5">
-            <section class="card mt-5 mb-5 ml-4 mr-4">
+        <div class="sm:w-2/2 md:w-2/3 lg:w-2/4 xl:w-3/5 ">
+            <section class="mt-5 mb-5 ml-4 mr-4 card">
                 <div class="p-4 flex-1 flex flex-col" style="">
                     <h1 class="mb-2 text-4xl text-center justify-items-center">{{$course->name}}</h1>
                     <h2 class="ml-5 text-xl mb-3">{{$course->description}}</h2>
@@ -73,15 +73,41 @@
     <div class="bg-purple-800">
         <h2 class="text-center text-5xl text-white py-4">Información del curso</h2>
     </div>
-    <div class="bg-purple-800 ">
-        <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
-            <div class="order-2 lg:col-span-1  ">
+    <!---Espacio para las lecciones-->
+    <div class="bg-purple-800">
+        <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
+            <div class="order-2 lg:col-span-4 md:col-span-1 xl:col-span-3">
                 <section class="card mt-5 mb-5 ml-4 mr-4">
-                    <div class="card-body">
-                        <h1 class="font-bold text-3xl text-center">Descripción</h1>
-                        <div class="text-gray-700 text-base">
-                            {!! $course->description !!}
-                        </div>
+                    <div class="card-body rounded-xl ">
+                        <h1 class="font-bold text-3xl text-center">Lecciones</h1>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                            @forelse ($course->lessons as $lesson)
+                            <li class="text-gray-700 text-base embed-responsive rounded-xl"> - {!!$lesson->iframe!!}</li>
+                            @empty
+                            <h1>No hay lecciones registradas</h1>
+                            @endforelse
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!--Se termina el espacio para las lecciones-->
+    <div class="bg-purple-800 ">
+        <div class="grid lg:grid-cols-2 grid grid-cols-1  gap-4">
+            <div class="order-2  ">
+                <section class="card mt-5 mb-5 ml-4 mr-4 ">
+                    <div class="card-body rounded-xl">
+                        <h1 class="text-2xl text-gray-700 font-bold mb-3">Lo que aprenderas
+                            en este curso...</h1>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 ">
+                            @forelse ($course->goals as $goal)
+                            <li class="text-gray-700 text-base"> - {{$goal->name}}</li>
+                            @empty
+                            <h1>No existen metas registradas</h1>
+                            @endforelse
+                        </ul>
+                    </div>
                 </section>
             </div>
             <div class="order-2">
@@ -98,6 +124,17 @@
                     </div>
                 </section>
             </div>
+        </div>
+        <div class="grid lg:grid-cols-2 grid grid-cols-1  gap-4">
+            <div class="order-2 lg:col-span-1  ">
+                <section class="card mt-5 mb-5 ml-4 mr-4">
+                    <div class="card-body">
+                        <h1 class="font-bold text-3xl text-center">Descripción</h1>
+                        <div class="text-gray-700 text-base">
+                            {!! $course->description !!}
+                        </div>
+                </section>
+            </div>
             <div class="order-2">
                 <section class="card mt-5 mb-5 ml-4 mr-4 ">
                     <div class="card-body">
@@ -109,60 +146,32 @@
                                 <h1 class="font-bold mx-1 hover:underline">{{$course->teacher->name}}</h1>
                                 <span class="text-sm font-light">Publicado
                                     {{$course->created_at->format('d-m-Y')}}</span>
-                            </div>
-                            <form action="{{route('admin.courses.approved',$course)}}" method="post">
-                                @csrf
-                                <button type="submit"
-                                    class="block text-center mt-4 bg-pink-600 text-white font-bold py-2 px-4 rounded-xl ">Aprobar</button>
-                            </form>
+                            </div> 
+                        </div>
+                                <form action="{{route('admin.courses.approved',$course)}}" method="post">
+                                    @csrf
+                                    <button type="submit"
+                                        class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl ">Aprobar</button>
+                                </form>
+                        <div class="mt-5 mb-5 ">
+                        </div>
+                        <div class="flex items-center text-gray-700">
 
                             {!! Form::open(['method' => 'POST', 'route' => 'admin.courses.disapproved', 'class' =>
                             'form-horizontal'])
                             !!}
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                {!! Form::label('body', 'Input label') !!}
+                                {!! Form::label('Escribir un comentario', '') !!}<br>
                                 {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => 'required'])
                                 !!}
                                 <small class="text-danger">{{ $errors->first('body') }}</small>
                             </div>
                             {!! Form::hidden('course', $course->id) !!}
-                            <div class="btn-group pull-right">
-                                {!! Form::submit('Add', ['class' => 'block text-center mt-4 bg-pink-600 text-white
-                                font-bold py-2 px-4 rounded-xl']) !!}
+                            <div class="btn-group pull-left">
+                                {!! Form::submit('Devolver curso y enviar comentario', ['class' => 'bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div>
-                </section>
-            </div>
-        </div>
-        <div class="grid lg:grid-cols-3 grid grid-cols-1 gap-4">
-            <div class="order-2 lg:col-span-2 ">
-                <section class="card  mb-5 ml-4 mr-4 ">
-                    <div class="card-body rounded-xl">
-                        <h1 class="text-2xl text-gray-700 font-bold mb-3">Lo que aprenderas
-                            en este curso...</h1>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 ">
-                            @forelse ($course->goals as $goal)
-                            <li class="text-gray-700 text-base"> - {{$goal->name}}</li>
-                            @empty
-                            <h1>No existen metas registradas</h1>
-                            @endforelse
-                        </ul>
-                    </div>
-                </section>
-            </div>
-            <div class="order-2">
-                <section class="card mb-8 ml-4 mr-4 ">
-                    <div class="card-body">
-                        <h1 href="#" class="text-2xl text-gray-700 font-bold mb-3">Lecciones</h1>
-                        <ul>
-                            @forelse ($course->lessons as $lesson)
-                            <li class="text-gray-700 text-base"> - {!!$lesson->iframe!!}</li>
-                            @empty
-                            <h1>No hay lecciones registradas</h1>
-                            @endforelse
-                        </ul>
-                    </div>
                 </section>
             </div>
 

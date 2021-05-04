@@ -53,7 +53,9 @@
         @endisset
         <div class=" mt-5 form-group {{ $errors->has('image') ? ' has-error' : '' }}">
             {!! Form::file('image', ['id' => 'file']) !!}
-            <small class="text-danger">{{ $errors->first('image') }}</small>
+            <div>
+            <small class="text-red-500">{{ $errors->first('image') }}</small>
+            </div>
         </div>
     </figure>
     <div class="form-group{{ $errors->has('pdf') ? ' has-error' : '' }}">

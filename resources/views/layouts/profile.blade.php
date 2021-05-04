@@ -27,9 +27,23 @@
 
         <div class="min-h-screen bg-gradient-to-r from-purple-800  to-pink-600">
             @livewire('navigation')
-            <div class="relative pt-16 flex content-center items-center justify-center">
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
             </div>
-            <div class="container py-8 grid grid-cols-5 gap-6">
+            <div class="container ">
+                <div class="block">
+                    <button class="mb-4 font-bold text-lg text-white" id="boton">
+                       Perfil del Usuario <i class="fas fa-chevron-circle-down"></i>
+                    </button>
+                </div>
+                <div id="menu" class=" mt-2 mb-5  w-48 bg-white rounded-lg py-2 shadow-md hidden">
+                    <a href="{{route('profile.show')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Informacion del usuario</a>
+                    <a href="{{route('profile.courses')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Cursos Adquiridos</a>
+                    <a href="{{route('profile.competences')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Competencias </a>
+                    <a href="{{route('profile.security')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Seguridad</a>
+                    <a href="{{route('profile.delete')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Eliminar Cuenta</a>
+                </div>
+            </div>
+            <!--<div class="container py-8 grid grid-cols-5 gap-6">
                 <aside>
                     <h1 class="mb-4 font-bold text-lg">Perfil de Usuario</h1>
                     <ul class="text-sm text-white">
@@ -54,13 +68,14 @@
                             <a href="{{route('profile.delete')}}">Eliminar cuenta</a>
                         </li>
                     </ul>
-
                 </aside>
-                <div class="col-span-4 card">
+            </div>-->
+            <div class="col-span-4 container">
+                <section class="card ">
                     <main class="card-body  text-gray-500">
                         {{$slot}}
                     </main>
-                </div>
+                </section>
             </div>
         </div>
 
@@ -74,3 +89,13 @@
     </body>
 
 </html>
+
+<script>
+const boton = document.querySelector('#boton');
+const menu = document.querySelector('#menu');
+
+boton.addEventListener('click', () => {
+    console.log('Me diste click')
+    menu.classList.toggle('hidden')
+})
+</script>
