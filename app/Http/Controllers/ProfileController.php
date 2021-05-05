@@ -108,6 +108,6 @@ class ProfileController extends Controller
                 'url' => $url
             ]);
         }
-        return back();
+        return redirect()->route('course.tasks',$task->course)->with('info', 'ok!');
     }
 }

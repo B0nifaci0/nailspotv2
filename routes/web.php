@@ -7,6 +7,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebitasController;
 use App\Http\Controllers\CompetenceController;
+use App\Http\Livewire\TasksUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,9 @@ use App\Http\Controllers\CompetenceController;
 Route::get('/', HomeController::class)->name('home');
 Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 Route::get('curso/{course}', [CourseController::class, 'show'])->name('course.show');
-Route::get('estatus-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
+Route::get('lecciones-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
+Route::get('tareas/{course}', TasksUser::class)->middleware('auth')->name('course.tasks');
+
 
 Route::get('competencias', [CompetenceController::class, 'index'])->name('competences.index');
 Route::get('competencia/{competence}', [CompetenceController::class, 'show'])->name('competence.show');
