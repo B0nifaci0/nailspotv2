@@ -17,7 +17,6 @@ class Task extends Model
 
     protected $guarded = ['id'];
 
-  
     public function course()
     {
         return $this->belongsTo(Course::class);
@@ -31,5 +30,10 @@ class Task extends Model
     public function students()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function taskUser()
+    {
+        return $this->hasMany(TaskUser::class);
     }
 }
