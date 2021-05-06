@@ -29,7 +29,9 @@
 
         <div class=" bg-gradient-to-r from-purple-800  to-pink-600 ">
             @livewire('navigation')
-            <div class="container py-8 grid grid-cols-5 gap-6">
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="container ">
                 <aside>
                     <a href="{{ route('instructor.courses.index')}}"
                         class="py-2 px-3 w-full flex items-center focus:outline-none">
@@ -57,7 +59,7 @@
                     </div>
                     @switch($course->status)
                         @case(1)
-                        <form action="{{route('instructor.courses.status',$course)}}" method="post">
+                        <form class="pt-5 pb-5" action="{{route('instructor.courses.status',$course)}}" method="post">
                             @csrf
                             <div class="container ">
                             <button
@@ -86,72 +88,7 @@
                 </aside>
             </div>
             <!--Menu desplegable--->
-            <!--<div class="container py-8 grid grid-cols-5 gap-6">
-                <aside>
-                    <!-<a href="{{ route('instructor.courses.index')}}"
-                        class="py-2 px-3 w-full flex items-center focus:outline-none">
-                        <span
-                            class="text-white ml-2 text-sm font-medium hover:bg-pink-400 hover:text-white px-3 py-3 rounded-md">
-                            Todos mis cursos
-                        </span>
-                    </a>>
-                    <!-<h1 class="mb-4 font-bold text-lg">Edicion del curso</h1>
-                    <ul class="text-sm text-white">  
-                        <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.edit', $course) border-pink-600 @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.edit', $course)}}">Informacion del curso</a>
-                        </li>
-                        <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.curriculum', $course) border-pink-600 @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.curriculum', $course)}}">Lecciones del curso</a>
-                        </li>
-                        <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.goals', $course) border-pink-600 @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.goals', $course)}}">Metas del curso</a>
-                        </li>
-                        <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.students', $course) border-pink-600 @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.students', $course)}}">Estudiantes</a>
-                        </li>
-                        <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.comments', $course) border-pink-600 @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.comments', $course)}}">Comentarios admin</a>
-                        </li>
-                        <li
-                            class="leading-7 mb-1 border-l-4 @routeIs ('instructor.courses.tasks', $course) border-pink-600 @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.tasks', $course)}}">Tareas</a>
-                        </li>
-                        
-                    </ul>->
-                    @switch($course->status)
-                    @case(1)
-                    <form action="{{route('instructor.courses.status',$course)}}" method="post">
-                        @csrf
-                        <button
-                            class="uppercase px-4 py-2 rounded-full bg-pink-600 text-blue-50 shadow-sm hover:shadow-lg">Solicitar
-                            aprobacion</button>
-                    </form>
-                    @break
-                    @case(2)
-                    <div class="card text-gray-500">
-                        <div class="card-body">
-                            En revisión
-                        </div>
-                    </div>
-                    @break
-                    @case(3)
-                    <div class="card text-gray-500">
-                        <div class="card-body">
-                            Publicado
-                        </div>
-                    </div>
-                    @break
-                    @default
-
-                    @endswitch
-                </aside>
-            </div>-->
-            <div class="col-span-4 container">
+            <div class="col-span-4 container mt-5">
                 <section class="card ">
                     <main class="card-body text-gray-500">
                         {{$slot}}

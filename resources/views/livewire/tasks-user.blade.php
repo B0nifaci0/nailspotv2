@@ -3,10 +3,13 @@
     {{(session('info'))}}
 </div>
 @endif
-
-<div class="card rounded-xl">
+<div class="bg-purple-800 pt-16">
+    <h1 class="text-white text-2xl text-center font-bold"> Mis Tareas</h1>
+</div>
+<div class=" bg-purple-800 pt-8 pb-8">
     @foreach ($course->tasks as $key=>$task)
-    <article class="mt-4 card" x-data="{open: false}">
+    <section class="ml-4 mr-4">
+    <article class="mt-4 card container" x-data="{open: false}">
         <div>
             <div class="card-body">
                 <header>
@@ -49,5 +52,6 @@
                 </div>
             </div>
     </article>
+    </section>
     @endforeach
 </div>

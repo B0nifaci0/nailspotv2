@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <a href="{{ route('course.tasks', $course) }}">Tareas</a>
+        <a href="{{ route('course.tasks', $course) }}" class="text-white text-md font-bold"> Ver tareas   <i class=" fas fa-arrow-right"> </i></a>
     </div>
 
     <section class="container grid grid-cols-1 gap-4 p-5 place-items-center sm:grid-cols-2 md:grid-cols-3">
