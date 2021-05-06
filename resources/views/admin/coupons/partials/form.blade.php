@@ -4,12 +4,12 @@
     <small class="text-danger">{{ $errors->first('description') }}</small>
 </div>
 <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-    {!! Form::label('code', 'Codigo') !!}
+    {!! Form::label('code', 'Código del cupón') !!}
     {!! Form::text('code', null, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('code') }}</small>
 </div>
 <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-    {!! Form::label('type', 'Input label') !!}
+    {!! Form::label('type', 'Tipo de cupón') !!}
     {!! Form::select('type', ['0'=> 'Valor', '1' => 'Porcentual'], null, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('type') }}</small>
 </div>

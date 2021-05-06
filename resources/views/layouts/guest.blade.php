@@ -15,6 +15,8 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        {!! htmlScriptTagJsApi() !!}
     </head>
     <body>
     <div class="bg-cover bg-center bg-no-repeat" style="background-image: url(img/log2.jpg)">

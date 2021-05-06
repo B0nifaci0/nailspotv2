@@ -1,11 +1,12 @@
 <x-app-layout>
     <div class="relative pt-16 flex content-center items-center justify-center bg-purple-800">
     </div>
+    
     <div class="bg-purple-800 pt-8 pb-8">
-        <div class="container bg-white rounded ">
+        <div class="container bg-white rounded card mb-5 ">
             <x-table-responsive>
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                <table class="min-w-full divide-y divide-gray-200 mb-5 mt-5">
+                    <thead class="bg-gray-100">
                         <tr>
                             <th>#</th>
                             <th>Estatus</th>
@@ -47,5 +48,7 @@
                 </table>
             </x-table-responsive>
         </div>
+        <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
     </div>
 </x-app-layout>

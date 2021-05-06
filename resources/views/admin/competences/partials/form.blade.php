@@ -1,7 +1,7 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', 'Nombre') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
-    <small class="text-danger">{{ $errors->first('name') }}</small>
+    <small class="text-danger">{{ $errors->first('name') }}</small> 
 </div>
 <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
     {!! Form::label('slug', 'Slug') !!}
@@ -58,16 +58,16 @@
     </div>
 </div>
 <div class="form-group{{ $errors->has('pdf') ? ' has-error' : '' }}">
-    {!! Form::label('pdf', 'Certificado') !!}
-    {!! Form::file('pdf', ['class'=> 'form-input w-full']) !!}
+    {!! Form::label('pdf', 'Certificado') !!}<br>
+    {!! Form::file('pdf', ['class'=> 'form-input  w-full text-gray-700 px-3 py-2 border rounded']) !!}
     @isset($competence->certificate)
     <iframe src="{{Storage::url($competence->certificate->url)}}"> </iframe>
     @endisset
     <small class="text-danger">{{ $errors->first('pdf') }}</small>
 </div>
 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-    {!! Form::label('image', 'Selecciona una imagen') !!}
-    {!! Form::file('image') !!}
+    {!! Form::label('image', 'Selecciona una imagen') !!}<br>
+    {!! Form::file('image', ['class' => 'w-full text-gray-700 px-3 py-2 border rounded']) !!}
     <small class="text-danger">{{ $errors->first('image') }}</small>
     <figure>
         @isset($competence->image)
