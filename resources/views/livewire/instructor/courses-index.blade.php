@@ -117,7 +117,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{route('instructor.courses.edit', $course)}}"
-                                class="text-indigo-600 hover:text-indigo-900">Ver más</a>
+                            ><button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ver más</button></a>
                         </td>
                     </tr>
                     @empty

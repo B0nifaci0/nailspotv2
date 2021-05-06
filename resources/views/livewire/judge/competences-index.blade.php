@@ -67,6 +67,8 @@
                 </tbody>
             </table>
         </x-table-responsive>
+        <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
     </div>
 </div>
 <!-- Aqui termina la seccion de los criterios asiganados por competencia -->

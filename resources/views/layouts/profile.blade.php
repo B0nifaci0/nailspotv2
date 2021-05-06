@@ -20,6 +20,8 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        {!! htmlScriptTagJsApi() !!}
     </head>
 
     <body class="font-sans antialiased">
