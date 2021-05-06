@@ -102,12 +102,19 @@ class ProfileController extends Controller
         $taskUser = TaskUser::whereTaskId($task->id)
             ->firstWhere('user_id', $user->id);
 
+
         if ($request->hasfile('image')) {
             $url = Storage::disk('public')->put('course/tasks', $request->file('image'));
             $taskUser->images()->create([
                 'url' => $url
             ]);
         }
-        return redirect()->route('course.tasks',$task->course)->with('info', 'ok!');
+
+        if ($task->quantity == $taskUser->images_count + 1) {
+            $taskUser->complete = true;
+            $taskUser->save();
+        }
+
+        return redirect()->route('course.tasks', $task->course)->with('info', 'ok!');
     }
 }

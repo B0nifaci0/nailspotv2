@@ -17,6 +17,7 @@ class CreateTaskUserTable extends Migration
             $table->id();
             $table->foreignId('task_id')->references('id')->on('tasks')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->boolean('complete')->default(false);
             $table->integer('score')->nullable();
             $table->timestamps();
         });

@@ -14,6 +14,8 @@ class TaskUser extends Model
 
     protected $table = 'task_user';
     protected $withCount = ['images'];
+    protected $guarded = ['id', 'status'];
+
 
     public function images()
     {
