@@ -1,12 +1,17 @@
 <x-instructor-layout :course="$course">
-
     @if(session('info'))
-    <div class="alert alert-success">
-        {{session('info')}}
+    <div class="bg-green-100 border border-green-500 text-green-700 px-4 py-3 rounded relative " role="alert">
+      <strong class="font-bold">{{session('info')}}</strong>
     </div>
     @endif
-    <h1 class="text-2xl font-bold uppercase">
-        Información del curso
+
+    <!--@if(session('info'))
+    <div class="alert alert-success bg-white">
+        {{session('info')}}
+    </div>
+    @endif-->
+    <h1 class="text-2xl font-bold uppercase mt-5">
+        Información del cursos
     </h1>
     <hr class="mt-2 mb-6" />
 
