@@ -62,16 +62,16 @@ class ProfileController extends Controller
 
     public function tasks(Course $course)
     {
-        $tasks = $course->tasks
-            ->where('user_id', auth()->user()->id);
-
+        $tasks = $course->tasks;
         return view('profile.courses.tasks', compact('tasks', 'course'));
     }
 
     public function task(Task $task)
     {
-        $course = $task->lesson->course;
-        return view('profile.courses.task', compact('task', 'course'));
+        $course = $task->course;
+        $taskUser = TaskUser::whereTaskId($task->id)
+            ->whereUserId(auth()->user()->id)->first();
+        return view('profile.courses.task', compact('task', 'course','taskUser'));
     }
 
     public function resources(Competence $competence)

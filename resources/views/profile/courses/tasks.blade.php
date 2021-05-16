@@ -1,12 +1,12 @@
 <x-profile-layout>
     <div>
         <div>
-            <h1 class="text-2xl font-bold uppercase mb-2">Tareas</h1>
+            <h1 class="mb-2 text-2xl font-bold uppercase">Tareas</h1>
             @can('approved',$course->certificate)
-            <div class="card-body mt-5">
+            <div class="mt-5 card-body">
                 <input type="hidden" name="Name" id="name" value="{{auth()->user()->name}}">
                 <input type="hidden" id="url" value="{{$course->certificate->url}}">
-                <button id="submitBtn" class="bg-blue-600 font-bold text-white rounded-md p-2">Obtener
+                <button id="submitBtn" class="p-2 font-bold text-white bg-blue-600 rounded-md">Obtener
                     certificado</button>
             </div>
             @endcan
@@ -22,24 +22,13 @@
                         <div>
                             <header>
                                 <h1>
-                                    <i class="far fa-play-circle text-blue-500 mr-1"></i>
-                                    @if ($item->lesson->final)
-                                    <strong>Leccion Final:</strong> {{$item->lesson->name}}</h1>
-                                    @else
-                                    <strong>Leccion :</strong> {{$item->lesson->name}}</h1>
-                                    @endif
+                                    <i class="mr-1 text-blue-500 far fa-play-circle"></i>
+                                    <strong>Leccion :</strong> {{$item->title}}</h1>
                             </header>
                         </div>
                         <div>
-                            @if ($item->status == 1)
                             <a href='{{route('profile.task',$item)}}'
-                                class="bg-yellow-300 font-bold text-black rounded-md p-2"> Pendiente</a>
-                            @else
-                            <a class="bg-green-600 font-bold text-black rounded-md p-2"
-                                href='{{route('profile.task',$item)}}'>
-                                Calificación:
-                                {{$item->score}}</a>
-                            @endif
+                                class="p-2 font-bold text-black bg-blue-300 rounded-md"> Mostrar</a>
                         </div>
                     </div>
                 </div>

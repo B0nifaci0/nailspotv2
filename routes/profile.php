@@ -13,6 +13,6 @@ Route::get('recursos/{competence}', [ProfileController::class, 'resources'])->na
 Route::post('competence/image/{resource}', [ProfileController::class, 'competenceImage'])->name('competences.image');
 Route::post('course/image/{task}', [ProfileController::class, 'courseImage'])->name('courses.image');
 
-Route::get('cursos/{course}/tareas', [ProfileController::class, 'tasks'])->name('courses.tasks');
+Route::get('{course}/tareas', [ProfileController::class, 'tasks'])->name('courses.tasks');
 
 Route::get('tareas/{task}', [ProfileController::class, 'task'])->name('task');
