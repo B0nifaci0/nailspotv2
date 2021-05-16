@@ -54,10 +54,10 @@ class CourseController extends Controller
         return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se creo con exito!');
     }
 
-    public function show(Course $course)
-    {
-        return view('instructor.courses.show', compact('course'));
-    }
+    // public function show(Course $course)
+    // {
+    //     return view('instructor.courses.show', compact('course'));
+    // }
 
     public function edit(Course $course)
     {
@@ -103,11 +103,12 @@ class CourseController extends Controller
         return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se actualizo con exito!');
     }
 
-    // public function tasks(Course $course, User $student)
-    // {
-    //     $this->authorize('dicatated', $course);
-    //     return view('instructor.courses.tasks', compact('student', 'course'));
-    // }
+    public function studentTasks(Course $course, User $student)
+    {
+        $this->authorize('dicatated', $course);
+
+        return view('instructor.courses.student.tasks', compact('student', 'course'));
+    }
 
     public function goals(Course $course)
     {
@@ -133,5 +134,4 @@ class CourseController extends Controller
         $this->authorize('dicatated', $course);
         return view('instructor.courses.tasks', compact('course'));
     }
-
 }

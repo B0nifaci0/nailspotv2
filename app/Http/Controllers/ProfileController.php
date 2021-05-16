@@ -71,7 +71,10 @@ class ProfileController extends Controller
         $course = $task->course;
         $taskUser = TaskUser::whereTaskId($task->id)
             ->whereUserId(auth()->user()->id)->first();
-        return view('profile.courses.task', compact('task', 'course','taskUser'));
+        if (!$taskUser) {
+            return back()->with('info','No entregado');
+        }
+        return view('profile.courses.task', compact('task', 'course', 'taskUser'));
     }
 
     public function resources(Competence $competence)

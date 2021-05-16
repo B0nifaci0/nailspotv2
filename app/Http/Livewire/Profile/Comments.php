@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Profile;
 
-use App\Models\Comment;
 use App\Models\Task;
+use App\Models\Comment;
 use Livewire\Component;
 
 class Comments extends Component

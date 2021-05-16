@@ -17,6 +17,11 @@ class Task extends Model
 
     protected $guarded = ['id'];
 
+    public function getRouteKeyName()
+    {
+        return "title";
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class);

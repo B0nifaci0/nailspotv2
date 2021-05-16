@@ -1,22 +1,22 @@
 <div>
 
-    <h1 class="text-2xl font-bold uppercase mb-2">Estudiantes del curso</h1>
+    <h1 class="mb-2 text-2xl font-bold uppercase">Estudiantes del curso</h1>
     <hr class="mt-2 mb-6" />
 
     <x-table-responsive>
 
         <div class="px-6 py-4 ">
-            <input wire:model="search" type="text" class="form-input flex-1 shadow-sm w-full" placeholder="Buscar ...">
+            <input wire:model="search" type="text" class="flex-1 w-full shadow-sm form-input" placeholder="Buscar ...">
         </div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                         Nombre
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                         Email
                     </th>
                     <th scope="col" class="relative px-6 py-3">
@@ -29,8 +29,8 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <img class="h-10 w-10 rounded-full" src="{{$student->profile_photo_url}}">
+                            <div class="flex-shrink-0 w-10 h-10">
+                                <img class="w-10 h-10 rounded-full" src="{{$student->profile_photo_url}}">
                             </div>
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">
@@ -42,9 +42,11 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{$student->email}}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{route('instructor.courses.tasks',[$course, $student])}}"
-                            class="text-indigo-600 hover:text-indigo-900 "><button class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Tareas</button></a>
+                    <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                        <a href="{{route('instructor.courses.student.tasks',[$course, $student])}}"
+                            class="text-indigo-600 hover:text-indigo-900 "><button
+                                class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Ver
+                                tareas</button></a>
                     </td>
                 </tr>
                 @empty

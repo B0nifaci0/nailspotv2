@@ -70,6 +70,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function getRouteKeyName()
+    {
+        return "name";
+    }
+
     public function courses_dictated()
     {
         return $this->hasMany(Course::class);

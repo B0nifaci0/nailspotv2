@@ -1,4 +1,10 @@
 <x-profile-layout>
+
+    @if (session('info'))
+    <div class="alert alert-primary">
+        {{(session('info'))}}
+    </div>
+    @endif
     <div>
         <div>
             <h1 class="mb-2 text-2xl font-bold uppercase">Tareas</h1>
