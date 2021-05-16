@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Instructor\Task;
 
-use App\Models\TaskUser;
 use Livewire\Component;
+use App\Models\TaskUser;
+use App\Mail\GradedAssignament;
+use Illuminate\Support\Facades\Mail;
 
 class Score extends Component
 {
@@ -27,5 +29,9 @@ class Score extends Component
         $taskuser = $this->taskuser;
         $taskuser->score = $this->selectedScore;
         $taskuser->save();
+
+        $mail = new GradedAssignament($taskuser);
+        Mail::to($taskuser->user->email)->queue($mail);
     }
+
 }

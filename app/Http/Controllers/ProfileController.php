@@ -105,7 +105,6 @@ class ProfileController extends Controller
         $taskUser = TaskUser::whereTaskId($task->id)
             ->firstWhere('user_id', $user->id);
 
-
         if ($request->hasfile('image')) {
             $url = Storage::disk('public')->put('course/tasks', $request->file('image'));
             $taskUser->images()->create([

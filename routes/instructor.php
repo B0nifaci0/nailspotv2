@@ -23,6 +23,6 @@ Route::group(
         Route::get('{course}/students', CoursesStudents::class)->middleware('can:Actualizar cursos')->name('courses.students');
         Route::get('{course}/curriculum', CoursesCurriculum::class)->middleware('can:Actualizar cursos')->name('courses.curriculum');
         Route::get('courses/{task}/{student}', [TaskController::class, 'show'])->name('task.show');
-        Route::patch('courses/{task}/score', [TaskController::class, 'update'])->name('task.score');
     }
 );
+

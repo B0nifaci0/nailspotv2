@@ -10,7 +10,7 @@
 
     <body>
         <h1>Tú tarea ha sido calificada.</h1>
-        <a href="{{route('course.status',[$lesson->course])}}">Ir al curso.</a>
+        <a href="{{route('profile.task',$taskuser->task)}}">Revisar.</a>
     </body>
 
 </html>
