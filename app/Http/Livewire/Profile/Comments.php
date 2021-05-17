@@ -8,7 +8,12 @@ use Livewire\Component;
 
 class Comments extends Component
 {
-    public $task, $comment;
+    public $task, $comment, $body;
+
+    protected $rules = [
+        'comment.body' => 'required',
+    ];
+
 
     public function mount(Task $task)
     {
@@ -22,16 +27,22 @@ class Comments extends Component
 
     public function store()
     {
+        $rules = [
+            'body' => 'required',
+        ];
+
+        $this->validate($rules);
+
+
         Comment::create([
-            'body' =>  $this->comment,
+            'body' =>  $this->body,
             'commentable_id' => $this->task->id,
             'commentable_type' => Task::class,
             'user_id' => auth()->user()->id,
         ]);
 
-        $this->reset('comment');
+        $this->reset('body');
 
         $this->task = Task::find($this->task->id);
-
     }
 }

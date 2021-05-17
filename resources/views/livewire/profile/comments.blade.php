@@ -1,17 +1,20 @@
 <div>
-    <h1>Comentarios:</h1>
-    <textarea wire:model="comment" rows="3" class="form-input w-full" placeholder="Comentario..."></textarea>
-    <button class="py-2 bg-blue-500 text-white rounded m-2 px-4 " wire:click="store">Comentar</button>
+    <h1>Comentariossss:</h1>
+    <textarea wire:model="body" rows="3" class="w-full form-input" placeholder="Comentario..."></textarea>
+    @error('body')
+    <span class="text-red-500 text-sx">{{$message}}</span>
+    @enderror
+    <button class="px-4 py-2 m-2 text-white bg-blue-500 rounded " wire:click="store">Comentar</button>
 
     @foreach ($task->comments as $comment)
     <article class="flex mb-4 text-gray-800">
         <figure class="mr-4">
-            <img class="h-12 w-12 object-cover rounded-full shadow-lg" src="{{$comment->user->profile_photo_url}}"
+            <img class="object-cover w-12 h-12 rounded-full shadow-lg" src="{{$comment->user->profile_photo_url}}"
                 alt="">
         </figure>
 
-        <div class="card flex-1">
-            <div class="card-body bg-gray-100">
+        <div class="flex-1 card">
+            <div class="bg-gray-100 card-body">
                 <p><b>{{$comment->user->name}}</b></p>
                 {{$comment->body}}
             </div>

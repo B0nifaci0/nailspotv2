@@ -15,7 +15,7 @@ class CoursesLesson extends Component
         'lesson.description' => 'required',
         'lesson.url' => ['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/']
     ];
-
+ 
     public function mount(Course $course)
     {
         $this->course = $course;

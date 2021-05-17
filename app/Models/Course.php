@@ -42,10 +42,10 @@ class Course extends Model
         return $this->sales->sum('final_price');
     }
 
-    // public function getFinalAttribute()
-    // {
-    //     return $this->tasks()->where('final', 1)->count();
-    // }
+    public function getFinalAttribute()
+    {
+        return $this->tasks()->where('final', 1)->count();
+    }
 
     public function scopeCategory($query, $category_id)
     {

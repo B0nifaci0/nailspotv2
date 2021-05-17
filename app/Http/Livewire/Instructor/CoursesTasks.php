@@ -47,9 +47,32 @@ class CoursesTasks extends Component
         $this->course = Course::find($this->course->id);
     }
 
-    public function edit(Task $task)
+    public function storeFinal()
     {
-        $this->task = $task;
+
+        $this->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        $this->course->tasks()->create([
+            'title' => $this->title,
+            'description' => $this->description,
+            'quantity' => $this->quantity,
+            'final' => true
+        ]);
+        $this->reset('title');
+        $this->reset('description');
+        $this->reset('quantity');
+
+        $this->course = Course::find($this->course->id);
+    }
+
+
+    public function edit($id)
+    {
+        $this->task = Task::find($id);
     }
 
     public function update()
@@ -60,8 +83,9 @@ class CoursesTasks extends Component
         $this->course = Course::find($this->course->id);
     }
 
-    public function destroy(Task $task)
+    public function destroy($id)
     {
+        $task = Task::find($id);
         $task->delete();
         $this->course = Course::find($this->course->id);
     }
