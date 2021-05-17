@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->integer('quantity');
+            $table->boolean('final')->default(false);
             $table->foreignId('course_id')->references('id')->on('courses')->cascadeOnDelete();
             $table->timestamps();
         });

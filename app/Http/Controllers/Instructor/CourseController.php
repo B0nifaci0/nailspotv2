@@ -54,11 +54,6 @@ class CourseController extends Controller
         return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se creo con exito!');
     }
 
-    // public function show(Course $course)
-    // {
-    //     return view('instructor.courses.show', compact('course'));
-    // }
-
     public function edit(Course $course)
     {
         $this->authorize('dicatated', $course);
