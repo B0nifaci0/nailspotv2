@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Instructor\Task;
 
+use App\Models\Course;
 use Livewire\Component;
 use App\Models\TaskUser;
+use App\Mail\CourseApproved;
 use App\Mail\GradedAssignament;
+use App\Models\Task;
 use Illuminate\Support\Facades\Mail;
 
 class Score extends Component
@@ -33,36 +36,40 @@ class Score extends Component
         $mail = new GradedAssignament($taskuser);
         Mail::to($taskuser->user->email)->queue($mail);
 
-        // $userTasks = TaskUser::whereUserId($user->id)
-        //     ->whereStatus(2)->get();
+        $course = Course::find($taskuser->task->course->id);
 
-        //     $course = $task->lesson->course;
+        $taskComplete = $course->tasks()
+            ->with('taskUser')
+            ->get()
+            ->pluck('taskUser')
+            ->collapse()
+            ->where('user_id', auth()->user()->id)
+            ->where('score', '!=', null);
 
-        //     $tasks = $course->tasks->count();
-
-        //     if ($lessons == $tasks->count()) {
-        //         $average = 0;
-        //         $sum = 0;
-        //         $final = 0;
-        //         $exist = 0;
-        //         foreach ($tasks as $item) {
-        //             if ($item->lesson->final) {
-        //                 $final = $item->score;
-        //                 $exist = 1;
-        //             } else {
-        //                 $sum = $sum + $item->score;
-        //             }
-        //         }
-        //         if ($exist == 1) {
-        //             $average = $sum / ($tasks->count() - 1);
-        //             $final = ($average + $final) / 2;
-        //             if ($final >= 8) {
-        //                 $approved = new CourseApproved($course);
-        //                 Mail::to($user->email)->queue($approved);
-        //                 $certificate = $course->certificate;
-        //                 $certificate->students()->attach(auth()->user()->id);
-        //             }
-        //         }
-        //     }
+        if ($taskComplete->count() == $course->tasks_count) {
+            $average = 0;
+            $sum = 0;
+            $final = 0;
+            $exist = 0;
+            foreach ($taskComplete as $taskU) {
+                $current = Task::find($taskU->task_id);
+                if ($current->final) {
+                    $final = $taskU->score;
+                    $exist = 1;
+                } else {
+                    $sum = $sum + $taskU->score;
+                }
+            }
+            if ($exist == 1) {
+                $average = $sum / ($course->tasks_count - 1);
+                $final = ($average + $final) / 2;
+                if ($final >= 8) {
+                    $approved = new CourseApproved($course);
+                    Mail::to($taskuser->user->email)->queue($approved);
+                    $certificate = $course->certificate;
+                    $certificate->students()->attach(auth()->user()->id);
+                }
+            }
+        }
     }
 }
