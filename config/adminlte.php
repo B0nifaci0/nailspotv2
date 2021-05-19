@@ -126,7 +126,7 @@ return [
     'classes_content_wrapper' => '', //background de contenido
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-pink elevation-4',//sirve para el color del sidebar
+    'classes_sidebar' => 'sidebar-dark-pink elevation-4',//sirve para el color del sidebar
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',

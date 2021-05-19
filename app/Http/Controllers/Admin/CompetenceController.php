@@ -103,7 +103,7 @@ class CompetenceController extends Controller
     public function destroy(Competence $competence)
     {
         $competence->delete();
-        return redirect()->route('admin.competences.index')->with('info', 'La categoria se elimino con exito!');
+        return redirect()->route('admin.competences.index')->with('info', 'La competencia se elimino con exito!');
     }
 
     public function indexCriteria(Competence $competence)
@@ -145,7 +145,7 @@ class CompetenceController extends Controller
             $competence->status = Competence::PUBLICADO;
         }
         $competence->save();
-        return back()->with('info', 'Estatus actualizado');
+        return back()->with('info', 'El status de la competencia ha sido actualizado exitosamente!');
     }
 
     public function sales()
