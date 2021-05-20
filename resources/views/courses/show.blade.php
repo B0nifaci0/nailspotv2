@@ -158,7 +158,7 @@
                             <p class="ml-2 text-sm text-white">{{$similar->teacher->name}}</p>
                         </div>
                         @if ($similar->rating!=6)
-                        <p class="text-sm"><i class="mr-2 text-yellow-400 fas fa-star"></i>{{$similar->rating}}
+                        <p class="text-sm text-white"><i class="mr-2 text-yellow-400 fas fa-star"></i>{{$similar->rating}}
                         </p>
                         @endif
                         </div>
