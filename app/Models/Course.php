@@ -130,4 +130,9 @@ class Course extends Model
     {
         return $this->morphOne(Certificate::class, 'certificateable');
     }
+
+    public function platform()
+    {
+        return $this->belongsTo(Platform::class);
+    }
 }

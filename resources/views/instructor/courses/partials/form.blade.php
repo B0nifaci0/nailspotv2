@@ -37,6 +37,13 @@
         <small class="text-danger">{{ $errors->first('price') }}</small>
     </div>
 </div>
+<div class="col-sm form-group{{ $errors->has('platform_id') ? ' has-error' : '' }}">
+    {!! Form::label('platform_id', 'Plataforma') !!}
+    {!! Form::select('platform_id', $platforms, null, ['id' => 'platform_id', 'class' =>
+    'form-input block w-full mt-1 text-center'])
+    !!}
+    <small class="text-danger">{{ $errors->first('category_id') }}</small>
+</div>
 <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
     {!! Form::label('url', 'Url video') !!}
     {!! Form::text('url', null, ['class' => 'form-input block w-full mt-1']) !!}
@@ -63,7 +70,6 @@
                     <input type='file' class="hidden" id="file" name="image" />
                 </label>
             </div>
-            <!--{!! Form::file('image', ['id' => 'file']) !!}-->
             <div>
                 <small class="text-red-500">{{ $errors->first('image') }}</small>
             </div>

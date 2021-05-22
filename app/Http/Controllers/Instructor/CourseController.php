@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\Category;
+use App\Models\Platform;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use Illuminate\Support\Facades\Storage;
@@ -30,11 +31,17 @@ class CourseController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
-        return view('instructor.courses.create', compact('categories', 'levels'));
+        $platforms = Platform::pluck('name', 'id');
+        return view('instructor.courses.create', compact('categories', 'levels', 'platforms'));
     }
 
     public function store(CourseRequest $request)
     {
+
+        $request->validate([
+            'image' => 'required'
+        ]);
+
         $course = Course::create($request->all());
 
         if ($request->hasfile('image')) {
@@ -59,12 +66,24 @@ class CourseController extends Controller
         $this->authorize('dicatated', $course);
         $levels = Level::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
-        return view('instructor.courses.edit', compact('course', 'categories', 'levels'));
+        $platforms = Platform::pluck('name', 'id');
+        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'platforms'));
     }
 
     public function update(CourseRequest $request, Course $course)
     {
         $this->authorize('dicatated', $course);
+
+        if ($request->platform_id == 1) {
+            $request->validate([
+                'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
+            ]);
+        } else {
+
+            $request->validate([
+                'url' => ['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/']
+            ]);
+        }
 
         $course->update($request->all());
 

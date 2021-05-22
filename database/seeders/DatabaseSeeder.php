@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CriterionSeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(CompetenceSeeder::class);
+        $this->call(PlatformSeeder::class);
     }
 }
