@@ -34,7 +34,7 @@
                     <td>{{$course->name}}</td>
                     <td>{{$course->category->name}}</td>
                     <td>
-                        <a href="{{route('admin.courses.show',$course)}}" class="btn btn-outline-info rounded">Revisar</a>
+                        <a href="{{route('admin.courses.show',$course)}}" class="btn btn-info rounded">Revisar</a>
                     </td>
                 </tr>
                 @endforeach

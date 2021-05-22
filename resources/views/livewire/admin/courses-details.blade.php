@@ -20,7 +20,7 @@
                         <td>{{$course->sales->count()}}</td>
                         <td>${{$course->total}}</td>
                         <td width=" 10px">
-                            <a class="btn btn-outline-info" href="{{route('admin.sales.courses.details',$course)}}">Detalles</a>
+                            <a class="btn btn-info" href="{{route('admin.sales.courses.details',$course)}}">Detalles</a>
                         </td>
                     </tr>
                     @empty
