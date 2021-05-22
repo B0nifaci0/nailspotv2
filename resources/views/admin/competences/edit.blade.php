@@ -19,9 +19,12 @@
 </form>
 <h1 class="text-center text-bold">Editar competencia</h1>
 @stop
-
 @section('content')
-
+@if (session('info'))
+<div class="alert alert-success" role="alert">
+    {{(session('info'))}}
+</div>
+@endif
 <div class="card">
     <div class="card-body">
         {!! Form::model($competence, ['route' => ['admin.competences.update', $competence], 'method' => 'PUT', 'class'
@@ -37,6 +40,11 @@
         language: "es",
         format: "yyyy-mm-dd"
     });
+
+    $(document).ready(function(){
+    $(".alert").delay(3000).slideUp(300);
+    });
+
 
 </script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>

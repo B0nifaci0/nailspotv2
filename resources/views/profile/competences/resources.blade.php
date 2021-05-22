@@ -44,6 +44,7 @@
     </div>
 
     <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
+    <p class="font-bold"><i class="fas fa-exclamation-circle"></i> Nota: Las imagenes a entregar deben de ser tomadas desde los siguientes angulos (Derecho, Izquierdo, Perfil)</p>
     @if ($resource->images_count <3) <form action="{{ route('profile.competences.image', $resource) }}" method="post"
         enctype="multipart/form-data">
         @csrf

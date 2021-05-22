@@ -40,7 +40,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories,name,' . $category->id
         ]);
         $category->update($request->all());
-        return redirect()->route('admin.categories.index')->with('info', 'La categoria se actualizo exito!');
+        return redirect()->route('admin.categories.index')->with('info', 'La categoria se actualizo con exito!');
     }
 
     public function destroy(Category $category)

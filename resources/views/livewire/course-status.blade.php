@@ -7,8 +7,8 @@
             <h1 class="pt-5 pb-5 text-2xl font-bold text-white">
                 {!!$current->name!!}
             </h1>
-            <div class="card">
-                <div class="flex font-bold text-gray-700 card-body">
+            <div class="bg-indigo-800">
+                <div class="flex font-bold text-white card-body">
 
                     @if ($this->previous!==null)
                     <a class="cursor-pointer" wire:click="changeLesson({{$this->previous}})">Lección Anterior</a>
@@ -26,7 +26,7 @@
 
     <section class="container grid grid-cols-1 gap-4 p-5 place-items-center sm:grid-cols-2 md:grid-cols-3">
         @foreach ($lessons as $item)
-        <div class="w-full h-full p-3 my-4 bg-white rounded shadow-lg">
+        <div class="w-full h-full p-3 my-4 bg-indigo-800 rounded shadow-lg">
             <div class="relative group">
                 <img class="block w-full rounded md:w-90" src="{{Storage::url($course->image->url)}}" />
                 <div
@@ -42,10 +42,10 @@
                 </div>
             </div>
             <div class="p-5 mt-auto ">
-                <h3 class="text-xl text-gray-800 ">Lección
+                <h3 class="text-xl text-white ">Lección
 
                     : {{$item->name}}</h3>
-                <p class="text-gray-800 text-md">{{$item->description}}</p>
+                <p class="text-white text-md">{{$item->description}}</p>
             </div>
         </div>
         @endforeach

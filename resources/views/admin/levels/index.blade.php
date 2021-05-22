@@ -10,7 +10,8 @@
 
 @section('content')
 @if (session('info'))
-<div class="alert alert-primary">
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">Bien hecho!</h4>
     {{(session('info'))}}
 </div>
 @endif

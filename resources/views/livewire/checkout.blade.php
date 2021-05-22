@@ -1,33 +1,33 @@
 <div class=" w-full lg:max lg:flex pt-12 p-4 bg-purple-800 relative">
     <div class="w-full sm:w-1/2 md:w-2/3 mx-auto flex flex-col">
-        <section class="card rounded-xl">
+        <section class="bg-indigo-800 rounded-xl">
             <div class="p-4 flex-1 flex flex-col" style="" >
-                <h1 class="text-gray-900 text-3xl text-center front-bold">Antes de comprar</h1>
+                <h1 class="text-white text-3xl text-center front-bold">Antes de comprar</h1>
                 <br>
                 <table class=" text-sm lg:text-base" cellspacing="0">
                     <thead>
                         <tr>
                             <th class="hidden md:table-cell"></th>
-                            <th class="text-left  ">Nombre</th>
+                            <th class="text-left text-white ">Nombre</th>
                             
-                            <th class=" text-center">Descripción</th>
+                            <th class=" text-center text-white">Descripción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="hidden pb-4 md:table-cell">
                                 <a href="#">
-                                    <img src="{{Storage::url($course->image->url)}}" class="w-24 rounded" alt="Thumbnail">
+                                    <img src="{{Storage::url($course->image->url)}}" class="w-36 rounded" alt="Thumbnail">
                                 </a>
                             </td>
                             <td>
                                 <a href="#">
-                                    <p class="mb-2 md:ml-4 text-3xl ">{{$course->name}}</p>
+                                    <p class="mb-2 md:ml-4 text-3xl text-white ">{{$course->name}}</p>
                                 </a>
                             </td>
                             <td class="text-right">
-                                <span class="text-xl  font-medium border-t-2 pt-2">
-                                    {{$course->description}}
+                                <span class="text-xl  font-medium border-t-2 pt-2 text-white">
+                                    {!! $course->description !!}
                                 </span>
                             </td>
                         </tr>
@@ -40,7 +40,7 @@
                         <h1 class="ml-2 font-bold uppercase text-center">Cupón</h1>
                         </div>
                         <div class="p-4">
-                        <p class="mb-4 italic">Si tienes el codigo de un cupón de descuento ingresalo aqui.</p>
+                        <p class="mb-4 italic text-white">Si tienes el codigo de un cupón de descuento ingresalo aqui.</p>
                         <div class="justify-center md:flex ">
                             <div class="flex items-center w-full h-13 pl-3  bg-gray-100 border rounded-full">
                                 <input type="coupon" name="code" id="coupon" placeholder="Ingresa codígo del cupón"
@@ -58,10 +58,10 @@
                             </div>
                         </div>
                         @error('exist')
-                        <span class="error text-red-500">{{ $message }}</span>
+                        <span class="error text-red-500 text-xl mt-5">{{ $message }}</span>
                         @enderror
                         @error('cuponNotFound')
-                        <span class="error text-red-500">{{ $message }}</span>
+                        <span class="error text-red-500 text-xl">{{ $message }}</span>
                         @enderror
                         </div>
                     </div>
@@ -72,15 +72,15 @@
                         <div class="p-4">
                         @if ($active)
                         <div class="flex justify-between border-b">
-                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-white">
                                 Subtotal
                             </div>
-                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-white">
                                 ${{$course->price}}
                             </div>
                         </div>
                         <div class="flex justify-between pt-4 border-b">
-                            <div class="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
+                            <div class="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-white">
                                 <button wire:click='clearActive' type="submit" class="mr-2 mt-1 lg:mt-2">
                                     <svg aria-hidden="true" data-prefix="far" data-icon="trash-alt"
                                         class="w-4 text-red-600 hover:text-red-800" xmlns="http://www.w3.org/2000/svg"
@@ -92,21 +92,21 @@
                                 "{{$active->code}}"
                             </div>
                             @if ($active->type==0)
-                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-white">
                                 - $ {{$active->discount}}
                             </div>
                             @else
-                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-white">
                                 - {{$active->discount}}%
                             </div>
                             @endif
                         </div>
                         @endif
                         <div class="flex justify-between pt-4 border-b">
-                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-white">
                                 Total
                             </div>
-                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-white">
                                 ${{$total}}
                             </div>
                         </div>

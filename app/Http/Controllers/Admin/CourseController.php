@@ -42,7 +42,7 @@ class CourseController extends Controller
         $course->status = 3;
         $course->save();
 
-        return redirect()->route('admin.courses.index')->with('info', "Curso Publicado");;
+        return redirect()->route('admin.courses.index')->with('info', "El curso ha sido publicado exitosamente!");;
     }
 
     public function disapproved(Request $request)
@@ -60,6 +60,6 @@ class CourseController extends Controller
         $course->status = 1;
         $course->save();
 
-        return redirect()->route('admin.courses.index')->with('info', "Curso no publicado");
+        return redirect()->route('admin.courses.index')->with('info', "El curso no se ha publicado");
     }
 }
