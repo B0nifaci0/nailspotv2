@@ -1,7 +1,7 @@
 <div>
 
     <h1 class="mb-2 text-2xl font-bold uppercase">Estudiantes del curso</h1>
-    <hr class="mt-2 mb-6" />
+    <hr class="mt-5 mb-6" />
 
     <x-table-responsive>
 

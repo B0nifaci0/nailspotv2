@@ -1,6 +1,8 @@
+<div class="relative pt-16 flex content-center items-center justify-center bg-purple-800"> 
+            </div>
 <div class="bg-purple-800">
 <!-- En esta seccion se nos muestra un listado de criterios asignados a cada juez -->
-    <h1 class="text-center text-white text-xl font-bold">Lista de Criterios</h1>
+    <h1 class="text-center text-white text-3xl font-bold pt-12 pb-6 bg-purple-800">Lista de Criterios</h1>
 </div>
 <div class="bg-purple-800 pt-8 pb-12">
     <div class="container  bg-white rounded ">
@@ -70,5 +72,9 @@
         <div class="relative pt-16 flex content-center items-center justify-center"> 
             </div>
     </div>
+    <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
 </div>
 <!-- Aqui termina la seccion de los criterios asiganados por competencia -->

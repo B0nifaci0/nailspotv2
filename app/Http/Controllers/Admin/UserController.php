@@ -20,15 +20,17 @@ class UserController extends Controller
         return view('admin.users.index');
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::findOrFail($id);
         $roles = Role::all();
-
+        //return $roles;
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, User $user)
     {
+        //$user = User::findOrFail($id);
         $user->roles()->sync($request->roles);
         return redirect()->route('admin.users.index')->with('info', 'Roles asignados satisfactoriamente');
 

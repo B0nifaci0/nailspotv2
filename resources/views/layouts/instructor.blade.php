@@ -97,6 +97,24 @@
             </div>
             <div class="relative pt-16 flex content-center items-center justify-center"> 
             </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
+            <div class="relative pt-16 flex content-center items-center justify-center"> 
+            </div>
         </div>
 
         @stack('modals')

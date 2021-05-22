@@ -1,4 +1,7 @@
 <x-jet-form-section submit="updateProfileInformation">
+    <x-slot name="actions">
+    
+    </x-slot>
     <x-slot name="form">
         <!-- Foto de perfil -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -60,8 +63,12 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+        <x-jet-action-message class="mr-3 " on="saved" >
+            
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">{{ __('Actualizado') }}</strong>
+                <span class="block sm:inline">La información del usuario se ha actualizado exitosamente.</span>
+            </div>
         </x-jet-action-message>
 
         <x-jet-button class="bg-pink-600" wire:loading.attr="disabled" wire:target="photo">

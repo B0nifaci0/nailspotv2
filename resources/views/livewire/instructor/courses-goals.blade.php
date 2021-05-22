@@ -1,6 +1,8 @@
+<div class="relative pt-16  flex content-center items-center justify-center"> 
+            </div>
 <section>
     <h1 class="text-2xl uppercase text-bold">Metas del curso</h1>
-    <hr class="mb-6 mt-2">
+    <hr class="mb-8 mt-2">
 
     @foreach ($course->goals as $item)
     <article class="card mb-4">
@@ -39,5 +41,6 @@
     </form>
 </div>
     </article>
+    
 
 </section>
