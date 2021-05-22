@@ -82,8 +82,13 @@
                 <input type='file' class="hidden" name='pdf' />
             </label>
         </div>
-
+        @isset($course->certificate)
+        <iframe src="{{Storage::url($course->certificate->url)}}"> </iframe>
+        @endisset
         <small class="text-danger">{{ $errors->first('pdf') }}</small>
     </div>
+
+
+
 </div>
 <input type="hidden" name="user_id" value='{{auth()->user()->id}}'>

@@ -116,8 +116,14 @@ class CompetenceController extends Controller
         return view('admin.competences.criteria.index', compact('competence', 'judges', 'criteria', 'competence_criteria'));
     }
 
-    public function assignJudge(Request $request)
+    public function assignJudge(Request $request) 
     {
+        $data = $this->validate($request, [
+            'judges' => 'required',
+            'criteria' => 'required',
+        ]);
+
+
         $competence = Competence::find($request->competence_id);
 
         if (CompetenceCriterionUser::exist($request)->first()) {
