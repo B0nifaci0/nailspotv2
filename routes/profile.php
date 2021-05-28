@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
-
 
 Route::get('seguridad', [ProfileController::class, 'security'])->name('security');
 Route::get('delete', [ProfileController::class, 'delete'])->name('delete');
