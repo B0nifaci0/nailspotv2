@@ -313,6 +313,14 @@ return [
             'active' => ['admin/sales/competence*'],
             'can' => 'Ver dashboard'
         ],
+        ['header' => 'OPCIONES DE CONTACTO'],
+        [
+            'text'        => 'Mensajes',
+            'route'         => 'admin.message.index',
+            'icon'        => 'fa fa-envelope-open',
+            'active' => ['admin/mensajes/*'],
+            'can' => 'Ver dashboard'
+        ],
     ],
 
     /*

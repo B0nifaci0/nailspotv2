@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CriterionController;
 use App\Http\Controllers\Admin\CompetenceController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Report\DetailsCourseController;
 use App\Http\Controllers\Report\TableCompetencesController;
 
@@ -46,3 +47,7 @@ Route::delete('competences/criterion/{id}/delete', [CompetenceController::class,
 Route::get('report/{competence}/score', TableCompetencesController::class)->name('reports.competences.score');
 Route::get('report/{course}/details',DetailsCourseController::class)->name('reports.course.details');
 
+Route::get('mensajes', [ContactController::class, 'indexAdmin'])->name('message.index')->middleware('auth');
+Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'])->name('message.contact.edit')->middleware('auth');
+Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
+Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.contact.delete')->middleware('auth'); 

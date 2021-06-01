@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contact;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
@@ -34,5 +35,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CriterionSeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(CompetenceSeeder::class);
+        $this->call(ContactSeeder::class);
     }
 }
