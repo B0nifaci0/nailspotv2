@@ -34,7 +34,7 @@ class CreateNosotrosTable extends Migration
             $table->string('cargo_aron');
             $table->string('pasatiempo_yohana');
             $table->string('pasatiempo_renato');
-            $table->string('pasatiempo_aron')
+            $table->string('pasatiempo_aron');
             $table->timestamps();
             $table->softDeletes();
         });
