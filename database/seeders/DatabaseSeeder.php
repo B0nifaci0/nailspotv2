@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(LevelSeeder::class);
+        $this->call(PlatformSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(CouponSeeder::class);
@@ -34,6 +35,5 @@ class DatabaseSeeder extends Seeder
         $this->call(CriterionSeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(CompetenceSeeder::class);
-        $this->call(PlatformSeeder::class);
     }
 }

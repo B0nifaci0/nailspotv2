@@ -1,16 +1,13 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="actions">
-    
+
     </x-slot>
     <x-slot name="form">
         <!-- Foto de perfil -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
-                <!-- Entrada de archivo de foto de perfil -->
-                <input type="file" class="hidden"
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
+        <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <!-- Entrada de archivo de foto de perfil -->
+            <input type="file" class="hidden" wire:model="photo" x-ref="photo" x-on:change="
                                     photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
@@ -19,53 +16,64 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-jet-label for="photo" class="text-gray-900" value="{{ __('Foto') }}" />
+            <x-jet-label for="photo" class="text-gray-900" value="{{ __('Foto') }}" />
 
-                <!-- Foto de perfil actual -->
-                <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
-                </div>
-
-                <!-- Vista previa de la nueva foto de perfil -->
-                <div class="mt-2" x-show="photoPreview">
-                    <span class="block rounded-full w-20 h-20"
-                          x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                    </span>
-                </div>
-
-                <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Seleccionar nueva foto') }}
-                </x-jet-secondary-button>
-
-                @if ($this->user->profile_photo_path)
-                    <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Eliminar Foto') }}
-                    </x-jet-secondary-button>
-                @endif
-
-                <x-jet-input-error for="photo" class="mt-2" />
+            <!-- Foto de perfil actual -->
+            <div class="mt-2" x-show="! photoPreview">
+                <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
+                    class="object-cover w-20 h-20 rounded-full">
             </div>
+
+            <!-- Vista previa de la nueva foto de perfil -->
+            <div class="mt-2" x-show="photoPreview">
+                <span class="block w-20 h-20 rounded-full"
+                    x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                </span>
+            </div>
+
+            <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                {{ __('Seleccionar nueva foto') }}
+            </x-jet-secondary-button>
+
+            @if ($this->user->profile_photo_path)
+            <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                {{ __('Eliminar Foto') }}
+            </x-jet-secondary-button>
+            @endif
+
+            <x-jet-input-error for="photo" class="mt-2" />
+        </div>
         @endif
 
         <!-- Nombre -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" class="text-gray-900" value="{{ __('Nombre') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="state.name"
+                autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Correo -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" class="text-gray-900" value="{{ __('Correo') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <x-jet-input id="email" type="email" class="block w-full mt-1" readonly />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+        nivel:
+        @if ($this->user->level_id==1)
+        basico
+        @elseif($this->user->level_id==2)
+        intermedio
+        @else
+        avanzado
+        @endif
+
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3 " on="saved" >
-            
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <x-jet-action-message class="mr-3 " on="saved">
+
+            <div class="relative px-4 py-3 text-green-700 bg-green-100 border border-green-400 rounded" role="alert">
                 <strong class="font-bold">{{ __('Actualizado') }}</strong>
                 <span class="block sm:inline">La información del usuario se ha actualizado exitosamente.</span>
             </div>

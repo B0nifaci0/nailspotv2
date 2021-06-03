@@ -10,11 +10,11 @@
                 x-transition:leave="transition ease-in duration-300"
                 x-transition:leave-start="opacity-100 transform scale-100"
                 x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="imgModalSrc = ''"
-                class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
+                class="fixed inset-0 z-50 flex items-center justify-center w-full p-2 overflow-hidden bg-black bg-opacity-75 h-100">
                 <div @click.away="imgModal = ''" class="flex flex-col max-w-3xl max-h-full overflow-auto">
                     <div class="z-50">
                         <button @click="imgModal = ''" class="float-right pt-2 pr-2 outline-none focus:outline-none">
-                            <svg class="fill-current text-white " xmlns="http://www.w3.org/2000/svg" width="18"
+                            <svg class="text-white fill-current " xmlns="http://www.w3.org/2000/svg" width="18"
                                 height="18" viewBox="0 0 18 18">
                                 <path
                                     d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
@@ -30,18 +30,17 @@
             </div>
         </template>
     </div>
-    <div class="relative pt-16 flex content-center items-center justify-center bg-purple-800">
+    <div class="relative flex items-center content-center justify-center pt-16 bg-purple-800">
     </div>
-    <div class="bg-purple-800 pt-8 pb-8">
+    <div class="pt-8 pb-8 bg-purple-800">
         <div class="container bg-white rounded">
             <h1 class="text-2xl font-bold uppercase">
                 Competencia {{$participant->competence->name}} Criterio {{$criterion->name}}
             </h1>
             <a href="{{route('judge.competences.participants', [$participant->competence, $criterion])}}"
-                class="text-indigo-600 hover:text-indigo-900 float-right text-lg">Regresar </a>
-            <!--<hr class="mt-2 mb-6" />-->
+                class="float-right text-lg text-indigo-600 hover:text-indigo-900">Regresar </a>
 
-            <h1 class="text-2xl font-bold mt-8 mb-2">Recursos</h1>
+            <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
 
             <div x-data="{}" class="px-2">
                 <div class="flex -mx-2">
@@ -50,31 +49,33 @@
                         <div class="bg-gray-400">
                             <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
                                 class="cursor-pointer">
-                                <img alt="Placeholder" class="object-fit w-full" src="{{Storage::url($image->url)}}">
+                                <img alt="Placeholder" class="w-full object-fit" src="{{Storage::url($image->url)}}">
                             </a>
                         </div>
                     </div>
                     @endforeach
                 </div>
             </div>
-            <form method="POST" action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}" class="pb-5 pt-5">
+            <form method="POST"
+                action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}"
+                class="pt-5 pb-5">
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     @if ($score)
                     <div>
-                        <span class="text-xl text-gray-900 font-bold">Calificacion {{$score}}</span>
+                        <span class="text-xl font-bold text-gray-900">Calificacion: {{$score}}</span>
                     </div>
                     @else
                     <div>
                         <label>Calificacion</label>
-                        <select name="score" class="form-input block w-full mt-1">
+                        <select name="score" class="block w-full mt-1 form-input">
                             @for ($i = 1; $i < 11; $i++) <option>{{$i}}
                                 </option>
                                 @endfor
                         </select>
                     </div>
                     <button type="submit"
-                        class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl">
+                        class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-600 hover:bg-pink-700 rounded-xl">
                         Calificar
                     </button>
                     @endif

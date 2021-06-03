@@ -99,12 +99,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
-    
     public function tasks()
     {
         return $this->hasMany(Task::class);
     }
-
 
     public function sales()
     {
@@ -129,8 +127,6 @@ class User extends Authenticatable implements MustVerifyEmail
             return 'Instructor';
         }
     }
-
-    //competence_criterion_user
 
     public function criteria()
     {

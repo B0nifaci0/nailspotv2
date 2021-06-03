@@ -14,7 +14,7 @@ class AddPlatformToCourses extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->foreignId('platform_id')->unsigned()->default(1);
+            $table->foreignId('platform_id')->references('id')->on('platforms')->cascadeOnDelete();
         });
     }
 

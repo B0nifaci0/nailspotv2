@@ -116,11 +116,11 @@ class CompetenceController extends Controller
         return view('admin.competences.criteria.index', compact('competence', 'judges', 'criteria', 'competence_criteria'));
     }
 
-    public function assignJudge(Request $request) 
+    public function assignJudge(Request $request)
     {
         $data = $this->validate($request, [
-            'judges' => 'required',
-            'criteria' => 'required',
+            'user_id' => 'required',
+            'competence_id' => 'required',
         ]);
 
 

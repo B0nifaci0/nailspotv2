@@ -31,9 +31,9 @@ class CompetenceController extends Controller
     public function show(CompetenceUser $participant, Criterion $criterion)
     {
         $score = null;
-        foreach ($participant->scores as $score) {
-            if ($score->competenceCriterionUser->criterion->id == $criterion->id) {
-                $score = $score->value;
+        foreach ($participant->scores as $scoreParticipant) {
+            if ($scoreParticipant->competenceCriterionUser->criterion->id == $criterion->id) {
+                $score = $scoreParticipant->value;
                 break;
             }
         }
