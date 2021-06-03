@@ -17,7 +17,6 @@
         }
     </style>
     @endsection
-    @foreach($nosotros as $nosotros)
     @section('header')
     <header class="relative  h-screen overflow-hidden">
         <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
@@ -25,6 +24,7 @@
                 style='background-image: url("img/todos.jpg");'>
                 <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-purple-500"></span>
             </div>
+    @foreach($nosotros as $nosotros)
             <div class="container relative mx-auto">
                 <div class="items-center flex flex-wrap">
                     <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
@@ -42,7 +42,7 @@
         </div>
     </header>
     @endsection
-    <div class="relative p-2 pt-10 bg-purple-800 md:flex">
+    <div class="bg-pink-600   relative p-2 pt-10 bg-purple-800 md:flex">
         <div class="sm:w-2/2 md:w-3/3 lg:w-4/4 xl:w-4/5  mx-auto">
             <section class="m-4 mt-5 mb-5 card">
                 <div class="flex-none overflow-hidden text-center bg-center bg-cover rounded rounded-t">
@@ -53,10 +53,7 @@
             </section>
         </div>
     </div>
-    
-    <!--<div  id="video" class=" embed-container card-body hidden"  >
-                            </div >-->
-    <div class="bg-purple-800  overflow-hidden ">
+    <div class="bg-gradient-to-b from-pink-600  to-purple-800  overflow-hidden ">
         <div class="container relative mx-auto">
             <div class="items-center flex flex-wrap">
                 <div class="w-full lg:w-6/12 px-4 mx-auto text-center">
@@ -102,9 +99,9 @@
             </div>
         </div>
     </div>
-    <div class="bg-pink-600 pb-8">
+    <div class="bg-purple-800 pb-8">
         <div>
-            <h1 class="bg-pink-600 text-white font-bold text-center text-6xl pt-5 pb-8">Conoce más de nosotros</h1>
+            <h1 class="bg-purple-800 text-white font-bold text-center text-6xl pt-5 pb-8">Conoce más de nosotros</h1>
         </div>
         <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4 mx-auto">
             <div class="order-2 ">
