@@ -15,12 +15,14 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/floating-wpp.css') }}">
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-
+        <script src="{{ asset('js/whatsapp/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/whatsapp/floating-wpp.js') }}"></script>
         {!! htmlScriptTagJsApi() !!}
 
         <!---Google Analitycs--->
@@ -48,9 +50,8 @@
             @yield('header')
             {{ $slot }}
         </main>
-
         @stack('modals')
-
+        <x-whatsapp-chat />
         <x-footer />
 
         @livewireScripts
@@ -59,5 +60,4 @@
         {{$js}}
         @endisset
     </body>
-
 </html>

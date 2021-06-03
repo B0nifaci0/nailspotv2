@@ -313,12 +313,19 @@ return [
             'active' => ['admin/sales/competence*'],
             'can' => 'Ver dashboard'
         ],
-        ['header' => 'INFORMACION'],
+        ['header' => 'INFORMACION Y CONTACTO'],
         [
             'text' => 'Nosotros',
             'route' => 'admin.nosotros.index',
             'active' => ['admin/nosotros'],
             'icon' => 'fas fa-info-circle',
+        ],
+        [
+            'text'        => 'Mensajes',
+            'route'         => 'admin.message.index',
+            'icon'        => 'fa fa-envelope-open',
+            'active' => ['admin/mensajes/*'],
+            'can' => 'Ver dashboard'
         ],
     ],
 

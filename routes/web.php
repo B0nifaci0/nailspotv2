@@ -7,6 +7,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebitasController;
 use App\Http\Controllers\CompetenceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Livewire\TasksUser;
 use App\Http\Controllers\NosotrosController;
 
@@ -37,3 +38,6 @@ Route::post('competence/{competence}/enrolled', [CompetenceController::class, 'e
 
 Route::get('pruebitas', [PruebitasController::class, 'index'])->name('pruebitas');
 Route::get('nosotros', [NosotrosController::class, 'index'])->name('nosotros');
+
+Route::get('contacto', [ContactController::class, 'index'])->name('contact.index');
+Route::post('contacto/save', [ContactController::class, 'store'])->name('contact.store');
