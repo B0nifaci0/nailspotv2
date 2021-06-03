@@ -1,6 +1,5 @@
 <x-app-layout>
     @section('header')
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
         <script>
             var cont=0;
         function loopSlider(){

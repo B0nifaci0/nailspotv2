@@ -40,6 +40,7 @@
                         <a href="{{ route('competences.index') }}" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Competencias</a>
                         <!--<a href="#" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Contacto</a>-->
                         <a href="{{ route('nosotros') }}" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Nosotros</a>
+                        <a href="{{ route('contact.index')}}" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Contacto</a>
                     </div>
                 </div>
             </div>
@@ -118,6 +119,7 @@
             <a href="{{ route('competences.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Competencias</a>
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contacto</a>-->
             <a href=" {{ route('nosotros') }} " class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md">Nosotros</a>
+            <a href="{{route('contact.index')}}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contacto</a>
         </div>
     </div>
 </nav>

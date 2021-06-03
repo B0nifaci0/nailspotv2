@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('header')
     <!--Aqui empieza el Header --->
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    
     <script>
         var cont=0;
         function loopSlider(){
@@ -120,6 +120,7 @@
     @endsection
     <div class="mx-auto bg-purple-800">
         <h1 class="text-6xl text-white font-bold mx-auto text-center py-10">Nuevos Cursos</h1>
+        <x-whatsapp-chat />
     </div>
     @livewire('courses-index')
 </x-app-layout>
