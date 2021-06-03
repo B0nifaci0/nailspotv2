@@ -313,6 +313,13 @@ return [
             'active' => ['admin/sales/competence*'],
             'can' => 'Ver dashboard'
         ],
+        ['header' => 'INFORMACION'],
+        [
+            'text' => 'Nosotros',
+            'route' => 'admin.nosotros.index',
+            'active' => ['admin/nosotros'],
+            'icon' => 'fas fa-info-circle',
+        ],
     ],
 
     /*

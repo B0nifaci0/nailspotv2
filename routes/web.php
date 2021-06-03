@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebitasController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Livewire\TasksUser;
+use App\Http\Controllers\NosotrosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,4 @@ Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->
 Route::post('competence/{competence}/enrolled', [CompetenceController::class, 'enrolled'])->middleware('auth')->name('competence.enrolled');
 
 Route::get('pruebitas', [PruebitasController::class, 'index'])->name('pruebitas');
+Route::get('nosotros', [NosotrosController::class, 'index'])->name('nosotros');

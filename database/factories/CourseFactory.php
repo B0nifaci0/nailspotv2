@@ -37,6 +37,7 @@ class CourseFactory extends Factory
             'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'level_id' => Level::all()->random()->id,
             'category_id' => Category::all()->random()->id,
+            'platform_id' => 1
         ];
     }
 }

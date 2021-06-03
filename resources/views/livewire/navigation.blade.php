@@ -36,10 +36,10 @@
                     <div class="flex space-x-4">
                     
                         <!-- Accesos rapidos a las paginas del sitio -->
-                        <!--<a href="#" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Nosotros</a>-->
                         <a href="{{ route('courses.index') }}" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Cursos</a>
                         <a href="{{ route('competences.index') }}" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Competencias</a>
                         <!--<a href="#" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Contacto</a>-->
+                        <a href="{{ route('nosotros') }}" class="px-3 py-3 text-base font-medium text-gray-300 rounded-md hover:bg-purple-400 hover:text-white">Nosotros</a>
                     </div>
                 </div>
             </div>
@@ -113,11 +113,11 @@
         <div class="px-2 pt-2 pb-3 space-y-1">
             <!-- Accesos rapidos a las paginas del sitio -->
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <!--<a href="#" class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md">Nosotros</a>-->
             <a href="{{ route('courses.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Cursos</a>
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Categorías</a>-->
             <a href="{{ route('competences.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Competencias</a>
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contacto</a>-->
+            <a href=" {{ route('nosotros') }} " class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md">Nosotros</a>
         </div>
     </div>
 </nav>

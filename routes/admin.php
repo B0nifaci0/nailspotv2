@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CriterionController;
 use App\Http\Controllers\Admin\CompetenceController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\NosotroController;
 use App\Http\Controllers\Report\DetailsCourseController;
 use App\Http\Controllers\Report\TableCompetencesController;
 
@@ -24,6 +25,7 @@ Route::resource('levels', LevelController::class)->names('levels');
 Route::resource('coupons', CouponController::class)->names('coupons');
 Route::resource('competences', CompetenceController::class)->names('competences');
 Route::resource('criteria', CriterionController::class)->names('criteria');
+Route::resource('nosotros', NosotroController::class)->names('nosotros');
 
 
 Route::get('sales/courses', [CourseController::class, 'sales'])->name('sales.courses');

@@ -17,6 +17,19 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
 
         {!! htmlScriptTagJsApi() !!}
+
+        <!---Google Analitycs--->
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDPFW1S3L4"></script>
+                    <script>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-WDPFW1S3L4');
+                    </script>
+
+        <!---Termina Google analitycs--->
     </head>
     <body>
     <div class="bg-cover bg-center bg-no-repeat" style="background-image: url(img/log2.jpg)">
