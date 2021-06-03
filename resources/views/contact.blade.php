@@ -1,15 +1,17 @@
 <x-app-layout>
+    @if ($info=Session::get('exito'))
+    <div class="alert absolute w-full">
+        <div class="flex items-center bg-blue-500 text-white text-md font-bold px-4 py-3" role="alert">
+            <p class="text-center w-full">{{$info}}</p>
+        </div>
+    </div>
+    @endif
     <section>
         <div class="h-96 bg-purple-300">
             <iframe class="h-full w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.2800820432244!2d-103.45098048560006!3d20.576616608436506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428aca7d1b7a579%3A0xc218e033c428edd7!2sAllende%2027a%2C%20Los%20Gavilanes%2C%2045640%20Los%20Gavilanes%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1622517034994!5m2!1ses-419!2smx"></iframe>
         </div>
     </section>
     <section class="pt-5 pb-5 bg-purple-800 mx-auto relative">
-        @if (session('info'))
-            <div class="alert alert-success">
-                {{(session('info'))}}
-            </div>
-        @endif
         <div class="container mx-auto px-4 stactic -mt-12">
             <div class="bg-indigo-800 text-white p-5 rounded relative">
                 <h2 class="text-4xl font-semibold text-center mb-4 mt-4">Contactanos</h2>
@@ -90,4 +92,9 @@
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function(){
+            $(".alert").delay(3000).slideUp(800);
+        });
+    </script>
 </x-app-layout>

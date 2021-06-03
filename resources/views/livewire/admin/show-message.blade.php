@@ -8,7 +8,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Mensaje</th>
@@ -18,7 +17,6 @@
                 <tbody>
                     @forelse ($messages as $message)
                     <tr>
-                        <td>{{$message->id}}</td>
                         <td>{{$message->name}}</td>
                         <td>{{$message->email}}</td>
                         <td>{{$message->message}}</td>

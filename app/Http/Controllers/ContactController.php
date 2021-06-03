@@ -22,7 +22,8 @@ class ContactController extends Controller
             'message'=>'required|min:10|max:250'
         ]);
         Message::create($request->all());
-        return redirect()->route('contact.index')->with(['info '=>'¡Gracias por tus comentarios!']);
+        session()->flash('exito', '¡Gracias por tus comenetarios!');
+        return redirect()->route('contact.index');
     }   
 
     public function indexAdmin(){
