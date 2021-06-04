@@ -50,4 +50,4 @@ Route::get('report/{course}/details',DetailsCourseController::class)->name('repo
 Route::get('mensajes', [ContactController::class, 'indexAdmin'])->name('message.index')->middleware('auth');
 Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'])->name('message.contact.edit')->middleware('auth');
 Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
-Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.contact.delete')->middleware('auth'); 
+Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth'); 

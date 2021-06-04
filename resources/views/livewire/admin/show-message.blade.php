@@ -24,7 +24,7 @@
                         <td>{{$message->message}}</td>
                         <td>{{$message->created_at->diffForHumans()}}</td>
                         <td class="d-flex justify-content-end">
-                            <form method="POST" action="{{route('admin.deleteMessage', $message)}}">
+                            <form method="POST" action="{{route('admin.message.delete', $message)}}">
                                 @csrf @method('delete')
                                 <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash"></i></button>
                             </form>

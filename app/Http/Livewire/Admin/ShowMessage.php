@@ -10,6 +10,9 @@ class ShowMessage extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search="";
+    public function updatingSearch(){
+        $this->resetPage();
+    }
     public function render()
     {
         $messages=Message::Where('name', 'like', '%' .$this->search.'%')

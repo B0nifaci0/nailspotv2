@@ -17,12 +17,12 @@ class ContactController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'name'=>'required|min:5|max:10',
+            'name'=>'required|min:5|max:50',
             'email'=>'required|email|min:10',
             'message'=>'required|min:10|max:250'
         ]);
         Message::create($request->all());
-        return redirect()->route('contact.store')->with(['info '=>'¡Gracias por tus comentarios!']);
+        return redirect()->route('contact.index')->with(['info '=>'¡Gracias por tus comentarios!']);
     }   
 
     public function indexAdmin(){
