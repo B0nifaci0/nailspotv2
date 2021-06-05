@@ -19,19 +19,19 @@
     @endsection
     @section('header')
     <header class="relative  h-screen overflow-hidden">
-        <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
+        <div class="relative pt-16 pb-32 flex content-center items-end " style="min-height: 75vh;">
             <div class="absolute top-0 w-full h-screen bg-center bg-cover mb-2"
                 style='background-image: url("img/todos.jpg");'>
                 <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-purple-500"></span>
             </div>
     @foreach($nosotros as $nosotros)
-            <div class="container relative mx-auto">
-                <div class="items-center flex flex-wrap">
+            <div class="relative mx-auto">
+                <div class=" flex flex-wrap">
                     <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                         <div class="">
                             <div class="block">
                                 <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mb-4 mt-4" id="boton">
-                                    <i class="fas fa-play-circle fa-10x"></i>
+                                    <i class="fas fa-play-circle fa-5x"></i>
                                 </button>
                             </div>
 
