@@ -14,6 +14,7 @@ use Database\Seeders\CriterionSeeder;
 use Database\Seeders\CompetenceSeeder;
 use Database\Seeders\PermissionSeeder;
 use Database\Seeders\SubcategorySeeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Storage::makeDirectory('courses');
+        Storage::makeDirectory('competences');
+        Storage::makeDirectory('certificates');
+        Storage::makeDirectory('course/tasks');
 
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);

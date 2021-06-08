@@ -69,7 +69,7 @@
                         </form>
                         @endif
 
-                        <a href="task/show">mostrar</a>
+                        <a href="{{route('profile.task', $task) }}">mostrar</a>
 
                     </div>
                 </div>
