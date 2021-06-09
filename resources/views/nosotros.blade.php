@@ -18,6 +18,7 @@
     </style>
     @endsection
     @section('header')
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <header class="relative  h-screen overflow-hidden">
         <div class="relative pt-16 pb-32 flex content-center items-end " style="min-height: 75vh;">
             <div class="absolute top-0 w-full h-screen bg-center bg-cover mb-2"
@@ -25,34 +26,32 @@
                 <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-purple-500"></span>
             </div>
     @foreach($nosotros as $nosotros)
-            <div class="relative mx-auto">
-                <div class=" flex flex-wrap">
-                    <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                        <div class="">
-                            <div class="block">
-                                <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mb-4 mt-4" id="boton">
-                                    <i class="fas fa-play-circle fa-5x"></i>
-                                </button>
+            <!--inicia modal-->
+            <div class="mx-auto">
+                <!-- Modal -->
+                <div x-data="{ showModal : false }">
+                    <!-- Button -->
+                    <button @click="showModal = !showModal" class="relative  bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mb-4 mt-4"><i class="fas fa-play-circle fa-5x"></i></button>
+                    <!-- Modal Background -->
+                    <div x-show="showModal" class="fixed text-gray-500 flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                        <!-- Modal -->
+                        <div x-show="showModal" class="bg-indigo-800 rounded-xl shadow-2xl p-6 xs:w-12/12 w-8/12 mx-10" @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
+                            <div class=" embed-responsive">
+                                <iframe  class=" relative inset-0  " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->video_identify}} " frameborder="0" … > </iframe >
                             </div>
 
+                            <!-- Buttons -->
+                            <div class="text-right space-x-5 mt-5">
+                                <button @click="showModal = !showModal" class="px-4 py-2 text-sm bg-white rounded-xl border transition-colors duration-150 ease-linear border-gray-200 text-gray-500 focus:outline-none focus:ring-0 font-bold hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cerrar <i class="fas fa-times"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--termina-modal-->
         </div>
     </header>
     @endsection
-    <div class="bg-pink-600   relative p-2 pt-10 bg-purple-800 md:flex">
-        <div class="sm:w-2/2 md:w-3/3 lg:w-4/4 xl:w-4/5  mx-auto">
-            <section class="m-4 mt-5 mb-5 card">
-                <div class="flex-none overflow-hidden text-center bg-center bg-cover rounded rounded-t">
-                    <div class=" embed-responsive hidden" id="video" >
-                        <iframe src="https://www.youtube-nocookie.com/embed/{{$nosotros->video_identify}} " frameborder="0" allowfullscreen > </iframe >
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
     <div class="bg-gradient-to-b from-pink-600  to-purple-800  overflow-hidden ">
         <div class="container relative mx-auto">
             <div class="items-center flex flex-wrap">
