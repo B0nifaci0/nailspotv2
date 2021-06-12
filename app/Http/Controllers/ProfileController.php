@@ -117,6 +117,6 @@ class ProfileController extends Controller
             $taskUser->save();
         }
 
-        return redirect()->route('course.tasks', $task->course)->with('info', 'ok!');
+        return redirect()->route('course.tasks', $task->course)->with('info', 'se ha subido la imagen');
     }
 }

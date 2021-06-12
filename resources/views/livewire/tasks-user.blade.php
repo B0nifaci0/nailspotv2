@@ -1,7 +1,12 @@
 @if (session('info'))
-<div class="alert alert-primary">
-    {{(session('info'))}}
+
+<div class="bg-green-400 border-l-4 border-green-600 text-orange-700 p-4" role="alert">
+  <p class="font-bold">Perfecto!</p>
+  <p>{{(session('info'))}}</p>
 </div>
+<!--<div class="alert alert-primary">
+    {{(session('info'))}} 
+</div>-->
 @endif
 <div class="pt-16 bg-purple-800">
     <h1 class="text-2xl font-bold text-center text-white"> Mis Tareas</h1>
@@ -15,15 +20,15 @@
                     <header>
                         <h1 class="cursor-pointer" x-on:click="open = !open" wire:click='clear()'>
                             <strong>Tarea {{$key+1}}:</strong> {{$task->title}}</h1>
-                        requeridas: {{$task->quantity}}
+                            <b>Descripción:</b>    {{$task->description}} <br>
+                            <b>Fotos requeridas:</b> {{$task->quantity}}
                     </header>
                     <div x-show="open">
-                        {{$task->description}}
                         @if ($task->taskUser->where('user_id',auth()->user()->id)->first())
-                        has subido {{$task->taskUser->where('user_id',auth()->user()->id)->first()->images_count}}
+                        <p>has subido {{$task->taskUser->where('user_id',auth()->user()->id)->first()->images_count}} fotos</p>
                         @if ($task->taskUser->where('user_id',auth()->user()->id)->first()->complete ==true)
-                        hola
-                        {{$task->taskUser->where('user_id',auth()->user()->id)->first()->complete}}
+                        
+                        <p class="hidden">{{$task->taskUser->where('user_id',auth()->user()->id)->first()->complete}}</p>
 
                         @else
                         <form action="{{ route('profile.courses.image', $task) }}" method="post"
@@ -68,8 +73,8 @@
                                 type="submit">Enviar</button>
                         </form>
                         @endif
-
-                        <a href="{{route('profile.task', $task) }}">mostrar</a>
+                        <br>
+                        <Button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"><a href="{{route('profile.task', $task) }}">Mostrar tarea </a></Button>
 
                     </div>
                 </div>
