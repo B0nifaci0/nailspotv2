@@ -78,7 +78,7 @@
             <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                 <div class="text-sm text-indigo-100 font-semibold py-1">
                     Copyright © 2021 Nailspot by
-                    <a href="#" class="text-indigo-100 hover:text-gray-900">Digital Pinneaple</a>.
+                    <a href="https://www.digital-pineapple.com.mx/" class="text-indigo-100 hover:text-gray-900">Digital Pinneaple</a>.
                 </div>
             </div>
         </div>
