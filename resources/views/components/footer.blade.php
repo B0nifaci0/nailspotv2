@@ -33,12 +33,12 @@
                         <span class="block uppercase text-indigo-100 text-sm font-bold mb-2">Cuenta</span>
                         <ul class="list-unstyled">
                             <li>
-                                <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">Iniciar Sesión</a>
+                                <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm" 
+                                    href="{{route('login')}}">Iniciar Sesión</a>
                             </li>
                             <li>
                                 <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">Compras</a>
+                                    href="{{route('register')}}">Registrarse</a>
                             </li>
                         </ul>
                     </div>
@@ -48,11 +48,11 @@
                         <ul class="list-unstyled">
                             <li>
                                 <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">Cursos</a>
+                                    href="{{ route('courses.index') }}">Cursos</a>
                             </li>
                             <li>
                                 <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">Contacto</a>
+                                    href="{{ route('contact.index')}}">Contacto</a>
                             </li>
                         </ul>
                     </div>

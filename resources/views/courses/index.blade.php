@@ -101,7 +101,7 @@
     <div class=" bg-purple-800 pb-5">
         <div id="slider-1">
             <div class="relative top-0 w-full  mb-2  bg-cover bg-center opacity-75 text-white py-72 px-10 h-screen w-screen pb-5"
-                style='background-image: url("img/slider-yohana.png");'>
+                style='background-image: url("img/slider-yohana.jpg");'>
             </div>
         </div>
         <div id="slider-2" >

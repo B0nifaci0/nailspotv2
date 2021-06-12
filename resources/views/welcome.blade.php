@@ -33,94 +33,124 @@
                     </p>
                 </div>
             </div>
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
-                    <div class="px-6">
-                        <img alt="..." src="https://nailspot.mx/static/img/equipo/certificacion.f2f983c602a6.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
-                        <div class="pt-6 text-center">
-                            <h5 class="text-xl font-bold text-white">Yohana Rivas</h5>
-                            <p class="mt-1 text-sm uppercase font-semibold text-white">
-                                Diseñádor
-                            </p>
-                            <div class="mt-6">
-                            <button
-                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a href="https://www.facebook.com/y.rivas86" class="fab fa-facebook"></a></button><button
-                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a  href="https://www.instagram.com/nailsyohanaoficial/" class="fab fa-instagram"></a>
-                                </button>
+            <!-----CODIGO DE PRRUEBA ---
+            <div class="wrapper bg-gray-400 antialiased text-gray-900">
+                <div>
+                    <img src="{{asset('img/foto_yohana.jpg')}}" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">    
+                    <div class="relative px-4 -mt-16  ">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="flex items-baseline">
+                              <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                                New
+                              </span>
+                                <div class="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider">
+                                    2 baths  &bull; 3 rooms
+                                </div>  
                             </div>
+                            <h4 class="mt-1 text-xl font-semibold uppercase leading-tight truncate">A random Title</h4>
+ 
+                            <div class="mt-1">
+                              $1800
+                              <span class="text-gray-600 text-sm">   /wk</span>
+                            </div>
+                            <div class="mt-4">
+                              <span class="text-teal-600 text-md font-semibold">4/5 ratings </span>
+                              <span class="text-sm text-gray-600">(based on 234 ratings)</span>
+                            </div>  
                         </div>
                     </div>
+  
                 </div>
-                <!--<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
-                    <div class="px-6">
-                        <img alt="..." src="https://nailspot.mx/static/img/equipo/diplomados.cc99cd477f79.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 180px" />
-                        <div class="pt-6 text-center">
-                            <h5 class="text-xl font-bold text-white">Mango Manolo</h5>
-                            <p class="mt-1 text-sm  text-white uppercase font-semibold">
-                                Uñas
-                            </p>
-                            <div class="mt-6">
-                            <button
-                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a href="https://www.facebook.com/mangomanolo/" class="fab fa-facebook"></a></button><button
-                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a  href="https://www.instagram.com/mango_manolo/" class="fab fa-instagram"></a>
-                                </button>
-                            </div>
+            </div>-->
+            <!---CARDS DE PRUEBA--->
+            <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
+                <div class="order-2">
+                    <section class="bg-indigo-800 text-white mt-5 mb-5 ml-4 mr-4 rounded-xl shadow-xl ">
+                        <div class="card-body">
+                            <article class="bg-indigo-800 flex flex-col ">
+                                <img class="w-full" src="{{asset('img/foto_renato.jpg')}}" alt="">
+                                <div class="static px-1 -mt-16  ">
+                                    <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
+                                        <div class="card-body flex-1 flex flex-col ">
+                                            <h1 class="text-5xl mb-2 text-center text-white font-bold "> Renato Ortíz </h1>
+                                        </div>
+                                        <div class="card-body flex-1 flex flex-col ">
+                                            <div class="mx-auto">
+    
+                                                <button
+                                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                                    type="button">
+                                                    <a href="https://www.facebook.com/profile.php?id=100009998405727" class="fab fa-facebook 3x"></a></button><button
+                                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-4 mb-1"
+                                                    type="button">
+                                                    <a  href="https://www.instagram.com/renato_delao/" class="fab fa-instagram 3x"></a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
-                    </div>
-                </div>-->
-                <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
-                    <div class="px-6">
-                        <img alt="..." src="https://nailspot.mx/static/img/equipo/nailing.587ae5648772.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
-                        <div class="pt-6 text-center">
-                            <h5 class="text-xl font-bold text-white">Renato Ortiz</h5>
-                            <p class="mt-1 text-sm  text-white  uppercase font-semibold">
-                                Uñas </p>
-                            <div class="mt-6">
-                            <button
-                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a href="https://www.facebook.com/profile.php?id=100009998405727" class="fab fa-facebook"></a></button><button
-                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a  href="https://www.instagram.com/renato_delao/" class="fab fa-instagram"></a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-                <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 mx-auto transform hover:scale-105">
-                    <div class="px-6">
-                        <img alt="..." src="https://nailspot.mx/static/img/equipo/shopping.d4a9f46a85f5.jpg"
-                            class="shadow-lg rounded max-w-full mx-auto" style="max-width: 190px" />
-                        <div class="pt-6 text-center">
-                            <h5 class="text-xl font-bold text-white">Aaron Amaro</h5>
-                            <p class="mt-1 text-sm text-white  uppercase font-semibold">
-                                uñas </p>
-                            <div class="mt-6">
-                                <button
-                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a href="https://www.facebook.com/aaronroman.amaro" class="fab fa-facebook"></a></button><button
-                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                    type="button">
-                                    <a  href="https://www.instagram.com/aaron_amaro_nails/" class="fab fa-instagram"></a>
-                                </button>
-                            </div>
+                <div class="order-2">
+                    <section class="bg-indigo-800 text-white mt-5 mb-5 ml-4 mr-4 rounded-xl shadow-xl ">
+                        <div class="card-body">
+                            <article class="bg-indigo-800 flex flex-col ">
+                                <img class="w-full" src="{{asset('img/foto_yohana.jpg')}}" alt="">
+                                <div class="static px-1 -mt-16  ">
+                                    <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
+                                        <div class="card-body flex-1 flex flex-col">
+                                            <h1 class="text-5xl mb-2 text-center text-white font-bold "> Yohana Rivas </h1>
+                                        </div>
+                                        <div class="card-body flex-1 flex flex-col ">
+                                            <div class="mx-auto">
+                                                <button
+                                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                                    type="button">
+                                                    <a href="https://www.facebook.com/y.rivas86" class="fab fa-facebook 3x"></a></button><button
+                                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-4 mb-1"
+                                                    type="button">
+                                                    <a  href="https://www.instagram.com/nailsyohanaoficial/" class="fab fa-instagram 3x"></a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
-                    </div>
+                    </section>
+                </div>
+                <div class="order-2">
+                    <section class="bg-indigo-800 text-white mt-5 mb-5 ml-4 mr-4 rounded-xl shadow-xl ">
+                        <div class="card-body">
+                            <article class="bg-indigo-800 flex flex-col ">
+                                <img class="w-full" src="{{asset('img/foto_aron.jpg')}}" alt="">
+                                <div class="static  px-1 -mt-16  ">
+                                    <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
+                                        <div class="card-body flex-1 flex flex-col">
+                                            <h1 class="text-5xl mb-2 text-center text-white font-bold "> Aaron Amaro </h1>
+                                        </div>
+                                        <div class="card-body flex-1 flex flex-col ">
+                                            <div class="mx-auto">
+                                                <button
+                                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                                    type="button">
+                                                    <a href="https://www.facebook.com/aaronroman.amaro" class="fab fa-facebook 3x"></a></button><button
+                                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-4 mb-1"
+                                                    type="button">
+                                                    <a  href="https://www.instagram.com/aaron_amaro_nails/" class="fab fa-instagram 3x"></a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
                 </div>
             </div>
+            <!---terminan cards-->
         </div>
     </section>
     <!-- Aqui termina la seccion de equipo -->
