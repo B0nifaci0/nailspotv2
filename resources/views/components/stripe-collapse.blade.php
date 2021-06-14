@@ -57,7 +57,7 @@
     const payButton = document.getElementById('payButton');
 
     payButton.addEventListener('click', async(e) => {
-        if (form.elements.payment_platform.value === "{{ $platformCurrentId }}") {
+        if (form.elements.payment_platform.value === "{{ $platformCurrent->id }}") {
 
             e.preventDefault();
 

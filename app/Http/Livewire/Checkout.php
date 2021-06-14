@@ -10,13 +10,14 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public $course, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrentId = null;
+    public $course, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent;
 
     public function mount(Course $course)
     {
         $this->course = $course;
         $this->total = $course->price;
         $this->platforms = PaymentPlatform::all();
+        $this->platformCurrent = new PaymentPlatform();
     }
 
     public function render()
@@ -71,6 +72,6 @@ class Checkout extends Component
 
     public function selectPlatform(PaymentPlatform $platform)
     {
-        $this->platformCurrentId = $platform->id;
+        $this->platformCurrent = $platform;
     }
 }

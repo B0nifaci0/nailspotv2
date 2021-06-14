@@ -143,9 +143,7 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    @if ($platformCurrentId ==2)
-                                    @include('components.stripe-collapse')
-                                    @endif
+                                    @includeIf('components.' . strtolower($platformCurrent->name) . '-collapse')
                                     <div>
                                         <button class="text-center" type="submit" id="payButton">Pagar</button>
                                     </div>

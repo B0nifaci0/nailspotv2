@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\PayUService;
 use App\Services\PayPalService;
 use App\Services\StripeService;
 
@@ -45,7 +46,16 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'class' => StripeService::class,
+    ],
 
+    'payu' => [
+        'base_uri' => env('PAYU_BASE_URI'),
+        'account_id' => env('PAYU_BASE_ACCOUNT_ID'),
+        'merchant_id' => env('PAYU_BASE_MERCHANT_ID'),
+        'key' => env('PAYU_KEY'),
+        'secret' => env('PAYU_SECRET'),
+        'base_currency' => 'mxn',
+        'class' => PayUService::class,
     ],
 
 ];
