@@ -14,7 +14,7 @@
         "biscolab/laravel-recaptcha": "^5.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.3",
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel/framework": "^8.12",
         "laravel/jetstream": "^2.1",
@@ -23,7 +23,6 @@
         "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.0",
-        "paypal/rest-api-sdk-php": "^1.14",
         "spatie/laravel-permission": "^4.0"
     },
     "require-dev": {

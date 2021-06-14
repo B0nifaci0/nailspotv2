@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24cbb5eb6b080a91ea016e8458de6da7",
+    "content-hash": "004df9c0c8cb0642ebd081b374b6d5eb",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1024,6 +1024,10 @@
                 "rest",
                 "web service"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/guzzle/issues",
+                "source": "https://github.com/guzzle/guzzle/tree/7.3.0"
+            },
             "funding": [
                 {
                     "url": "https://github.com/GrahamCampbell",
@@ -1093,6 +1097,10 @@
             "keywords": [
                 "promise"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/promises/issues",
+                "source": "https://github.com/guzzle/promises/tree/1.4.1"
+            },
             "time": "2021-03-07T09:25:29+00:00"
         },
         {
@@ -1164,6 +1172,10 @@
                 "uri",
                 "url"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/psr7/issues",
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
+            },
             "time": "2021-04-26T09:17:50+00:00"
         },
         {
@@ -2714,60 +2726,6 @@
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
             "time": "2020-12-06T15:14:20+00:00"
-        },
-        {
-            "name": "paypal/rest-api-sdk-php",
-            "version": "1.14.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
-                "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.3.0",
-                "psr/log": "^1.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PayPal": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "PayPal",
-                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
-                }
-            ],
-            "description": "PayPal's PHP SDK for REST APIs",
-            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
-            "keywords": [
-                "payments",
-                "paypal",
-                "rest",
-                "sdk"
-            ],
-            "support": {
-                "issues": "https://github.com/paypal/PayPal-PHP-SDK/issues",
-                "source": "https://github.com/paypal/PayPal-PHP-SDK/tree/master"
-            },
-            "abandoned": true,
-            "time": "2019-01-04T20:04:25+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -4756,6 +4714,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.23.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4837,6 +4798,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.23.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4914,6 +4878,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4987,6 +4954,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.23.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -8448,5 +8418,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.1.0"
 }
