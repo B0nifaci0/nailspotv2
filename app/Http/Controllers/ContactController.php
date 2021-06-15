@@ -6,37 +6,41 @@ use App\Models\Contact;
 use App\Models\Message;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use App\Mail\ContactMailable;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    public $contact;
+    public function __construct(){
+        $this->contact=Contact::all();
+    }
     public function index(){
-        $contacts=Contact::all();
-        return view('contact',[
-            'contacts'=>$contacts
-        ]);
+        $contacts=$this->contact;
+        return view('contact',compact('contacts'));
     }
     public function store(Request $request){
         $request->validate([
             'name'=>'required|min:5|max:50',
+            'surname'=>'required|min:5|max:50',
             'email'=>'required|email|min:10',
             'message'=>'required|min:10|max:250'
         ]);
+        $contact=new ContactMailable($request->all());
+        $to=$this->contact[0]->email;
+        Mail::to($to)->send($contact);
         Message::create($request->all());
         session()->flash('exito', '¡Gracias por tus comenetarios!');
         return redirect()->route('contact.index');
     }   
 
     public function indexAdmin(){
-        $contact=Contact::all();
-        return view('admin.contact.index',[
-            'contact'=>$contact 
-        ]);
+        $contact=$this->contact;
+        return view('admin.contact.index',compact('contact'));
     }
 
     public function editAdmin(Contact $contact){
-        return view('admin.contact.edit', [
-            'contact'=>$contact
-        ]);
+        return view('admin.contact.edit', compact('contact'));
     }
     public function update(Request $request, Contact $contact){
         $request->validate([

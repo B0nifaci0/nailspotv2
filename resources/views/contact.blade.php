@@ -20,13 +20,23 @@
                     <div class="p-1">
                         <form method="POST" action="{{route('contact.store')}}" class="px-2"> 
                             @csrf
-                            <div class="mb-4">
-                                <label for="name" class="text-white font-semibold">Nombre</label>
-                                <x-jet-input id="name" class="block mt-1 w-full text-black" type="text" name="name" :value="old('name')" required
-                                    autofocus autocomplete="name" />
-                                    @error('name')
-                                        <span><small class="text-black">* {{$message}}</small></span>
-                                    @enderror
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div class="md:mr-2 mb-4">
+                                    <label for="name" class="text-white font-semibold">Nombre</label>
+                                    <x-jet-input id="name" class="block mt-1 w-full text-black" type="text" name="name" :value="old('name')" required
+                                        autofocus autocomplete="name" />
+                                        @error('name')
+                                            <span><small class="text-black">* {{$message}}</small></span>
+                                        @enderror
+                                </div>
+                                <div class="md:ml-2 mb-4">
+                                    <label for="surname" class="text-white font-semibold">Apellido</label>
+                                    <x-jet-input id="surname" class="block mt-1 w-full text-black" type="text" name="surname" :value="old('surname')" required
+                                        autofocus autocomplete="surname" />
+                                        @error('surname')
+                                            <span><small class="text-black">* {{$message}}</small></span>
+                                        @enderror
+                                </div>
                             </div>
                             <div class="mb-4">
                                 <label for="name" class="text-white font-semibold">Correo Electronico</label>

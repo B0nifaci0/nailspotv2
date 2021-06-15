@@ -9,6 +9,7 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
+                        <th>Apellido</th>
                         <th>Email</th>
                         <th>Mensaje</th>
                         <th>Fecha</th>
@@ -18,6 +19,7 @@
                     @forelse ($messages as $message)
                     <tr>
                         <td>{{$message->name}}</td>
+                        <td>{{$message->surname}}</td>
                         <td>{{$message->email}}</td>
                         <td>{{$message->message}}</td>
                         <td>{{$message->created_at->diffForHumans()}}</td>
