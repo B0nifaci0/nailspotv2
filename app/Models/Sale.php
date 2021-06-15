@@ -11,6 +11,8 @@ class Sale extends Model
 
     protected $guarded = ['id'];
 
+    const PENDING = 0;
+    const APPROVAL = 1;
 
     public function saleable()
     {

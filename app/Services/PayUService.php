@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Sale;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Traits\ConsumesExternalServices;
@@ -59,6 +60,15 @@ class PayUService
 
         if ($payment->transactionResponse->state === "PENDING") {
 
+            Sale::create([
+                'user_id' => auth()->user()->id,
+                'saleable_id' => $request->course,
+                'saleable_type' => Course::class,
+                'coupon_id' => $request->coupon ? $request->coupon : null,
+                'final_price' => $request->value,
+                'status' => Sale::PENDING
+            ]);
+
             return redirect($payment->transactionResponse->extraParameters->URL_PAYMENT_RECEIPT_PDF);
         }
 
@@ -66,10 +76,6 @@ class PayUService
             ->withErrors('No se pudo realizar el Pago.');
     }
 
-    public function handleApproval()
-    {
-        //
-    }
 
     public function createPayment($value, $name, $email, $installments = 1, $paymentCountry = 'MX')
     {

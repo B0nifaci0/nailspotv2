@@ -44,7 +44,6 @@ class PaymentController extends Controller
             $course = Course::find($request->course);
             $course->students()->attach(auth()->user()->id);
 
-
             Sale::create([
                 'user_id' => auth()->user()->id,
                 'saleable_id' => $course->id,
