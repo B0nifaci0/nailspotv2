@@ -5,16 +5,17 @@ namespace App\Http\Livewire;
 use App\Models\Sale;
 use App\Models\Coupon;
 use App\Models\Course;
-use App\Models\PaymentPlatform;
 use Livewire\Component;
+use App\Models\PaymentPlatform;
 
 class Checkout extends Component
 {
-    public $course, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent;
+    public $course, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent, $courseId;
 
     public function mount(Course $course)
     {
         $this->course = $course;
+        $this->courseId = $course->id;
         $this->total = $course->price;
         $this->platforms = PaymentPlatform::all();
         $this->platformCurrent = new PaymentPlatform();
@@ -28,7 +29,7 @@ class Checkout extends Component
         } else {
             $this->current = null;
         }
-        return view('livewire.checkout', compact('coupon'));
+        return view('livewire.checkout');
     }
 
     public function addCoupon()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Resolvers\PaymentPlatformResolver;
@@ -27,7 +28,6 @@ class PaymentController extends Controller
 
     public function pay(Request $request)
     {
-       
         $paymentPlatform = $this->paymentPlatformResolver
             ->resolveService($request->payment_platform);
         session()->put('paymentPlatformId', $request->payment_platform);
@@ -35,13 +35,25 @@ class PaymentController extends Controller
         return $paymentPlatform->handlePayment($request);
     }
 
-    public function approval()
+    public function approval(Request $request)
     {
         if (session()->has('paymentPlatformId')) {
             $paymentPlatform = $this->paymentPlatformResolver
                 ->resolveService(session()->get('paymentPlatformId'));
 
-            return $paymentPlatform->handleApproval();
+            $course = Course::find($request->course);
+            $course->students()->attach(auth()->user()->id);
+
+
+            Sale::create([
+                'user_id' => auth()->user()->id,
+                'saleable_id' => $course->id,
+                'saleable_type' => Course::class,
+                'coupon_id' => $request->coupon ? $request->coupon : null,
+                'final_price' => $request->value
+            ]);
+
+            return $paymentPlatform->handleApproval($request);
         }
 
         return redirect()

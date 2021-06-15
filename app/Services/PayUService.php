@@ -47,11 +47,6 @@ class PayUService
     public function handlePayment(Request $request)
     {
         $request->validate([
-            'payu_card' => 'required',
-            'payu_cvc' => 'required',
-            'payu_year' => 'required',
-            'payu_month' => 'required',
-            'payu_network' => 'required',
             'payu_name' => 'required',
             'payu_email' => 'required',
         ]);
@@ -60,16 +55,11 @@ class PayUService
             $request->value,
             $request->payu_name,
             $request->payu_email,
-            $request->payu_card,
-            $request->payu_cvc,
-            $request->payu_year,
-            $request->payu_month,
-            $request->payu_network,
         );
 
-        if ($payment->transactionResponse->state === "APPROVED") {
-            return redirect()
-                ->route('profile.courses');
+        if ($payment->transactionResponse->state === "PENDING") {
+
+            return redirect($payment->transactionResponse->extraParameters->URL_PAYMENT_RECEIPT_PDF);
         }
 
         return back()
@@ -81,7 +71,7 @@ class PayUService
         //
     }
 
-    public function createPayment($value, $name, $email, $card, $cvc, $year, $month, $network, $installments = 1, $paymentCountry = 'MX')
+    public function createPayment($value, $name, $email, $installments = 1, $paymentCountry = 'MX')
     {
         return $this->makeRequest(
             'POST',
@@ -93,17 +83,11 @@ class PayUService
                 'test' => false,
                 'transaction' => [
                     'type' => 'AUTHORIZATION_AND_CAPTURE',
-                    'paymentMethod' => strtoupper($network),
+                    'paymentMethod' => 'OXXO',
                     'paymentCountry' => strtoupper($paymentCountry),
                     'deviceSessionId' => session()->getId(),
                     'ipAddress' => request()->ip(),
                     'userAgent' => request()->header('User-Agent'),
-                    'creditCard' => [
-                        'number' => $card,
-                        'securityCode' => $cvc,
-                        'expirationDate' => "{$year}/{$month}",
-                        'name' => "APPROVED",
-                    ],
                     'extraParameters' => [
                         'INSTALLMENTS_NUMBER' => $installments,
                     ],
@@ -126,10 +110,6 @@ class PayUService
                         'buyer' => [
                             'fullName' => $name,
                             'emailAddress' => $email,
-                            'shippingAddress' => [
-                                'street1' => '',
-                                'city' => '',
-                            ],
                         ],
                     ],
                 ],

@@ -130,8 +130,10 @@
                                 @else
                                 <form action="{{ route('payment.pay') }}" method="post" id="paymentForm">
                                     @csrf
-                                    <input name='value' type="text" wire:model='total'>
+                                    <input name='value' type="text" wire:model='total' class='hidden'>
                                     <input name='coupon' type="text" wire:model='couponId' class='hidden'>
+                                    <input name='course' type="text" wire:model='courseId' class='hidden'>
+                                    <input name='type' type="text" value="1" class='hidden'>
                                     <div>
                                         Seleccione Plataforma
                                         <div>
