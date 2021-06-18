@@ -6,16 +6,19 @@ use App\Models\Sale;
 use App\Models\Coupon;
 use Livewire\Component;
 use App\Models\Competence;
+use App\Models\PaymentPlatform;
 
 class CheckoutCompetence extends Component
 {
-
-    public $competence, $search, $active, $current, $total, $couponId, $exist;
+    public $competence, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent, $competenceId;
 
     public function mount(Competence $competence)
     {
-        $this->$competence = $competence;
+        $this->competence = $competence;
+        $this->competenceId = $competence->id;
         $this->total = $competence->price;
+        $this->platforms = PaymentPlatform::all();
+        $this->platformCurrent = new PaymentPlatform();
     }
 
     public function render()
@@ -26,7 +29,7 @@ class CheckoutCompetence extends Component
         } else {
             $this->current = null;
         }
-        return view('livewire.checkout-competence', compact('coupon'));
+        return view('livewire.checkout-competence');
     }
 
     public function addCoupon()
@@ -66,5 +69,10 @@ class CheckoutCompetence extends Component
     {
         $this->reset('active');
         $this->total = $this->competence->price;
+    }
+
+    public function selectPlatform(PaymentPlatform $platform)
+    {
+        $this->platformCurrent = $platform;
     }
 }

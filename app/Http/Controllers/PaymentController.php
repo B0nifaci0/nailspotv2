@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competence;
 use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -18,12 +19,22 @@ class PaymentController extends Controller
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
-    public function checkoutCourse(Course $course)
+    public function checkout(Request $request)
     {
-        if ($course->students->contains(auth()->user()->id)) {
-            return back();
+        if ($request->type == 0) {
+            $course = Course::find($request->id);
+            if ($course->students->contains(auth()->user()->id)) {
+                return back();
+            }
+            return view('payment.courses.checkout', compact('course'));
         }
-        return view('payment.courses.checkout', compact('course'));
+        if ($request->type == 1) {
+            $competence = Competence::find($request->id);
+            if ($competence->students->contains(auth()->user()->id)) {
+                return back();
+            }
+            return view('payment.competences.checkout', compact('competence'));
+        }
     }
 
     public function pay(Request $request)
@@ -31,7 +42,6 @@ class PaymentController extends Controller
         $paymentPlatform = $this->paymentPlatformResolver
             ->resolveService($request->payment_platform);
         session()->put('paymentPlatformId', $request->payment_platform);
-
         return $paymentPlatform->handlePayment($request);
     }
 
@@ -41,13 +51,23 @@ class PaymentController extends Controller
             $paymentPlatform = $this->paymentPlatformResolver
                 ->resolveService(session()->get('paymentPlatformId'));
 
-            $course = Course::find($request->course);
-            $course->students()->attach(auth()->user()->id);
+            if ($request->type == 0) {
+                $course = Course::find($request->item);
+                $id = $course->id;
+                $course->students()->attach(auth()->user()->id);
+                $type = Course::class;
+            }
+            if ($request->type == 1) {
+                $competence = Competence::find($request->item);
+                $id = $competence->id;
+                $competence->students()->attach(auth()->user()->id);
+                $type = Competence::class;
+            }
 
             Sale::create([
                 'user_id' => auth()->user()->id,
-                'saleable_id' => $course->id,
-                'saleable_type' => Course::class,
+                'saleable_id' => $id,
+                'saleable_type' => $type,
                 'coupon_id' => $request->coupon ? $request->coupon : null,
                 'final_price' => $request->value
             ]);
