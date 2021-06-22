@@ -133,7 +133,7 @@
                                     <input name='value' type="text" wire:model='total' class='hidden'>
                                     <input name='coupon' type="text" wire:model='couponId' class='hidden'>
                                     <input name='course' type="text" wire:model='courseId' class='hidden'>
-                                    <input name='type' type="text" value="1" class='hidden'>
+                                    <input name='type' type="text" value="0" class='hidden'>
                                     <div>
                                         <p class="text-center text-white font-semibold text-lg"> Seleccione Plataforma de pago</p>
                                         <div>

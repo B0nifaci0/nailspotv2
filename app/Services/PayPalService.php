@@ -41,7 +41,13 @@ class PayPalService
 
     public function handlePayment(Request $request)
     {
-        $order = $this->createOrder($request->value, $request->course, $request->type, $request->coupon);
+        if ($request->type == 0) {
+            $order = $this->createOrder($request->value, $request->course, $request->type, $request->coupon);
+        }
+
+        if ($request->type == 1) {
+            $order = $this->createOrder($request->value, $request->competence, $request->type, $request->coupon);
+        }
 
         $orderLinks = collect($order->links);
 
@@ -58,9 +64,6 @@ class PayPalService
             $approvalId = session()->get('approvalId');
             $payment = $this->capturePayment($approvalId);
 
-
-
-
             return redirect()
                 ->route('profile.courses');
         }
@@ -69,7 +72,7 @@ class PayPalService
             ->withErrors('No se pudo realizar el Pago.');
     }
 
-    public function createOrder($value, $course, $type, $coupon)
+    public function createOrder($value, $item, $type, $coupon)
     {
 
         return $this->makeRequest(
@@ -90,7 +93,7 @@ class PayPalService
                     'brand_name' => config('app.name'),
                     'shipping_preference' => 'NO_SHIPPING',
                     'user_action' => 'PAY_NOW',
-                    'return_url' => route('payment.approval', ['course' => $course, 'type' => $type, 'value' => $value, 'coupon' => $coupon]),
+                    'return_url' => route('payment.approval', ['item' => $item, 'type' => $type, 'value' => $value, 'coupon' => $coupon]),
                     'cancel_url' => route('payment.cancelled'),
                 ]
             ],
