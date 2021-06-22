@@ -1,6 +1,6 @@
-<div>
-    <h1>Comentariossss:</h1>
-    <textarea wire:model="body" rows="3" class="w-full form-input" placeholder="Comentario..."></textarea>
+<div><br>
+    <h1>Comentarios:</h1>
+    <textarea wire:model="body" rows="3" class="w-full form-input" placeholder="Escribe un comentario..."></textarea>
     @error('body')
     <span class="text-red-500 text-sx">{{$message}}</span>
     @enderror

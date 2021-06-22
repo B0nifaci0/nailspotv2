@@ -11,10 +11,10 @@
 <div class="pt-16 bg-purple-800">
     <h1 class="text-2xl font-bold text-center text-white"> Mis Tareas</h1>
 </div>
-<div class="pt-8 pb-8 bg-purple-800 ">
+<div class="pt-8 pb-48 bg-purple-800 ">
     @foreach ($course->tasks as $key=>$task)
     <section class="ml-4 mr-4">
-        <article class="container mt-4 card" x-data="{open: false}">
+        <article class="container mt-5 card" x-data="{open: false}">
             <div>
                 <div class="card-body">
                     <header>

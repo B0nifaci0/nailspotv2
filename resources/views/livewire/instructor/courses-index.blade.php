@@ -1,4 +1,4 @@
-<div class="bg-purple-800 pt-8">
+<div class="bg-purple-800 pt-8 pb-48">
     <div class="container bg-white rounded">
         <x-table-responsive>
         

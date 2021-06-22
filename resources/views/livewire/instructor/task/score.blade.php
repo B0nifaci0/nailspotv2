@@ -1,11 +1,11 @@
 <div class="grid grid-cols-2 gap-4">
     @if ($taskuser->score)
     <div>
-        <label>Calificacion</label>
+        <label class="font-bold text-grey-900">Calificación:</label>
         <input type="text" readonly value="{{$taskuser->score}}" class="form-input">
     </div>
     @else
-    <label>calificacion</label><br>
+    <label class="font-bold text-grey-900">Asignar calificación:</label><br>
     <select wire:model="selectedScore" class="form-control">
         @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}">{{ $i }}</option>
             @endfor

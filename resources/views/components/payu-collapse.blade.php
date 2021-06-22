@@ -1,4 +1,4 @@
-<label class="mt-3">Detalles:</label>
+<label class="mt-5 text-white mb-5">Detalles:</label>
 
 <div class="form-group form-row">
 

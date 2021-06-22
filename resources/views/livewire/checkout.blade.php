@@ -135,7 +135,7 @@
                                     <input name='course' type="text" wire:model='courseId' class='hidden'>
                                     <input name='type' type="text" value="1" class='hidden'>
                                     <div>
-                                        Seleccione Plataforma
+                                        <p class="text-center text-white font-semibold text-lg"> Seleccione Plataforma de pago</p>
                                         <div>
                                             @foreach ($platforms as $platform)
                                             <label wire:click="selectPlatform({{$platform}})">
@@ -147,7 +147,7 @@
                                     </div>
                                     @includeIf('components.' . strtolower($platformCurrent->name) . '-collapse')
                                     <div>
-                                        <button class="text-center" type="submit" id="payButton">Pagar</button>
+                                        <button class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl" type="submit" id="payButton">Pagar</button>
                                     </div>
                                 </form>
                                 @endif

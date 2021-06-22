@@ -19,9 +19,12 @@
     </div>
 
     @foreach ($task->images as $image)
-    <h1>
-        {{$image->url}}
-    </h1>
+
+    <img alt="Placeholder" class="w-full object-fit rounded-lg" src="{{Storage::url($image->url)}}"><br>
+
+    <!--<h1>
+        {{$image->url}} 
+    </h1>-->
     @endforeach
     
     @livewire('instructor.task.score', ['taskuser' => $task])
