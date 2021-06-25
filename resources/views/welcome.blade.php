@@ -14,7 +14,7 @@
             <button class="bg-pink-500 hover:bg-pink-600 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('courses.index') }}">Ver todos los cursos</a></button>
             </div>
             <video autoplay loop muted class="absolute z-10 md:w-64 w-auto min-w-full min-h-full max-w-none">
-                <source   src="{{asset('video/videonail.mp4')}}"
+                <source   src="{{asset('video/Ns-1.m4v')}}"
                 type="video/mp4"
                 />
                 Your browser does not support the video tag.
