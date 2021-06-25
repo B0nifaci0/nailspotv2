@@ -1,4 +1,24 @@
 <x-app-layout> 
+@section('title',"$course->name")
+
+@section('seo')
+    @if ($course->seo)
+    <meta name="description" content="{{$course->seo->description}}">
+    <meta name="keywords" content="{{$course->seo->keywords}}">
+    <meta name="author" content="{{$course->teacher->name}}">
+    
+    <meta name="twitter:card" value="summary">
+    <meta property="og:title" content="Titulo" />
+    <meta property="og:type" content="{{$course->name}}" />
+    <meta property="og:url" content="{{Request::url()}}" />
+    <meta property="og:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
+    <meta property="og:description" content="{{$course->seo->description}}" />
+
+    <meta property="og:site_name" content="Nailspot" />
+    <meta property="og:price:amount" content="{{$course->price}}" />
+    <meta property="og:price:currency" content="MXN" /> 
+    @endif
+@endsection
      @section('header')
     <!--COmienza prueba--->
     <div class="relative p-2 pt-10 bg-purple-800 md:flex"> 
