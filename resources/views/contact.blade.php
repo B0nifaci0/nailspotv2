@@ -5,6 +5,12 @@
             <p class="text-center w-full">{{$info}}</p>
         </div>
     </div>
+    @elseif ($info=Session::get('error'))
+    <div class="alert absolute w-full">
+        <div class="flex items-center bg-red-500 text-white text-md font-bold px-4 py-3" role="alert">
+            <p class="text-center w-full">{{$info}}</p>
+        </div>
+    </div>
     @endif
     <section>
         <div class="h-96 bg-purple-300">

@@ -6,8 +6,10 @@ use App\Models\Contact;
 use App\Models\Message;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
-use App\Mail\ContactMailable;
+use App\Notifications\ContactForm;
+
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
 {
@@ -20,18 +22,23 @@ class ContactController extends Controller
         return view('contact',compact('contacts'));
     }
     public function store(Request $request){
-        $request->validate([
+        $data=$request->validate([
             'name'=>'required|min:5|max:50',
             'surname'=>'required|min:5|max:50',
             'email'=>'required|email|min:10',
             'message'=>'required|min:10|max:250'
         ]);
-        $contact=new ContactMailable($request->all());
-        $to=$this->contact[0]->email;
-        Mail::to($to)->send($contact);
-        Message::create($request->all());
-        session()->flash('exito', '¡Gracias por tus comenetarios!');
-        return redirect()->route('contact.index');
+        try {
+            $to=$request->email;
+            Notification::route('mail', $to)->notify(new ContactForm($data));
+            session()->flash('exito', '¡Gracias por tus comenetarios!');
+            Message::create($data);
+            return redirect()->route('contact.index');
+            
+        } catch (\Throwable $th) {
+            session()->flash('error', '¡Oops! Parece que hubo un error, intenta mas tarde.');
+            return redirect()->route('contact.index');
+        }
     }   
 
     public function indexAdmin(){
