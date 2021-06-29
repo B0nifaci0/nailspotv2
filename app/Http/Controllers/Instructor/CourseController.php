@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Platform;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
+use App\Models\Seo;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -63,11 +64,16 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
+        $seo=Seo::where('modelable_id', $course->id)->first();
+        if(is_null($seo)) 
+            $seoJs=false;
+        else 
+            $seoJs=true;
         $this->authorize('dicatated', $course);
         $levels = Level::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
         $platforms = Platform::pluck('name', 'id');
-        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'platforms'));
+        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'platforms', 'seo', 'seoJs'));
     }
 
     public function update(CourseRequest $request, Course $course)

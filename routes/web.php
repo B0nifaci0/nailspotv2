@@ -10,6 +10,7 @@ use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Livewire\TasksUser;
 use App\Http\Controllers\NosotrosController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,6 @@ Route::get('nosotros', [NosotrosController::class, 'index'])->name('nosotros');
 
 Route::get('contacto', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contacto/save', [ContactController::class, 'store'])->name('contact.store');
+
+
+Route::get('sitemap.xml', PageController::class)->name('sitemap');

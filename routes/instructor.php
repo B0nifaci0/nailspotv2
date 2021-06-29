@@ -5,6 +5,7 @@ use App\Http\Livewire\Instructor\CoursesStudents;
 use App\Http\Controllers\Instructor\TaskController;
 use App\Http\Livewire\Instructor\CoursesCurriculum;
 use App\Http\Controllers\Instructor\CourseController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Routing\RouteGroup;
 
 Route::redirect('', 'courses');
@@ -25,4 +26,6 @@ Route::group(
         Route::get('courses/{task}/{student}', [TaskController::class, 'show'])->name('task.show');
     }
 );
+Route::post('/seo/{course}', [SeoController::class, 'store'])->name('course.seo.store');
+Route::put('/seo/{seo}', [SeoController::class, 'update'])->name('course.seo.update');
 
