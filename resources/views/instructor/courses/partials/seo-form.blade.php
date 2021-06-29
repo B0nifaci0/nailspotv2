@@ -2,12 +2,12 @@
     @csrf
     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
         <label for="title">Titulo del curso</label>
-        <input type="text" name="title" class="form-input block w-full mt-1" value="{{$course->name}}" placeholder="Nuevo Curso">
+        <input type="text" name="title" class="form-input block w-full mt-1 text-black" value="{{$course->name}}" placeholder="Nuevo Curso">
         <small class="text-danger">{{ $errors->first('title') }}</small>
     </div>
     <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
         <label for="description">Descripción del curso</label>
-        <input type="text" name="description" class="form-input block w-full mt-1" value="{{strip_tags($course->description)}}" placeholder="Este es el nuevo curso...">
+        <input type="text" name="description" class="form-input block w-full mt-1 text-black" value="{{strip_tags($course->description)}}" placeholder="Este es el nuevo curso...">
         <small class="text-danger">{{ $errors->first('description') }}</small>
     </div>
     <div class="form-group{{ $errors->has('keywords') ? ' has-error' : '' }}">
@@ -17,7 +17,7 @@
     </div>
     <div class="form-group{{ $errors->has('video_thumbnail') ? ' has-error' : '' }}">
         <label for="video_thumbnail">Url de la miniatura del video</label>
-        <input type="text" name="video_thumbnail" class="form-input block w-full mt-1" placeholder="https://ejemplo.com/ejemplo.png">
+        <input type="url" name="video_thumbnail" class="form-input block w-full mt-1" placeholder="https://ejemplo.com/ejemplo.png">
         <small class="text-danger">{{ $errors->first('video_thumbnail') }}</small>
     </div>
     <div class="flex justify-end">

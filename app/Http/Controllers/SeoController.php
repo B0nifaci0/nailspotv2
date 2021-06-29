@@ -15,17 +15,11 @@ class SeoController extends Controller
             'title'=>$request->get('title'),
             'description'=>$request->get('description'),
             'keywords'=>$request->get('keywords'),
-            'image'=>$request->get('image'),
-            'type'=>$request->get('type'),
             'video_thumbnail'=>$request->get('video_thumbnail'),
-            'video_description'=>$request->get('video_description'),
-            'video_url'=>$request->get('video_url'),
-            'video_expiration'=>$request->get('video_expiration')
         ]);
         return redirect()->back()->with('info', '¡El Seo se creo con exito!');;
     }
     public function update(Seo $seo, Request $request){
-        
         $seo->update($request->all());
         return redirect()->back()->with('info', '¡El Seo se actualizo con exito!');;
     }

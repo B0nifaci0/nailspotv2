@@ -20,12 +20,12 @@ class CreateSeosTable extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('keywords')->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->string('type')->nullable();
-            $table->string('video_thumbnail')->nullable();
+            $table->text('video_thumbnail')->nullable();
             $table->string('video_description')->nullable();
-            $table->string('video_url')->nullable();
-            $table->dateTime('video_expiration')->nullable();
+            $table->text('video_url')->nullable();
+            $table->date('video_expiration')->nullable();
             $table->timestamps();
         });
     }

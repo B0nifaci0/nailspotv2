@@ -5,18 +5,18 @@
     @if ($course->seo)
     <meta name="description" content="{{$course->seo->description}}">
     <meta name="keywords" content="{{$course->seo->keywords}}">
-    <meta name="author" content="{{$course->teacher->name}}">
+    <meta name="author" content="Nailspot">
     
     <meta name="twitter:card" value="summary">
-    <meta property="og:title" content="Titulo" />
-    <meta property="og:type" content="{{$course->name}}" />
-    <meta property="og:url" content="{{Request::url()}}" />
-    <meta property="og:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
-    <meta property="og:description" content="{{$course->seo->description}}" />
+    <meta property="og:title" content="{{$course->seo->title}}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{Request::url()}}"/>
+    <meta property="og:image" content="{{Request::root().'/storage/'.$course->image->url}}"/>
+    <meta property="og:description" content="{{$course->seo->description}}"/>
 
-    <meta property="og:site_name" content="Nailspot" />
-    <meta property="og:price:amount" content="{{$course->price}}" />
-    <meta property="og:price:currency" content="MXN" /> 
+    <meta property="og:site_name" content="Nailspot"/>
+    <meta property="og:price:amount" content="{{$course->price}}"/>
+    <meta property="og:price:currency" content="MXN"/> 
     @endif
 @endsection
      @section('header')

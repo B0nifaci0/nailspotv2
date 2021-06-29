@@ -23,9 +23,9 @@
     </div>
     {!! Form::close() !!}
     @if ($seo)
-        @include('instructor.courses.partials.seo-form-update', [$seo, $course])
+        @include('instructor.courses.partials.seo-form-update')
     @else
-        @include('instructor.courses.partials.seo-form', [$seo, $course])
+        @include('instructor.courses.partials.seo-form')
     @endif
     <x-slot name="js">
         <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
