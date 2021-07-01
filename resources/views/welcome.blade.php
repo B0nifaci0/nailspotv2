@@ -1,24 +1,65 @@
 <x-app-layout>
+    @section('css')
+    <style>
+        video {
+          width: 100%;
+          height: auto;
+        }
+
+        @media only screen and (min-width: 600px) {
+          .col-s-1 {width: 8.33%;}
+          .col-s-2 {width: 16.66%;}
+          .col-s-3 {width: 25%;}
+          .col-s-4 {width: 33.33%;}
+          .col-s-5 {width: 41.66%;}
+          .col-s-6 {width: 50%;}
+          .col-s-7 {width: 58.33%;}
+          .col-s-8 {width: 66.66%;}
+          .col-s-9 {width: 75%;}
+          .col-s-10 {width: 83.33%;}
+          .col-s-11 {width: 91.66%;}
+          .col-s-12 {width: 100%;}
+        }
+
+        @media only screen and (min-width: 768px) {
+          .col-1 {width: 8.33%;}
+          .col-2 {width: 16.66%;}
+          .col-3 {width: 25%;}
+          .col-4 {width: 33.33%;}
+          .col-5 {width: 41.66%;}
+          .col-6 {width: 50%;}
+          .col-7 {width: 58.33%;}
+          .col-8 {width: 66.66%;}
+          .col-9 {width: 75%;}
+          .col-10 {width: 83.33%;}
+          .col-11 {width: 91.66%;}
+          .col-12 {width: 100%;}
+        }
+
+
+
+
+    </style>
+    @endsection
     @section('header')
     <!-- Aqui comienza el encabezado, el cual contiene un video y dos botones para ver los cursos o registarse -->
-    <header class="relative flex md:justify-start sm:justify-center items-center h-screen overflow-hidden">
+    <header class="relative flex  items-center h-screen overflow-hidden bg-purple-800   ">
         <div class="md:w-1/2  mb-10 md:mb-0 text-blond z-20 px-20 py-48 text-5xl text-white ">
-            Unete a nosotros!
-            <p class="text-blond py-6 text-lg text-white mb-2">La mejor opcion desde casa!</p>
-            <!-- Si aun no estas logueado se mostrara el boton registar y si ya estas loguead ya no lo mostrara -->
+
+            <!--<p class="text-blond py-6 text-lg text-white mb-2">La mejor opcion desde casa!</p>
+            <!- Si aun no estas logueado se mostrara el boton registar y si ya estas loguead ya no lo mostrara ->
             @auth
             @else
             <button href="/" class="bg-purple-600 hover:bg-purple-700 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('register') }}">Registrate</a></button>
             @endauth 
-            <!-- aqui termina la validacion de inicio de sesion -->
-            <button class="bg-pink-500 hover:bg-pink-600 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('courses.index') }}">Ver todos los cursos</a></button>
+            <-- aqui termina la validacion de inicio de sesion -->
             </div>
-            <video autoplay loop class="absolute z-10 md:w-64 w-auto min-w-full min-h-full max-w-none">
-                <source   src="{{asset('video/Ns-1.mp4')}}"
-                type="video/mp4"
-                />
+            <video autoplay controls  loop class="absolute mt-24 pb-24" >
+                <source src="{{asset('video/Ns-1.mp4')}}" type="video/mp4" style="width:100%"/>
+                <source src="{{asset('video/Ns-1.ogg')}}" type="video/ogg"/>
                 Your browser does not support the video tag.
             </video>
+
     </header>
     <!-- Aqui termina el encabezado -->
     @endsection

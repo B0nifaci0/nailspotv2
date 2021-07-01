@@ -3,7 +3,7 @@
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Botón de menú móvil-->
-                <button x-on:click="open= true" type="button" class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                <button x-on:click="open= true" type="button" class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-transparent" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <!--
                        Icono cuando el menú está cerrado.
@@ -114,12 +114,12 @@
         <div class="px-2 pt-2 pb-3 space-y-1">
             <!-- Accesos rapidos a las paginas del sitio -->
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="{{ route('courses.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Cursos</a>
+            <a href="{{ route('courses.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-purple-700 hover:text-white">Cursos</a>
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Categorías</a>-->
-            <a href="{{ route('competences.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Competencias</a>
+            <a href="{{ route('competences.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-purple-700 hover:text-white">Competencias</a>
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contacto</a>-->
-            <a href=" {{ route('nosotros') }} " class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md">Nosotros</a>
-            <a href="{{route('contact.index')}}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contacto</a>
+            <a href=" {{ route('nosotros') }} " class="block px-3 py-2 text-base font-medium text-white bg-purple-900 rounded-md">Nosotros</a>
+            <a href="{{route('contact.index')}}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-purple-700 hover:text-white">Contacto</a>
         </div>
     </div>
 </nav>
