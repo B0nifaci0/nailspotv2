@@ -9,12 +9,12 @@
             @auth
             @else
             <button href="/" class="bg-purple-600 hover:bg-purple-700 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('register') }}">Registrate</a></button>
-            @endauth
+            @endauth 
             <!-- aqui termina la validacion de inicio de sesion -->
             <button class="bg-pink-500 hover:bg-pink-600 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('courses.index') }}">Ver todos los cursos</a></button>
             </div>
-            <video autoplay loop muted class="absolute z-10 md:w-64 w-auto min-w-full min-h-full max-w-none">
-                <source   src="{{asset('video/Ns-1.m4v')}}"
+            <video autoplay loop class="absolute z-10 md:w-64 w-auto min-w-full min-h-full max-w-none">
+                <source   src="{{asset('video/Ns-1.mp4')}}"
                 type="video/mp4"
                 />
                 Your browser does not support the video tag.
