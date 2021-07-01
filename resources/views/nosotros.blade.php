@@ -37,7 +37,7 @@
                         <!-- Modal -->
                         <div x-show="showModal" class="bg-indigo-800 rounded-xl shadow-2xl p-6 xs:w-12/12 w-8/12 mx-10" @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
                             <div class=" embed-responsive">
-                                <iframe  class=" relative inset-0  " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->video_identify}} " frameborder="0" … > </iframe >
+                                <iframe  class=" relative inset-0  " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->url}} " frameborder="0" … > </iframe >
                             </div>
 
                             <!-- Buttons -->
@@ -144,7 +144,7 @@
                             <section class="m-4 mt-5 mb-5 card">
                                 <div class="flex-none overflow-hidden text-center bg-center bg-cover rounded rounded-t">
                                     <div class=" embed-responsive">
-                                        <iframe  class=" absolute inset-0 w-full h-full " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->video_exp_users}} " frameborder="0" … > </iframe >
+                                        <iframe  class=" absolute inset-0 w-full h-full " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->url_users}} " frameborder="0" … > </iframe >
                                     </div>
                                 </div>
                             </section>
@@ -160,7 +160,7 @@
                             <section class="m-4 mt-5 mb-5 card">
                                 <div class="flex-none overflow-hidden text-center bg-center bg-cover rounded rounded-t">
                                     <div class=" embed-responsive">
-                                        <iframe  class=" absolute inset-0 w-full h-full " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->video_exp_judge}}" frameborder="0" … > </iframe >
+                                        <iframe  class=" absolute inset-0 w-full h-full " src=" https://www.youtube-nocookie.com/embed/{{$nosotros->url_judge}}" frameborder="0" … > </iframe >
                                     </div>
                                 </div>
                             </section>

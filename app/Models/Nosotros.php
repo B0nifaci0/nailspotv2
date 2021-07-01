@@ -34,4 +34,31 @@ class  Nosotros extends Model
         'pasatiempo_aron',
     ];
 
+    public function getUrlAttribute()
+    {
+        $url_identify = $this->video_identify;
+        $url_identify = explode('=', $url_identify);
+        $url_identify = $url_identify[1];
+        return $url_identify;
+
+    }
+
+    public function getUrlUsersAttribute()
+    {
+        $url_exp_users = $this->video_exp_users;
+        $url_exp_users = explode('=', $url_exp_users);
+        $url_exp_users = $url_exp_users[1];
+        return $url_exp_users;
+
+    }
+
+    public function getUrlJudgeAttribute()
+    {
+        $url_exp_judge = $this->video_exp_judge;
+        $url_exp_judge = explode('=', $url_exp_judge);
+        $url_exp_judge = $url_exp_judge[1];
+        return $url_exp_judge;
+
+    }
+
 }

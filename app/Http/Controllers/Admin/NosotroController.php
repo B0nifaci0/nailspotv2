@@ -26,7 +26,7 @@ class NosotroController extends Controller
     public function store(Request $request)
     {
         //return $request;
-        $request->validate([
+        $request->validate([ 
             'about_us' => 'required',
             'vision' => 'required',
             'mision' => 'required',
@@ -50,18 +50,6 @@ class NosotroController extends Controller
 
         ]);
         
-        $url_identify = explode('=', $request->video_identify);
-        $url_identify = $url_identify[1];
-        //return $url_identify;
-
-        $url_exp_users = explode('=', $request->video_exp_users);
-        $url_exp_users = $url_exp_users[1];
-        //return $url_exp_users;
-
-        $url_exp_judge = explode('=', $request->video_exp_judge);
-        $url_exp_judge = $url_exp_judge[1];
-        //return $url_exp_judge;
-        
 
         $data['about_us'] = $request->about_us;
         $data['vision'] = $request->vision;
@@ -80,9 +68,9 @@ class NosotroController extends Controller
         $data['cargo_aron'] = $request->cargo_aron;
         $data['oficio_aron'] = $request->oficio_aron;
         $data['pasatiempo_aron'] = $request->pasatiempo_aron;
-        $data['video_identify'] = $url_identify;
-        $data['video_exp_users'] = $url_exp_users;
-        $data['video_exp_judge'] = $url_exp_judge;
+        $data['video_identify'] = $request->video_identify;
+        $data['video_exp_users'] = $request->video_exp_users;
+        $data['video_exp_judge'] = $request->video_exp_judge;
   
         
         $nosotros = Nosotros::create($data);
@@ -126,19 +114,6 @@ class NosotroController extends Controller
             'video_exp_judge' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
         ]);
         
-        //configuracion par aque se vean los videos. 
-        $url_identify = explode('=', $request->video_identify);
-        $url_identify = $url_identify[1];
-        //return $url_identify;
-
-        $url_exp_users = explode('=', $request->video_exp_users);
-        $url_exp_users = $url_exp_users[1];
-        //return $url_exp_users;
-
-        $url_exp_judge = explode('=', $request->video_exp_judge);
-        $url_exp_judge = $url_exp_judge[1];
-        //return $url_exp_judge;
-        //termina configuracion
 
         $nosotros->about_us = $request->about_us;
         $nosotros->vision = $request->vision;
@@ -157,9 +132,9 @@ class NosotroController extends Controller
         $nosotros->cargo_aron = $request->cargo_aron;
         $nosotros->oficio_aron = $request->oficio_aron;
         $nosotros->pasatiempo_aron = $request->pasatiempo_aron;
-        $nosotros->video_identify = $url_identify;
-        $nosotros->video_exp_users = $url_exp_users;
-        $nosotros->video_exp_judge = $url_exp_judge;
+        $nosotros->video_identify = $request->video_identify;
+        $nosotros->video_exp_users = $request->video_exp_users;
+        $nosotros->video_exp_judge = $request->video_exp_judge;
 
         $nosotros->save();
         return redirect()->route('admin.nosotros.index', $nosotros)->with('info', 'La información de nosotros se actualizo con exito!');
