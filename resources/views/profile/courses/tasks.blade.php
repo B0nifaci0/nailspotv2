@@ -16,6 +16,10 @@
                     certificado</button>
             </div>
             @endcan
+            <a href="{{ route('profile.courses') }}">Ir a cursos comprados</a>
+            <br>
+            <a href="{{route('course.status',$course)}}">
+                Ir a:{{$course->name}}</a>
         </div>
 
         <hr class="mt-2 mb-6" />

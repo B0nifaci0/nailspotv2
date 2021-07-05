@@ -71,9 +71,9 @@ class ProfileController extends Controller
         $course = $task->course;
         $taskUser = TaskUser::whereTaskId($task->id)
             ->whereUserId(auth()->user()->id)->first();
-        if (!$taskUser) {
-            return back()->with('info','No entregado');
-        }
+        // if (!$taskUser) {
+        //     return back()->with('info','No entregado');
+        // }
         return view('profile.courses.task', compact('task', 'course', 'taskUser'));
     }
 
@@ -83,6 +83,7 @@ class ProfileController extends Controller
             ->firstWhere('user_id', auth()->user()->id);
         return view('profile.competences.resources', compact('resource'));
     }
+
 
     public function competenceImage(Request $request, CompetenceUser $resource)
     {

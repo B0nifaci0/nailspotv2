@@ -27,8 +27,6 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 Route::get('curso/{course}', [CourseController::class, 'show'])->name('course.show');
 Route::get('lecciones-curso/{course}', CourseStatus::class)->middleware('auth')->name('course.status');
-Route::get('tareas/{course}', TasksUser::class)->middleware('auth')->name('course.tasks');
-
 
 Route::get('competencias', [CompetenceController::class, 'index'])->name('competences.index');
 Route::get('competencia/{competence}', [CompetenceController::class, 'show'])->name('competence.show');

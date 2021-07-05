@@ -15,11 +15,11 @@
     </div>
 
 
-    {{($taskUser->score) ? 'calificacion:'.$taskUser->score : ' '}}
+    {{-- {{($taskUser->score) ? 'calificacion:'.$taskUser->score : ' '}} --}}
 
-    @forelse ($taskUser->images as $image)
+    {{-- @forelse ($taskUser->images as $image)
     <img alt="Placeholder" class="w-full object-fit rounded-xl" src="{{Storage::url($image->url)}}">
-    @endforeach
+    @endforeach --}}
 
     <div>
         @livewire('profile.comments', ['task' => $task])
