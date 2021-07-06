@@ -10,7 +10,6 @@ function slugChange() {
     name = document.getElementById("name").value;
     document.getElementById("slug").value = slug(name);
 }
-
 function slug(str) {
     var $slug = "";
     var trimmed = str.trim(str);
@@ -31,7 +30,8 @@ function numberValidate(e) {
 
 
 ClassicEditor
-    .create(document.querySelector('#description'), {
+    .create(document.querySelector('#description'),
+    {
         toolbar: ['heading', '|', 'bold', 'italic', 'link', 'blockQuote'],
         heading: {
             options: [
@@ -58,3 +58,17 @@ function changeImage(event) {
 
     reader.readAsDataURL(file);
 }
+//Seo Form
+const seoName=(event)=>{
+    let name=document.getElementById('name').value;
+    let title=document.getElementById('seoTitle').value=name;
+}
+document.getElementById("name").addEventListener("keyup", seoName);
+
+document.addEventListener('DOMContentLoaded', function() {
+    let des=document.querySelector('.ck-content').firstChild;
+    let content=document.querySelector('.ck-content');
+    content.addEventListener("keyup", function(){
+        document.getElementById("seoDescription").value=des.textContent;
+    });
+ }, false);

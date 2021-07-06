@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Laravel\Jetstream\Rules\Role;
 
 class CourseController extends Controller
 {
@@ -14,8 +15,37 @@ class CourseController extends Controller
         return view('courses.index');
     }
 
-    public function show(Course $course)
+    public function show(Request $request, Course $course)
     {
+        $data=array(
+            '@context' => 'http://schema.org/',
+            '@type'=>'Course',
+            'name'=>$course->name,
+            'description'=>strip_tags($course->description),
+            'image'=>$request->root().'/storage/'.$course->image->url,
+            'provider'=>array(
+                '@type'=>'Organization',
+                'name'=>'Nailspot',
+                'brand'=>'Nailspot',
+                'url'=>$request->root(),
+                'description'=>'Lleva tu conocimiento a otro nivel, con nuestro equipo de trabajo.',
+                'logo'=>array(
+                    '@type'=>'ImageObject',
+                    'height'=>'264',
+                    'name'=> 'Logo de Nailspot',
+                    'url'=>$request->root().'/img/nail.png',
+                    'width'=>'489'
+                ),
+                'sameAs'=>array(
+                    'https://www.instagram.com/nailspotoficial/',
+                    'https://www.facebook.com/NailspotTuPuntoDeEncuentro/',
+                    'https://www.youtube.com/channel/UCnRve8GiZBh7MA0kdYNG5iQ',
+                    $request->root()
+                ),
+            ),
+            'url'=>$request->url(),
+        );
+        $data=str_replace('\\','',json_encode($data, JSON_PRETTY_PRINT));
         $this->authorize('published', $course);
         $similares = Course::whereCategoryId($course->category_id)
             ->where('id', '!=', $course->id)
@@ -23,7 +53,7 @@ class CourseController extends Controller
             ->inRandomOrder()
             ->take(5)
             ->get();
-        return view('courses.show', compact('course', 'similares'));
+        return view('courses.show', compact('course', 'similares', 'data'));
     }
 
     #cursos gratuitos

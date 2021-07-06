@@ -17,14 +17,13 @@
                         px-4
                         rounded mt-10']) !!}
                     </div>
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
                 </div>
             </div>
-        </div>    
+        </div>      
     </div>
     <x-slot name="js">
         <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-        <script src="{{asset('js/instructor/courses/form.js')}}">
-        </script>
+        <script src="{{asset('js/instructor/courses/form.js')}}"></script>
     </x-slot>
 </x-app-layout>

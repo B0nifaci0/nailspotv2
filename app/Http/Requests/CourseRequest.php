@@ -31,6 +31,9 @@ class CourseRequest extends FormRequest
             'category_id' => 'required',
             'user_id' => 'required',
             'price' => 'required',
+            'title'=>'required',
+            'seodescription'=>'required',
+            'keywords'=>'required',
         ];
     }
 }
