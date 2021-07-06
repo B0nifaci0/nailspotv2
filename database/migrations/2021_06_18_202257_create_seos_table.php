@@ -15,17 +15,11 @@ class CreateSeosTable extends Migration
     {
         Schema::create('seos', function (Blueprint $table) {
             $table->id();
-            $table->string('modelable_type')->nullable();
-            $table->unsignedBigInteger('modelable_id')->nullable();
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            $table->string('keywords')->nullable();
-            $table->text('image')->nullable();
-            $table->string('type')->nullable();
-            $table->text('video_thumbnail')->nullable();
-            $table->string('video_description')->nullable();
-            $table->text('video_url')->nullable();
-            $table->date('video_expiration')->nullable();
+            $table->string('modelable_type');
+            $table->unsignedBigInteger('modelable_id');
+            $table->string('title');
+            $table->string('seodescription');
+            $table->string('keywords');
             $table->timestamps();
         });
     }

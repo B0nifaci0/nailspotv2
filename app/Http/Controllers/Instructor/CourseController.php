@@ -38,12 +38,18 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-
         $request->validate([
             'image' => 'required'
         ]);
 
         $course = Course::create($request->all());
+        Seo::create([
+            'modelable_type'=>str_replace('\\', '/', get_class($course)),
+            'modelable_id'=>$course->id,
+            'title'=>$request->get('title'),
+            'seodescription'=>$request->get('seodescription'),
+            'keywords'=>$request->get('keywords'),
+        ]);
 
         if ($request->hasfile('image')) {
             $url = Storage::disk('public')->put('courses', $request->file('image'));
@@ -64,22 +70,16 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
-        $seo=Seo::where('modelable_id', $course->id)->first();
-        if(is_null($seo)) 
-            $seoJs=false;
-        else 
-            $seoJs=true;
         $this->authorize('dicatated', $course);
         $levels = Level::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
         $platforms = Platform::pluck('name', 'id');
-        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'platforms', 'seo', 'seoJs'));
+        return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'platforms'));
     }
 
     public function update(CourseRequest $request, Course $course)
     {
         $this->authorize('dicatated', $course);
-
         if ($request->platform_id == 1) {
             $request->validate([
                 'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
@@ -92,7 +92,17 @@ class CourseController extends Controller
         }
 
         $course->update($request->all());
-
+        if(!$course->seo){
+            Seo::create([
+                'modelable_type'=>str_replace('\\', '/', get_class($course)),
+                'modelable_id'=>$course->id,
+                'title'=>$request->get('title'),
+                'seodescription'=>$request->get('seodescription'),
+                'keywords'=>$request->get('keywords'),
+            ]);
+        }else{
+            $course->seo->update($request->all());
+        }
         if ($request->hasfile('image')) {
             $url = Storage::disk('public')->put('courses', $request->file('image'));
             if ($course->image) {

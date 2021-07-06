@@ -1,53 +1,60 @@
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-    {!! Form::label('name', 'Titulo del curso') !!}
-    {!! Form::text('name', null, ['class' => 'form-input block w-full mt-1', 'required' => 'required']) !!}
-    <small class="text-danger">{{ $errors->first('name') }}</small>
-</div>
-<div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
-    {!! Form::label('slug', 'Slug') !!}
-    {!! Form::text('slug', null, ['class' => 'form-input block w-full mt-1']) !!}
-    <small class="text-danger">{{ $errors->first('slug') }}</small>
-</div>
+<div class="grid grid-cols-1 md:grid-cols-12">
+    <div class="col-span-8">
+        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+            {!! Form::label('name', 'Titulo del curso') !!}
+            {!! Form::text('name', null, ['class' => 'form-input block w-full mt-1', 'required' => 'required']) !!}
+            <small class="text-danger">{{ $errors->first('name') }}</small>
+        </div>
+        <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
+            {!! Form::label('slug', 'Slug') !!}
+            {!! Form::text('slug', null, ['class' => 'form-input block w-full mt-1']) !!}
+            <small class="text-danger">{{ $errors->first('slug') }}</small>
+        </div>
 
-<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-    {!! Form::label('description', 'Descripcion') !!}
-    {!! Form::textarea('description', null, ['id'=>'description']) !!}
-    <small class="text-danger">{{ $errors->first('description') }}</small>
-</div>
-
-<div class="grid grid-cols-3 gap-6">
-    <div class="col-sm form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-        {!! Form::label('category_id', 'Categoria') !!}
-        {!! Form::select('category_id', $categories, null, ['id' => 'category_id', 'class' =>
-        'form-input block w-full mt-1 text-center'])
-        !!}
-        <small class="text-danger">{{ $errors->first('category_id') }}</small>
+        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+            {!! Form::label('description', 'Descripcion') !!}
+            {!! Form::textarea('description', null, ['id'=>'description']) !!}
+            <small class="text-danger">{{ $errors->first('description') }}</small>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="col-sm form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+                {!! Form::label('category_id', 'Categoria') !!}
+                {!! Form::select('category_id', $categories, null, ['id' => 'category_id', 'class' =>
+                'form-input block w-full mt-1 text-center'])
+                !!}
+                <small class="text-danger">{{ $errors->first('category_id') }}</small>
+            </div>
+            <div class="col-sm form-group{{ $errors->has('level_id') ? ' has-error' : '' }}">
+                {!! Form::label('level_id', 'Nivel') !!}
+                {!! Form::select('level_id', $levels, null, ['id' => 'level_id', 'class' =>
+                'form-input block w-full mt-1 text-center'])
+                !!}
+                <small class="text-danger">{{ $errors->first('level_id') }}</small>
+            </div>
+            <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+                {!! Form::label('price', 'Precio') !!}
+                {!! Form::text('price', null, ['class' => 'form-input block w-full mt-1 text-center','id'=>'price'])
+                !!}
+                <small class="text-danger">{{ $errors->first('price') }}</small>
+            </div>
+        </div>
+        <div class="col-sm form-group{{ $errors->has('platform_id') ? ' has-error' : '' }}">
+            {!! Form::label('platform_id', 'Plataforma') !!}
+            {!! Form::select('platform_id', $platforms, null, ['id' => 'platform_id', 'class' =>
+            'form-input block w-full mt-1 text-center'])
+            !!}
+            <small class="text-danger">{{ $errors->first('category_id') }}</small>
+        </div>
+        <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+            {!! Form::label('url', 'Url video') !!}
+            {!! Form::text('url', null, ['class' => 'form-input block w-full mt-1']) !!}
+            <small class="text-danger">{{ $errors->first('url') }}</small>
+        </div>
     </div>
-    <div class="col-sm form-group{{ $errors->has('level_id') ? ' has-error' : '' }}">
-        {!! Form::label('level_id', 'Nivel') !!}
-        {!! Form::select('level_id', $levels, null, ['id' => 'level_id', 'class' =>
-        'form-input block w-full mt-1 text-center'])
-        !!}
-        <small class="text-danger">{{ $errors->first('level_id') }}</small>
+    <div class="col-span-4 sm:mt-2 md:pl-6 md:-mt-14">
+        <p class="text-2xl md:mb-6">Posicionamiento Web</p>
+       @include('instructor.courses.partials.seo-form')
     </div>
-    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-        {!! Form::label('price', 'Precio') !!}
-        {!! Form::text('price', null, ['class' => 'form-input block w-full mt-1 text-center','id'=>'price'])
-        !!}
-        <small class="text-danger">{{ $errors->first('price') }}</small>
-    </div>
-</div>
-<div class="col-sm form-group{{ $errors->has('platform_id') ? ' has-error' : '' }}">
-    {!! Form::label('platform_id', 'Plataforma') !!}
-    {!! Form::select('platform_id', $platforms, null, ['id' => 'platform_id', 'class' =>
-    'form-input block w-full mt-1 text-center'])
-    !!}
-    <small class="text-danger">{{ $errors->first('category_id') }}</small>
-</div>
-<div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-    {!! Form::label('url', 'Url video') !!}
-    {!! Form::text('url', null, ['class' => 'form-input block w-full mt-1']) !!}
-    <small class="text-danger">{{ $errors->first('url') }}</small>
 </div>
 <h1 class="mt-8 mb-2 text-2xl font-bold">Imagen del curso</h1>
 <div class="grid grid-cols-2 gap-4">

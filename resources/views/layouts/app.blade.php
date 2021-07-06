@@ -24,6 +24,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ asset('js/whatsapp/jquery-3.3.1.min.js') }}"></script>
         <script src="{{ asset('js/whatsapp/floating-wpp.js') }}"></script>
+        @yield('structuredData')
         {!! htmlScriptTagJsApi() !!}
 
         <!---Google Analitycs--->

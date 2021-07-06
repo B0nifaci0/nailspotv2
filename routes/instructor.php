@@ -26,6 +26,4 @@ Route::group(
         Route::get('courses/{task}/{student}', [TaskController::class, 'show'])->name('task.show');
     }
 );
-Route::post('/seo/{course}', [SeoController::class, 'store'])->name('course.seo.store');
-Route::put('/seo/{seo}', [SeoController::class, 'update'])->name('course.seo.update');
 

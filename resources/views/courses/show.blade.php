@@ -3,21 +3,34 @@
 
 @section('seo')
     @if ($course->seo)
-    <meta name="description" content="{{$course->seo->description}}">
-    <meta name="keywords" content="{{$course->seo->keywords}}">
-    <meta name="author" content="Nailspot">
+    <meta name="description" content="{{$course->seo->seodescription}}" />
+    <meta name="keywords" content="{{$course->seo->keywords}}" />
+    <meta name="author" content="Nailspot" />
     
-    <meta name="twitter:card" value="summary">
-    <meta property="og:title" content="{{$course->seo->title}}"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="{{Request::url()}}"/>
-    <meta property="og:image" content="{{Request::root().'/storage/'.$course->image->url}}"/>
-    <meta property="og:description" content="{{$course->seo->description}}"/>
+    <meta property="og:description" content="{{$course->seo->seodescription}}" />
+    <meta property="og:title" content="{{$course->seo->title}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{Request::url()}}" />
+    <meta property="og:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
+    <meta property="og:site_name" content="{{Request::url()}}" />
 
-    <meta property="og:site_name" content="Nailspot"/>
-    <meta property="og:price:amount" content="{{$course->price}}"/>
-    <meta property="og:price:currency" content="MXN"/> 
+    <meta name="twitter:card" value="summary__large_image" />
+    <meta name="twitter:site" content="@Nailspot" />
+    <meta name="twitter:title" content="{{$course->seo->title}}" />
+    <meta name="twitter:description" content="{{$course->seo->seodescription}}" />
+    <meta name="twitter:creator" content="@Nailspot" />
+    <meta name="twitter:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
+    <meta name="twitter:domain" content="{{Request::url()}}" />
+    
+    <meta property="og:site_name" content="Nailspot" />
+    <meta property="og:price:amount" content="{{$course->price}}" />
+    <meta property="og:price:currency" content="MXN" /> 
     @endif
+@endsection
+@section('structuredData')
+    <script type="application/ld+json">
+        {!!($data)!!}
+    </script>
 @endsection
      @section('header')
     <!--COmienza prueba--->
