@@ -17,12 +17,13 @@
                 </h5>
                 <div class="pt-5 pb-5">
                     <a
-                        href="https://www.instagram.com/nailspotoficial/" class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                        href="https://www.instagram.com/nailspotoficial/" class=""
                         type="button">
-                        <i class="flex fab fa-instagram"></i></a><a
-                        href="https://www.facebook.com/NailspotTuPuntoDeEncuentro/"  class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                        <i class="fab fa-instagram-square fa-3x"></i></a>
+                        <a
+                        href="https://www.facebook.com/NailspotTuPuntoDeEncuentro/"  class="ml-2"
                         type="button">
-                        <i class="flex fab fa-facebook-square"></i></a>
+                        <i class="fab fa-facebook-square fa-3x"></i></a>
                 </div>
             </div>
             <!-- Aqui termina el apartado del logo y informacion descriptiva -->

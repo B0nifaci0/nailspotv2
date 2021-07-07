@@ -16,10 +16,19 @@
                     certificado</button>
             </div>
             @endcan
-            <a href="{{ route('profile.courses') }}">Ir a cursos comprados</a>
-            <br>
-            <a href="{{route('course.status',$course)}}">
-                Ir a:{{$course->name}}</a>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="col-span-2">
+                    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{route('course.status',$course)}}">
+                            Ir a curso: {{$course->name}} <i class="far fa-arrow-alt-circle-right fa-lg"></i></a>
+                    </button>
+                </div>
+                <div class="col-span-1">
+                    <button class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('profile.courses') }}">Volver a cursos comprados <i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <hr class="mt-2 mb-6" />
@@ -45,7 +54,11 @@
             </div>
         </article>
         @empty
-        <p>No tienes tareas en este curso</p>
+        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+            <p class="font-bold">Mensaje</p>
+            <p class="text-sm">No tienes tareas asignadas en este curso.</p>
+        </div>
+        <!--<p>No tienes tareas en este curso</p>-->
         @endforelse
     </div>
 

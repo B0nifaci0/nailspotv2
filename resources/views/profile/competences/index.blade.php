@@ -1,4 +1,5 @@
 <x-profile-layout>
+<h1 class="text-gray-900 text-center text-bold text-2xl">Competencias Adquiridas</h1>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
             <tr>

@@ -1,4 +1,5 @@
 <x-profile-layout>
+    <h1 class="text-gray-900 text-center text-bold text-2xl">Cusos Adquiridos</h1>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
             <tr>
@@ -52,8 +53,10 @@
                     {{$course->sales->first()->created_at}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="{{route('profile.courses.tasks',$course)}}"
-                        class="text-indigo-600 hover:text-indigo-900">Tareas</a>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{route('profile.courses.tasks',$course)}}"
+                            class="text-white">Tareas</a>
+                    </button>
                 </td>
             </tr>
             @empty
