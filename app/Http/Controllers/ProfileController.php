@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\TasksUser;
 use App\Models\Task;
 use App\Models\Course;
+use App\Models\TaskUser;
+use App\Mail\Assignament;
 use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Models\CompetenceUser;
-use App\Models\TaskUser;
+use App\Http\Livewire\TasksUser;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -116,6 +118,9 @@ class ProfileController extends Controller
         if ($task->quantity == $taskUser->images_count + 1) {
             $taskUser->complete = true;
             $taskUser->save();
+
+            $mail = new Assignament($taskUser);
+            Mail::to($taskUser->user->email)->queue($mail);
         }
 
         return back();

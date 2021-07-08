@@ -20,7 +20,7 @@
                         Email
                     </th>
                     <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Edit</span>
+                        
                     </th>
                 </tr>
             </thead>

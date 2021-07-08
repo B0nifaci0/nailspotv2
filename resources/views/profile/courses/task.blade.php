@@ -111,9 +111,9 @@
         </div>
 
         Calificación: {{$taskUser->score}}
-        @endif
-
         <div>
             @livewire('profile.comments', ['taskUser' => $taskUser])
         </div>
+        @endif
+
 </x-profile-layout>

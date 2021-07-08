@@ -2,27 +2,27 @@
 
 namespace App\Mail;
 
-use App\Models\Lesson;
-use App\Models\User;
+
+use App\Models\TaskUser;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Assignament extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $lesson, $student;
+    public $taskuser;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Lesson $lesson, User $user)
+    public function __construct(TaskUser $taskuser)
     {
-        $this->lesson = $lesson;
-        $this->student = $user;
+        $this->taskuser = $taskuser;
+
     }
 
     /**

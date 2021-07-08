@@ -13,7 +13,7 @@ Route::redirect('', 'courses');
 Route::resource('courses', CourseController::class)->names('courses');
 Route::group(
     [
-        'prefix' => 'courses'
+        'prefix' => 'courses' 
     ],
     function () {
         Route::get('{course}/goals', [CourseController::class, 'goals'])->name('courses.goals');

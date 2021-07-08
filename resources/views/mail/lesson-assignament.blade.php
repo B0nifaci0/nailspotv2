@@ -10,9 +10,10 @@
 
     <body>
         <h1>Tarea recibida</h1>
-        <p>{{$student->name}} acaba de entregar una tarea de la lección: {{$lesson->name}}</p>
+        <p>{{$taskuser->user->name}} acaba de entregar una tarea del curso: {{$taskuser->task->course->name}}</p>
 
-        <a href="{{route('instructor.courses.tasks',[$lesson->course, $student])}}">Ir a calificar</a>
+        {{-- <a href="{{routeroute('instructor.courses.student.tasks',[$taskuser->task->course, $taskuser->task->user])}}">Ir
+        a calificar</a> --}}
     </body>
 
 </html>
