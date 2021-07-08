@@ -33,7 +33,7 @@
 
     <div class="flex justify-between">
         <h1 class="text-2xl font-bold uppercase">
-            Tarea {{$task->title}}
+            Tarea: {{$task->title}}
         </h1>
         <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('profile.courses') }}'>Ver
             todos
@@ -44,11 +44,21 @@
     </div>
 
     <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
+    <h1 class="mt-2 mb-2 text-xl font-bold ">Descripción tarea: <span class="font-semibold">{{$task->description }}</span></h1>
+    <h1 class="mt-2 mb-2 text-xl font-bold">Imagenes requeridas: <span class="font-semibold">{{$task->quantity}}</span></h1>
     <p class="font-bold"><i class="fas fa-exclamation-circle"></i> Nota: Las imagenes a entregar deben de ser tomadas
         desde los siguientes angulos (Derecho, Izquierdo, Perfil)</p>
-
     @if ($taskUser)
-    @if ($taskUser->images_count < $task->quantity)
+        @if ($taskUser->images_count < $task->quantity)
+            <p class="mt-2 mb-2 ">Has subido {{$taskUser->images_count}} imagenes de {{$task->quantity}} requeridas.</p>
+        @else
+            <p class="mt-2 mb-2 ">Has subido {{$taskUser->images_count}} imagenes de {{$task->quantity}} requeridas.</p>
+        
+        @endif    
+    @endif
+        
+        @if ($taskUser)
+        @if ($taskUser->images_count < $task->quantity)
         <form action="{{ route('profile.courses.image', $task) }}" method="post" enctype="multipart/form-data">
             @csrf
             Selecciona una imagen

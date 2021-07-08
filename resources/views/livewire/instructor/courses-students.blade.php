@@ -19,7 +19,12 @@
                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                         Email
                     </th>
-                    <th scope="col" class="relative px-6 py-3">
+                    <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                        Curso
+                    </th>
+                    <th scope="col" 
+                        class="relative px-6 py-3">
                         
                     </th>
                 </tr>
@@ -41,6 +46,9 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{$student->email}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{$course->name}}</div>
                     </td>
                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                         <a href="{{route('instructor.courses.student.tasks',[$course, $student])}}"

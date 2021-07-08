@@ -9,18 +9,22 @@
 
     </div>
     <hr class="mt-2 mb-6" />
+    <div class="mb-2">
+        <label class="text-xl font-bold">Estudiante:</label>
+        {{$taskUser->user->name}}
+    </div>
     <div class="mb-4">
-        <label>Titulo del curso:</label>
+        <label class="text-xl font-bold">Titulo del curso:</label>
         {{$course->name}}
     </div>
     <div class="mb-4">
-        <label>tarea:</label>
+        <label class="text-lg font-bold">Tarea:</label>
         {{$task->title}}
     </div>
 
     @foreach ($taskUser->images as $image)
 
-    <img alt="Placeholder" class="w-full rounded-lg object-fit" src="{{Storage::url($image->url)}}"><br>
+    <img alt="Placeholder" class="w-full rounded-lg object-fit" src="{{Storage::url($image->url)}}"><br><hr style="border: 2px solid blue"><br>
 
     <!--<h1>
         {{$image->url}} 
