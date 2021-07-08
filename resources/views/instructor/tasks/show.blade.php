@@ -4,7 +4,7 @@
         <h1 class="text-2xl font-bold uppercase">
             Detalles tarea
         </h1>
-        <a href="{{route('instructor.courses.student.tasks',[$course, $task->user])}}"
+        <a href="{{route('instructor.courses.student.tasks',[$course, $taskUser->user])}}"
             class="text-indigo-600 hover:text-indigo-900">Ver todas </a>
 
     </div>
@@ -18,17 +18,17 @@
         {{$task->title}}
     </div>
 
-    @foreach ($task->images as $image)
+    @foreach ($taskUser->images as $image)
 
-    <img alt="Placeholder" class="w-full object-fit rounded-lg" src="{{Storage::url($image->url)}}"><br>
+    <img alt="Placeholder" class="w-full rounded-lg object-fit" src="{{Storage::url($image->url)}}"><br>
 
     <!--<h1>
         {{$image->url}} 
     </h1>-->
     @endforeach
-    
-    @livewire('instructor.task.score', ['taskuser' => $task])
 
-    @livewire('profile.comments', ['task' => $task->task])
+    @livewire('instructor.task.score', ['taskuser' => $taskUser])
+
+    @livewire('profile.comments', ['taskUser' => $taskUser])
 
     </x-app-layout>

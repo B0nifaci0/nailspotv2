@@ -6,21 +6,19 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\TaskUser;
-use App\Mail\CourseApproved;
-use Illuminate\Http\Request;
-use App\Mail\GradedAssignament;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
     public function show(Task $task, User $student)
     {
         $course = Course::find($task->course->id);
-        $task = TaskUser::whereTaskId($task->id)
+        $taskUser = TaskUser::whereTaskId($task->id)
             ->whereUserId($student->id)->first();
+
         $this->authorize('dicatated', $course);
-        return view('instructor.tasks.show', compact('course', 'task'));
+
+        return view('instructor.tasks.show', compact('course', 'taskUser', 'task'));
     }
 
     // public function update(Task $task, Request $request)
