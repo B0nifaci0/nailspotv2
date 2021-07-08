@@ -6,7 +6,7 @@
     @enderror
     <button class="px-4 py-2 m-2 text-white bg-blue-500 rounded " wire:click="store">Comentar</button>
 
-    @foreach ($task->comments as $comment)
+    @foreach ($taskUser->comments as $comment)
     <article class="flex mb-4 text-gray-800">
         <figure class="mr-4">
             <img class="object-cover w-12 h-12 rounded-full shadow-lg" src="{{$comment->user->profile_photo_url}}"

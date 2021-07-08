@@ -71,9 +71,7 @@ class ProfileController extends Controller
         $course = $task->course;
         $taskUser = TaskUser::whereTaskId($task->id)
             ->whereUserId(auth()->user()->id)->first();
-        // if (!$taskUser) {
-        //     return back()->with('info','No entregado');
-        // }
+
         return view('profile.courses.task', compact('task', 'course', 'taskUser'));
     }
 
@@ -81,6 +79,8 @@ class ProfileController extends Controller
     {
         $resource = CompetenceUser::whereCompetenceId($competence->id)
             ->firstWhere('user_id', auth()->user()->id);
+
+        return $resource;
         return view('profile.competences.resources', compact('resource'));
     }
 
@@ -118,6 +118,6 @@ class ProfileController extends Controller
             $taskUser->save();
         }
 
-        return redirect()->route('course.tasks', $task->course)->with('info', 'se ha subido la imagen');
+        return back();
     }
 }

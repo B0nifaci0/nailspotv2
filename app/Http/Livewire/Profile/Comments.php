@@ -2,22 +2,22 @@
 
 namespace App\Http\Livewire\Profile;
 
-use App\Models\Task;
 use App\Models\Comment;
 use Livewire\Component;
+use App\Models\TaskUser;
 
 class Comments extends Component
 {
-    public $task, $comment, $body;
+    public $taskUser, $comment, $body;
 
     protected $rules = [
         'comment.body' => 'required',
     ];
 
 
-    public function mount(Task $task)
+    public function mount(TaskUser $taskUser)
     {
-        $this->task = $task;
+        $this->taskUser = $taskUser;
     }
 
     public function render()
@@ -36,13 +36,13 @@ class Comments extends Component
 
         Comment::create([
             'body' =>  $this->body,
-            'commentable_id' => $this->task->id,
-            'commentable_type' => Task::class,
+            'commentable_id' => $this->taskUser->id,
+            'commentable_type' => TaskUser::class,
             'user_id' => auth()->user()->id,
         ]);
 
         $this->reset('body');
 
-        $this->task = Task::find($this->task->id);
+        $this->taskUser = TaskUser::find($this->taskUser->id);
     }
 }
