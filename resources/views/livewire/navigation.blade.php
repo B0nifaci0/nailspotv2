@@ -118,7 +118,7 @@
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Categorías</a>-->
             <a href="{{ route('competences.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-purple-700 hover:text-white">Competencias</a>
             <!--<a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Contacto</a>-->
-            <a href=" {{ route('nosotros') }} " class="block px-3 py-2 text-base font-medium text-white bg-purple-900 rounded-md">Nosotros</a>
+            <a href=" {{ route('nosotros') }} " class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-purple-700 rounded-md">Nosotros</a>
             <a href="{{route('contact.index')}}" class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-purple-700 hover:text-white">Contacto</a>
         </div>
     </div>
