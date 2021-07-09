@@ -62,7 +62,7 @@
                         <ul class="list-unstyled">
                             <li>
                                 <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">Terminos &amp; Condiciones</a>
+                                    href="{{asset('docs/Terminos_&_Condiciones_NAILSPOT.pdf')}}" target="blank">Terminos &amp; Condiciones</a>
                             </li>
                             <li>
                                 <a class="text-indigo-100 hover:text-gray-900 font-semibold block pb-2 text-sm"
