@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Contact;
-class ContactForm extends Notification
+
+class AdminNotification extends Notification
 {
     use Queueable;
     public $data;
@@ -40,10 +40,12 @@ class ContactForm extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)    
+        return (new MailMessage)
                     ->subject('Contacto Nailspot')
-                    ->from('registro@nailspot.com.mx', 'Contacto Nailspot')
-                    ->line("Que tal {$this->data['name']} {$this->data['surname']} gracias por contactarnos, pronto nos pondremos en contacto con usted.");
+                    ->from('registro@nailspot.com.mx', 'Nailspot')
+                    ->line("Hay un nuevo mensaje de {$this->data['name']} {$this->data['surname']}.")
+                    ->line("Mensaje: \n {$this->data['message']}")
+                    ->line("Atte: {$this->data['email']}");
     }
 
     /**

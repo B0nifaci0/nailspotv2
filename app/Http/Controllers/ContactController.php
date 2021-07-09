@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Message;
+use App\Notifications\AdminNotification;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use App\Notifications\ContactForm;
 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Mockery\Matcher\Not;
 
 class ContactController extends Controller
 {
@@ -30,7 +32,9 @@ class ContactController extends Controller
         ]);
         try {
             $to=$request->email;
+            $admin=$this->contact[0]->email;
             Notification::route('mail', $to)->notify(new ContactForm($data));
+            Notification::route('mail', $admin)->notify(new AdminNotification($data));
             session()->flash('exito', '¡Gracias por tus comenetarios!');
             Message::create($data);
             return redirect()->route('contact.index');
