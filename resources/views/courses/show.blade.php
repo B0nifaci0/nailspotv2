@@ -16,10 +16,10 @@
     <meta property="og:site_name" content="{{Request::url()}}" />
 
     <meta name="twitter:card" value="summary__large_image" />
-    <meta name="twitter:site" content="@Nailspot" />
+    <meta name="twitter:site" content="@Nailspot3" />
     <meta name="twitter:title" content="{{$course->seo->title}}" />
     <meta name="twitter:description" content="{{$course->seo->seodescription}}" />
-    <meta name="twitter:creator" content="@Nailspot" />
+    <meta name="twitter:creator" content="@Nailspot3" />
     <meta name="twitter:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
     <meta name="twitter:domain" content="{{Request::url()}}" />
     
