@@ -71,5 +71,7 @@ class Score extends Component
                 }
             }
         }
+
+        
     }
 }

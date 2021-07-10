@@ -10,7 +10,8 @@
                 @else
                 <a href="{{route('instructor.task.show',[$task, $student])}}"
                     class="text-indigo-600 hover:text-indigo-900 "><button
-                        class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Revisar tarea</button></a>
+                        class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Revisar
+                        tarea</button></a>
                 @endif
             </td>
         </div>

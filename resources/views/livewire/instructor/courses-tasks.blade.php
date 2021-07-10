@@ -35,9 +35,9 @@
                     </div>
                     @else
                     <header>
-                        <h1 class="cursor-pointer" x-on:click="open = !open"> <strong>Tarea {{$key+1}}:</strong>
-                            {{$item->title}}</h1>
-
+                        <h1 class="cursor-pointer" x-on:click="open = !open"> <strong>Tarea
+                                {{($item->final==1) ? 'final' : $key+1 }} :</strong>
+                            {{$item->title}}</h1> 
                     </header>
                     <div x-show="open">
 
@@ -53,6 +53,8 @@
             </div>
         </article>
         @endforeach
+        @if ($course->final==0)
+
         <div x-data="{open: false}" class="mt-4">
             <a x-show="!open" x-on:click="open = true" class="flex items-center cursor-pointer">
                 <i class="mr-2 text-2xl text-red-500 far fa-plus-square"></i>
@@ -94,7 +96,6 @@
             </article>
         </div>
 
-        @if ($course->final==0)
         <div x-data="{open: false}" class="mt-4">
             <a x-show="!open" x-on:click="open = true" class="flex items-center cursor-pointer">
                 <i class="mr-2 text-2xl text-red-500 far fa-plus-square"></i>
