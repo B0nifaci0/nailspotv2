@@ -42,25 +42,39 @@
     </style>
     @endsection
     @section('header')
-    <!-- Aqui comienza el encabezado, el cual contiene un video y dos botones para ver los cursos o registarse -->
-    <header class="relative flex  items-center h-screen overflow-hidden bg-purple-800   ">
-        <div class="md:w-1/2  mb-10 md:mb-0 text-blond z-20 px-20 py-48 text-5xl text-white ">
-
-            <!--<p class="text-blond py-6 text-lg text-white mb-2">La mejor opcion desde casa!</p>
-            <!- Si aun no estas logueado se mostrara el boton registar y si ya estas loguead ya no lo mostrara ->
-            @auth
-            @else
-            <button href="/" class="bg-purple-600 hover:bg-purple-700 focus:outline-none hover:text-white px-3 py-3 rounded-md text-base font-medium"><a href="{{ route('register') }}">Registrate</a></button>
-            @endauth 
-            <-- aqui termina la validacion de inicio de sesion -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <header class="relative  h-screen overflow-hidden">
+        <div class="relative pt-16 pb-32 flex content-center items-end " style="min-height: 78vh;">
+            <div class="absolute top-0 w-full h-screen bg-center bg-cover mb-2"
+                style='background-image: url("img/principal-nailspot.png");'>
+                <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-purple-500"></span>
             </div>
-            <video autoplay controls  loop class="absolute mt-24 pb-24" >
-                <source src="{{asset('video/Ns-1.mp4')}}" type="video/mp4" style="width:100%"/>
-                <source src="{{asset('video/Ns-1.ogg')}}" type="video/ogg"/>
-                Your browser does not support the video tag.
-            </video>
+            <!--inicia modal-->
+            <div class="mx-auto">
+                <!-- Modal -->
+                <div x-data="{ showModal : false }">
+                    <!-- Button -->
+                    <button @click="showModal = !showModal" class="relative  bg-transparent hover:bg-transparent text-blue-700 font-semibold hover:text-white py-2 px-4 border border-transparent hover:border-transparent rounded mb-4 mt-4"><i class="fas fa-play-circle fa-3x"></i></button>
+                    <!-- Modal Background -->
+                    <div x-show="showModal" class="fixed text-gray-500 flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                        <!-- Modal -->
+                        <div x-show="showModal" class="bg-indigo-800 rounded-xl shadow-2xl p-6 xs:w-12/12 w-8/12 mx-10" @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
+                            <div class=" embed-responsive">
+                                <iframe  class=" relative inset-0  " src="{{asset('video/Ns-1.mp4')}}" frameborder="0" … > </iframe >
+                            </div>
 
+                            <!-- Buttons -->
+                            <div class="text-right space-x-5 mt-5">
+                                <button @click="showModal = !showModal" class="px-4 py-2 text-sm bg-white rounded-xl border transition-colors duration-150 ease-linear border-gray-200 text-gray-500 focus:outline-none focus:ring-0 font-bold hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cerrar <i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--termina-modal-->
+        </div>
     </header>
+
     <!-- Aqui termina el encabezado -->
     @endsection
     <!-- Aqui comienza la seccion de equipo -->
