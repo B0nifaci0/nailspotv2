@@ -44,13 +44,23 @@
                                         @enderror
                                 </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="name" class="text-white font-semibold">Correo Electronico</label>
-                                <x-jet-input id="email" class="block mt-1 w-full text-black" type="email" name="email" :value="old('email')" required
-                                    autofocus autocomplete="email" />
-                                    @error('email')
-                                        <span><small class="text-black">* {{$message}}</small></span>
-                                    @enderror
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div class="md:mr-2 mb-4">
+                                    <label for="email" class="text-white font-semibold">Correo Electronico</label>
+                                    <x-jet-input id="email" class="block mt-1 w-full text-black" type="email" name="email" :value="old('email')" required
+                                        autofocus autocomplete="email" />
+                                        @error('email')
+                                            <span><small class="text-black">* {{$message}}</small></span>
+                                        @enderror
+                                </div>
+                                <div class="md:ml-2 mb-4">
+                                    <label for="phone" class="text-white font-semibold">Número Telefonico</label>
+                                    <x-jet-input id="phone" class="block mt-1 w-full text-black" type="text" name="phone" :value="old('phone')" required
+                                        autofocus autocomplete="phone" />
+                                        @error('phone')
+                                            <span><small class="text-black">* {{$message}}</small></span>
+                                        @enderror
+                                </div>
                             </div>
                             <div class="mb-4">
                                 <label for="name" class="text-white font-semibold">Comentarios</label>
@@ -108,9 +118,12 @@
             </div>
         </div>
     </section>
+ @push('js')
     <script>
         $(document).ready(function(){
             $(".alert").delay(3000).slideUp(800);
         });
-    </script>
+    </script>    
+ @endpush
 </x-app-layout>
+    

@@ -41,5 +41,8 @@ Route::get('nosotros', [NosotrosController::class, 'index'])->name('nosotros');
 Route::get('contacto', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contacto/save', [ContactController::class, 'store'])->name('contact.store');
 
-
-Route::get('sitemap.xml', PageController::class)->name('sitemap');
+//sitemap
+Route::get('sitemap_index.xml', [PageController::class, 'index'])->name('sitemap');
+Route::get('courses-sitemap.xml', [PageController::class, 'courses'])->name('courses-sitemap');
+Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-sitemap');
+Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
