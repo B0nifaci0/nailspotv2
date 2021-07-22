@@ -7,10 +7,9 @@ use App\Models\Message;
 use App\Notifications\AdminNotification;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
-use App\Notifications\ContactForm;
-
+use App\Mail\ContactMailable;
+use App\Mail\ContactAdminMailable;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
 use Mockery\Matcher\Not;
 
 class ContactController extends Controller
@@ -28,15 +27,16 @@ class ContactController extends Controller
             'name'=>'required|min:5|max:50',
             'surname'=>'required|min:5|max:50',
             'email'=>'required|email|min:10',
+            'phone'=>'required|integer|regex:/^[0-9]{10}$/',
             'message'=>'required|min:10|max:250'
         ]);
         try {
-            $to=$request->email;
-            $admin=$this->contact[0]->email;
-            Notification::route('mail', $to)->notify(new ContactForm($data));
-            Notification::route('mail', $admin)->notify(new AdminNotification($data));
-            session()->flash('exito', '¡Gracias por tus comenetarios!');
+            $user=new ContactMailable($data);
+            $admin=new ContactAdminMailable($data);
+            Mail::to($data['email'])->send($user);
+            Mail::to($this->contact[0]->email)->send($admin);
             Message::create($data);
+            session()->flash('exito', '¡Gracias por tus comenetarios!');
             return redirect()->route('contact.index');
             
         } catch (\Throwable $th) {
