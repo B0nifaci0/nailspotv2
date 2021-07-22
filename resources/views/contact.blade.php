@@ -24,7 +24,7 @@
                 <hr class="bg-gray-300 w-3/4 mx-auto h-0.5">
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2">
                     <div class="p-1">
-                        <form method="POST" action="{{route('contact.store')}}" class="px-2"> 
+                        <form method="POST" action="{{route('contact.store')}}" class="px-2" name="contact"> 
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2">
                                 <div class="md:mr-2 mb-4">
@@ -55,8 +55,8 @@
                                 </div>
                                 <div class="md:ml-2 mb-4">
                                     <label for="phone" class="text-white font-semibold">Número Telefonico</label>
-                                    <x-jet-input id="phone" class="block mt-1 w-full text-black" type="text" name="phone" :value="old('phone')" required
-                                        autofocus autocomplete="phone" />
+                                    <x-jet-input id="phone" class="block mt-1 w-full text-black" type="tel" name="phone" :value="old('phone')" required
+                                        autofocus autocomplete="phone" maxlength="10"/>
                                         @error('phone')
                                             <span><small class="text-black">* {{$message}}</small></span>
                                         @enderror
@@ -118,12 +118,20 @@
             </div>
         </div>
     </section>
- @push('js')
     <script>
         $(document).ready(function(){
             $(".alert").delay(3000).slideUp(800);
         });
+
+        window.addEventListener("load", function() {
+            contact.phone.addEventListener("keypress", phone, false);
+        });
+        function phone(event){
+        var key = window.event ? e.which : e.keyCode;
+        if (key < 48 || key > 57) {
+            e.preventDefault();
+        }
+    }
     </script>    
- @endpush
 </x-app-layout>
     
