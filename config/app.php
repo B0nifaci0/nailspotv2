@@ -178,6 +178,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        \NotificationChannels\WebPush\WebPushServiceProvider::class,
 
     ],
 

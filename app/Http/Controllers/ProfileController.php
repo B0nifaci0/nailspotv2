@@ -10,6 +10,8 @@ use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Models\CompetenceUser;
 use App\Http\Livewire\TasksUser;
+use App\Models\User;
+use App\Notifications\TasksCompleted;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -118,9 +120,11 @@ class ProfileController extends Controller
         if ($task->quantity == $taskUser->images_count + 1) {
             $taskUser->complete = true;
             $taskUser->save();
-
             $mail = new Assignament($taskUser);
             Mail::to($taskUser->user->email)->queue($mail);
+            $instructor=$task->course->user_id;
+            $instructor=User::findOrFail($instructor);
+            $instructor->notify(new TasksCompleted($user, $task));
         }
 
         return back();
