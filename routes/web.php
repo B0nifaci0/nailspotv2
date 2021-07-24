@@ -11,6 +11,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Livewire\TasksUser;
 use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PushControlle;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +49,5 @@ Route::get('sitemap_index.xml', [PageController::class, 'index'])->name('sitemap
 Route::get('courses-sitemap.xml', [PageController::class, 'courses'])->name('courses-sitemap');
 Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-sitemap');
 Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
+
+Route::post('/save', [PushControlle::class, 'store']);

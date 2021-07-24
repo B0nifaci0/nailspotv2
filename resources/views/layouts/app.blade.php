@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
@@ -47,7 +47,6 @@
         {{-- <x-jet-banner /> --}}
 
         @livewire('navigation')
-
         <main>
             @yield('header')
             {{ $slot }}
@@ -61,5 +60,8 @@
         @isset($js)
         {{$js}}
         @endisset
+        @auth
+            <script src="{{asset('js/enable-push.js')}}" defer></script>
+        @endauth
     </body>
 </html>
