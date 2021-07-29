@@ -2,27 +2,24 @@
 
 namespace App\Mail;
 
-
-use App\Models\TaskUser;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Assignament extends Mailable
+class CourseCreated extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $task, $user;
+    public $course, $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user, $task)
+    public function __construct($course, $user)
     {
+        $this->course=$course;
         $this->user=$user;
-        $this->task =$task;
     }
 
     /**
@@ -32,7 +29,6 @@ class Assignament extends Mailable
      */
     public function build()
     {
-        return $this->from('registro@nailspot.com.mx','Nailspot')
-                    ->view('mail.lesson-assignament');
+        return $this->view('mail.course-created');
     }
 }

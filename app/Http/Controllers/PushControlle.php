@@ -15,6 +15,27 @@ class PushControlle extends Controller
       $this->middleware('auth');
     }
 
+    public function index(Request $request)
+    {
+        //$user=auth()->user()->roles()->first()->name;
+        
+        $user = $request->user();
+
+        // Limit the number of returned notifications, or return all
+        $query = $user->unreadNotifications();
+        $limit = (int) $request->input('limit', 0);
+        if ($limit) {
+            $query = $query->limit($limit);
+        }
+
+        $notifications = $query->get()->each(function ($n) {
+            $n->created = $n->created_at->toIso8601String();
+        });
+
+        $total = $user->unreadNotifications->count();
+
+        return compact('notifications', 'total');
+    }
     /**
      * Store the PushSubscription.
      * 

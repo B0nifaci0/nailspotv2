@@ -6,6 +6,10 @@ use App\Models\Course;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\AdminCourseApproved;
+use App\Mail\CourseDisapproved;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class CourseController extends Controller
 {
@@ -41,7 +45,10 @@ class CourseController extends Controller
         }
         $course->status = 3;
         $course->save();
-
+        $instructor=$course->user_id;
+        $instructor=User::find($instructor);
+        $courseApproved=new AdminCourseApproved($course);
+        Mail::to($instructor->email)->queue($courseApproved);
         return redirect()->route('admin.courses.index')->with('info', "El curso ha sido publicado exitosamente!");;
     }
 
@@ -59,7 +66,10 @@ class CourseController extends Controller
 
         $course->status = 1;
         $course->save();
-
+        $instructor=$course->user_id;
+        $instructor=User::find($instructor);
+        $courseDissaproved=new CourseDisapproved($course);
+        Mail::to($instructor->email)->queue($courseDissaproved);
         return redirect()->route('admin.courses.index')->with('info', "El curso no se ha publicado");
     }
 }

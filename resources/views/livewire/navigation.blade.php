@@ -47,6 +47,7 @@
             @auth
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <!-- Menú desplegable de perfil -->
+                <i class="fas fa-bell text-white cursor-pointer"></i>
                 <div class="relative ml-3" x-data="{ open: false}">
                     <div>
                         <button x-on:click="open = true" type="button" class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">

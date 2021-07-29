@@ -13,7 +13,7 @@
     <div style="min-height: 36px;  text-align: center;">
       <a href="{{Request::root()}}"><img src="{{asset('img/nail.png')}}" alt="Nailspot Logo" style="width: 25%; max-width:25%; vertical-align: middle; line-height: 100%; border: 0; padding:1.2rem;"></a>
     </div>
-      <div style="margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; display: grid; width: 66.666667%; grid-template-columns: repeat(1, minmax(0, 1fr)); border-radius: 6px; background-color: #3730a3; padding: 9px; text-align: justify; color: #ffffff; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+      <div style="margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; display: grid; width: 66.666667%; grid-template-columns: repeat(1, minmax(0, 1fr)); border-radius: 6px; background-color: #3730a3; padding: 20px; text-align: justify; color: #ffffff; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
         @yield('content')
       </div>
     <footer style="padding-top: 8px; padding-bottom: 6px; color: #e0e7ff;">

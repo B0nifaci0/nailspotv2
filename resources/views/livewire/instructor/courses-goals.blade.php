@@ -3,7 +3,21 @@
     <h1 class="text-2xl uppercase text-bold">Metas del curso</h1>
     <hr class="mb-8 mt-2">
 
-    @foreach ($course->goals as $item)
+    <article class="card mb-4">
+        <div class="card-body">
+            <form wire:submit.prevent="store">
+                <input wire:model="name" type="text" class="form-input w-full" placeholder="Agregar Meta">
+                @error('name')
+                    <span class="text-sm text-red-500">{{$message}}</span>
+                @enderror
+                <div class="flex justify-end mt-5">
+                    <button class="bg-pink-600  hover:bg-pink-700 text-white p-2 rounded">Agregar meta</button>
+                </div>
+            </form>
+        </div>
+    </article>
+
+    @foreach ($goals as $item)
     <article class="card mb-4">
         <div class="card-body bg-gray-100">
             @if ($goal->id == $item->id)
@@ -27,19 +41,9 @@
     </article>
     @endforeach
 
-    <article class="card">
-<div class="card-body">
-    <form wire:submit.prevent="store">
-        <input wire:model="name" type="text" class="form-input w-full" placeholder="Agregar Meta">
-        @error('name')
-            <span class="text-sm text-red-500">{{$message}}</span>
-        @enderror
-        <div class="flex justify-end mt-5">
-            <button class="bg-pink-600  hover:bg-pink-700 text-white p-2 rounded">Agregar meta</button>
-        </div>
-    </form>
-</div>
-    </article>
-    
+
+    <div class="card-footer">
+        {{$goals->links()}}
+    </div>
 
 </section>

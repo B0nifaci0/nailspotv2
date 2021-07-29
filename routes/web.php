@@ -51,3 +51,4 @@ Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-s
 Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
 
 Route::post('/save', [PushControlle::class, 'store']);
+Route::get('/notifications',[PushControlle::class, 'index']);

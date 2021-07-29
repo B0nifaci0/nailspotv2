@@ -17,16 +17,23 @@ class TasksCompleted extends Notification
         $this->user=$user;
         $this->task=$task;
     }
-
-    public function via($notifiable){
-        return [WebPushChannel::class];
+    public function toArray($notifiable){
+        return[
+            'title'=>'¡Tarea Entregada!',
+            'body'=>'El alumno '.$this->user->name.' entregó la tarea '.$this->task->title,
+            'action_url'=>route('instructor.task.show',[$this->task,$this->user]),
+        ];
     }
 
-    public function toWebPush($notifiable){
+    public function via($notifiable){
+        return ['database',WebPushChannel::class];
+    }
+
+    public function toWebPush($notifiable, $notification){
         return (new WebPushMessage)
                     ->title('¡Tarea Entregada!')
-                    ->icon('img/nail.png')
-                    ->body('El alumno '.$this->user->name.' entrego la tarea '.$this->task->title);
-
+                    ->body('El alumno '.$this->user->name.' entregó la tarea '.$this->task->title)
+                    ->action('View_app', 'view_app')
+                    ->data(['id' => $notification->id]);
     }
 }
