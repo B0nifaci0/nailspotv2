@@ -34,7 +34,6 @@ class SendNotification
         $instructor=User::findOrFail($instructor);
         $mail = new Assignament($event->user, $event->task);
         Mail::to($instructor->email)->queue($mail);
-
-        dd($instructor->notify(new TasksCompleted($event->user, $event->task)));
+        $instructor->notify(new TasksCompleted($event->user, $event->task));
     }
 }
