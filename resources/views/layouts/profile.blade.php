@@ -102,8 +102,9 @@
         {{$js}}
         @endisset
         @auth
-            <script src="{{asset('js/notifications-instructor.js')}}" defer></script>
-        @endauth
+        <script src="{{asset('js/enable-push.js')}}" defer></script>
+        <script src="{{asset('js/notifications-instructor.js')}}" defer></script>
+    @endauth
     </body>
 
 </html>
