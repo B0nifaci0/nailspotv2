@@ -18,9 +18,11 @@ class TasksCompleted extends Notification
         $this->task=$task;
     }
     public function toArray($notifiable){
+        //retorna los datos para guardalos en la bd
         return[
             'title'=>'¡Tarea Entregada!',
             'body'=>'El alumno '.$this->user->name.' entregó la tarea '.$this->task->title,
+            'icon'=>$this->user->profile_photo_url,
             'action_url'=>route('instructor.task.show',[$this->task,$this->user]),
         ];
     }
@@ -30,10 +32,13 @@ class TasksCompleted extends Notification
     }
 
     public function toWebPush($notifiable, $notification){
+        //envia la notificacion
         return (new WebPushMessage)
                     ->title('¡Tarea Entregada!')
                     ->body('El alumno '.$this->user->name.' entregó la tarea '.$this->task->title)
-                    ->action('View_app', 'view_app')
-                    ->data(['id' => $notification->id]);
+                    ->icon($this->user->profile_photo_url)
+                    //->action('View_app', 'view_app')
+                    ->dir(route('instructor.task.show', [$this->task, $this->user]));
+                    
     }
 }

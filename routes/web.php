@@ -50,5 +50,6 @@ Route::get('courses-sitemap.xml', [PageController::class, 'courses'])->name('cou
 Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-sitemap');
 Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
 
-Route::post('/save', [PushControlle::class, 'store']);
-Route::get('/notifications',[PushControlle::class, 'index']);
+Route::post('/save', [PushControlle::class, 'store'])->middleware('auth');
+Route::get('/notifications',[PushControlle::class, 'index'])->middleware('auth');
+Route::delete('/notifications/{id}/read', [PushControlle::class, 'readNotification'])->middleware('auth');

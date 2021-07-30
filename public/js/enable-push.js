@@ -5,21 +5,15 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 function initSW() {
     if (!"serviceWorker" in navigator) {
-        //service worker isn't supported
         return;
     }
-
-    //don't use it here if you use service worker
-    //for other stuff.
     if (!"PushManager" in window) {
-        //push isn't supported
         return;
     }
 
-    //register the service worker
     navigator.serviceWorker.register('../sw.js')
+    //registra el service worker
         .then(() => {
-            console.log('serviceWorker installed!')
             initPush();
         })
         .catch((err) => {
@@ -31,6 +25,7 @@ function initPush(){
     if (!swReady){
         return;
     }
+    //verifica los permisos para recibir notificaciones
     new Promise(function (resolve, reject) {
         const permissionResult = Notification.requestPermission(function (result) {
             resolve(result);
@@ -41,8 +36,9 @@ function initPush(){
     })
     .then((permissionResult) => {
             if (permissionResult !== 'granted') {
-                throw new Error('We weren\'t granted permission.');
+                throw new Error('Necesito permisos para recibir notificaciones');
             }
+            //Llama a la funcion para recibir notificaciones
             subscribeUser();
     });
 }
@@ -50,6 +46,7 @@ function initPush(){
 function subscribeUser() {
     swReady
         .then((registration) => {
+            //recibe las credeciales del usuario
             const subscribeOptions = {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
@@ -60,11 +57,10 @@ function subscribeUser() {
             return registration.pushManager.subscribe(subscribeOptions);
         })
         .then((pushSubscription) => {
-            console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
             storePushSubscription(pushSubscription);
         });
 }
-
+//guarda el usuario 
 function storePushSubscription(pushSubscription) {
     const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     fetch('/save', {

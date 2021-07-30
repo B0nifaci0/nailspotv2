@@ -6,7 +6,8 @@ use App\Notifications\TasksCompleted;
 use App\Models\User;
 use NotificationChannels\WebPush\PushSubscription;
 use Illuminate\Support\Facades\Auth;
-use Notification;
+use App\Events\NotificationRead;
+use Illuminate\Support\Facades\DB;
 
 class PushControlle extends Controller
 {
@@ -17,11 +18,9 @@ class PushControlle extends Controller
 
     public function index(Request $request)
     {
-        //$user=auth()->user()->roles()->first()->name;
-        
         $user = $request->user();
 
-        // Limit the number of returned notifications, or return all
+        //Envia las notificaciones en un objetp
         $query = $user->unreadNotifications();
         $limit = (int) $request->input('limit', 0);
         if ($limit) {
@@ -33,7 +32,6 @@ class PushControlle extends Controller
         });
 
         $total = $user->unreadNotifications->count();
-
         return compact('notifications', 'total');
     }
     /**
@@ -43,9 +41,16 @@ class PushControlle extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request){
+        //Guarda las notificaciones
         $user=auth()->user()->id;
         $user=User::findOrFail($user);
         $user->updatePushSubscription($request->input('endpoint'), $request->input('keys.p256dh'), $request->input('keys.auth'));
         return response()->json(['success' => true],200);
+    }
+
+    public function readNotification($id){
+        //Elimina la notificacion
+        $notifications=DB::table('notifications')->delete($id);
+        return response()->json(['success'=>true],200);
     }
 }
