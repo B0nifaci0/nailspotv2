@@ -37,8 +37,7 @@ class TasksCompleted extends Notification
                     ->title('¡Tarea Entregada!')
                     ->body('El alumno '.$this->user->name.' entregó la tarea '.$this->task->title)
                     ->icon($this->user->profile_photo_url)
-                    ->action('View_app', 'view_app')
-                    ->dir(route('instructor.task.show', [$this->task, $this->user]));
+                    ->action('View_app', 'view_app');
                     
     }
 }
