@@ -1,5 +1,4 @@
 self.addEventListener('push', function(e){
-    alert("aver");
     if((!self.Notification && self.Notification.permission===granted)){
         return;
     }
