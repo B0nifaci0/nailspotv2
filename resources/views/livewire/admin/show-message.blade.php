@@ -11,6 +11,7 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Email</th>
+                        <th>Teléfono</th>
                         <th>Mensaje</th>
                         <th>Fecha</th>
                         <th></th>
@@ -22,7 +23,7 @@
                         <td>{{$message->surname}}</td>
                         <td>{{$message->email}}</td>
                         <td>{{$message->message}}</td>
-                        <td>{{$message->created_at->diffForHumans()}}</td>
+                        <td>{{$message->created_at->format('d/m/Y')}}</td>
                         <td class="d-flex justify-content-end">
                             <form method="POST" action="{{route('admin.message.delete', $message)}}">
                                 @csrf @method('delete')

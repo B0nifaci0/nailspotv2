@@ -13,7 +13,7 @@
     !!}
     @include('instructor.courses.partials.form')
     <div class="flex justify-end">
-        {!! Form::submit('Actualizar Curso', ['class' => 'block text-center bg-pink-600 text-white font-bold py-2 px-4
+        {!! Form::submit('Actualizar Curso', ['class' => 'cursor-pointer block text-center bg-pink-600 text-white font-bold py-2 px-4
         rounded mt-10']) !!}
     </div>
     {!! Form::close() !!}
