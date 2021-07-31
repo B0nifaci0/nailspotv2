@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
-
-    <body>
-        <h1>Tú tarea ha sido calificada.</h1>
-        <a href="{{route('profile.task',$taskuser->task)}}">Revisar.</a>
-    </body>
-
-</html>
+@extends('mail.layout')
+@section('content')
+    <h2><strong>¡Hola!</strong></h2>
+    <p>La tarea {{$taskuser->task->title}} ha sido calificada.</p>
+    <a href="{{route('profile.task',$taskuser->task)}}" style="text-decoration:none; color:white; width:40px; padding:.8rem; background-color:#d53f8c; border-radius:5px; text-align:center; word-wrap: break-word;" >Abrir</a>
+@endsection 

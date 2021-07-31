@@ -5,10 +5,11 @@ namespace App\Http\Livewire\Instructor;
 use App\Models\Course;
 use Livewire\Component;
 use App\Models\Requirement;
+use Livewire\WithPagination;
 
 class CoursesRequirements extends Component
 {
-
+    use WithPagination;
     public $course, $requirement, $name;
 
     public $rules = [
@@ -23,7 +24,9 @@ class CoursesRequirements extends Component
 
     public function render()
     {
-        return view('livewire.instructor.courses-requirements');
+        return view('livewire.instructor.courses-requirements',[
+            'requirements'=>Requirement::where('course_id',$this->course->id)->paginate(4),
+        ]);
     }
 
     public function store()

@@ -5,10 +5,10 @@ namespace App\Http\Livewire\Instructor;
 use App\Models\Goal;
 use App\Models\Course;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 class CoursesGoals extends Component
 {
-
+    use WithPagination;
     public $course, $goal, $name;
 
     public $rules = [
@@ -21,9 +21,11 @@ class CoursesGoals extends Component
         $this->goal = new Goal();
     }
 
-    public function render()
+    public function render() 
     {
-        return view('livewire.instructor.courses-goals');
+        return view('livewire.instructor.courses-goals',[
+            'goals'=>Goal::where('course_id',$this->course->id)->paginate(4),
+        ]);
     }
 
     public function store()

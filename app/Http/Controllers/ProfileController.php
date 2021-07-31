@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserNotification;
 use App\Models\Task;
 use App\Models\Course;
 use App\Models\TaskUser;
@@ -10,6 +11,8 @@ use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Models\CompetenceUser;
 use App\Http\Livewire\TasksUser;
+use App\Models\User;
+use App\Notifications\TasksCompleted;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -71,10 +74,13 @@ class ProfileController extends Controller
     public function task(Task $task)
     {
         $course = $task->course;
-        $taskUser = TaskUser::whereTaskId($task->id)
-            ->whereUserId(auth()->user()->id)->first();
-
-        return view('profile.courses.task', compact('task', 'course', 'taskUser'));
+        if($course->students->contains('id', auth()->user()->id)){
+            $taskUser = TaskUser::whereUserId(auth()->user()->id)
+                ->whereTaskId($task->id)->first();    
+            return view('profile.courses.task', compact('task', 'course', 'taskUser'));
+        }else{
+            return redirect()->route('home');
+        }    
     }
 
     public function resources(Competence $competence)
@@ -118,10 +124,9 @@ class ProfileController extends Controller
         if ($task->quantity == $taskUser->images_count + 1) {
             $taskUser->complete = true;
             $taskUser->save();
-
-            $mail = new Assignament($taskUser);
-            Mail::to($taskUser->user->email)->queue($mail);
+            event (new UserNotification($user,$task));
         }
+        
 
         return back();
     }

@@ -32,10 +32,8 @@ class Score extends Component
         $taskuser = $this->taskuser;
         $taskuser->score = $this->selectedScore;
         $taskuser->save();
-
         $mail = new GradedAssignament($taskuser);
         Mail::to($taskuser->user->email)->queue($mail);
-
         $course = Course::find($taskuser->task->course->id);
 
         $taskComplete = $course->tasks()

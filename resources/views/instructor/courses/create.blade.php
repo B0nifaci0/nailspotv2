@@ -13,7 +13,7 @@
                     {!! Form::open(['method' => 'POST', 'route' => 'instructor.courses.store', 'files'=>true]) !!}
                     @include('instructor.courses.partials.form')
                     <div class="flex justify-end">
-                        {!! Form::submit('Crear Curso', ['class' => 'block text-center bg-pink-500 hover:bg-pink-600 text-white font-bold py-2
+                        {!! Form::submit('Crear Curso', ['class' => 'cursor-pointer block text-center bg-pink-500 hover:bg-pink-600 text-white font-bold py-2
                         px-4
                         rounded mt-10']) !!}
                     </div>

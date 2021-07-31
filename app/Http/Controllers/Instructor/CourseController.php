@@ -9,18 +9,23 @@ use App\Models\Category;
 use App\Models\Platform;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
+use App\Mail\CourseCreated;
+use App\Models\Contact;
 use App\Models\Seo;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 
 class CourseController extends Controller
 {
+    public $admin;
     public function __construct()
     {
         $this->middleware('can:Leer cursos')->only('index');
         $this->middleware('can:Crear cursos')->only('create', 'store');
         $this->middleware('can:Actualizar cursos')->only('edit', 'update', 'goals');
         $this->middleware('can:Eliminar cursos')->only('destroy');
+        $this->admin=Contact::all();
     }
 
     public function index()
@@ -150,6 +155,9 @@ class CourseController extends Controller
     {
         $course->status = Course::REVISION;
         $course->save();
+        $user=auth()->user();
+        $courseStatus=new CourseCreated($course, $user);
+        Mail::to($this->admin[0]->email)->queue($courseStatus);
         return back();
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\UserNotification;
+use App\Listeners\SendNotification;
 use App\Models\Course;
 use App\Models\Competence;
 use App\Observers\CourseObserver;
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        UserNotification::class=>[
+            SendNotification::class
         ],
     ];
 

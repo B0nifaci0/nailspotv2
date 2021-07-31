@@ -13,16 +13,16 @@ class Assignament extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $taskuser;
+    public $task, $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(TaskUser $taskuser)
+    public function __construct($user, $task)
     {
-        $this->taskuser = $taskuser;
-
+        $this->user=$user;
+        $this->task =$task;
     }
 
     /**
@@ -32,6 +32,7 @@ class Assignament extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.lesson-assignament');
+        return $this->from('registro@nailspot.com.mx','Nailspot')
+                    ->view('mail.lesson-assignament');
     }
 }

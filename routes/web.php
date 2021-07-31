@@ -11,6 +11,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Livewire\TasksUser;
 use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PushControlle;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +44,12 @@ Route::get('nosotros', [NosotrosController::class, 'index'])->name('nosotros');
 Route::get('contacto', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contacto/save', [ContactController::class, 'store'])->name('contact.store');
 
+//sitemap
+Route::get('sitemap_index.xml', [PageController::class, 'index'])->name('sitemap');
+Route::get('courses-sitemap.xml', [PageController::class, 'courses'])->name('courses-sitemap');
+Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-sitemap');
+Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
 
-Route::get('sitemap.xml', PageController::class)->name('sitemap');
+Route::post('/save', [PushControlle::class, 'store'])->middleware('auth');
+Route::get('/notifications',[PushControlle::class, 'index'])->middleware('auth');
+Route::delete('/notifications/{id}/read', [PushControlle::class, 'readNotification'])->middleware('auth');
