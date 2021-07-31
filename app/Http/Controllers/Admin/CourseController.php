@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Mail;
 
 class CourseController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('can:Leer cursos')->only('index');
+    }
+
 
     public function index()
     {
