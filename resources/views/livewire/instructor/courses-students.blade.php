@@ -1,6 +1,6 @@
 <div>
 
-    <h1 class="mb-2 text-2xl font-bold uppercase">Estudiantes del curso</h1>
+    <h1 class="mb-2 text-2xl font-semibold uppercase">Estudiantes del curso: <b class="font-serif italic">{{$course->name}}</b></h1>
     <hr class="mt-5 mb-6" />
 
     <x-table-responsive>
@@ -19,13 +19,9 @@
                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                         Email
                     </th>
-                    <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                        Curso
-                    </th>
                     <th scope="col" 
-                        class="relative px-6 py-3">
-                        
+                        class="relative px-6 py-3 ">
+                        opciones
                     </th>
                 </tr>
             </thead>
@@ -47,10 +43,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{$student->email}}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{$course->name}}</div>
-                    </td>
-                    <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                    <td class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
                         <a href="{{route('instructor.courses.student.tasks',[$course, $student])}}"
                             class="text-indigo-600 hover:text-indigo-900 "><button
                                 class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Ver

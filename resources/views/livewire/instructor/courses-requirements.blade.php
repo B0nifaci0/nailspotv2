@@ -1,6 +1,6 @@
 
 <section>
-    <h1 class="text-2xl uppercase text-bold">Requerimientos del curso</h1>
+    <h1 class="text-2xl uppercase text-bold">Requerimientos del curso: <b class="italic">{{$course->name}}</b></h1>
     <hr class="mb-6 mt-2">
 
     <article class="card mb-4">

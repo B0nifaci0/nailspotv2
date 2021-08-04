@@ -56,54 +56,64 @@
        @include('instructor.courses.partials.seo-form')
     </div>
 </div>
-<h1 class="mt-8 mb-2 text-2xl font-bold">Imagen del curso</h1>
-<div class="grid grid-cols-2 gap-4">
-    <figure>
-        @isset($course->image)
-        <img id="picture" src="{{Storage::url($course->image->url)}}" class="object-cover object-center w-full h-64">
-        @else
-        <img id="picture" src="https://pinkladies24-7.com/assets/images/defaultimg.png"
-            class="object-cover object-center w-full h-64">
-        @endisset
-        <div class=" mt-5 form-group {{ $errors->has('image') ? ' has-error' : '' }}">
-            <div class="flex items-center justify-center w-full bg-grey-lighter">
-                <label
-                    class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
-                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path
-                            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                    </svg>
-                    <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
-                    <input type='file' class="hidden" id="file" name="image" />
-                </label>
+<br>
+<div class="relative p-2  md-flex bg-indigo-20">
+    <div class="sm-2/2 md:w-3/3 lg:w-4/4 xl-5/5">
+        <section class="m-4 mt-5  mb-5 card shadow">
+            <h1 class="mb-2 text-5xl text-center justify-items-center mt-2">Imagen del curso</h1>
+            <div class="flex-none overflow-hidden text-center bg-center bg-cover pb-5 ">
+                <figure>
+                    @isset($course->image)
+                    <img id="picture" src="{{Storage::url($course->image->url)}}" class="object-cover object-center w-full h-64">
+                    @else
+                    <img id="picture" src="https://pinkladies24-7.com/assets/images/defaultimg.png"
+                        class="object-cover object-center " style="width: 100%;">
+                    @endisset
+                    <div class=" mt-5 form-group {{ $errors->has('image') ? ' has-error' : '' }}">
+                        <div class="flex items-center justify-center w-full bg-grey-lighter">
+                            <label
+                                class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
+                                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                                </svg>
+                                <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
+                                <input type='file' class="hidden" id="file" name="image" />
+                            </label>
+                        </div>
+                        <div>
+                            <small class="text-red-500">{{ $errors->first('image') }}</small>
+                        </div>
+                    </div>
+                </figure>
             </div>
-            <div>
-                <small class="text-red-500">{{ $errors->first('image') }}</small>
+        </section>
+    </div>
+    <div class="sm:w-2/2 md:w-3/3 lg:w-4/4 xl:w-5/5">
+        <section class="mt-5 mb-5 ml-4 mr-4 card shadow">
+            <div class="flex flex-col flex-1 p-4" style="">
+                <h1 class="mb-2 text-5xl text-center justify-items-center">Certificado del curso</h1>
+                <div class="form-group{{ $errors->has('pdf') ? ' has-error' : '' }}">
+                    {!! Form::label('pdf', 'Certificado', ['class', 'hidden']) !!}
+                    <div class="flex items-center justify-center w-full bg-grey-lighter">
+                        <label
+                            class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
+                            <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path
+                                    d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                            </svg>
+                            <span class="mt-2 text-base leading-normal">Subir certificado</span>
+                            <input type='file' class="hidden" name='pdf' />
+                        </label>
+                    </div>
+                    <br>
+                    @isset($course->certificate)
+                    <iframe class="pb-5" src="{{Storage::url($course->certificate->url)}}"  width="100%" height="700px" frameborder="0" allowfullscreen > </iframe>
+                    @endisset
+                    <small class="text-danger">{{ $errors->first('pdf') }}</small>
+                </div>
             </div>
-        </div>
-    </figure>
-    <figure>
-        @isset($course->certificate)
-        <iframe src="{{Storage::url($course->certificate->url)}}" id="pdf" class="object-cover object-center w-full h-64"></iframe>
-        @else
-        <embed type="application/pdf" id="pdf" class="object-cover object-center w-full h-64">
-        @endisset
-        <div class=" mt-5 form-group {{ $errors->has('pdf') ? ' has-error' : '' }}">
-            <div class="flex items-center justify-center w-full bg-grey-lighter">
-                <label
-                    class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
-                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path
-                            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                    </svg>
-                    <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
-                    <input type='file' class="hidden" id="filePDF" name="pdf" />
-                </label>
-            </div>
-            <div>
-                <small class="text-red-500">{{ $errors->first('pdf') }}</small>
-            </div>
-        </div>
-    </figure>
+        </section>
+    </div>
 </div>
 <input type="hidden" name="user_id" value='{{auth()->user()->id}}'>
