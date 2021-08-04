@@ -54,7 +54,7 @@
                 <!-- Modal -->
                 <div x-data="{ showModal : false }">
                     <!-- Button -->
-                    <button @click="showModal = !showModal" class="relative  bg-transparent hover:bg-transparent text-blue-700 font-semibold hover:text-white py-2 px-4 border border-transparent hover:border-transparent rounded mb-4 mt-4"><i class="fas fa-play-circle fa-3x"></i></button>
+                    <button @click="showModal = !showModal" class="relative  bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded mb-4 mt-4"><i class="fas fa-play-circle fa-5x"></i></button>
                     <!-- Modal Background -->
                     <div x-show="showModal" class="fixed text-gray-500 flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                         <!-- Modal -->
@@ -65,7 +65,7 @@
 
                             <!-- Buttons -->
                             <div class="text-right space-x-5 mt-5">
-                                <button @click="showModal = !showModal" class="px-4 py-2 text-sm bg-white rounded-xl border transition-colors duration-150 ease-linear border-gray-200 text-gray-500 focus:outline-none focus:ring-0 font-bold hover:bg-gray-50 focus:bg-indigo-50 focus:text-indigo">Cerrar <i class="fas fa-times"></i></button>
+                                <button @click="showModal = !showModal" class="px-4 py-2 text-sm bg-white rounded-xl border transition-colors duration-150 ease-linear border-gray-200 text-gray-500 focus:outline-none focus:ring-0 font-bold hover:bg-gray-300 focus:bg-indigo-50 focus:text-indigo">Cerrar <i class="fas fa-times"></i></button>
                             </div>
                         </div>
                     </div>

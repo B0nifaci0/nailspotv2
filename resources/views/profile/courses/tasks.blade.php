@@ -16,16 +16,16 @@
                     certificado</button>
             </div>
             @endcan
-            <div class="grid grid-cols-3 gap-4">
-                <div class="col-span-2">
+            <div class="container block flex justify-between overflow-hidden">
+                <div class="inline-block px-1">
                     <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                        <a href="{{route('course.status',$course)}}">
+                        <a href="{{route('course.status',$course)}}" class="break-words">
                             Ir a curso: {{$course->name}} <i class="far fa-arrow-alt-circle-right fa-lg"></i></a>
                     </button>
                 </div>
-                <div class="col-span-1">
+                <div class="inline-block px-2">
                     <button class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">
-                        <a href="{{ route('profile.courses') }}">Volver a cursos comprados <i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
+                        <a href="{{ route('profile.courses') }}" class="break-words">Volver a cursos comprados <i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
                     </button>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div>
                             <a href='{{route('profile.task',$item)}}'
-                                class="p-2 font-bold text-black bg-blue-300 rounded-md"> Mostrar</a>
+                                class="p-2 font-bold text-black bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Mostrar</a>
                         </div>
                     </div>
                 </div>

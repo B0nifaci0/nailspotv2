@@ -153,11 +153,16 @@ class CourseController extends Controller
 
     public function status(Course $course)
     {
+        $Admins=User::whereHas('roles', function($query){
+            return $query->where('name', '=', 'Admin');
+        })->get();
         $course->status = Course::REVISION;
         $course->save();
         $user=auth()->user();
-        $courseStatus=new CourseCreated($course, $user);
-        Mail::to($this->admin[0]->email)->queue($courseStatus);
+        $courseStatus=new CourseCreated($course, $user);    
+        foreach ($Admins as $key => $admin) {
+            Mail::to($admin->email)->queue($courseStatus);
+        }
         return back();
     }
 

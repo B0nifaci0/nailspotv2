@@ -3,15 +3,13 @@
     @foreach ($courses as $course)
     <url>
         <loc>{{Request::root().'/cursos/'.$course->slug}}</loc>
-        @if ($course->seo)
         <video:video>
-            <video:title>{{$course->seo->title}}</video:title>
-            <video:description>{{$course->seo->seodescription}}</video:description>
+            <video:title>{{$course->name}}</video:title>
+            <video:description>{{strip_tags($course->description)}}</video:description>
             <video:thumbnail_loc>{{Request::root().'/storage/courses/'.$course->image->url}}</video:thumbnail_loc>
             <video:player_loc allow_embed="yes">{{$course->url}}</video:player_loc>
             <video:publication_date>{{$course->created_at}}</video:publication_date>
         </video:video>
-        @endif
     </url>
     @endforeach
 

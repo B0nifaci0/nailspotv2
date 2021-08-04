@@ -32,6 +32,9 @@
     <script type="application/ld+json">
         {!!($data)!!}
     </script>
+    <script type="application/ld+json">
+        {!!($dataVideo)!!}
+    </script>
 @endsection
      @section('header')
     <!--COmienza prueba--->

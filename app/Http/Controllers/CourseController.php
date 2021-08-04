@@ -46,6 +46,17 @@ class CourseController extends Controller
             'url'=>$request->url(),
         );
         $data=str_replace('\\','',json_encode($data, JSON_PRETTY_PRINT));
+        $dataVideo=array(
+            '@context'=>'https://schema.org/',
+            '@type'=>'VideoObject',
+            'name'=> $course->name,
+            'description'=>$course->description,
+            'uploadDate'=>$course->updated_at,
+            'thumbnailUrl'=>$request->root().'/storage/'.$course->image->url,
+            'contentUrl'=>$course->url,
+            'embedUrl'=>$course->url
+        );
+        $dataVideo=str_replace('\\','',json_encode($dataVideo, JSON_PRETTY_PRINT));
         $this->authorize('published', $course);
         $similares = Course::whereCategoryId($course->category_id)
             ->where('id', '!=', $course->id)
@@ -53,7 +64,7 @@ class CourseController extends Controller
             ->inRandomOrder()
             ->take(5)
             ->get();
-        return view('courses.show', compact('course', 'similares', 'data'));
+        return view('courses.show', compact('course', 'similares', 'data', 'dataVideo'));
     }
 
     #cursos gratuitos

@@ -4,7 +4,7 @@
     @error('body')
     <span class="text-red-500 text-sx">{{$message}}</span>
     @enderror
-    <button class="px-4 py-2 m-2 text-white bg-blue-500 rounded " wire:click="store">Comentar</button>
+    <button class="px-4 py-2 mt-2 mb-2 text-white bg-blue-500 rounded hover:bg-blue-700 font-bold" wire:click="store">Comentar</button>
 
     @foreach ($taskUser->comments as $comment)
     <article class="flex mb-4 text-gray-800">
