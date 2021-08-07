@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\NewCourseCreated;
 use App\Events\UserNotification;
+use App\Events\NewTask;
+use App\Listeners\SendNewCourseCreated;
 use App\Listeners\SendNotification;
+use App\Listeners\SendNewTask;
 use App\Models\Course;
 use App\Models\Competence;
 use App\Observers\CourseObserver;
@@ -27,6 +31,12 @@ class EventServiceProvider extends ServiceProvider
         UserNotification::class=>[
             SendNotification::class
         ],
+        NewTask::class=>[
+            SendNewTask::class
+        ],
+        NewCourseCreated::class=>[
+            SendNewCourseCreated::class
+        ]
     ];
 
     /**
@@ -40,3 +50,4 @@ class EventServiceProvider extends ServiceProvider
         Course::observe(CourseObserver::class);
     }
 }
+

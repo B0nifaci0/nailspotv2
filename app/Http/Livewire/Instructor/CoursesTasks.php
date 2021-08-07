@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Instructor;
 
+use App\Events\NewTask as EventsNewTask;
+use App\Events\NewTask;
 use App\Models\Task;
 use App\Models\Course;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class CoursesTasks extends Component
 {
-    public $course, $task, $title, $description, $quantity = 1;
+    public $course, $task, $title, $description, $quantity = 1, $users, $student;
 
     public $rules = [
         'task.title' => 'required',
@@ -26,7 +29,7 @@ class CoursesTasks extends Component
     {
         return view('livewire.instructor.courses-tasks');
     }
-
+    
     public function store()
     {
         $this->validate([
@@ -34,7 +37,6 @@ class CoursesTasks extends Component
             'description' => 'required',
             'quantity' => 'required'
         ]);
-
         $this->course->tasks()->create([
             'title' => $this->title,
             'description' => $this->description,
@@ -43,8 +45,9 @@ class CoursesTasks extends Component
         $this->reset('title');
         $this->reset('description');
         $this->reset('quantity');
-
+        
         $this->course = Course::find($this->course->id);
+        event(new NewTask($this->course));
     }
 
     public function storeFinal()
@@ -67,6 +70,7 @@ class CoursesTasks extends Component
         $this->reset('quantity');
 
         $this->course = Course::find($this->course->id);
+        event(new NewTask($this->course));
     }
 
 

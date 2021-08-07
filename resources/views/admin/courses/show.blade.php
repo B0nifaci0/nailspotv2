@@ -155,20 +155,20 @@
                                 </form>
                         <div class="mt-5 mb-5 ">
                         </div>
-                        <div class="flex items-center text-gray-700">
+                        <div class="flex items-center text-gray-700 overflow-hidden">
 
                             {!! Form::open(['method' => 'POST', 'route' => 'admin.courses.disapproved', 'class' =>
                             'form-horizontal'])
                             !!}
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                                 {!! Form::label('Escribir un comentario', '', ['class' => 'text-white']) !!}<br>
-                                {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => 'required'])
+                                {!! Form::textarea('body', null, ['class' => 'form-control w-full', 'required' => 'required'])
                                 !!}
                                 <small class="text-danger">{{ $errors->first('body') }}</small>
                             </div>
                             {!! Form::hidden('course', $course->id) !!}
                             <div class="btn-group pull-left">
-                                {!! Form::submit('Devolver curso y enviar comentario', ['class' => 'bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl']) !!}
+                                {!! Form::submit('Devolver curso y enviar comentario', ['class' => 'cursor-pointer w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 block text-center w-full mt-4 rounded-xl']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div>
