@@ -80,7 +80,7 @@
                 <!-- Modal -->
                 <div x-data="{ showModal : false }">
                     <!-- Button -->
-                    <button @click="showModal = !showModal" class="relative hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 rounded mb-4 mt-4"><i class=" btn-play fas fa-play-circle fa-5x"></i></button>
+                    <button @click="showModal = !showModal" class="relative  text-gray-900 font-semibold hover:text-white py-2 px-4 rounded mb-4 mt-4"><i class=" btn-play fas fa-play-circle fa-5x"></i></button>
                     <!-- Modal Background -->
                     <div x-show="showModal" class="fixed text-gray-500 flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                         <!-- Modal -->
@@ -295,7 +295,11 @@
 </x-app-layout>
 <script>
     let close=document.getElementById('close-video');
-    close.addEventListener('click', function(e){
+    let play=document.querySelector('.btn-play');
+    play.addEventListener('click', function(){
+        document.getElementById('video-nails').play();
+    });
+    close.addEventListener('click', function(){
         document.getElementById('video-nails').pause();
     });
 </script>    
