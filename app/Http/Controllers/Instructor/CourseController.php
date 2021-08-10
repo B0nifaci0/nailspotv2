@@ -139,11 +139,13 @@ class CourseController extends Controller
         return redirect()->route('instructor.courses.edit', $course)->with('info', 'El curso se actualizo con exito!');
     }
 
-    public function studentTasks(Course $course, User $student)
+    public function studentTasks(Course $course, $id)
     {
-        $this->authorize('dicatated', $course);
-
-        return view('instructor.courses.student.tasks', compact('student', 'course'));
+        if($course->students->contains('id', $id)){
+            $this->authorize('dicatated', $course);
+            return view('instructor.courses.student.tasks', compact('id', 'course'));
+        }
+        return abort(404);
     }
 
     public function goals(Course $course)

@@ -35,8 +35,8 @@
         <h1 class="text-2xl font-bold uppercase">
             Tarea: {{$task->title}}
         </h1>
-        <a class="bg-blue-500 hover:bg-blue-700 rounded-md font-bold text-white text-center p-2" href='{{ route('profile.courses') }}'>Ver
-            todos
+        <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('profile.courses.tasks', $course) }}'>Ver
+            todas
         </a>
     </div>
     <hr class="mt-2 mb-6" />

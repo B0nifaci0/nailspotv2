@@ -46,8 +46,18 @@
                             </header>
                         </div>
                         <div>
+                            @if ($item->taskUser->where('user_id', auth()->user()->id)->where('complete',1)->isEmpty())
                             <a href='{{route('profile.task',$item)}}'
-                                class="p-2 font-bold text-black bg-blue-500 hover:bg-blue-700 text-white rounded-md"> Mostrar</a>
+                                class="p-2 font-bold text-black bg-pink-500 hover:bg-pink-700 text-white rounded-md">Sin entregar</a>
+                            @else
+                                @if (!$item->taskUser->where('user_id', auth()->user()->id)->where('score','>=', 1)->isEmpty())
+                                <a href='{{route('profile.task',$item)}}'
+                                class="p-2 font-bold text-black bg-purple-500 hover:bg-purple-700 text-white rounded-md">Calificada<i class="fa fa-check-square px-1"></i></a>
+                                @else
+                                <a href='{{route('profile.task',$item)}}'
+                                class="p-2 font-bold text-black bg-purple-500 hover:bg-purple-700 text-white rounded-md">Entregada</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>

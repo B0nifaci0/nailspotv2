@@ -13,6 +13,7 @@ use App\Models\CompetenceUser;
 use App\Http\Livewire\TasksUser;
 use App\Models\User;
 use App\Notifications\TasksCompleted;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -67,7 +68,8 @@ class ProfileController extends Controller
 
     public function tasks(Course $course)
     {
-        $tasks = $course->tasks;
+        $tasks=$course->tasks;
+        $user=auth()->user()->id;
         return view('profile.courses.tasks', compact('tasks', 'course'));
     }
 

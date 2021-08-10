@@ -10,15 +10,16 @@ use App\Http\Controllers\Controller;
 
 class TaskController extends Controller
 {
-    public function show(Task $task, User $student)
+    public function show(Task $task, $id)
     {
         $course = Course::find($task->course->id);
-        $taskUser = TaskUser::whereTaskId($task->id)
-            ->whereUserId($student->id)->first();
-
-        $this->authorize('dicatated', $course);
-
-        return view('instructor.tasks.show', compact('course', 'taskUser', 'task'));
+        if($course->students->contains('id', $id)){
+            $taskUser = TaskUser::whereTaskId($task->id)
+                ->whereUserId($id)->first();
+            $this->authorize('dicatated', $course);
+            return view('instructor.tasks.show', compact('course', 'taskUser', 'task'));
+        }
+        return abort(404);
     }
 
     // public function update(Task $task, Request $request)

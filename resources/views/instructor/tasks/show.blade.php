@@ -4,7 +4,7 @@
         <h1 class="text-2xl font-bold uppercase">
             Detalles tarea
         </h1>
-        <a href="{{route('instructor.courses.student.tasks',[$course, $taskUser->user])}}"
+        <a href="{{route('instructor.courses.student.tasks',[$course, $taskUser->user->id])}}"
             class="text-indigo-600 hover:text-indigo-900">Ver todas </a>
 
     </div>

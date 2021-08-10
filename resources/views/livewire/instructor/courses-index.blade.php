@@ -115,7 +115,11 @@
                             @endswitch
 
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="{{route('instructor.courses.tasks', $course)}}"
+                            ><button  class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Agregar tareas</button></a>
+                        </td>
+                        <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{route('instructor.courses.edit', $course)}}"
                             ><button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ver más</button></a>
                         </td>

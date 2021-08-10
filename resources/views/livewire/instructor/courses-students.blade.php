@@ -44,7 +44,7 @@
                         <div class="text-sm text-gray-900">{{$student->email}}</div>
                     </td>
                     <td class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
-                        <a href="{{route('instructor.courses.student.tasks',[$course, $student])}}"
+                        <a href="{{route('instructor.courses.student.tasks',[$course, $student->id])}}"
                             class="text-indigo-600 hover:text-indigo-900 "><button
                                 class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Ver
                                 tareas</button></a>

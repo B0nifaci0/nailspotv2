@@ -12,7 +12,6 @@ use Livewire\Component;
 class CoursesTasks extends Component
 {
     public $course, $task, $title, $description, $quantity = 1, $users, $student;
-
     public $rules = [
         'task.title' => 'required',
         'task.description' => 'required',
