@@ -47,6 +47,8 @@ class CoursesTasks extends Component
         
         $this->course = Course::find($this->course->id);
         event(new NewTask($this->course));
+        session()->flash('createTask','La tarea se creó con exito');
+        $this->emit('alert_remove');
     }
 
     public function storeFinal()
@@ -70,6 +72,8 @@ class CoursesTasks extends Component
 
         $this->course = Course::find($this->course->id);
         event(new NewTask($this->course));
+        session()->flash('createTask','La tarea se creó con exito');
+        $this->emit('alert_remove');
     }
 
 
@@ -84,6 +88,8 @@ class CoursesTasks extends Component
         $this->task->save();
         $this->task = new Task();
         $this->course = Course::find($this->course->id);
+        session()->flash('updateTask','La tarea se actualizo');
+        $this->emit('alert_remove');
     }
 
     public function destroy($id)
@@ -91,6 +97,8 @@ class CoursesTasks extends Component
         $task = Task::find($id);
         $task->delete();
         $this->course = Course::find($this->course->id);
+        session()->flash('destroyTask','La tarea se elimino con exito');
+        $this->emit('alert_remove');
     }
 
     public function cancel()

@@ -1,4 +1,25 @@
 <div class="card">
+    @if(session()->has('createTask'))
+    <div class="alert w-full">
+        <div class="flex items-center bg-green-500 text-white text-md font-bold px-4 py-3" role="alert">
+            <p class="text-center w-full">{{ session('createTask') }}</p>
+        </div>
+    </div>
+    @endif
+    @if(session()->has('updateTask'))
+    <div class="alert w-full">
+        <div class="flex items-center bg-blue-500 text-white text-md font-bold px-4 py-3" role="alert">
+            <p class="text-center w-full">{{ session('updateTask') }}</p>
+        </div>
+    </div>
+    @endif
+    @if(session()->has('destroyTask'))
+    <div class="alert w-full">
+        <div class="flex items-center bg-yellow-500 text-white text-md font-bold px-4 py-3" role="alert">
+            <p class="text-center w-full">{{ session('destroyTask') }}</p>
+        </div>
+    </div>
+    @endif
     <div class="bg-gray-200 card-body">
         @foreach ($course->tasks as $key=>$item)
         <article class="mt-4 card" x-data="{open: false}">

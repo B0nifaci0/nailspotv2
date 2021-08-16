@@ -20,6 +20,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/whatsapp/jquery-3.3.1.min.js') }}"></script>
 
         {!! htmlScriptTagJsApi() !!}
 
