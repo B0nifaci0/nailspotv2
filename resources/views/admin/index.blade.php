@@ -142,7 +142,7 @@
     options: {
         scales: {
             y: {
-                beginAtZero: false
+                beginAtZero: true
             }
         }
     }
