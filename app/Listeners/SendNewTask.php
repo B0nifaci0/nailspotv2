@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Mail\NewTask;
 use App\Models\Course;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -25,19 +26,8 @@ class SendNewTask
     {
         $users=Course::with('students')->findOrFail($event->course->id);
         foreach ($users->students as $key =>$student) {
-            Mail::send('mail.new-task', ['course'=>$event->course], function($message) use ($student){
-                $message->from('registro@nailspot.com.mx', 'Nailspot');
-                $message->subject('Nueva Tarea');
-                $message->to($student->email);
-            });
+            $studentsMail=new NewTask($event->course);
+            Mail::to($student->email)->queue($studentsMail);
         }
     }
 }
-/*        $users=Course::with('students')->findOrFail($event->course->id);
-        foreach ($users->students as $key =>$student) {
-            Mail::send('mail.new-task', ['course'=>$event->course], function($message) use ($student){
-                $message->from('registro@nailspot.com.mx', 'Nailspot');
-                $message->subject('Nueva Tarea');
-                $message->to($student->email);
-            });
-        } */

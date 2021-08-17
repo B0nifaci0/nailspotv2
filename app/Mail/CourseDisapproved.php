@@ -12,6 +12,7 @@ class CourseDisapproved extends Mailable
     use Queueable, SerializesModels;
 
     public $course;
+    public $subject="Curso No Aprovado";
     public function __construct($course)
     {
         $this->course=$course;
@@ -24,6 +25,7 @@ class CourseDisapproved extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.course-dissaproved');
+        return $this->from('registro@nailspot.com.mx', 'Nailspot')
+                    ->view('mail.course-dissaproved');
     }
 }

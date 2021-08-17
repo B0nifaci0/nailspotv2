@@ -14,6 +14,7 @@ class Assignament extends Mailable
     use Queueable, SerializesModels;
 
     public $task, $user;
+    public $subject="Tarea Entregada";
     /**
      * Create a new message instance.
      *

@@ -11,7 +11,7 @@ class AdminCourseApproved extends Mailable
 {
     use Queueable, SerializesModels;
     public $course;
-    
+    public $subject="Curso Aprovado";
     public function __construct($course)
     {
         $this->course=$course;
@@ -24,6 +24,7 @@ class AdminCourseApproved extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.admin-course-approved');
+        return $this->from('registro@nailspot.com.mx', 'Nailspot')
+                    ->view('mail.admin-course-approved');
     }
 }

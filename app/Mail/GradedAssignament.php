@@ -13,7 +13,7 @@ class GradedAssignament extends Mailable
     use Queueable, SerializesModels;
 
     public $taskuser;
-
+    public $subject="Tarea Calificada";
     /**
      * Create a new message instance.
      *
@@ -31,6 +31,7 @@ class GradedAssignament extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.graded-assignament');
+        return $this->from('registro@nailspot.com.mx', 'Nailspot')
+                    ->view('mail.graded-assignament');
     }
 }

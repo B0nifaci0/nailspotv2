@@ -12,6 +12,7 @@ class CommentTaskInstructor extends Mailable
     use Queueable, SerializesModels;
 
     public $taskUser;
+    public $subject="Nuevo Comentario";
     public function __construct($taskUser)
     {
         $this->taskUser=$taskUser;
@@ -24,6 +25,7 @@ class CommentTaskInstructor extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.comment-task-instructor');
+        return $this->from('registro@nailspot.com.mx', 'Nailspot')
+                    ->view('mail.comment-task-instructor');
     }
 }

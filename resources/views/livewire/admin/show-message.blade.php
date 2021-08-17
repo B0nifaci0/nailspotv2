@@ -22,6 +22,7 @@
                         <td>{{$message->name}}</td>
                         <td>{{$message->surname}}</td>
                         <td>{{$message->email}}</td>
+                        <td>{{$message->phone}}</td>
                         <td>{{$message->message}}</td>
                         <td>{{$message->created_at->format('d/m/Y')}}</td>
                         <td class="d-flex justify-content-end">

@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Mail\CourseCreated;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,14 +29,11 @@ class SendNewCourseCreated
     public function handle($event)
     {
         $admins=User::whereHas('roles', function($query){
-            return $query->where('name', '=', 'Admin');
-        })->take(3)->get();
+            return $query->where('id', '=', 1);
+        })->get();
         foreach ($admins as $key =>$admin) {
-            Mail::send('mail.course-created', ['course'=>$event->course, 'user'=>$event->user], function($message) use ($admin){
-                $message->from('registro@nailspot.com.mx', 'Nailspot');
-                $message->subject('Nuevo Curso Creado');
-                $message->to($admin->email);
-            });
+            $mailAdmins=new CourseCreated($event->course, $event->user);
+            Mail::to($admin->email)->queue($mailAdmins);
         }
     }
 }

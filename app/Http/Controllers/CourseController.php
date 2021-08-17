@@ -50,7 +50,7 @@ class CourseController extends Controller
             '@context'=>'https://schema.org/',
             '@type'=>'VideoObject',
             'name'=> $course->name,
-            'description'=>$course->description,
+            'description'=>strip_tags($course->description),
             'uploadDate'=>$course->updated_at,
             'thumbnailUrl'=>$request->root().'/storage/'.$course->image->url,
             'contentUrl'=>$course->url,

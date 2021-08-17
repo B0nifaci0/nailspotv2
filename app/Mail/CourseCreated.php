@@ -7,15 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CommentTaskUser extends Mailable
+class CourseCreated extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $taskUser;
-    public $subject="Nuevo Comentario";
-    public function __construct($taskUser)
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public $subject="Curso Creado";
+    public $course, $user;
+    public function __construct($course, $user)
     {
-        $this->taskUser=$taskUser;
+        $this->course=$course;
+        $this->user=$user;
     }
 
     /**
@@ -26,6 +31,6 @@ class CommentTaskUser extends Mailable
     public function build()
     {
         return $this->from('registro@nailspot.com.mx', 'Nailspot')
-                    ->view('mail.comment-task-user');
+                    ->view('mail.course-created');
     }
 }

@@ -9,6 +9,7 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use App\Mail\ContactMailable;
 use App\Mail\ContactAdminMailable;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Mockery\Matcher\Not;
 
@@ -31,10 +32,15 @@ class ContactController extends Controller
             'message'=>'required|min:10|max:250'
         ]);
         try {
+            $admins=User::whereHas('roles', function($query){
+                return $query->where('id', '=', 1);
+            })->get();
+            foreach ($admins as $key =>$admin) {
+                $adminMail=new ContactAdminMailable($data);
+                Mail::to($admin->email)->queue($adminMail);
+            }
             $user=new ContactMailable($data);
-            $admin=new ContactAdminMailable($data);
-            Mail::to($data['email'])->send($user);
-            Mail::to($this->contact[0]->email)->send($admin);
+            Mail::to($data['email'])->queue($user);
             Message::create($data);
             session()->flash('exito', '¡Gracias por tus comenetarios!');
             return redirect()->route('contact.index');

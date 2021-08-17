@@ -118,6 +118,7 @@
             </div>
         </div>
     </section>
+</x-app-layout>
     <script>
         $(document).ready(function(){
             $(".alert").delay(3000).slideUp(800);
@@ -133,5 +134,4 @@
         }
     }
     </script>    
-</x-app-layout>
     
