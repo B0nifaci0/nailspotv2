@@ -128,28 +128,26 @@
                                 </button>
                                 </form>
                                 @else
+                                <p class="text-lg font-semibold text-center text-white"> Seleccione Plataforma de
+                                    pago</p>
+                                <div>
+                                </div>
+
                                 <form action="{{ route('payment.pay') }}" method="post" id="paymentForm">
                                     @csrf
                                     <input name='value' type="text" wire:model='total' class='hidden'>
                                     <input name='coupon' type="text" wire:model='couponId' class='hidden'>
                                     <input name='course' type="text" wire:model='courseId' class='hidden'>
                                     <input name='type' type="text" value="0" class='hidden'>
+                                    <input type="text" name="payment_platform" value="1" class='hidden'>
                                     <div>
-                                        <p class="text-center text-white font-semibold text-lg"> Seleccione Plataforma de pago</p>
-                                        <div>
-                                            @foreach ($platforms as $platform)
-                                            <label wire:click="selectPlatform({{$platform}})">
-                                                <input type="radio" name="payment_platform" value="{{$platform->id}}">
-                                                <img src="{{asset($platform->image)}}">
-                                            </label>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    @includeIf('components.' . strtolower($platformCurrent->name) . '-collapse')
-                                    <div>
-                                        <button class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl" type="submit" id="payButton">Pagar</button>
+                                        <button
+                                            class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl"
+                                            type="submit" id="payButton">Pagar con PayPal</button>
                                     </div>
                                 </form>
+
+                                @include('components.stripe-collapse')
                                 @endif
                         </div>
                     </div>

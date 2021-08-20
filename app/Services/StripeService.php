@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Traits\ConsumesExternalServices;
 
 class StripeService
@@ -39,12 +41,31 @@ class StripeService
 
     public function handlePayment(Request $request)
     {
-        
-        return $request;
+        $intent = $this->createIntent($request->value);
+
+        Sale::create([
+            'user_id' => auth()->user()->id,
+            'saleable_id' => $request->course,
+            'saleable_type' => Course::class,
+            'coupon_id' => $request->coupon ? $request->coupon : null,
+            'final_price' => $request->value,
+            'status' => Sale::PENDING
+        ]);
+
+        return json_encode(array('client_secret' => $intent->client_secret));
     }
 
-    public function handleApproval()
+    public function createIntent($value)
     {
-        //
+        return $this->makeRequest(
+            'POST',
+            '/v1/payment_intents',
+            [],
+            [
+                'amount' => $value * 100,
+                "currency" => "mxn",
+                "payment_method_types" => ["oxxo"],
+            ],
+        );
     }
 }

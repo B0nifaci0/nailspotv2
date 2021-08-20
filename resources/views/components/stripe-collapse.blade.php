@@ -1,85 +1,58 @@
-@push('styles')
-<style type="text/css">
-    /**
-     * The CSS shown here will not be introduced in the Quickstart guide, but shows
-     * how you can use CSS to style your Element's container.
-     */
-    .StripeElement {
-        box-sizing: border-box;
+<form id="payment-form">
+    @csrf
+    <input name='value' type="text" wire:model='total' class='hidden'>
+    <input name='coupon' type="text" wire:model='couponId' class='hidden'>
+    <input name='course' type="text" wire:model='courseId' class='hidden'>
+    <input name='type' type="text" value="0" class='hidden'>
+    <input type="text" name="payment_platform" value="2" class='hidden'>
+    <div id="error-message" role="alert"></div>
 
-        height: 40px;
+    <button type="submit" id="submit-button"
+        class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">Pay
+        en OXXO</button>
+</form>
+<input id="name" name="name" value="{{auth()->user()->name}}" class='hidden'>
+<input id="email" name="email" value="{{auth()->user()->email}}" class='hidden'>
 
-        padding: 10px 12px;
-
-        border: 1px solid transparent;
-        border-radius: 4px;
-        background-color: white;
-
-        box-shadow: 0 1px 3px 0 #e6ebf1;
-        -webkit-transition: box-shadow 150ms ease;
-        transition: box-shadow 150ms ease;
-    }
-
-    .StripeElement--focus {
-        box-shadow: 0 1px 3px 0 #cfd7df;
-    }
-
-    .StripeElement--invalid {
-        border-color: #fa755a;
-    }
-
-    .StripeElement--webkit-autofill {
-        background-color: #fefde5 !important;
-    }
-</style>
-@endpush
-
-
-<label class="">Card details:</label>
-<div id="cardElement"></div>
-<small class="text-sm text-red-500" id="cardErrors" role="alert"></small>
-<h1>hola estoy en el componente</h1>
-<input type="hidden" name="payment_method" id="paymentMethod">
-
-@push('scripts')
 <script src="https://js.stripe.com/v3/"></script>
+
 <script>
     const stripe = Stripe('{{ config('services.stripe.key') }}');
+        var form = document.getElementById('payment-form');
+        var clientSecret
 
-    const elements = stripe.elements({locale: 'en'});
-    const cardElement = elements.create('card');
-
-    cardElement.mount('#cardElement');
-</script>
-
-<script>
-    const form = document.getElementById('paymentForm');
-    const payButton = document.getElementById('payButton');
-
-    payButton.addEventListener('click', async(e) => {
-        if (form.elements.payment_platform.value === "{{ $platformCurrent->id }}") {
-
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
+            var datos = new FormData(form);
+            console.log(datos.get('value'));
 
-            const { paymentMethod, error} = await stripe.createPaymentMethod(
-                'card', cardElement, {
-                    billing_details: {
-                        "name": "{{ auth()->user()->name }}",
-                        "email": "{{ auth()->user()->email }}"
+            fetch('/payment/pay', {
+                    method: 'POST',
+                    body: datos
+                })
+
+                .then(res => res.json())
+                .then(function(responseJson) {
+                    clientSecret = responseJson.client_secret;
+                    console.log(clientSecret)
+
+            stripe.confirmOxxoPayment(
+                    `${clientSecret}`, {
+                        payment_method: {
+                            billing_details: {
+                                name: document.getElementById('name').value,
+                                email: document.getElementById('email').value,
+                            },
+                        },
                     }
-                }
-            );
+                )
 
-            if (error) {
-                const displayError = document.getElementById('cardErrors');
-
-                displayError.textContent = error.message;
-            } else {
-                const tokenInput = document.getElementById('paymentMethod');
-                tokenInput.value = paymentMethod.id;
-                form.submit();
-            }
-        }
-    });
+                .then(function(result) {
+                    if (result.error) {
+                        var errorMsg = document.getElementById('error-message');
+                        errorMsg.innerText = result.error.message;
+                    }
+                });
+                })
+        });
 </script>
-@endpush
