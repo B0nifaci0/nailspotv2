@@ -50,8 +50,8 @@
                             var errorMsg = document.getElementById('error-message');
                             errorMsg.innerText = result.error.message;
                         }
+                        window.location.replace('{{route('profile.courses') }}');
                     });
-                    
-            })
+                })
     });
 </script>
