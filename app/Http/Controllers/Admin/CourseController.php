@@ -89,5 +89,6 @@ class CourseController extends Controller
         $sale->save();
         $course = Course::find($sale->saleable_id);
         $course->students()->attach(auth()->user()->id);
+        return back();
     }
 }

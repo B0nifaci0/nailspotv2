@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\Sale;
+use App\Models\Course;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Traits\ConsumesExternalServices;
 
 class StripeService

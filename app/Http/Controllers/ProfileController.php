@@ -68,21 +68,21 @@ class ProfileController extends Controller
 
     public function tasks(Course $course)
     {
-        $tasks=$course->tasks;
-        $user=auth()->user()->id;
+        $tasks = $course->tasks;
+        $user = auth()->user()->id;
         return view('profile.courses.tasks', compact('tasks', 'course'));
     }
 
     public function task(Task $task)
     {
         $course = $task->course;
-        if($course->students->contains('id', auth()->user()->id)){
+        if ($course->students->contains('id', auth()->user()->id)) {
             $taskUser = TaskUser::whereUserId(auth()->user()->id)
-                ->whereTaskId($task->id)->first();    
+                ->whereTaskId($task->id)->first();
             return view('profile.courses.task', compact('task', 'course', 'taskUser'));
-        }else{
+        } else {
             return redirect()->route('home');
-        }    
+        }
     }
 
     public function resources(Competence $competence)
@@ -126,9 +126,9 @@ class ProfileController extends Controller
         if ($task->quantity == $taskUser->images_count + 1) {
             $taskUser->complete = true;
             $taskUser->save();
-            event (new UserNotification($user,$task));
+            event(new UserNotification($user, $task));
         }
-        
+
 
         return back();
     }
