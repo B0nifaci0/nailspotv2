@@ -69,6 +69,7 @@ class PaymentController extends Controller
                 'saleable_id' => $id,
                 'saleable_type' => $type,
                 'coupon_id' => $request->coupon ? $request->coupon : null,
+                'payment_platform_id' => 1,
                 'final_price' => $request->value
             ]);
 

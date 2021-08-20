@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Sale;
+use App\Models\User;
 use App\Models\Course;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Mail\AdminCourseApproved;
 use App\Mail\CourseDisapproved;
-use App\Models\User;
+use App\Mail\AdminCourseApproved;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 class CourseController extends Controller
 {
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->middleware('can:Leer cursos')->only('index');
     }
-
 
     public function index()
     {
@@ -40,7 +40,6 @@ class CourseController extends Controller
         $this->authorize('revision', $course);
         return view('admin.courses.show', compact('course'));
     }
-
     public function approved(Course $course)
     {
         $this->authorize('revision', $course);
@@ -50,9 +49,9 @@ class CourseController extends Controller
         }
         $course->status = 3;
         $course->save();
-        $instructor=$course->user_id;
-        $instructor=User::find($instructor);
-        $courseApproved=new AdminCourseApproved($course);
+        $instructor = $course->user_id;
+        $instructor = User::find($instructor);
+        $courseApproved = new AdminCourseApproved($course);
         Mail::to($instructor->email)->queue($courseApproved);
         return redirect()->route('admin.courses.index')->with('info', "El curso ha sido publicado exitosamente!");;
     }
@@ -71,10 +70,24 @@ class CourseController extends Controller
 
         $course->status = 1;
         $course->save();
-        $instructor=$course->user_id;
-        $instructor=User::find($instructor);
-        $courseDissaproved=new CourseDisapproved($course);
+        $instructor = $course->user_id;
+        $instructor = User::find($instructor);
+        $courseDissaproved = new CourseDisapproved($course);
         Mail::to($instructor->email)->queue($courseDissaproved);
         return redirect()->route('admin.courses.index')->with('info', "El curso no se ha publicado");
+    }
+
+    public function pending()
+    {
+        return view('admin.courses.oxxo');
+    }
+
+    public function paid($id)
+    {
+        $sale = Sale::find($id);
+        $sale->status = 1;
+        $sale->save();
+        $course = Course::find($sale->saleable_id);
+        $course->students()->attach(auth()->user()->id);
     }
 }

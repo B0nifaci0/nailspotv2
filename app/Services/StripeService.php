@@ -49,6 +49,7 @@ class StripeService
             'saleable_type' => Course::class,
             'coupon_id' => $request->coupon ? $request->coupon : null,
             'final_price' => $request->value,
+            'payment_platform_id' => 2,
             'status' => Sale::PENDING
         ]);
 

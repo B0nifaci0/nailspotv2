@@ -27,6 +27,7 @@ class SaleFactory extends Factory
             'user_id' => User::all()->random()->id,
             'coupon_id' => Coupon::all()->random()->id,
             'final_price' => $this->faker->randomNumber(3),
+            'payment_platform_id' => 1
         ];
     }
 }

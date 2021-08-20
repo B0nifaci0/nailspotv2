@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('course/tasks');
 
         $this->call(PermissionSeeder::class);
+        $this->call(PaymentPlatformSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(LevelSeeder::class);
         $this->call(PlatformSeeder::class);
@@ -42,7 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CourseSeeder::class);
         $this->call(CompetenceSeeder::class);
         $this->call(ContactSeeder::class);
-        $this->call(PaymentPlatformSeeder::class);
         $this->call(CurrencySeeder::class);
     }
 }

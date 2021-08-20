@@ -20,8 +20,8 @@ class CourseSeeder extends Seeder
      * @return void
      */
     protected $model = Image::class;
-    
-    
+
+
     public function run()
     {
         $faker = Factory::create();
@@ -53,7 +53,7 @@ class CourseSeeder extends Seeder
 
             $sales = Sale::factory(4)->create([
                 'saleable_id' => $course->id,
-                'saleable_type' => Course::class
+                'saleable_type' => Course::class,
             ]);
 
             foreach ($sales as $sale) {

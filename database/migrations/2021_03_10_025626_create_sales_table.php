@@ -17,6 +17,7 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->morphs('saleable');
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('payment_platform_id')->references('id')->on('payment_platforms');
             $table->integer('coupon_id')->nullable()->unsigned();
             $table->double('final_price');
             $table->timestamps();

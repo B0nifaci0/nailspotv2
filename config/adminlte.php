@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => env('APP_NAME', 'Nailspot'),
-    'logo_img' => '/img/nail.png', 
+    'logo_img' => '/img/nail.png',
     'logo_img_class' => 'brand-image ',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-md',
@@ -126,7 +126,7 @@ return [
     'classes_content_wrapper' => '', //background de contenido
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-pink elevation-4',//sirve para el color del sidebar
+    'classes_sidebar' => 'sidebar-dark-pink elevation-4', //sirve para el color del sidebar
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -286,6 +286,12 @@ return [
             'active' => ['admin/sales/course*'],
             'can' => 'Ver dashboard'
         ],
+        [
+            'text'        => 'OXXO',
+            'route'         => 'admin.courses.pending',
+            'icon'        => 'fas fa-wallet',
+            'can' => 'Ver dashboard'
+        ],
         ['header' => 'OPCIONES DE COMPETENCIAS'],
         [
             'text' => 'Competencias',
@@ -441,7 +447,7 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css',
-                ], 
+                ],
                 [
                     'type' => 'js',
                     'asset' => false,

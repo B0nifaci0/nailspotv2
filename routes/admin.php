@@ -35,6 +35,9 @@ Route::get('courses', [CourseController::class, 'index'])->name('courses.index')
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
 Route::post('courses/disapproved', [CourseController::class, 'disapproved'])->name('courses.disapproved');
+Route::get('/pending/courses', [CourseController::class, 'pending'])->name('courses.pending');
+
+Route::post('{id}/paid', [CourseController::class, 'paid'])->name('course.paid');
 
 
 Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
@@ -47,9 +50,9 @@ Route::get('sales/competence/{competence}', [CompetenceController::class, 'detai
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
 
 Route::get('report/{competence}/score', TableCompetencesController::class)->name('reports.competences.score');
-Route::get('report/{course}/details',DetailsCourseController::class)->name('reports.course.details');
+Route::get('report/{course}/details', DetailsCourseController::class)->name('reports.course.details');
 
 Route::get('mensajes', [ContactController::class, 'indexAdmin'])->name('message.index')->middleware('auth');
 Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'])->name('message.contact.edit')->middleware('auth');
 Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
-Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth'); 
+Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth');
