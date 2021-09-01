@@ -45,7 +45,8 @@ class CourseController extends Controller
     public function store(CourseRequest $request)
     {
         $request->validate([
-            'image' => 'required'
+            'image' => 'required|image|mimes:jpg,jpeg,bmp,png',
+            'pdf'=>'required|mimes:pdf'
         ]);
 
         $course = Course::create($request->all());
@@ -96,7 +97,10 @@ class CourseController extends Controller
                 'url' => ['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/']
             ]);
         }
-
+        $request->validate([
+            'image' => 'required|image|mimes:jpg,jpeg,bmp,png',
+            'pdf'=>'required|mimes:pdf'
+        ]);
         $course->update($request->all());
         if(!$course->seo){
             Seo::create([

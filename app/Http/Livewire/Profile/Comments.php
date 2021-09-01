@@ -8,6 +8,8 @@ use App\Models\Comment;
 use Livewire\Component;
 use App\Models\TaskUser;
 use App\Models\User;
+use App\Notifications\CommentTaskUserNotification;
+use App\Notifications\CommentTaskInstructorNotification;
 use Illuminate\Support\Facades\Mail;
 
 class Comments extends Component
@@ -47,9 +49,11 @@ class Comments extends Component
         if($this->taskUser->user_id==auth()->user()->id){
             $instructorMail=new CommentTaskInstructor($this->taskUser);
             Mail::to($this->instructor->email)->queue($instructorMail);
+            $this->instructor->notify(new CommentTaskInstructorNotification($this->taskUser));
         }else{
             $userMail=new CommentTaskUser($this->taskUser);
             Mail::to($this->taskUser->user->email)->queue($userMail);
+            $this->taskUser->user->notify(new CommentTaskUserNotification($this->taskUser, $this->instructor));
         }
     }
 }

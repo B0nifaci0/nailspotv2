@@ -138,5 +138,7 @@ class Course extends Model
     {
         return $this->belongsTo(Platform::class);
     }
-
+    public function payment(){
+        return $this->belongsTo(PaymentPlatform::class);
+    }
 }

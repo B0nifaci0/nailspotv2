@@ -56,12 +56,35 @@
         
         @endif    
     @endif
-        
+    <div class="imge-content">
+    @if($taskUser)
+    <div x-data="{}" class="px-2 mt-8 mb-8 ">
+        <div class="flex -mx-2">
+            @foreach ($taskUser->images as $image)
+            <div class="w-2/6 px-2 ">
+                <div class="">
+                    <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
+                        class="cursor-pointer">
+                        <img alt="Placeholder" class="w-full object-fit rounded-xl"
+                            src="{{Storage::url($image->url)}}">
+                    </a>
+                </div>
+            </div>
+    @endforeach
+        </div>
+    </div>
+    @else
+    <p>Selecciona una imagen</p>
+    @endif
+
+    <div class="w-2/6 px-2 ">
+        <img id="picture" class="w-full object-fit rounded-xl">  
+    </div>
+</div>
         @if ($taskUser)
         @if ($taskUser->images_count < $task->quantity)
         <form action="{{ route('profile.courses.image', $task) }}" method="post" enctype="multipart/form-data">
             @csrf
-            Selecciona una imagen
             <!--<input type="file" name="image" id="fileToUpload">-->
             <div class="flex items-center justify-center w-full bg-grey-lighter">
                 <label
@@ -82,7 +105,6 @@
         @else
         <form action="{{ route('profile.courses.image', $task) }}" method="post" enctype="multipart/form-data">
             @csrf
-            Selecciona una imagen
             <!--<input type="file" name="image" id="fileToUpload">-->
             <div class="flex items-center justify-center w-full bg-grey-lighter">
                 <label
@@ -92,38 +114,31 @@
                             d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                     </svg>
                     <span class="mt-2 text-base leading-normal">Selecciona un archivo</span>
-                    <input type='file' required class="hidden" name="image" id="fileToUpload" />
+                    <input type='file' required class="hidden" name="image" id="fileToUpload" accept="image/png, image/jpeg, image/bmp, image/jpg"/>
                 </label>
             </div>
             <button
                 class="block w-full px-4 py-2 mt-4 font-semibold text-center text-pink-700 bg-transparent border border-pink-800 rounded hover:bg-pink-500 hover:text-white hover:border-transparent rounded-xl"
                 type="submit">Enviar</button>
         </form>
-
         @endif
-
+        
         @if ($taskUser)
-        <div x-data="{}" class="px-2 mt-8 mb-8 ">
-            <div class="flex -mx-2">
-
-                @foreach ($taskUser->images as $image)
-                <div class="w-2/6 px-2 ">
-                    <div class="">
-                        <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
-                            class="cursor-pointer">
-                            <img alt="Placeholder" class="w-full object-fit rounded-xl"
-                                src="{{Storage::url($image->url)}}">
-                        </a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-
         Calificación: {{$taskUser->score}}
         <div>
             @livewire('profile.comments', ['taskUser' => $taskUser])
         </div>
         @endif
 
+        <script>
+            document.getElementById("fileToUpload").addEventListener('change', showTask);
+            function showTask(event){
+                var file = event.target.files[0];
+                let reader = new FileReader();
+                reader.onload = (event) => {
+                document.getElementById("picture").setAttribute('src', event.target.result);
+            };
+                reader.readAsDataURL(file);
+            }
+        </script>
 </x-profile-layout>

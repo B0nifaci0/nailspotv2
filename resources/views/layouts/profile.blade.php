@@ -50,6 +50,7 @@
                        Perfil del Usuario <i class="fas fa-chevron-circle-down"></i>
                     </button>
                 </div>
+
                 <div id="menu" class=" mt-2 mb-5  w-48 bg-white rounded-lg py-2 shadow-md hidden">
                     <a href="{{route('profile.show')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Informacion del usuario</a>
                     <a href="{{route('profile.courses')}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Cursos Adquiridos</a>

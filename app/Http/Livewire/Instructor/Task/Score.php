@@ -8,6 +8,7 @@ use App\Models\TaskUser;
 use App\Mail\CourseApproved;
 use App\Mail\GradedAssignament;
 use App\Models\Task;
+use App\Notifications\GradedTaskNotification;
 use Illuminate\Support\Facades\Mail;
 
 class Score extends Component
@@ -35,6 +36,7 @@ class Score extends Component
         $mail = new GradedAssignament($taskuser);
         Mail::to($taskuser->user->email)->queue($mail);
         $course = Course::find($taskuser->task->course->id);
+        $taskuser->user->notify(new GradedTaskNotification($taskuser, $course));
 
         $taskComplete = $course->tasks()
             ->with('taskUser')

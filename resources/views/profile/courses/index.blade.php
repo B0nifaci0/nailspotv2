@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @forelse ($courses as $course)
+            @forelse ($courses as $course)  
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
@@ -50,7 +50,7 @@
                     <div class="text-sm text-gray-900">$ {{$course->sales->first()->final_price}}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{$course->sales->first()->created_at}}
+                    {{$course->sales->first()->created_at->format('j F, Y')}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     {{$course->sales->first()->payment_platform_id}}
