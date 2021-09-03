@@ -34,6 +34,7 @@ class CourseRequest extends FormRequest
             'title'=>'required',
             'seodescription'=>'required',
             'keywords'=>'required',
+            // 'image' => 'required|image|dimensions:width=200,height=100'
         ];
     }
 }

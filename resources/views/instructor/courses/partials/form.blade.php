@@ -53,62 +53,64 @@
     </div>
     <div class="col-span-4 sm:mt-2 md:pl-6 md:-mt-14">
         <p class="text-2xl md:mb-6">Posicionamiento Web</p>
-       @include('instructor.courses.partials.seo-form')
+        @include('instructor.courses.partials.seo-form')
     </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2">
-<div>
-<h2 class="mt-8 mb-2 text-2xl font-bold">Imagen del curso</h2>
-    <figure class="p-2">
-        @isset($course->image)
-        <img id="picture" src="{{Storage::url($course->image->url)}}" class="object-cover object-center w-full h-64">
-        @else
-        <img id="picture" src="https://pinkladies24-7.com/assets/images/defaultimg.png"
-            class="object-cover object-center w-full h-64">
-        @endisset
-        <div class=" mt-5 form-group {{ $errors->has('image') ? ' has-error' : '' }}">
-            <div class="flex items-center justify-center w-full bg-grey-lighter">
-                <label
-                    class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
-                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path
-                            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                    </svg>
-                    <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
-                    <input type='file' class="hidden" id="file" name="image" accept="image/png, image/jpeg, image/bmp, image/jpg" />
-                </label>
+    <div>
+        <h2 class="mt-8 mb-2 text-2xl font-bold">Imagen del curso</h2>
+        <figure class="p-2">
+            @isset($course->image)
+            <img id="picture" src="{{$course->image->url}}" class="object-cover object-center w-full h-64">
+            @else
+            <img id="picture" src="https://pinkladies24-7.com/assets/images/defaultimg.png"
+                class="object-cover object-center w-full h-64">
+            @endisset
+            <div class=" mt-5 form-group {{ $errors->has('image') ? ' has-error' : '' }}">
+                <div class="flex items-center justify-center w-full bg-grey-lighter">
+                    <label
+                        class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
+                        <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path
+                                d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                        </svg>
+                        <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
+                        <input type='file' class="hidden" id="file" name="image"
+                            accept="image/png, image/jpeg, image/bmp, image/jpg" />
+                    </label>
+                </div>
+                <div>
+                    <small class="text-red-500">{{ $errors->first('image') }}</small>
+                </div>
             </div>
-            <div>
-                <small class="text-red-500">{{ $errors->first('image') }}</small>
+        </figure>
+    </div>
+    <div>
+        <h2 class="mt-8 mb-2 text-2xl font-bold">Certificado del curso</h2>
+        <figure class="p-2">
+            @isset($course->certificate)
+            <iframe src="{{Storage::url($course->certificate->url)}}" id="pdf"
+                class="object-cover object-center w-full h-64"></iframe>
+            @else
+            <embed type="application/pdf" id="pdf" class="object-cover object-center w-full h-64">
+            @endisset
+            <div class=" mt-5 form-group {{ $errors->has('pdf') ? ' has-error' : '' }}">
+                <div class="flex items-center justify-center w-full bg-grey-lighter">
+                    <label
+                        class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
+                        <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path
+                                d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                        </svg>
+                        <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
+                        <input type='file' class="hidden" id="filePDF" name="pdf" accept="application/pdf" />
+                    </label>
+                </div>
+                <div>
+                    <small class="text-red-500">{{ $errors->first('pdf') }}</small>
+                </div>
             </div>
-        </div>
-    </figure>
-</div>
-<div>
-    <h2 class="mt-8 mb-2 text-2xl font-bold">Certificado del curso</h2>
-    <figure class="p-2">
-        @isset($course->certificate)
-        <iframe src="{{Storage::url($course->certificate->url)}}" id="pdf" class="object-cover object-center w-full h-64"></iframe>
-        @else
-        <embed type="application/pdf" id="pdf" class="object-cover object-center w-full h-64">
-        @endisset
-        <div class=" mt-5 form-group {{ $errors->has('pdf') ? ' has-error' : '' }}">
-            <div class="flex items-center justify-center w-full bg-grey-lighter">
-                <label
-                    class="flex flex-col items-center w-64 px-4 py-6 tracking-wide text-blue-500 uppercase bg-white border rounded-lg shadow-lg cursor-pointer border-blue hover:bg-blue-500 hover:text-white">
-                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path
-                            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                    </svg>
-                    <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
-                    <input type='file' class="hidden" id="filePDF" name="pdf" accept="application/pdf"/>
-                </label>
-            </div>
-            <div>
-                <small class="text-red-500">{{ $errors->first('pdf') }}</small>
-            </div>
-        </div>
-    </figure>
-</div>
+        </figure>
+    </div>
 </div>
 <input type="hidden" name="user_id" value='{{auth()->user()->id}}'>

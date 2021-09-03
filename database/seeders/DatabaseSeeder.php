@@ -37,12 +37,12 @@ class DatabaseSeeder extends Seeder
         $this->call(PlatformSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
-        $this->call(CouponSeeder::class);
-        $this->call(SubcategorySeeder::class);
-        $this->call(CriterionSeeder::class);
-        $this->call(CourseSeeder::class);
-        $this->call(CompetenceSeeder::class);
+        // $this->call(CouponSeeder::class);
+        // $this->call(SubcategorySeeder::class);
+        // $this->call(CriterionSeeder::class);
+        // $this->call(CourseSeeder::class);
+        // $this->call(CompetenceSeeder::class);
         $this->call(ContactSeeder::class);
-        $this->call(CurrencySeeder::class);
+        // $this->call(CurrencySeeder::class);
     }
 }

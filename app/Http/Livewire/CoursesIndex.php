@@ -25,6 +25,12 @@ class CoursesIndex extends Component
             ->level($this->level_id)
             ->latest('id')->paginate(8);
 
+        foreach ($courses as $course) {
+            if ($course->image) {
+                $course->image->url = $this->getS3URL('courses', $course->id);
+            }
+        }
+
         return view('livewire.courses-index', compact('courses', 'levels', 'categories'));
     }
 
