@@ -17,8 +17,7 @@
                         <tr>
                             <td class="hidden pb-4 md:table-cell">
                                 <a href="#">
-                                    <img src="{{Storage::url($course->image->url)}}" class="rounded w-36"
-                                        alt="Thumbnail">
+                                    <img src="{{$course->image->url}}" class="rounded w-36" alt="Thumbnail">
                                 </a>
                             </td>
                             <td>

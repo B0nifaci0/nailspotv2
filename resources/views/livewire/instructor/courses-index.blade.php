@@ -1,12 +1,13 @@
 <div class="bg-purple-800 pt-8 pb-48">
     <div class="container bg-white rounded">
         <x-table-responsive>
-        
+
             <div class="px-6 py-4 flex">
                 <input wire:keydown="clearPage" wire:model="search" type="text" class="form-input flex-1 shadow-sm"
                     placeholder="Buscar ...">
                 <a href="{{route('instructor.courses.create')}}"
-                    class="block text-center bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded ml-2">Crear nuevo curso</a>
+                    class="block text-center bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded ml-2">Crear
+                    nuevo curso</a>
             </div>
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -40,13 +41,14 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                               @isset($course->image)
+                                @isset($course->image)
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="{{Storage::url($course->image->url)}}" alt="">
+                                    <img class="h-10 w-10 rounded-full" src="{{$course->image->url}}" alt="">
                                 </div>
                                 @else
                                 <img class="h-10 w-10 rounded-full"
-                                    src="https://brandominus.com/wp-content/uploads/2015/07/130830051724675381.jpg" alt="">
+                                    src="https://brandominus.com/wp-content/uploads/2015/07/130830051724675381.jpg"
+                                    alt="">
                                 @endisset
 
 
@@ -116,12 +118,14 @@
 
                         </td>
                         <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{route('instructor.courses.tasks', $course)}}"
-                            ><button  class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Agregar tareas</button></a>
+                            <a href="{{route('instructor.courses.tasks', $course)}}"><button
+                                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Agregar
+                                    tareas</button></a>
                         </td>
                         <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{route('instructor.courses.edit', $course)}}"
-                            ><button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ver más</button></a>
+                            <a href="{{route('instructor.courses.edit', $course)}}"><button
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ver
+                                    más</button></a>
                         </td>
                     </tr>
                     @empty

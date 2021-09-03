@@ -5,10 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\Sale;
 use App\Models\Coupon;
 use App\Models\Course;
-use Livewire\Component;
+use App\Http\Livewire\Componet;
 use App\Models\PaymentPlatform;
 
-class Checkout extends Component
+class Checkout extends Componet
 {
     public $course, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent, $courseId;
 
@@ -29,6 +29,11 @@ class Checkout extends Component
         } else {
             $this->current = null;
         }
+
+        if ($this->course->image) {
+            $this->course->image->url = $this->getS3URL('courses', $this->course->id);
+        }
+
         return view('livewire.checkout');
     }
 

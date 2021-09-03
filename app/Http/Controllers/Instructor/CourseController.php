@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\Instructor;
 
-use App\Events\NewCourseCreated;
-use App\Models\User;
+use App\Models\Seo;
 use App\Models\Level;
 use App\Models\Course;
+use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Platform;
+use App\Events\NewCourseCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
-use App\Mail\CourseCreated;
-use App\Models\Contact;
-use App\Models\Seo;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 

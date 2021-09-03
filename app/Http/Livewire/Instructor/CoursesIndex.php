@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\Instructor;
 
-use App\Models\Task;
+use App\Http\Livewire\Componet;
 use App\Models\Course;
-use App\Models\Lesson;
-use Livewire\Component;
 use Livewire\WithPagination;
 
-class CoursesIndex extends Component
+class CoursesIndex extends Componet
 {
 
     use WithPagination;
@@ -16,12 +14,16 @@ class CoursesIndex extends Component
 
     public function render()
     {
-
         $courses = Course::whereUserId(auth()->user()->id)
             ->where('name', 'LIKE', "%$this->search%")
             ->latest('id')
             ->paginate(8);
 
+        foreach ($courses as $course) {
+            if ($course->image) {
+                $course->image->url = $this->getS3URL('courses', $course->id);
+            }
+        }
         return view('livewire.instructor.courses-index', compact('courses'));
     }
 

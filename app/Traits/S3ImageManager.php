@@ -26,7 +26,7 @@ trait S3ImageManager
     {
         $adapter = Storage::disk('s3')->getDriver()->getAdapter();
 
-        $path =  $path . '/' . $id;
+        $path = env('S3_ENVIRONMENT') . '/' . $path . '/' . $id;
 
         $command = $adapter->getClient()->getCommand('GetObject', [
             'Bucket' => $adapter->getBucket(),
