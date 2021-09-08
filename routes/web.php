@@ -2,18 +2,15 @@
 
 use App\Http\Livewire\CourseStatus;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PushControlle;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\PruebitasController;
 use App\Http\Controllers\CompetenceController;
-use App\Http\Controllers\ContactController;
-use App\Http\Livewire\TasksUser;
-use App\Http\Controllers\NosotrosController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PushControlle;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +48,7 @@ Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-s
 Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
 
 Route::post('/save', [PushControlle::class, 'store'])->middleware('auth');
-Route::get('/notifications',[PushControlle::class, 'index'])->middleware('auth');
+Route::get('/notifications', [PushControlle::class, 'index'])->middleware('auth');
 Route::delete('/notifications/{id}/read', [PushControlle::class, 'readNotification'])->middleware('auth');
+
+Route::post('webhooks', WebhookController::class);

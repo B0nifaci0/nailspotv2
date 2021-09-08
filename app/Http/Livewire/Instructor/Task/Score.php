@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Instructor\Task;
 
+use App\Models\Task;
 use App\Models\Course;
 use Livewire\Component;
 use App\Models\TaskUser;
 use App\Mail\CourseApproved;
 use App\Mail\GradedAssignament;
-use App\Models\Task;
-use App\Notifications\GradedTaskNotification;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\GradedTaskNotification;
 
 class Score extends Component
 {
@@ -71,7 +71,5 @@ class Score extends Component
                 }
             }
         }
-
-        
     }
 }
