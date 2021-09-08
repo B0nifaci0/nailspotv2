@@ -47,12 +47,7 @@
             @auth
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <!-- Menú desplegable de perfil -->
-                <div class="relative ml-3" x-data="{ notify: false}">
-                    <button x-on:click="notify= true" type="button" id="btn-notifications" class="flex text-lg transition duration-150 ease-in-out rounded-full focus:outline-none focus:border-gray-300">
-                        <i class="fas fa-bell text-white cursor-pointer"></i>
-                    </button>
-                <div x-show="notify" x-on:click.away="notify = false" id="show-notification" class="absolute right-0 z-30 w-60 md:w-80 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="notifications" aria-orientation="vertical" aria-labelledby="user-notification">
-                </div>
+                @livewire('notification')
                 </div>
                 <div class="relative ml-3" x-data="{ open: false}"> 
                     <div>

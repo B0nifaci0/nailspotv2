@@ -118,7 +118,7 @@
     data: {
         labels: nameCourse,
         datasets: [{
-            label: 'Alumnos',
+            label: '$',
             data: valorCourse,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.5)',
@@ -157,7 +157,7 @@
     data: {
         labels: months,
         datasets: [{
-            label: 'Pesos',
+            label: '$',
             data: sales,
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)',

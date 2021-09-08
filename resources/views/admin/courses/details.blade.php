@@ -59,6 +59,22 @@
             </div>
         </div>
     </div>
+    <div class="col-12 mb-4">
+        <div class="small-box w-100">
+            <form action="{{route('admin.reports.course.details.specifict', $course)}}" method="POST" class="row pt-2 px-2 justify-content-end">
+                @csrf
+                <div class="form-group mt-2 col-sm-12 col-md-4">
+                    <input type="date" name="from" class="form-control w-100">
+                </div>
+                <div class="form-group mt-2 col-sm-12 col-md-4">
+                    <input type="date" name="to" class="form-control w-100">
+                </div>
+                <div class="form-group mt-2 col-sm-12 col-md-2">
+                    <button class="btn btn-danger w-100">Generar Reporte</button>
+                </div>
+            </form>
+        <div>
+    </div>
 </div>
 
 @livewire('admin.sale-details', ['course' => $course])

@@ -50,9 +50,11 @@ Route::get('sales/competence/{competence}', [CompetenceController::class, 'detai
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
 
 Route::get('report/{competence}/score', TableCompetencesController::class)->name('reports.competences.score');
-Route::get('report/{course}/details', DetailsCourseController::class)->name('reports.course.details');
+Route::get('report/{course}/details', [DetailsCourseController::class,'generalReport'])->name('reports.course.details');
+Route::post('report/{course}/details/specifict/', [DetailsCourseController::class,'specificRepot'])->name('reports.course.details.specifict');
 
 Route::get('mensajes', [ContactController::class, 'indexAdmin'])->name('message.index')->middleware('auth');
 Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'])->name('message.contact.edit')->middleware('auth');
 Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
 Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth');
+

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        
+    }
     public function index()
     {
         $totalCourse=0;
@@ -21,13 +25,15 @@ class HomeController extends Controller
         $valorCourse=[];
         $users=[];
         $judge=0;
+        $sales=[];
+        $date=[];
         $allCompetences=0;
         $users=User::all();
         foreach ($users as $key => $user) {
             if($user->hasRole(1) || $user->hasRole(2)){
                 $totalInstructor++;
             }
-        }     
+        } 
         foreach ($users as $key => $user) {
             if($user->hasRole(3)){
                 $judge++;
@@ -43,7 +49,7 @@ class HomeController extends Controller
             $totalCourse+=$course->total;
             $student+=$course->students->count();
         }   
-        $coursesAll=DB::table('courses')->select('courses.name', DB::raw('count(sales.saleable_id) as total'))
+        $coursesAll=DB::table('courses')->select('courses.name', DB::raw('sum(sales.final_price) as total'))
         ->where('courses.status','=',3)
         ->groupBy('courses.name')
         ->orderBy('total', 'DESC')

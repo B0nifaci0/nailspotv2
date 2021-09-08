@@ -20,7 +20,6 @@
                         <td>"{{($detail->coupon) ? $detail->coupon->code : 'N/A'}}"</td>
                         <td>${{$detail->final_price}}</td>
                         <td>{{$detail->created_at}}</td>
-
                     </tr>
                     @empty
                     <tr class="text-center">
