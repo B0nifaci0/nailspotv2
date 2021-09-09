@@ -47,6 +47,12 @@ class ProfileController extends Controller
             return $query->where('user_id', $user->id);
         })->paginate(8);
 
+        foreach ($courses as $course) {
+            if ($course->image) {
+                $course->image->url = $this->getS3URL('courses', $course->id);
+            }
+        }
+
         return view('profile.courses.index', compact('courses'));
     }
 
