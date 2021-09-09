@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Instructor\Task;
 
+use App\Models\Task;
 use App\Models\Course;
 use Livewire\Component;
 use App\Models\TaskUser;
 use App\Mail\CourseApproved;
 use App\Mail\GradedAssignament;
-use App\Models\Task;
-use App\Notifications\GradedTaskNotification;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\GradedTaskNotification;
 
 class Score extends Component
 {
@@ -37,6 +37,7 @@ class Score extends Component
         Mail::to($taskuser->user->email)->queue($mail);
         $course = Course::find($taskuser->task->course->id);
         $taskuser->user->notify(new GradedTaskNotification($taskuser, $course));
+
 
         $taskComplete = $course->tasks()
             ->with('taskUser')
@@ -67,11 +68,9 @@ class Score extends Component
                     $approved = new CourseApproved($course);
                     Mail::to($taskuser->user->email)->queue($approved);
                     $certificate = $course->certificate;
-                    $certificate->students()->attach(auth()->user()->id);
+                    $certificate->students()->attach($taskuser->user->id);
                 }
             }
         }
-
-        
     }
 }

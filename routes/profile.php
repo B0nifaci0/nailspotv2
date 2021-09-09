@@ -12,3 +12,4 @@ Route::post('competence/image/{resource}', [ProfileController::class, 'competenc
 Route::post('course/image/{task}', [ProfileController::class, 'courseImage'])->name('courses.image');
 Route::get('{course}/tareas', [ProfileController::class, 'tasks'])->name('courses.tasks');
 Route::get('tareas/{task}', [ProfileController::class, 'task'])->name('task');
+

@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\Instructor;
 
-use App\Events\NewCourseCreated;
-use App\Models\User;
+use App\Models\Seo;
 use App\Models\Level;
 use App\Models\Course;
+use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Platform;
+use App\Events\NewCourseCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
-use App\Mail\CourseCreated;
-use App\Models\Contact;
-use App\Models\Seo;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -26,7 +23,7 @@ class CourseController extends Controller
         $this->middleware('can:Crear cursos')->only('create', 'store');
         $this->middleware('can:Actualizar cursos')->only('edit', 'update', 'goals');
         $this->middleware('can:Eliminar cursos')->only('destroy');
-        $this->admin=Contact::all();
+        $this->admin = Contact::all();
     }
 
     public function index()
@@ -46,27 +43,29 @@ class CourseController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,bmp,png',
-            'pdf'=>'required|mimes:pdf'
+            'pdf' => 'required|mimes:pdf'
         ]);
 
         $course = Course::create($request->all());
         Seo::create([
-            'modelable_type'=>str_replace('\\', '/', get_class($course)),
-            'modelable_id'=>$course->id,
-            'title'=>$request->get('title'),
-            'seodescription'=>$request->get('seodescription'),
-            'keywords'=>$request->get('keywords'),
+            'modelable_type' => str_replace('\\', '/', get_class($course)),
+            'modelable_id' => $course->id,
+            'title' => $request->get('title'),
+            'seodescription' => $request->get('seodescription'),
+            'keywords' => $request->get('keywords'),
         ]);
 
-        if ($request->hasfile('image')) {
-            $url = Storage::disk('public')->put('courses', $request->file('image'));
+        if ($request->hasFile('image')) {
+            $image = file_get_contents($request->file('image')->path());
+            $base64Image = base64_encode($image);
+            $url = $this->saveImages($base64Image, 'courses', $course->id);
             $course->image()->create([
                 'url' => $url
             ]);
         }
 
         if ($request->hasfile('pdf')) {
-            $url = Storage::disk('public')->put('certificates', $request->file('pdf'));
+            $url = Storage::disk('public')->put('storage/certificates', $request->file('pdf'));
             $course->certificate()->create([
                 'url' => $url
             ]);
@@ -81,6 +80,11 @@ class CourseController extends Controller
         $levels = Level::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
         $platforms = Platform::pluck('name', 'id');
+
+        if ($course->image) {
+            $course->image->url = $this->getS3URL('courses', $course->id);
+        }
+
         return view('instructor.courses.edit', compact('course', 'categories', 'levels', 'platforms'));
     }
 
@@ -98,33 +102,26 @@ class CourseController extends Controller
             ]);
         }
         $course->update($request->all());
-        if(!$course->seo){
+        if (!$course->seo) {
             Seo::create([
-                'modelable_type'=>str_replace('\\', '/', get_class($course)),
-                'modelable_id'=>$course->id,
-                'title'=>$request->get('title'),
-                'seodescription'=>$request->get('seodescription'),
-                'keywords'=>$request->get('keywords'),
+                'modelable_type' => str_replace('\\', '/', get_class($course)),
+                'modelable_id' => $course->id,
+                'title' => $request->get('title'),
+                'seodescription' => $request->get('seodescription'),
+                'keywords' => $request->get('keywords'),
             ]);
-        }else{
+        } else {
             $course->seo->update($request->all());
         }
-        if ($request->hasfile('image')) {
-            $url = Storage::disk('public')->put('courses', $request->file('image'));
-            if ($course->image) {
-                Storage::delete($course->image->url);
-                $course->image()->update([
-                    'url' => $url
-                ]);
-            } else {
-                $course->image()->create([
-                    'url' => $url
-                ]);
-            }
+
+        if ($request->hasFile('image')) {
+            $image = file_get_contents($request->file('image')->path());
+            $base64Image = base64_encode($image);
+            $course->image->url = $this->saveImages($base64Image, 'courses', $course->id);
         }
 
         if ($request->hasfile('pdf')) {
-            $url = Storage::disk('public')->put('certificates', $request->file('pdf'));
+            $url = Storage::disk('public')->put('storage/certificates', $request->file('pdf'));
             if ($course->certificate) {
                 Storage::delete($course->certificate->url);
                 $course->certificate()->update([
@@ -141,7 +138,7 @@ class CourseController extends Controller
 
     public function studentTasks(Course $course, $id)
     {
-        if($course->students->contains('id', $id)){
+        if ($course->students->contains('id', $id)) {
             $this->authorize('dicatated', $course);
             return view('instructor.courses.student.tasks', compact('id', 'course'));
         }
@@ -158,7 +155,7 @@ class CourseController extends Controller
     {
         $course->status = Course::REVISION;
         $course->save();
-        $user=auth()->user();
+        $user = auth()->user();
         event(new NewCourseCreated($course, $user));
         return back();
     }
