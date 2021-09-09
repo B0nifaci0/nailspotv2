@@ -68,7 +68,7 @@ class Score extends Component
                     $approved = new CourseApproved($course);
                     Mail::to($taskuser->user->email)->queue($approved);
                     $certificate = $course->certificate;
-                    $certificate->students()->attach($taskuser->user->id);
+                    $certificate->students()->attach($taskuser->user_id);
                 }
             }
         }
