@@ -12,6 +12,13 @@ class HomeController extends Controller
         $courses = Course::whereStatus(3)
             ->latest('id')
             ->get()->take(8);
+
+        foreach ($courses as $course) {
+
+            if ($course->image) {
+                $course->image->url = $this->getS3URL('courses', $course->id);
+            }
+        }
         return view('welcome', compact('courses'));
     }
 }

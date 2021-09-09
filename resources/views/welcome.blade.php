@@ -69,22 +69,22 @@
     @endsection
     @section('header')
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <header class="relative  h-screen overflow-hidden">
-        <div class="relative pt-16 pb-32 flex content-center items-end " style="min-height: 78vh;">
-            <div class="absolute top-0 w-full h-screen bg-center bg-cover mb-2"
+    <header class="relative h-screen overflow-hidden">
+        <div class="relative flex items-end content-center pt-16 pb-32 " style="min-height: 78vh;">
+            <div class="absolute top-0 w-full h-screen mb-2 bg-center bg-cover"
                 style='background-image: url("img/principal-nailspot.png");'>
-                <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-purple-500"></span>
+                <span id="blackOverlay" class="absolute w-full h-full bg-purple-500 opacity-50"></span>
             </div>
             <!--inicia modal-->
             <div class="mx-auto">
                 <!-- Modal -->
                 <div x-data="{ showModal : false }">
                     <!-- Button -->
-                    <button @click="showModal = !showModal" class="relative  text-gray-900 font-semibold hover:text-white py-2 px-4 rounded mb-4 mt-4"><i class=" btn-play fas fa-play-circle fa-5x"></i></button>
+                    <button @click="showModal = !showModal" class="relative px-4 py-2 mt-4 mb-4 font-semibold text-gray-900 rounded hover:text-white"><i class=" btn-play fas fa-play-circle fa-5x"></i></button>
                     <!-- Modal Background -->
-                    <div x-show="showModal" class="fixed text-gray-500 flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                    <div x-show="showModal" class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center overflow-auto text-gray-500 bg-black bg-opacity-40" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                         <!-- Modal -->
-                        <div x-show="showModal" class="bg-indigo-800 rounded-xl shadow-2xl p-6 xs:w-12/12 w-8/12 mx-10" @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
+                        <div x-show="showModal" class="w-8/12 p-6 mx-10 bg-indigo-800 shadow-2xl rounded-xl xs:w-12/12" @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
                             <div class="">
                                 <video  controls id="video-nails">
                                     <source src="{{asset('video/Ns-1.mp4')}}" style="width:100%">
@@ -93,8 +93,8 @@
                             </div>
 
                             <!-- Buttons -->
-                            <div class="text-right space-x-5 mt-5">
-                                <button @click="showModal = !showModal" id="close-video" class="px-4 py-2 text-sm bg-white rounded-xl border transition-colors duration-150 ease-linear border-gray-200 text-gray-500 focus:outline-none focus:ring-0 font-bold hover:bg-gray-300 focus:bg-indigo-50 focus:text-indigo">Cerrar <i class="fas fa-times"></i></button>
+                            <div class="mt-5 space-x-5 text-right">
+                                <button @click="showModal = !showModal" id="close-video" class="px-4 py-2 text-sm font-bold text-gray-500 transition-colors duration-150 ease-linear bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-0 hover:bg-gray-300 focus:bg-indigo-50 focus:text-indigo">Cerrar <i class="fas fa-times"></i></button>
                             </div>
                         </div>
                     </div>
@@ -107,38 +107,38 @@
     <!-- Aqui termina el encabezado -->
     @endsection
     <!-- Aqui comienza la seccion de equipo -->
-    <section class="pt-5 pb-5 bg-purple-800 mx-auto">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-center text-center mb-24">
-                <div class="w-full lg:w-6/12 px-4">
+    <section class="pt-5 pb-5 mx-auto bg-purple-800">
+        <div class="container px-4 mx-auto">
+            <div class="flex flex-wrap justify-center mb-24 text-center">
+                <div class="w-full px-4 lg:w-6/12">
                     <h2 class="text-4xl font-bold text-white">Nuestro Equipo</h2>
-                    <p class="text-lg leading-relaxed m-4 text-white">
+                    <p class="m-4 text-lg leading-relaxed text-white">
                         Lleva tu conocimiento a otro nivel, con nuestro equipo de trabajo.
                     </p>
                 </div>
             </div>
             <!-----CODIGO DE PRRUEBA ---
-            <div class="wrapper bg-gray-400 antialiased text-gray-900">
+            <div class="antialiased text-gray-900 bg-gray-400 wrapper">
                 <div>
-                    <img src="{{asset('img/foto_yohana.jpg')}}" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">    
-                    <div class="relative px-4 -mt-16  ">
-                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="{{asset('img/foto_yohana.jpg')}}" alt=" random imgee" class="object-cover object-center w-full rounded-lg shadow-md">    
+                    <div class="relative px-4 -mt-16 ">
+                        <div class="p-6 bg-white rounded-lg shadow-lg">
                             <div class="flex items-baseline">
-                              <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                              <span class="inline-block px-2 text-xs font-semibold tracking-wide text-teal-800 uppercase bg-teal-200 rounded-full">
                                 New
                               </span>
-                                <div class="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider">
+                                <div class="ml-2 text-xs font-semibold tracking-wider text-gray-600 uppercase">
                                     2 baths  &bull; 3 rooms
                                 </div>  
                             </div>
-                            <h4 class="mt-1 text-xl font-semibold uppercase leading-tight truncate">A random Title</h4>
+                            <h4 class="mt-1 text-xl font-semibold leading-tight uppercase truncate">A random Title</h4>
  
                             <div class="mt-1">
                               $1800
-                              <span class="text-gray-600 text-sm">   /wk</span>
+                              <span class="text-sm text-gray-600">   /wk</span>
                             </div>
                             <div class="mt-4">
-                              <span class="text-teal-600 text-md font-semibold">4/5 ratings </span>
+                              <span class="font-semibold text-teal-600 text-md">4/5 ratings </span>
                               <span class="text-sm text-gray-600">(based on 234 ratings)</span>
                             </div>  
                         </div>
@@ -147,25 +147,25 @@
                 </div>
             </div>-->
             <!---CARDS DE PRUEBA--->
-            <div class="grid lg:grid-cols-3 grid grid-cols-1  gap-4">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
                 <div class="order-2">
-                    <section class="bg-indigo-800 text-white mt-5 mb-5 ml-4 mr-4 rounded-xl shadow-xl ">
+                    <section class="mt-5 mb-5 ml-4 mr-4 text-white bg-indigo-800 shadow-xl rounded-xl ">
                         <div class="card-body">
-                            <article class="bg-indigo-800 flex flex-col ">
+                            <article class="flex flex-col bg-indigo-800 ">
                                 <img class="w-full" src="{{asset('img/foto_renato.jpg')}}" alt="">
-                                <div class="static px-1 -mt-16  ">
-                                    <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
-                                        <div class="card-body flex-1 flex flex-col ">
-                                            <h1 class="text-5xl mb-2 text-center text-white font-bold "> Renato Ortíz </h1>
+                                <div class="static px-1 -mt-16 ">
+                                    <div class="p-6 bg-blue-900 rounded-lg shadow-lg">
+                                        <div class="flex flex-col flex-1 card-body ">
+                                            <h1 class="mb-2 text-5xl font-bold text-center text-white "> Renato Ortíz </h1>
                                         </div>
-                                        <div class="card-body flex-1 flex flex-col ">
+                                        <div class="flex flex-col flex-1 card-body ">
                                             <div class="mx-auto">
     
                                                 <button
-                                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                                    class="w-8 h-8 mb-1 mr-1 text-white bg-blue-600 rounded-full outline-none focus:outline-none"
                                                     type="button">
                                                     <a href="https://www.facebook.com/profile.php?id=100009998405727" class="fab fa-facebook 3x"></a></button><button
-                                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-4 mb-1"
+                                                     class="w-8 h-8 mb-1 mr-4 text-white rounded-full outline-none bg-gradient-to-t from-purple-400 to-pink-500 focus:outline-none"
                                                     type="button">
                                                     <a  href="https://www.instagram.com/renato_delao/" class="fab fa-instagram 3x"></a>
                                                 </button>
@@ -178,22 +178,22 @@
                     </section>
                 </div>
                 <div class="order-2">
-                    <section class="bg-indigo-800 text-white mt-5 mb-5 ml-4 mr-4 rounded-xl shadow-xl ">
+                    <section class="mt-5 mb-5 ml-4 mr-4 text-white bg-indigo-800 shadow-xl rounded-xl ">
                         <div class="card-body">
-                            <article class="bg-indigo-800 flex flex-col ">
+                            <article class="flex flex-col bg-indigo-800 ">
                                 <img class="w-full" src="{{asset('img/foto_yohana.jpg')}}" alt="">
-                                <div class="static px-1 -mt-16  ">
-                                    <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
-                                        <div class="card-body flex-1 flex flex-col">
-                                            <h1 class="text-5xl mb-2 text-center text-white font-bold "> Yohana Rivas </h1>
+                                <div class="static px-1 -mt-16 ">
+                                    <div class="p-6 bg-blue-900 rounded-lg shadow-lg">
+                                        <div class="flex flex-col flex-1 card-body">
+                                            <h1 class="mb-2 text-5xl font-bold text-center text-white "> Yohana Rivas </h1>
                                         </div>
-                                        <div class="card-body flex-1 flex flex-col ">
+                                        <div class="flex flex-col flex-1 card-body ">
                                             <div class="mx-auto">
                                                 <button
-                                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                                    class="w-8 h-8 mb-1 mr-1 text-white bg-blue-600 rounded-full outline-none focus:outline-none"
                                                     type="button">
                                                     <a href="https://www.facebook.com/y.rivas86" class="fab fa-facebook 3x"></a></button><button
-                                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-4 mb-1"
+                                                     class="w-8 h-8 mb-1 mr-4 text-white rounded-full outline-none bg-gradient-to-t from-purple-400 to-pink-500 focus:outline-none"
                                                     type="button">
                                                     <a  href="https://www.instagram.com/nailsyohanaoficial/" class="fab fa-instagram 3x"></a>
                                                 </button>
@@ -206,22 +206,22 @@
                     </section>
                 </div>
                 <div class="order-2">
-                    <section class="bg-indigo-800 text-white mt-5 mb-5 ml-4 mr-4 rounded-xl shadow-xl ">
+                    <section class="mt-5 mb-5 ml-4 mr-4 text-white bg-indigo-800 shadow-xl rounded-xl ">
                         <div class="card-body">
-                            <article class="bg-indigo-800 flex flex-col ">
+                            <article class="flex flex-col bg-indigo-800 ">
                                 <img class="w-full" src="{{asset('img/foto_aron.jpg')}}" alt="">
-                                <div class="static  px-1 -mt-16  ">
-                                    <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
-                                        <div class="card-body flex-1 flex flex-col">
-                                            <h1 class="text-5xl mb-2 text-center text-white font-bold "> Aaron Amaro </h1>
+                                <div class="static px-1 -mt-16 ">
+                                    <div class="p-6 bg-blue-900 rounded-lg shadow-lg">
+                                        <div class="flex flex-col flex-1 card-body">
+                                            <h1 class="mb-2 text-5xl font-bold text-center text-white "> Aaron Amaro </h1>
                                         </div>
-                                        <div class="card-body flex-1 flex flex-col ">
+                                        <div class="flex flex-col flex-1 card-body ">
                                             <div class="mx-auto">
                                                 <button
-                                                    class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                                                    class="w-8 h-8 mb-1 mr-1 text-white bg-blue-600 rounded-full outline-none focus:outline-none"
                                                     type="button">
                                                     <a href="https://www.facebook.com/aaronroman.amaro" class="fab fa-facebook 3x"></a></button><button
-                                                     class="bg-gradient-to-t from-purple-400 to-pink-500  text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-4 mb-1"
+                                                     class="w-8 h-8 mb-1 mr-4 text-white rounded-full outline-none bg-gradient-to-t from-purple-400 to-pink-500 focus:outline-none"
                                                     type="button">
                                                     <a  href="https://www.instagram.com/aaron_amaro_nails/" class="fab fa-instagram 3x"></a>
                                                 </button>
@@ -239,59 +239,32 @@
     </section>
     <!-- Aqui termina la seccion de equipo -->
     <!-- Esta es la seccion de Nuevos cursos -->
-    <section class="pb-20 relative block bg-purple-800">
-        <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
+    <section class="relative block pb-20 bg-purple-800">
+        <div class="absolute top-0 left-0 right-0 bottom-auto w-full -mt-20 overflow-hidden pointer-events-none"
             style="height: 80px; transform: translateZ(0px)">
             <!--<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
                 version="1.1" viewBox="0 0 2560 100" x="0" y="0">
                 <polygon class="text-purple-800 fill-current" points="2560 0 2560 100 0 100"></polygon>
             </svg>-->
         </div>
-        <div class="container mx-auto pt-5 lg:pt-24 lg:pb-64">
-            <div class="flex flex-wrap text-center justify-center">
-                <div class="w-full lg:w-6/12 px-4">
+        <div class="container pt-5 mx-auto lg:pt-24 lg:pb-64">
+            <div class="flex flex-wrap justify-center text-center">
+                <div class="w-full px-4 lg:w-6/12">
                     <h2 class="text-4xl font-semibold text-white">Capacitate con nosotros</h2>
-                    <p class="text-lg leading-relaxed mt-4 mb-4 text-indigo-100">
+                    <p class="mt-4 mb-4 text-lg leading-relaxed text-indigo-100">
                     Tenemos la opción correcta para ti, escribenos a través de facebook, 
                     instagram o por correo electrónico y te responderemos cuanto antes.
                     </p>
                 </div>
             </div>
-            <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mt-6">
+            <div class="container grid grid-cols-1 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
                 @foreach ($courses as $course)
                 <x-course-card :course="$course" />
                 @endforeach
             </div>
         </div>
     </section>
-    <!-- Aqui termina la seccion cursos nuevos -->
 
-    {{-- <section class="mt-24">
-        <div class="container py-36">
-            <h1 class="text-gray-600 text-center text-3xl">Cursos</h1>
-            <p class="text-center text-dark mt-2">Dirigete al catalogo de cursos</p>
-            <div class="flex justify-center mt-4">
-                <a href="{{route('courses.index')}}"
-    class="bg-blue-500 hover:bg-blue-light text-white font-bold py-2 px-4 border-b-4 border-blue-dark hover:border-blue
-    rounded">
-    Button
-    </a>
-    </div>
-    </div>
-    </section> --}}
-
-    {{-- <section class="my-24">
-        <h1 class="text-gray-600 text-center text-3xl">Ultimos cursos agregados</h1>
-        <p class="text-black text-center text-lg mt-2">Tenemos la opción correcta para ti, escribenos a través de
-            facebook,
-            instagram o por correo electrónico y te responderemos cuanto antes. </p>
-
-        <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mt-6">
-            @foreach ($courses as $course)
-            <x-course-card :course="$course" />
-            @endforeach
-        </div>
-    </section> --}}
 </x-app-layout>
 <script>
     let close=document.getElementById('close-video');
