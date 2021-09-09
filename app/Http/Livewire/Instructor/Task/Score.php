@@ -38,13 +38,12 @@ class Score extends Component
         $course = Course::find($taskuser->task->course->id);
         $taskuser->user->notify(new GradedTaskNotification($taskuser, $course));
 
-
         $taskComplete = $course->tasks()
             ->with('taskUser')
             ->get()
             ->pluck('taskUser')
             ->collapse()
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', $taskuser->user->id)
             ->where('score', '!=', null);
 
         if ($taskComplete->count() == $course->tasks_count) {
@@ -68,7 +67,7 @@ class Score extends Component
                     $approved = new CourseApproved($course);
                     Mail::to($taskuser->user->email)->queue($approved);
                     $certificate = $course->certificate;
-                    $certificate->students()->attach($taskuser->user_id);
+                    $certificate->students()->attach($taskuser->user->id);
                 }
             }
         }
