@@ -4,20 +4,20 @@
 <div class="bg-purple-800">
     <div class="slideshow">
 
-        <div class="mySlides fade opacity-75">
+        <div class="opacity-75 mySlides fade">
           <img src="{{asset('img/slider-renato.png')}}" style="width:100%">
         </div>
 
-        <div class="mySlides fade opacity-75">
+        <div class="opacity-75 mySlides fade">
           <img src="{{asset('img/slider-yohana.jpg')}}" style="width:100%">
         </div>
 
-        <div class="mySlides fade opacity-75">
+        <div class="opacity-75 mySlides fade">
           <img src="{{asset('img/slider-aron.png')}}" style="width:100%">
         </div>
-        <div class="relative flex justify-evenly pb-2 mx-auto mt-4">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded-full " onclick="plusSlides(-1)"><i class="far fa-arrow-alt-circle-left fa-2x"></i></button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded-full " onclick="plusSlides(1)"><i class="far fa-arrow-alt-circle-right fa-2x"></i></button>
+        <div class="relative flex pb-2 mx-auto mt-4 justify-evenly">
+            <button class="font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 " onclick="plusSlides(-1)"><i class="far fa-arrow-alt-circle-left fa-2x"></i></button>
+            <button class="font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 " onclick="plusSlides(1)"><i class="far fa-arrow-alt-circle-right fa-2x"></i></button>
         </div>
 
     </div>
@@ -53,8 +53,8 @@
 </script>
     @endsection
     <div class="mx-auto bg-purple-800">
-        <h1 class="text-6xl text-white font-bold mx-auto text-center py-10">Nuevos Cursos</h1>
+        <h1 class="py-10 mx-auto text-6xl font-bold text-center text-white">Nuevos Cursos</h1>
         <x-whatsapp-chat />
     </div>
-    @livewire('courses-index')
+    {{-- @livewire('courses-index') --}}
 </x-app-layout>
