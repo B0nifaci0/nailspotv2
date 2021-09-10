@@ -42,7 +42,6 @@ class StripeService
     public function handlePayment(Request $request)
     {
         $intent = $this->createIntent($request->value);
-
         Sale::create([
             'user_id' => auth()->user()->id,
             'saleable_id' => $request->course,
@@ -50,7 +49,8 @@ class StripeService
             'coupon_id' => $request->coupon ? $request->coupon : null,
             'final_price' => $request->value,
             'payment_platform_id' => 2,
-            'status' => Sale::PENDING
+            'status' => Sale::PENDING,
+            'stripe_id' => $intent->id
         ]);
 
         return json_encode(array('client_secret' => $intent->client_secret));
