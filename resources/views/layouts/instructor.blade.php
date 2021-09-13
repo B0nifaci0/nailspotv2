@@ -139,7 +139,7 @@
         {{$js}}
         @endisset
         @auth
-            <script src="{{asset('js/enable-push.js')}}" defer></script>
+            <script src="{{asset('enable-push.js')}}" defer></script>
         @endauth
     </body>
 </html>

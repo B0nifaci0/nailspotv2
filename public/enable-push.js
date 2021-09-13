@@ -11,7 +11,7 @@ function initSW() {
         return;
     }
 
-    navigator.serviceWorker.register('../sw.js')
+    navigator.serviceWorker.register('/sw.js')
     //registra el service worker
         .then(() => {
             initPush();

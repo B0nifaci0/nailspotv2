@@ -48,7 +48,5 @@ Route::get('pages-sitemap.xml', [PageController::class, 'pages'])->name('pages-s
 Route::get('videos-sitemap.xml', [PageController::class, 'videos'])->name('videos-sitemap');
 
 Route::post('/save', [PushControlle::class, 'store'])->middleware('auth');
-Route::get('/notifications', [PushControlle::class, 'index'])->middleware('auth');
-Route::delete('/notifications/{id}/read', [PushControlle::class, 'readNotification'])->middleware('auth');
 
 Route::post('webhooks', WebhookController::class);

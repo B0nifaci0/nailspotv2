@@ -5,8 +5,9 @@
     <article>
 
         @can('valued', $course)
-
+        
         <textarea wire:model="comment" rows="3" class="form-input w-full" placeholder="Reseña..."></textarea>
+        @error('comment')<span class="error text-white">{{ $message }}</span> @enderror
         <div class="flex">
             <button class="py-2 bg-blue-500 text-white rounded m-2 px-4 " wire:click="store">Guardar</button>
             <ul class="flex items-center">
@@ -14,20 +15,19 @@
                         class="fas fa-star text-{{$rating>= 1 ? 'yellow' : 'gray'}}-300"></i>
                 </li>
                 <li class="mr-1 cursor-pointer" wire:click="$set('rating',2)"><i
-                        class="fas fa-star text-{{$rating>= 2 ? 'yellow' : 'gray'}}-300"></i>
+                    class="fas fa-star text-{{$rating>= 2 ? 'yellow' : 'gray'}}-300"></i>
                 </li>
                 <li class="mr-1 cursor-pointer" wire:click="$set('rating',3)"><i
                         class="fas fa-star text-{{$rating>= 3 ? 'yellow' : 'gray'}}-300"></i>
                 </li>
                 <li class="mr-1 cursor-pointer" wire:click="$set('rating',4)"><i
-                        class="fas fa-star text-{{$rating>= 4 ? 'yellow' : 'gray'}}-300"></i>
+                    class="fas fa-star text-{{$rating>= 4 ? 'yellow' : 'gray'}}-300"></i>
                 </li>
                 <li class="mr-1 cursor-pointer" wire:click="$set('rating',5)"><i
-                        class="fas fa-star text-{{$rating>= 5 ? 'yellow' : 'gray'}}-300"></i>
+                    class="fas fa-star text-{{$rating>= 5 ? 'yellow' : 'gray'}}-300"></i>
                 </li>
             </ul>
         </div>
-
         @endcan
     </article>
     @endcan

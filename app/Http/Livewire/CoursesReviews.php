@@ -7,9 +7,10 @@ use Livewire\Component;
 
 class CoursesReviews extends Component
 {
-    public $course_id, $comment;
-    public $rating = 0; 
+    public $course_id,$comment;
+    public $rating = 0;  
 
+    protected $rules=["comment"=>'required'];
 
     public function mount(Course $course)
     {
@@ -24,6 +25,7 @@ class CoursesReviews extends Component
 
     public function store()
     {
+        $this->validate();
         $course = Course::find($this->course_id);
         $course->reviews()->create([
             'comment' => $this->comment,

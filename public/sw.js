@@ -6,7 +6,7 @@ self.addEventListener('push', function(e){
     e.waitUntil(self.registration.showNotification(msg.title,{
         body:msg.body,
         icon:msg.icon,
-        badge:msg.badge,
+        badge:"https://nailspot.com.mx/favicon.ico",
         vibrate:[200, 100, 200],
     }));
 

@@ -327,7 +327,7 @@ return [
             'icon' => 'fas fa-info-circle',
         ],
         [
-            'text'        => 'Mensajes',
+            'text'        => 'Contacto',
             'route'         => 'admin.message.index',
             'icon'        => 'fa fa-envelope-open',
             'active' => ['admin/mensajes/*'],
