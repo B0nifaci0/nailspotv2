@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Mail\PaymentApproved;
+use Illuminate\Support\Facades\Mail;
 
 class WebhookController extends Controller
 {
@@ -17,5 +19,8 @@ class WebhookController extends Controller
         ]);
         $course = Course::find($sale->saleable_id);
         $course->students()->attach($sale->user_id);
+
+        $mail = new PaymentApproved($sale);
+        Mail::to($sale->user->email)->queue($mail);
     }
 }
