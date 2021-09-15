@@ -11,7 +11,7 @@
     <body>
         <h1>Pago exitoso.</h1>
         <h2>ya puedes ingresar al curso adquirido</h2>
-        <a href="{{route('course.status',$course->id)}}">
+        <a href="{{route('course.status',$course)}}">
             {{$course->name}}</a>
     </body>
 
