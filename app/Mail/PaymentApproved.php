@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class PaymentApproved extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $sale, $course;
     /**
      * Create a new message instance.
      *
