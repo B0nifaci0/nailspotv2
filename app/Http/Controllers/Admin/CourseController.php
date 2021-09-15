@@ -77,11 +77,6 @@ class CourseController extends Controller
         return redirect()->route('admin.courses.index')->with('info', "El curso no se ha publicado");
     }
 
-    public function pending()
-    {
-        return view('admin.courses.oxxo');
-    }
-
     public function paid($id)
     {
         $sale = Sale::find($id);

@@ -286,12 +286,6 @@ return [
             'active' => ['admin/sales/course*'],
             'can' => 'Ver dashboard'
         ],
-        [
-            'text'        => 'OXXO',
-            'route'         => 'admin.courses.pending',
-            'icon'        => 'fas fa-wallet',
-            'can' => 'Ver dashboard'
-        ],
         ['header' => 'OPCIONES DE COMPETENCIAS'],
         [
             'text' => 'Competencias',

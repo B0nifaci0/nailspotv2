@@ -35,7 +35,6 @@ Route::get('courses', [CourseController::class, 'index'])->name('courses.index')
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 Route::post('courses/{course}/approved', [CourseController::class, 'approved'])->name('courses.approved');
 Route::post('courses/disapproved', [CourseController::class, 'disapproved'])->name('courses.disapproved');
-Route::get('/pending/courses', [CourseController::class, 'pending'])->name('courses.pending');
 
 Route::post('{id}/paid', [CourseController::class, 'paid'])->name('course.paid');
 
