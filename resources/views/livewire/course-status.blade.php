@@ -47,7 +47,7 @@
         @foreach ($lessons as $item)
         <div class="w-full h-full p-3 my-4 bg-indigo-800 rounded shadow-lg">
             <div class="relative group">
-                <img class="block w-full rounded md:w-90" src="{{Storage::url($course->image->url)}}" />
+                <img class="block w-full rounded md:w-90" src="{{$course->image->url}}" />
                 <div
                     class="absolute top-0 flex items-center w-full h-full transition bg-black bg-opacity-0 rounded group-hover:bg-opacity-60 group-hover:opacity-100 justify-evenly ">
                     <a wire:click='changeLesson({{$item}})'
@@ -61,9 +61,7 @@
                 </div>
             </div>
             <div class="p-5 mt-auto ">
-                <h3 class="text-xl text-white ">Lección
-
-                    : {{$item->name}}</h3>
+                <h3 class="text-xl text-white ">Lección: {{$item->name}}</h3>
                 <p class="text-white text-md">{{$item->description}}</p>
             </div>
         </div>

@@ -4,11 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\Course;
 use App\Models\Lesson;
-use App\Models\TaskUser;
-use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class CourseStatus extends Component
+class CourseStatus extends Componet
 {
     use AuthorizesRequests;
 
@@ -22,11 +20,13 @@ class CourseStatus extends Component
 
         $this->lessons = $course->lessons()->get();
         $this->current = $course->lessons()->first();
-        
     }
 
     public function render()
     {
+        if ($this->course->image) {
+            $this->course->image->url = $this->getS3URL('courses', $this->course->id);
+        }
         return view('livewire.course-status');
     }
 

@@ -1,13 +1,13 @@
 <x-app-layout>
     @section('header')
-@section('title',"$course->name")
+    @section('title',"$course->name")
 
-@section('seo')
+    @section('seo')
     @if ($course->seo)
     <meta name="description" content="{{$course->seo->seodescription}}" />
     <meta name="keywords" content="{{$course->seo->keywords}}" />
     <meta name="author" content="Nailspot" />
-    
+
     <meta property="og:description" content="{{$course->seo->seodescription}}" />
     <meta property="og:title" content="{{$course->seo->title}}" />
     <meta property="og:type" content="website" />
@@ -22,21 +22,21 @@
     <meta name="twitter:creator" content="@Nailspot3" />
     <meta name="twitter:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
     <meta name="twitter:domain" content="{{Request::url()}}" />
-    
+
     <meta property="og:site_name" content="Nailspot" />
     <meta property="og:price:amount" content="{{$course->price}}" />
-    <meta property="og:price:currency" content="MXN" /> 
+    <meta property="og:price:currency" content="MXN" />
     @endif
-@endsection
-@section('structuredData')
+    @endsection
+    @section('structuredData')
     <script type="application/ld+json">
         {!!($data)!!}
     </script>
     <script type="application/ld+json">
         {!!($dataVideo)!!}
     </script>
-@endsection
-     @section('header')
+    @endsection
+    @section('header')
     <!--COmienza prueba--->
     <div class="relative p-2 pt-10 bg-purple-800 md:flex">
         <div class="sm:w-2/2 md:w-1/3 lg:w-2/4 xl:w-2/5 ">
@@ -192,7 +192,7 @@
                         <h1 class="mb-4 text-4xl font-bold text-center text-white">Similares </h1>
                         @foreach ($similares as $similar)
                         <article class="flex mt-4 mb-6 ">
-                            <img class="object-cover w-40 h-32" src="{{Storage::url($similar->image->url)}}">
+                            <img class="object-cover w-40 h-32" src="{{$similar->image->url}}">
                             <div class="ml-2">
                                 <h1>
                                     <a class="mb-3 font-bold text-white"
