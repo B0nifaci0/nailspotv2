@@ -65,11 +65,12 @@ class CourseController extends Controller
             ->take(5)
             ->get();
 
-        foreach ($similares as $course) {
-            if ($course->image) {
-                $course->image->url = $this->getS3URL('courses', $course->id);
+        foreach ($similares as $c) {
+            if ($c->image) {
+                $c->image->url = $this->getS3URL('courses', $c->id);
             }
         }
+        
         return view('courses.show', compact('course', 'similares', 'data', 'dataVideo'));
     }
 
