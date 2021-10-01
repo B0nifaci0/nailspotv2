@@ -10,9 +10,11 @@
                 @error('name')
                     <span class="text-sm text-red-500">{{$message}}</span>
                 @enderror
+                @if ($course->status==1)     
                 <div class="flex justify-end mt-5">
                     <button class="bg-pink-600  hover:bg-pink-700 text-white p-2 rounded">Agregar meta</button>
                 </div>
+                @endif
             </form>
         </div>
     </article>
@@ -31,10 +33,12 @@
             @else
             <header class="flex justify-between">
                 <h1>{{$item->name}}</h1>
-                <div>
-                    <i wire:click="edit({{$item}})" class="fas fa-edit text-blue-500 cursor-pointer"></i>
-                    <i class="fas fa-trash text-red-500 cursor-pointer ml-2" wire:click="destroy({{$item}})"></i>
-                </div>
+                @if ($course->status==1)
+                    <div>
+                        <i wire:click="edit({{$item}})" class="fas fa-edit text-blue-500 cursor-pointer"></i>
+                        <i class="fas fa-trash text-red-500 cursor-pointer ml-2" wire:click="destroy({{$item}})"></i>
+                    </div>
+                @endif
             </header>
             @endif
         </div>

@@ -31,7 +31,7 @@ class Course extends Model
     protected $appends=['seo'];
 
     protected $guarded = ['id', 'status'];
-    protected $withCount = ['students', 'reviews', 'sales', 'tasks'];
+    protected $withCount = ['students', 'reviews', 'sales', 'tasks', 'lessons', 'requirements', 'goals', 'comments'];
     public function getRatingAttribute()
     {
         if ($this->reviews_count) {
@@ -63,7 +63,6 @@ class Course extends Model
             return $query->whereLevelId($level_id);
         }
     }
-
     public function getRouteKeyName()
     {
         return "slug";

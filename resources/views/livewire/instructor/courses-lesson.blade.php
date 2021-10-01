@@ -40,6 +40,7 @@
                             <strong>Leccion {{$key+1}}:</strong> {{$item->name}}</h1>
                        
                     </header>
+                    @if($course->status==1)
                     <div x-show="open">
                         <hr class="my-2">
                         <p class="text-sm">Enlace: <a class="text-blue-600" href="{{$item->url}}"
@@ -52,10 +53,12 @@
                         </div>
                     </div>
                     @endif
+                    @endif
                 </div>
             </div>
         </article>
         @endforeach
+        @if ($course->status==1)
         <div x-data="{open: false}" class="mt-4">
             <a x-show="!open" x-on:click="open = true" class="flex items-center cursor-pointer">
                 <i class="far fa-plus-square text-2xl text-red-500 mr-2"></i>
@@ -96,5 +99,6 @@
                 </div>
             </article>
         </div>
+        @endif
     </div>
 </div>

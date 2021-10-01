@@ -153,6 +153,15 @@ class CourseController extends Controller
 
     public function status(Course $course)
     {
+        if($course->final==0){
+            return redirect()->route('instructor.courses.tasks', $course)->with('error','¡Por favor agrega las tareas del curso!');
+        }
+        if($course->goals_count==0 || $course->requirements_count==0){
+            return redirect()->route('instructor.courses.goals', $course)->with('error','¡Por favor agrega las metas y requerimientos del curso!');
+        }
+        if($course->lessons_count==0){
+            return redirect()->route('instructor.courses.curriculum', $course)->with('error','¡Por favor agrega las lecciones del curso!');
+        }
         $course->status = Course::REVISION;
         $course->save();
         $user = auth()->user();

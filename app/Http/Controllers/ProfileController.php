@@ -74,6 +74,7 @@ class ProfileController extends Controller
 
     public function tasks(Course $course)
     {
+        return $course;
         $tasks = $course->tasks;
         $user = auth()->user()->id;
         return view('profile.courses.tasks', compact('tasks', 'course'));

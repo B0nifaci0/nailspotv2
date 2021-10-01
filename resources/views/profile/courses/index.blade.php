@@ -15,7 +15,10 @@
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Comprado
                 </th>
-                <th></th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">
+                    Tareas
+                </th>
+
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
@@ -53,8 +56,8 @@
                     {{$course->sales->first()->created_at->format('j F, Y')}}
                 </td>
              
-                <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                    <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                <td class="pr-8 py-4 text-sm font-medium text-right whitespace-nowrap">
+                    <button class="px-2 py-2 w-3/5 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                         <a href="{{route('profile.courses.tasks',$course)}}" class="text-white">Tareas</a>
                     </button>
                 </td>

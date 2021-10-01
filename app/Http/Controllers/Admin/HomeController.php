@@ -51,6 +51,7 @@ class HomeController extends Controller
         }   
         $coursesAll=DB::table('courses')->select('courses.name', DB::raw('sum(sales.final_price) as total'))
         ->where('courses.status','=',3)
+        ->where('sales.status','=', 1)
         ->groupBy('courses.name')
         ->orderBy('total', 'DESC')
         ->take(10)

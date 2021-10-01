@@ -40,7 +40,6 @@
 
     <body class="font-sans antialiased">
         <x-jet-banner />
-
         <div class=" bg-gradient-to-r from-purple-800  to-pink-600 ">
             @livewire('navigation')
             <div class="relative pt-16 flex content-center items-center justify-center"> 
@@ -66,7 +65,12 @@
                             <a href="{{route('instructor.courses.curriculum', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Lecciones del curso</a>
                             <a href="{{route('instructor.courses.goals', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Metas del curso</a>
                             <a href="{{route('instructor.courses.students', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Estudiantes</a>
-                            <a href="{{route('instructor.courses.comments', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Comentarios Admin</a>
+                            <a href="{{route('instructor.courses.comments', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">
+                                Comentarios Admin
+                                @if($course->comments_count>0)
+                                <b class="text-sm md:text-md bg-indigo-800 px-1 rounded-full w-5 text-white">{{$course->comments_count}}</b>
+                                @endif
+                            </a>
                             <a href="{{route('instructor.courses.tasks', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Tareas</a>
         
                         </div>      
@@ -102,6 +106,13 @@
                 </aside>
             </div>
             <!--Menu desplegable--->
+            @if (session('error'))
+            <div class="alert w-full col-span-4 container mt-5">
+                <div class="text-center bg-red-500 text-white text-md font-bold px-4 py-3" role="alert">
+                    {{session('error')}}
+                </div>
+            </div>
+            @endif
             <div class="col-span-4 container mt-5">
                 <section class="card ">
                     <main class="card-body text-gray-500">
@@ -141,6 +152,11 @@
         @auth
             <script src="{{asset('enable-push.js')}}" defer></script>
         @endauth
+        <script>
+            $(document).ready(function(){
+                $(".alert").delay(3000).slideUp(800);
+            });
+        </script>    
     </body>
 </html>
 

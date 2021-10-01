@@ -61,13 +61,14 @@
                             {{$item->title}}</h1> 
                     </header>
                     <div x-show="open">
-
-                        <div class="mt-2">
-                            <button class="px-4 py-2 font-bold text-center text-white bg-blue-500 rounded"
+                        @if ($course->status==1)
+                            <div class="mt-2">
+                                <button class="px-4 py-2 font-bold text-center text-white bg-blue-500 rounded"
                                 wire:click="edit({{$item->id}})">Editar</button>
-                            <button class="px-4 py-2 font-bold text-center text-white bg-red-500 rounded"
+                                <button class="px-4 py-2 font-bold text-center text-white bg-red-500 rounded"
                                 wire:click="destroy({{$item->id}})">Eliminar</button>
-                        </div>
+                            </div>
+                        @endif
                     </div>
                     @endif
                 </div>
