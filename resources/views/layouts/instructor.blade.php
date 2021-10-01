@@ -60,7 +60,7 @@
                                 Edición del curso <i class="fas fa-chevron-circle-down"></i>
                             </button>
                         </div>
-                        <div id="menu" class="mt-1 mb-2  w-48 bg-white rounded-lg py-2 shadow-md hidden">
+                        <div id="menu" class="mt-1 mb-2  w-52 bg-white rounded-lg py-2 shadow-md hidden">
                             <a href="{{route('instructor.courses.edit', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Informacion del Curso</a>
                             <a href="{{route('instructor.courses.curriculum', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Lecciones del curso</a>
                             <a href="{{route('instructor.courses.goals', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Metas del curso</a>
@@ -68,7 +68,7 @@
                             <a href="{{route('instructor.courses.comments', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">
                                 Comentarios Admin
                                 @if($course->comments_count>0)
-                                <b class="text-sm md:text-md bg-indigo-800 px-1 rounded-full w-5 text-white">{{$course->comments_count}}</b>
+                                    <b class="text-sm md:text-md bg-indigo-800 px-2 rounded-full w-5 text-white">{{$course->comments_count}}</b>
                                 @endif
                             </a>
                             <a href="{{route('instructor.courses.tasks', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Tareas</a>

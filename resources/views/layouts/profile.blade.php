@@ -20,6 +20,8 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/whatsapp/jquery-3.3.1.min.js') }}"></script>
+        
 
         {!! htmlScriptTagJsApi() !!}
 
@@ -86,7 +88,14 @@
                     </ul>
                 </aside>
             </div>-->
-            <div class="col-span-4 container">
+            @if(session('success'))
+            <div class="alert w-full col-span-4 container mt-5">
+                <div class="text-center bg-green-500 text-white text-md font-bold px-4 py-3" role="alert">
+                   {{session('success')}}
+                </div>
+            </div>
+            @endif
+            <div class="col-span-4 container mt-5">
                 <section class="card ">
                     <main class="card-body  text-gray-500">
                         {{$slot}}
@@ -105,6 +114,11 @@
         @auth
         <script src="{{asset('enable-push.js')}}" defer></script>
         @endauth
+        <script>
+            $(document).ready(function(){
+                $(".alert").delay(3000).slideUp(800);
+            });
+        </script>   
     </body>
 
 </html>

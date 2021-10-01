@@ -74,7 +74,6 @@ class ProfileController extends Controller
 
     public function tasks(Course $course)
     {
-        return $course;
         $tasks = $course->tasks;
         $user = auth()->user()->id;
         return view('profile.courses.tasks', compact('tasks', 'course'));
@@ -115,6 +114,7 @@ class ProfileController extends Controller
 
     public function courseImage(Request $request, Task $task)
     {
+        $finallyTask=false;
         $user = auth()->user();
         if (!$task->students->contains($user->id)) {
             $task->students()->attach($user->id);
@@ -134,9 +134,13 @@ class ProfileController extends Controller
             $taskUser->complete = true;
             $taskUser->save();
             event(new UserNotification($user, $task));
+            $finallyTask=true;
         }
 
-
-        return back();
+        if($finallyTask){
+            return back()->with('success', '!La tarea se envió con exito!');
+        }else{
+            return back();
+        }
     }
 }
