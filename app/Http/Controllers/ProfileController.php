@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserNotification;
+use App\Models\Sale;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\Course;
 use App\Models\TaskUser;
 use App\Mail\Assignament;
 use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Models\CompetenceUser;
+use App\Events\UserNotification;
 use App\Http\Livewire\TasksUser;
-use App\Models\User;
-use App\Notifications\TasksCompleted;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\TasksCompleted;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -39,21 +40,16 @@ class ProfileController extends Controller
 
     public function courses()
     {
-        $courses = Course::whereHas('sales', function ($query) {
-            $user = auth()->user();
-            return $query->where('user_id', $user->id);
-        })->with('sales', function ($query) {
-            $user = auth()->user();
-            return $query->where('user_id', $user->id);
-        })->paginate(8);
+        $user = auth()->user();
+        $coursesAdquiried = Sale::whereUserId($user->id)->whereSaleableType(Course::class)->with('saleable')->paginate(8);
 
-        foreach ($courses as $course) {
-            if ($course->image) {
-                $course->image->url = $this->getS3URL('courses', $course->id);
+        foreach ($coursesAdquiried as $sale) {
+            if ($sale->saleable->image) {
+                $sale->saleable->image->url = $this->getS3URL('courses', $sale->saleable->id);
             }
         }
 
-        return view('profile.courses.index', compact('courses'));
+        return view('profile.courses.index', compact('coursesAdquiried'));
     }
 
     public function competences()
@@ -114,7 +110,7 @@ class ProfileController extends Controller
 
     public function courseImage(Request $request, Task $task)
     {
-        $finallyTask=false;
+        $finallyTask = false;
         $user = auth()->user();
         if (!$task->students->contains($user->id)) {
             $task->students()->attach($user->id);
@@ -134,12 +130,12 @@ class ProfileController extends Controller
             $taskUser->complete = true;
             $taskUser->save();
             event(new UserNotification($user, $task));
-            $finallyTask=true;
+            $finallyTask = true;
         }
 
-        if($finallyTask){
+        if ($finallyTask) {
             return back()->with('success', '!La tarea se envió con exito!');
-        }else{
+        } else {
             return back();
         }
     }
