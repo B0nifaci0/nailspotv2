@@ -28,7 +28,7 @@ class CoursesTasks extends Component
     {
         return view('livewire.instructor.courses-tasks');
     }
-    
+
     public function store()
     {
         $this->validate([
@@ -44,10 +44,10 @@ class CoursesTasks extends Component
         $this->reset('title');
         $this->reset('description');
         $this->reset('quantity');
-        
+
         $this->course = Course::find($this->course->id);
         event(new NewTask($this->course));
-        session()->flash('createTask','La tarea se creó con exito');
+        session()->flash('createTask', 'La tarea se creó con exito');
         $this->emit('alert_remove');
     }
 
@@ -72,7 +72,7 @@ class CoursesTasks extends Component
 
         $this->course = Course::find($this->course->id);
         event(new NewTask($this->course));
-        session()->flash('createTask','La tarea se creó con exito');
+        session()->flash('createTask', 'La tarea se creó con exito');
         $this->emit('alert_remove');
     }
 
@@ -82,22 +82,36 @@ class CoursesTasks extends Component
         $this->task = Task::find($id);
     }
 
+    public function restored($id)
+    {
+        $this->task = Task::onlyTrashed()->find($id);
+        $this->task->restore();
+        $this->course = Course::find($this->course->id);
+        session()->flash('destroyTask', 'La tarea se restauro con exito');
+        $this->emit('alert_remove');
+    }
     public function update()
     {
         $this->validate();
         $this->task->save();
         $this->task = new Task();
         $this->course = Course::find($this->course->id);
-        session()->flash('updateTask','La tarea se actualizo');
+        session()->flash('updateTask', 'La tarea se actualizo');
         $this->emit('alert_remove');
     }
 
     public function destroy($id)
     {
         $task = Task::find($id);
-        $task->delete();
+
+        if ($task->task_user_count > 0) {
+            $task->delete();
+        } else {
+            $task->forceDelete();
+        }
+
         $this->course = Course::find($this->course->id);
-        session()->flash('destroyTask','La tarea se elimino con exito');
+        session()->flash('destroyTask', 'La tarea se elimino con exito');
         $this->emit('alert_remove');
     }
 

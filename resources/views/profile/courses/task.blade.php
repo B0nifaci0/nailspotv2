@@ -44,48 +44,46 @@
     </div>
 
     <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
-    <h1 class="mt-2 mb-2 text-xl font-bold ">Descripción tarea: <span class="font-semibold">{{$task->description }}</span></h1>
-    <h1 class="mt-2 mb-2 text-xl font-bold">Imagenes requeridas: <span class="font-semibold">{{$task->quantity}}</span></h1>
+    <h1 class="mt-2 mb-2 text-xl font-bold ">Descripción tarea: <span
+            class="font-semibold">{{$task->description }}</span></h1>
+    <h1 class="mt-2 mb-2 text-xl font-bold">
+        @if ($taskUser)
+        <p class="mt-2 mb-2 ">Has entregado {{$taskUser->images_count}} imagen(es) de {{$task->quantity}} imagen(es)
+            requerida(s).
+        </p>
+        @endif
+    </h1>
     <p class="font-bold"><i class="fas fa-exclamation-circle"></i> Nota: Las imagenes a entregar deben de ser tomadas
         desde los siguientes angulos (Derecho, Izquierdo, Perfil)</p>
-    @if ($taskUser)
-        @if ($taskUser->images_count < $task->quantity)
-            <p class="mt-2 mb-2 ">Has subido {{$taskUser->images_count}} imagenes de {{$task->quantity}} requeridas.</p>
-        @else
-            <p class="mt-2 mb-2 ">Has subido {{$taskUser->images_count}} imagenes de {{$task->quantity}} requeridas.</p>
-        
-        @endif    
-    @endif
     <div class="imge-content">
-    @if($taskUser)
-    <div x-data="{}" class="px-2 mt-8 mb-8 ">
-        <div class="flex -mx-2">
-            @foreach ($taskUser->images as $image)
-            <div class="w-2/6 px-2 ">
-                <div class="">
-                    <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
-                        class="cursor-pointer">
-                        <img alt="Placeholder" class="w-full object-fit rounded-xl"
-                            src="{{Storage::url($image->url)}}">
-                    </a>
+        @if($taskUser)
+        <div x-data="{}" class="px-2 mt-8 mb-8 ">
+            <div class="flex -mx-2">
+                @foreach ($taskUser->images as $image)
+                <div class="w-2/6 px-2 ">
+                    <div class="">
+                        <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
+                            class="cursor-pointer">
+                            <img alt="Placeholder" class="w-full object-fit rounded-xl"
+                                src="{{Storage::url($image->url)}}">
+                        </a>
+                    </div>
                 </div>
+                @endforeach
             </div>
-    @endforeach
+        </div>
+        @else
+        <p>Selecciona una imagen</p>
+        @endif
+
+        <div class="w-2/6 px-2 ">
+            <img id="picture" class="w-full object-fit rounded-xl">
         </div>
     </div>
-    @else
-    <p>Selecciona una imagen</p>
-    @endif
-
-    <div class="w-2/6 px-2 ">
-        <img id="picture" class="w-full object-fit rounded-xl">  
-    </div>
-</div>
-        @if ($taskUser)
-        @if ($taskUser->images_count < $task->quantity)
+    @if ($taskUser)
+    @if ($taskUser->images_count < $task->quantity)
         <form action="{{ route('profile.courses.image', $task) }}" method="post" enctype="multipart/form-data">
             @csrf
-            <!--<input type="file" name="image" id="fileToUpload">-->
             <div class="flex items-center justify-center w-full bg-grey-lighter">
                 <label
                     class="flex flex-col items-center w-64 px-4 py-6 mt-8 mb-8 tracking-wide uppercase bg-white border border-purple-800 rounded-lg shadow-lg cursor-pointer text-blue hover:bg-purple-700 hover:text-white ">
@@ -114,7 +112,8 @@
                             d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                     </svg>
                     <span class="mt-2 text-base leading-normal">Selecciona un archivo</span>
-                    <input type='file' required class="hidden" name="image" id="fileToUpload" accept="image/png, image/jpeg, image/bmp, image/jpg"/>
+                    <input type='file' required class="hidden" name="image" id="fileToUpload"
+                        accept="image/png, image/jpeg, image/bmp, image/jpg" />
                 </label>
             </div>
             <button
@@ -122,7 +121,7 @@
                 type="submit">Enviar</button>
         </form>
         @endif
-        
+
         @if ($taskUser)
         Calificación: {{$taskUser->score}}
         <div>
