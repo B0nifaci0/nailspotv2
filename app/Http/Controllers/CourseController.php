@@ -17,12 +17,13 @@ class CourseController extends Controller
 
     public function show(Request $request, Course $course)
     {
+        $courseImage=$this->getS3URL('courses', $course->id);
         $data = array(
             '@context' => 'http://schema.org/',
             '@type' => 'Course',
             'name' => $course->name,
             'description' => strip_tags($course->description),
-            'image' => $course->getThumbnailVideo(),
+            'image' => $courseImage,
             'provider' => array(
                 '@type' => 'Organization',
                 'name' => 'Nailspot',
@@ -71,7 +72,7 @@ class CourseController extends Controller
             }
         }
         
-        return view('courses.show', compact('course', 'similares', 'data', 'dataVideo'));
+        return view('courses.show', compact('course', 'similares', 'data', 'dataVideo', 'courseImage'));
     }
 
     #cursos gratuitos
