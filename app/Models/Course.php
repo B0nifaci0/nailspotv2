@@ -67,6 +67,14 @@ class Course extends Model
     {
         return "slug";
     }
+    public function getThumbnailVideo(){
+        $videoURL = $this->url;
+        $urlArr = explode("/",$videoURL);
+        $urlArrNum = count($urlArr);
+        $youtubeVideoId = $urlArr[$urlArrNum - 1];
+        $thumbURL = 'http://img.youtube.com/vi/'.$youtubeVideoId.'/0.jpg';
+        return $thumbURL;   
+    }
 
     public function reviews()
     {

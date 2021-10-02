@@ -22,7 +22,7 @@ class CourseController extends Controller
             '@type' => 'Course',
             'name' => $course->name,
             'description' => strip_tags($course->description),
-            'image' => $request->root() . '/storage/' . $course->image->url,
+            'image' => $course->getThumbnailVideo(),
             'provider' => array(
                 '@type' => 'Organization',
                 'name' => 'Nailspot',
@@ -52,9 +52,9 @@ class CourseController extends Controller
             'name' => $course->name,
             'description' => strip_tags($course->description),
             'uploadDate' => $course->updated_at,
-            'thumbnailUrl' => $request->root() . '/storage/' . $course->image->url,
+            'thumbnailUrl' => $course->getThumbnailVideo(),
             'contentUrl' => $course->url,
-            'embedUrl' => $course->url
+            'embedUrl' => $course->iframe
         );
         $dataVideo = str_replace('\\', '', json_encode($dataVideo, JSON_PRETTY_PRINT));
         $this->authorize('published', $course);

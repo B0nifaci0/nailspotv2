@@ -12,7 +12,7 @@
     <meta property="og:title" content="{{$course->seo->title}}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{Request::url()}}" />
-    <meta property="og:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
+    <meta property="og:image" content="{{$course->getThumbnailVideo()}}" />
     <meta property="og:site_name" content="{{Request::url()}}" />
 
     <meta name="twitter:card" value="summary__large_image" />
@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="{{$course->seo->title}}" />
     <meta name="twitter:description" content="{{$course->seo->seodescription}}" />
     <meta name="twitter:creator" content="@Nailspot3" />
-    <meta name="twitter:image" content="{{Request::root().'/storage/'.$course->image->url}}" />
+    <meta name="twitter:image" content="{{$course->getThumbnailVideo()}}" />
     <meta name="twitter:domain" content="{{Request::url()}}" />
 
     <meta property="og:site_name" content="Nailspot" />
