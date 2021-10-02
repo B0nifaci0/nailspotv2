@@ -67,13 +67,19 @@ class Course extends Model
     {
         return "slug";
     }
-    public function getThumbnailVideo(){
-        $videoURL = $this->url;
-        $urlArr = explode("/",$videoURL);
-        $urlArrNum = count($urlArr);
-        $youtubeVideoId = $urlArr[$urlArrNum - 1];
-        $thumbURL = 'http://img.youtube.com/vi/'.$youtubeVideoId.'/0.jpg';
-        return $thumbURL;   
+    public function getVideoThumbnail(){
+        $video=$this->url;
+        if($this->platform_id==1){
+            $urlArr = explode("/",$video);
+            $urlArrNum = count($urlArr);
+            $youtubeVideoId = $urlArr[$urlArrNum - 1];
+            $thumbURL = 'http://img.youtube.com/vi/'.$youtubeVideoId.'/0.jpg';
+            return $thumbURL;   
+        }if($this->platform_id==2){ 
+            $url = substr(parse_url($video, PHP_URL_PATH), 1);
+            $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$url.php"));
+            return $hash[0]['thumbnail_large'];  
+        }
     }
 
     public function reviews()

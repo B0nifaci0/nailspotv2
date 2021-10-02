@@ -53,7 +53,7 @@ class CourseController extends Controller
             'name' => $course->name,
             'description' => strip_tags($course->description),
             'uploadDate' => $course->updated_at,
-            'thumbnailUrl' => $course->getThumbnailVideo(),
+            'thumbnailUrl' => $course->getVideoThumbnail(),
             'contentUrl' => $course->url,
             'embedUrl' => $course->iframe
         );
