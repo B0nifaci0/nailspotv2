@@ -15,13 +15,13 @@
         @endif
         @forelse ($notifications as $notification)
         <div class="border bg-gray-50 hover:bg-gray-100 p-1">
-            <a href="{{json_decode($notification->data)->action_url}}" wire:click="destroy('{{$notification->id}}')" class="flex flex-1  items-center">
+            <a href="{{json_decode($notification->data)->action_url}}" wire:click="destroy('{{$notification->id}}')" class="flex flex-1  items-center justify-between">
                 <img src="{{json_decode($notification->data)->icon}}" alt="" class="inline-block rounded-full w-10">
                 <p class="font-extrabold inline-block text-xs md:text-md p-2">{{json_decode($notification->data)->body}}</p>
                 @if(date('Y-m-d')==date('Y-m-d', strtotime($notification->created_at)))
-                    <sup>{{date('H:i',strtotime($notification->created_at))}}</sup>
+                    <sup class="text-right">{{date('H:i',strtotime($notification->created_at))}}</sup>
                 @else
-                    <sup class="w-36 md:w-20 px-0">{{date('d-M',strtotime($notification->created_at))}}</sup>
+                    <sup class="w-36 md:w-20 px-0 text-right">{{date('d-M',strtotime($notification->created_at))}}</sup>
                 @endif
             </a>
         </div>

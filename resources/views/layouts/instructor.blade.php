@@ -65,7 +65,7 @@
                             <a href="{{route('instructor.courses.curriculum', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Lecciones del curso</a>
                             <a href="{{route('instructor.courses.goals', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Metas del curso</a>
                             <a href="{{route('instructor.courses.students', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">Estudiantes</a>
-                            <a href="{{route('instructor.courses.comments', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white">
+                            <a href="{{route('instructor.courses.comments', $course)}}" class="block px-4 py-2 text-gray-800 hover:bg-pink-500 hover:text-white" wire:click="like">
                                 Comentarios Admin
                                 @if($course->comments_count>0)
                                     <b class="text-sm md:text-md bg-indigo-800 px-2 rounded-full w-5 text-white">{{$course->comments_count}}</b>

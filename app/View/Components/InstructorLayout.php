@@ -3,10 +3,11 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\Task;
 
 class InstructorLayout extends Component
 {
-    public $course;
+    public $course, $comments;
 
     public function __construct($course)
     {
@@ -22,4 +23,5 @@ class InstructorLayout extends Component
     {
         return view('layouts.instructor');
     }
+
 }

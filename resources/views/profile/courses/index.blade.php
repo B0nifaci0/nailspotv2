@@ -79,7 +79,7 @@
             </tr>
             @empty
             <tr class="px-6 py-4">
-                <td colspan="5">
+                <td colspan="7">
                     <p class="text-center">
                         No se encontraron resultados para tu busqueda.
                     </p>
