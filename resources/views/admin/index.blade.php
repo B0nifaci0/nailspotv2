@@ -89,12 +89,12 @@
 @if ($valorCourse)
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2 col-md-6 bg-white rounded pb-4">
-            <h3 class="text-center pt-4">Cursos más populares</h3>
+        <div class="pb-4 bg-white rounded col-sm-2 col-md-6">
+            <h3 class="pt-4 text-center">Cursos más populares</h3>
             <canvas id="courses-container"></canvas>
         </div>
-        <div class="col-sm-2 col-md-6 bg-white rounded pb-4">
-            <h3 class="text-center pt-4">Ventas por mes</h3>
+        <div class="pb-4 bg-white rounded col-sm-2 col-md-6">
+            <h3 class="pt-4 text-center">Ventas por mes</h3>
             <canvas id="sales-container"></canvas>
         </div>
     </div>
@@ -153,7 +153,7 @@
     let months={!!json_encode($date)!!};
     let sales={!!json_encode($sales)!!};
     var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: months,
         datasets: [{

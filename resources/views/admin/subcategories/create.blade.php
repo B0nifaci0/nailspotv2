@@ -7,7 +7,18 @@
 @stop
 
 @section('content')
-
+@if (session('info'))
+<div class="alert alert-danger">
+    {{(session('info'))}}
+</div>
+@endif
+@section('css')
+<style>
+    .tooltip {
+        top: 0;
+    }
+</style>
+@endsection
 <div class="card">
     <div class="card-body">
 
@@ -17,13 +28,17 @@
     </div>
 </div>
 @stop
-
 @section('css')
-<link rel=" stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="/css/admin_custom.css">
 @stop
-
 @section('js')
 <script>
-    console.log('Hi!'); 
+    $(document).ready(function(){
+    $(".alert").delay(3000).slideUp(300);
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 @stop

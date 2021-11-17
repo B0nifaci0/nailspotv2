@@ -26,6 +26,10 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
+        if ($subcategories->count() == 0) {
+            return redirect()->route('admin.subcategories.create')->with('info', 'Debe crear una subcategoria antes de crear una competencia');
+        }
+
         return view('admin.competences.create', compact('levels', 'subcategories'));
     }
 
