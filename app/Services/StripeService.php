@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Competence;
 use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -42,16 +43,30 @@ class StripeService
     public function handlePayment(Request $request)
     {
         $intent = $this->createIntent($request->value);
-        Sale::create([
-            'user_id' => auth()->user()->id,
-            'saleable_id' => $request->course,
-            'saleable_type' => Course::class,
-            'coupon_id' => $request->coupon ? $request->coupon : null,
-            'final_price' => $request->value,
-            'payment_platform_id' => 2,
-            'status' => Sale::PENDING,
-            'stripe_id' => $intent->id
-        ]);
+        
+        if ($request->type == 0) {
+            Sale::create([
+                'user_id' => auth()->user()->id,
+                'saleable_id' => $request->course,
+                'saleable_type' => Course::class,
+                'coupon_id' => $request->coupon ? $request->coupon : null,
+                'final_price' => $request->value,
+                'payment_platform_id' => 2,
+                'status' => Sale::PENDING,
+                'stripe_id' => $intent->id
+            ]);
+        } else {
+            Sale::create([
+                'user_id' => auth()->user()->id,
+                'saleable_id' => $request->competence,
+                'saleable_type' => Competence::class,
+                'coupon_id' => $request->coupon ? $request->coupon : null,
+                'final_price' => $request->value,
+                'payment_platform_id' => 2,
+                'status' => Sale::PENDING,
+                'stripe_id' => $intent->id
+            ]);
+        }
 
         return json_encode(array('client_secret' => $intent->client_secret));
     }

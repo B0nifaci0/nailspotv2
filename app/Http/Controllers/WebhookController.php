@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Mail\PaymentApproved;
+use App\Models\Competence;
 use Illuminate\Support\Facades\Mail;
 
 class WebhookController extends Controller
@@ -17,10 +18,16 @@ class WebhookController extends Controller
         $sale->update([
             'status' => Sale::APPROVAL
         ]);
-        $course = Course::find($sale->saleable_id);
-        $course->students()->attach($sale->user_id);
-
-        $mail = new PaymentApproved($sale);
-        Mail::to($sale->user->email)->queue($mail);
+        if ($sale->saleable_type == Course::class) {
+            $course = Course::find($sale->saleable_id);
+            $course->students()->attach($sale->user_id);
+            $mail = new PaymentApproved($sale);
+            Mail::to($sale->user->email)->queue($mail);
+        } elseif ($sale->saleable_type == Competence::class) {
+            $competence = Competence::find($sale->saleable_id);
+            $competence->students()->attach($sale->user_id);
+            // $mail = new PaymentApproved($sale);
+            // Mail::to($sale->user->email)->queue($mail);
+        }
     }
 }

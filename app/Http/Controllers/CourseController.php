@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\Course;
 use Illuminate\Http\Request;
-use Laravel\Jetstream\Rules\Role;
 
 class CourseController extends Controller
 {

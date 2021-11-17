@@ -66,13 +66,19 @@
                     {{$sale->created_at->format('j F, Y')}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{($sale->payment_platform_id==1 ? 'PayPal' : 'OXXO')}}
+                    @if ($sale->payment_platform_id==1)
+                    paypal
+                    @elseif ($sale->payment_platform_id==2)
+                    OXXO
+                    @else
+                    Gratis
+                    @endif
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     {{($sale->status==0 ? 'Pendiente' : 'Aprobado')}}
                 </td>
-                <td class="pr-8 py-4 text-sm font-medium text-right whitespace-nowrap">
-                    <button class="px-2 py-2 w-3/5 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                <td class="py-4 pr-8 text-sm font-medium text-right whitespace-nowrap">
+                    <button class="w-3/5 px-2 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                         <a href="{{route('profile.courses.tasks',$sale->saleable)}}" class="text-white">Tareas</a>
                     </button>
                 </td>

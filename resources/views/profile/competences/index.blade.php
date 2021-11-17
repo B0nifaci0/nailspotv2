@@ -1,64 +1,91 @@
 <x-profile-layout>
-<h1 class="text-gray-900 text-center text-bold text-2xl">Competencias Adquiridas</h1>
+    <h1 class="text-2xl text-center text-gray-900 text-bold">Competencias Adquiridos</h1>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
             <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Competencia
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Descripcion
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Precio
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Comprado
                 </th>
-                <th></th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Metodo
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Estatus
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">
+                    Tareas
+                </th>
+
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @forelse ($competences as $competence)
+            @forelse ($competencesAdquiried as $sale)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
-                        @isset($competence->image)
-                        <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="{{Storage::url($competence->image->url)}}" alt="">
+                        @isset($sale->saleable->image)
+                        <div class="flex-shrink-0 w-10 h-10">
+                            <img class="w-10 h-10 rounded-full" src="{{$sale->saleable->image->url}}" alt="">
                         </div>
                         @else
-                        <img class="h-10 w-10 rounded-full"
+                        <img class="w-10 h-10 rounded-full"
                             src="https://brandominus.com/wp-content/uploads/2015/07/130830051724675381.jpg" alt="">
                         @endisset
                         <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900">
-                                <a href="{{route('competence.status',$competence)}}">
-                                    {{$competence->name}}</a>
-
+                                @if ($sale->status==1)
+                                <a href="{{route('competence.status',$sale->saleable)}}">
+                                    {{$sale->saleable->name}}</a>
+                                @else
+                                {{$sale->saleable->name}}
+                                @endif
                             </div>
                             <div class="text-sm text-gray-500">
-                                {{$competence->subcategory->name}}
+                                {{$sale->saleable->subcategory->name}}
                             </div>
                         </div>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">{!!$competence->description!!}</div>
+                    <div class="text-sm text-gray-900">{!!$sale->saleable->description!!}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">$ {{$competence->sales->first()->final_price}}</div>
+                    <div class="text-sm text-gray-900">$ {{$sale->final_price}}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{$competence->sales->first()->created_at->format('d-m-Y')}}
+                    {{$sale->created_at->format('j F, Y')}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="{{ route('profile.resources', $competence) }}"> <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">Entregable</button> </a>
+                    @if ($sale->payment_platform_id==1)
+                    paypal
+                    @elseif ($sale->payment_platform_id==2)
+                    OXXO
+                    @else
+                    Gratis
+                    @endif
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    {{($sale->status==0 ? 'Pendiente' : 'Aprobado')}}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('profile.resources', $sale->saleable) }}"> <button
+                            class="px-4 py-2 font-bold text-white bg-pink-500 rounded hover:bg-pink-600">Entregable</button>
+                    </a>
                 </td>
             </tr>
             @empty
             <tr class="px-6 py-4">
-                <td colspan="5">
+                <td colspan="7">
                     <p class="text-center">
                         No se encontraron resultados para tu busqueda.
                     </p>
@@ -69,6 +96,6 @@
     </table>
 
     <div class="px-6 py-4">
-        {{$competences->links()}}
+        {{$competencesAdquiried->links()}}
     </div>
 </x-profile-layout>

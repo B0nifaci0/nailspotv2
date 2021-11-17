@@ -54,22 +54,21 @@ class ProfileController extends Controller
 
     public function competences()
     {
-        $competences = Competence::whereHas('sales', function ($query) {
-            $user = auth()->user();
-            return $query->where('user_id', $user->id);
-        })->with(
-            'sales',
-            function ($query) {
-                $user = auth()->user();
-                return $query->where('user_id', $user->id);
-            }
-        )->paginate(8);
+        $user = auth()->user();
+        $competencesAdquiried = Sale::whereUserId($user->id)->whereSaleableType(Competence::class)->with('saleable')->paginate(8);
 
-        return view('profile.competences.index', compact('competences'));
+        foreach ($competencesAdquiried as $sale) {
+            if ($sale->saleable->image) {
+                $sale->saleable->image->url = $this->getS3URL('competences', $sale->saleable->id);
+            }
+        }
+
+        return view('profile.competences.index', compact('competencesAdquiried'));
     }
 
     public function tasks(Course $course)
     {
+        $this->authorize('enrolled', $course);
         $tasks = $course->tasks;
         $user = auth()->user()->id;
         return view('profile.courses.tasks', compact('tasks', 'course'));
@@ -89,10 +88,11 @@ class ProfileController extends Controller
 
     public function resources(Competence $competence)
     {
+
+        $this->authorize('enrolled', $competence);
         $resource = CompetenceUser::whereCompetenceId($competence->id)
             ->firstWhere('user_id', auth()->user()->id);
 
-        return $resource;
         return view('profile.competences.resources', compact('resource'));
     }
 

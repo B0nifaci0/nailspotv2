@@ -4,11 +4,11 @@ namespace App\Http\Livewire;
 
 use App\Models\Sale;
 use App\Models\Coupon;
-use Livewire\Component;
 use App\Models\Competence;
+use App\Http\Livewire\Componet;
 use App\Models\PaymentPlatform;
 
-class CheckoutCompetence extends Component
+class CheckoutCompetence extends Componet
 {
     public $competence, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent, $competenceId;
 
@@ -29,6 +29,11 @@ class CheckoutCompetence extends Component
         } else {
             $this->current = null;
         }
+
+         if ($this->competence->image) {
+            $this->competence->image->url = $this->getS3URL('competences', $this->competence->id);
+        }
+        
         return view('livewire.checkout-competence');
     }
 
