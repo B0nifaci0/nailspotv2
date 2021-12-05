@@ -1,7 +1,7 @@
 <div class="relative w-full p-4 pt-12 bg-purple-800 lg:max lg:flex">
     <div class="flex flex-col w-full mx-auto sm:w-1/2 md:w-2/3">
         <section class="bg-indigo-800 rounded-xl">
-            <div class="flex flex-col flex-1 p-4" style="">
+            <div class="flex flex-col flex-1 p-4">
                 <h1 class="text-3xl text-center text-white front-bold">Antes de comprar</h1>
                 <br>
                 <table class="text-sm lg:text-base" cellspacing="0">
@@ -137,7 +137,7 @@
                                     <input name='value' type="text" wire:model='total' class='hidden'>
                                     <input name='coupon' type="text" wire:model='couponId' class='hidden'>
                                     <input name='competence' type="text" wire:model='competenceId' class='hidden'>
-                                    <input name='type' type="text" value="0" class='hidden'>
+                                    <input name='type' type="text" value="1" class='hidden'>
                                     <input type="text" name="payment_platform" value="1" class='hidden'>
                                     <div>
                                         <button

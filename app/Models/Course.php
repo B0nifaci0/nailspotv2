@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Goal;
 use App\Models\Task;
 use App\Models\User;
-use App\Models\Sale; 
+use App\Models\Sale;
 use App\Models\Image;
 use App\Models\Level;
 use App\Models\Lesson;
@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
-
     const BORRADOR = 1;
     const REVISION = 2;
     const PUBLICADO = 3;
@@ -28,26 +27,38 @@ class Course extends Model
     use HasFactory;
     use SeoModel;
 
-    protected $appends=['seo'];
+    protected $appends = ["seo"];
 
-    protected $guarded = ['id', 'status'];
-    protected $withCount = ['students', 'reviews', 'sales', 'tasks', 'lessons', 'requirements', 'goals', 'comments'];
+    protected $guarded = ["id", "status"];
+    protected $withCount = [
+        "students",
+        "reviews",
+        "sales",
+        "tasks",
+        "lessons",
+        "requirements",
+        "goals",
+        "comments",
+    ];
+
     public function getRatingAttribute()
     {
         if ($this->reviews_count) {
-            return round($this->reviews->avg('rating'), 1);
+            return round($this->reviews->avg("rating"), 1);
         }
         return 6;
     }
 
     public function getTotalAttribute()
     {
-        return $this->sales->sum('final_price');
+        return $this->sales->sum("final_price");
     }
 
     public function getFinalAttribute()
     {
-        return $this->tasks()->where('final', 1)->count();
+        return $this->tasks()
+            ->where("final", 1)
+            ->count();
     }
 
     public function scopeCategory($query, $category_id)
@@ -63,22 +74,29 @@ class Course extends Model
             return $query->whereLevelId($level_id);
         }
     }
+
     public function getRouteKeyName()
     {
         return "slug";
     }
-    public function getVideoThumbnail(){
-        $video=$this->url;
-        if($this->platform_id==1){
-            $urlArr = explode("/",$video);
+
+    public function getVideoThumbnail()
+    {
+        $video = $this->url;
+        if ($this->platform_id == 1) {
+            $urlArr = explode("/", $video);
             $urlArrNum = count($urlArr);
             $youtubeVideoId = $urlArr[$urlArrNum - 1];
-            $thumbURL = 'http://img.youtube.com/vi/'.$youtubeVideoId.'/0.jpg';
-            return $thumbURL;   
-        }if($this->platform_id==2){ 
+            $thumbURL =
+                "http://img.youtube.com/vi/" . $youtubeVideoId . "/0.jpg";
+            return $thumbURL;
+        }
+        if ($this->platform_id == 2) {
             $url = substr(parse_url($video, PHP_URL_PATH), 1);
-            $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$url.php"));
-            return $hash[0]['thumbnail_large'];  
+            $hash = unserialize(
+                file_get_contents("http://vimeo.com/api/v2/video/$url.php")
+            );
+            return $hash[0]["thumbnail_large"];
         }
     }
 
@@ -94,7 +112,7 @@ class Course extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, "user_id");
     }
 
     public function students()
@@ -129,29 +147,31 @@ class Course extends Model
 
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphMany(Comment::class, "commentable");
     }
 
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphOne(Image::class, "imageable");
     }
 
     public function sales()
     {
-        return $this->morphMany(Sale::class, 'saleable');
+        return $this->morphMany(Sale::class, "saleable");
     }
 
     public function certificate()
     {
-        return $this->morphOne(Certificate::class, 'certificateable');
+        return $this->morphOne(Certificate::class, "certificateable");
     }
 
     public function platform()
     {
         return $this->belongsTo(Platform::class);
     }
-    public function payment(){
+
+    public function payment()
+    {
         return $this->belongsTo(PaymentPlatform::class);
     }
 }

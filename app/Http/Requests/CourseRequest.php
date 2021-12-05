@@ -24,17 +24,18 @@ class CourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required',
-            'slug' => 'required',
-            'level_id' => 'required',
-            'category_id' => 'required',
-            'user_id' => 'required',
-            'price' => 'required',
-            'title' => 'required',
-            'seodescription' => 'required',
-            'keywords' => 'required',
-            'image' => 'required|image|dimensions:max_width=1280,max_height=900'
+            "name" => "required",
+            "description" => "required",
+            "slug" => "required",
+            "level_id" => "required",
+            "category_id" => "required",
+            "user_id" => "required",
+            "price" => "required",
+            "title" => "required",
+            "seodescription" => "required",
+            "keywords" => "required",
+            "image" =>
+                "required|image|dimensions:max_width=1280,max_height=900",
         ];
     }
 }

@@ -13,10 +13,18 @@ class CreateCourseUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_user', function (Blueprint $table) {
+        Schema::create("course_user", function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('course_id')->references('id')->on('courses')->cascadeOnDelete();
+            $table
+                ->foreignId("user_id")
+                ->references("id")
+                ->on("users")
+                ->cascadeOnDelete();
+            $table
+                ->foreignId("course_id")
+                ->references("id")
+                ->on("courses")
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +36,6 @@ class CreateCourseUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_user');
+        Schema::dropIfExists("course_user");
     }
 }
