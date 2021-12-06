@@ -41,10 +41,12 @@ class CompetenceController extends Controller
 
         $competence = Competence::create($request->all());
 
-        if ($request->hasfile('image')) {
-            $url = Storage::disk('public')->put('competences', $request->file('image'));
+        if ($request->hasFile("image")) {
+            $image = file_get_contents($request->file("image")->path());
+            $base64Image = base64_encode($image);
+            $url = $this->saveImages($base64Image, "competences", $competence->id);
             $competence->image()->create([
-                'url' => $url
+                "url" => $url,
             ]);
         }
 
@@ -62,6 +64,11 @@ class CompetenceController extends Controller
     {
         $levels = Level::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
+
+        if ($competence->image) {
+            $competence->image->url = $this->getS3URL("courses", $competence->id);
+        }
+
         return view('admin.competences.edit', compact('levels', 'subcategories', 'competence'));
     }
 
@@ -73,18 +80,14 @@ class CompetenceController extends Controller
 
         $competence->update($request->all());
 
-        if ($request->hasfile('image')) {
-            $url = Storage::disk('public')->put('competences', $request->file('image'));
-            if ($competence->image) {
-                Storage::delete($competence->image->url);
-                $competence->image()->update([
-                    'url' => $url
-                ]);
-            } else {
-                $competence->image()->create([
-                    'url' => $url
-                ]);
-            }
+        if ($request->hasFile("image")) {
+            $image = file_get_contents($request->file("image")->path());
+            $base64Image = base64_encode($image);
+            $competence->image->url = $this->saveImages(
+                $base64Image,
+                "competences",
+                $competence->id
+            );
         }
 
         if ($request->hasfile('pdf')) {
@@ -114,6 +117,14 @@ class CompetenceController extends Controller
     {
         $criteria = Criterion::pluck('name', 'id');
         $judges = User::role('Juez')->pluck('name', 'id');
+
+        if ($criteria->count() == 0) {
+            return redirect()->route('admin.criteria.create')->with('info', 'Debe crear criterios antes de poderlos asignar a una competencia');
+        }
+
+        if ($judges->count() == 0) {
+            return redirect()->route('admin.users.index')->with('info', 'Debe asignar el rol de juez al menos a un usuario para poderlo asignar a una competencia');
+        }
 
         $competence_criteria = CompetenceCriterionUser::whereCompetenceId($competence->id)->get();
 

@@ -3,18 +3,20 @@
 namespace App\Models;
 
 use App\Models\Goal;
+use App\Models\Sale;
 use App\Models\Task;
 use App\Models\User;
-use App\Models\Sale;
 use App\Models\Image;
 use App\Models\Level;
 use App\Models\Lesson;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Category;
+use App\Models\Platform;
 use App\Traits\SeoModel;
 use App\Models\Certificate;
 use App\Models\Requirement;
+use App\Models\PaymentPlatform;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -129,12 +131,6 @@ class Course extends Model
     {
         return $this->belongsTo(Level::class);
     }
-
-    public function requirements()
-    {
-        return $this->hasMany(Requirement::class);
-    }
-
     public function goals()
     {
         return $this->hasMany(Goal::class);
@@ -173,5 +169,10 @@ class Course extends Model
     public function payment()
     {
         return $this->belongsTo(PaymentPlatform::class);
+    }
+
+    public function requirements()
+    {
+        return $this->morphMany(Requirement::class, "requirementable");
     }
 }

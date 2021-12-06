@@ -42,7 +42,7 @@ class PaymentController extends Controller
         $paymentPlatform = $this->paymentPlatformResolver
             ->resolveService($request->payment_platform);
         session()->put('paymentPlatformId', $request->payment_platform);
-        return $paymentPlatform->handlePayment($request);
+        return $paymentPlatform->handlePayment($request); 
     }
 
     public function approval(Request $request)

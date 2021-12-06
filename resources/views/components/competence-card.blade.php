@@ -1,20 +1,21 @@
 @props(['competence'])
 
-<article class="bg-indigo-800 flex flex-col hover:shadow-xl ">
-    <img class="w-full " src="{{Storage::url($competence->image->url)}}" alt="">
-    <div class="card-body flex-1 flex flex-col text-white">
-        <h1 class="text-2xl mb-2 text-center"> {{$competence->name}}</h1>
+<article class="flex flex-col bg-indigo-800 hover:shadow-xl ">
+    <img class="w-full " src="{{$competence->image->url}}" alt="">
+    <div class="flex flex-col flex-1 text-white card-body">
+        <h1 class="mb-2 text-2xl text-center"> {{$competence->name}}</h1>
         <p class="text-md"> {!!Str::limit($competence->description,50)!!}</p>
-        <p class=" text-sm mb-2 mt-auto">Prof. {{$competence->teacher->name}}</p>
-        <p class=" text-sm mb-2 mt-auto">Inicia {{$competence->start_date}}</p>
+        <p class="mt-auto mb-2 text-sm ">Prof. {{$competence->teacher->name}}</p>
+        <p class="mt-auto mb-2 text-sm ">Inicia {{$competence->start_date}}</p>
         @if ($competence->price==0)
-        <p class="my-2  font-bold"> Gratis</p>
+        <p class="my-2 font-bold"> Gratis</p>
         @else
-        <p class="text-3xl text-center my-2  font-bold"> $ {{$competence->price}} MXN</p>
+        <p class="my-2 text-3xl font-bold text-center"> $ {{$competence->price}} MXN</p>
         @endif
 
-        <a href="{{route('competence.show', $competence)}}" class="my-button
-        bg-gradient-to-r from-purple-400 to-pink-400 rounded text-white text-center text-xl my-2 ">Más información</a>
+        <a href="{{route('competence.show', $competence)}}"
+            class="my-2 text-xl text-center text-white rounded my-button bg-gradient-to-r from-purple-400 to-pink-400 ">Más
+            información</a>
 
     </div>
-</article> 
+</article>

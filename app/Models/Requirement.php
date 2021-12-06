@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -12,8 +11,8 @@ class Requirement extends Model
 
     protected $guarded = ['id'];
 
-    public function course()
+    public function requirementable()
     {
-        return $this->belongsTo(Course::class);
+        return $this->morphTo();
     }
 }

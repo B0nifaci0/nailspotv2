@@ -56,4 +56,4 @@ function changeImage(event) {
     };
 
     reader.readAsDataURL(file);
-}
+}zz

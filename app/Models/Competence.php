@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Level;
 use App\Models\Criterion;
 use App\Models\Certificate;
+use App\Models\Requirement;
 use App\Models\Subcategory;
 use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
@@ -112,4 +113,8 @@ class Competence extends Model
         return $this->morphOne(Certificate::class, 'certificateable');
     }
 
+    public function requirements()
+    {
+        return $this->morphMany(Requirement::class, "requirementable");
+    }
 }

@@ -9,7 +9,7 @@ use App\Models\Competence;
 use App\Models\Subcategory;
 use Livewire\WithPagination;
 
-class CompetencesIndex extends Component
+class CompetencesIndex extends Componet
 {
     use WithPagination;
 
@@ -24,6 +24,12 @@ class CompetencesIndex extends Component
             ->status(Competence::PUBLICADO)
             ->subcategory($this->subcategory_id)
             ->latest('id')->paginate(8);
+
+        foreach ($competences as $competence) {
+            if ($competence->image) {
+                $competence->image->url = $this->getS3URL('competences', $competence->id);
+            }
+        }
         return view('livewire.competences-index', compact('competences', 'subcategories'));
     }
 

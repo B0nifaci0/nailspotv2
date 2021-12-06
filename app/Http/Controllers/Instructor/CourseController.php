@@ -94,7 +94,7 @@ class CourseController extends Controller
 
         if ($course->image) {
             $course->image->url = $this->getS3URL("courses", $course->id);
-        }
+        } 
 
         return view(
             "instructor.courses.edit",

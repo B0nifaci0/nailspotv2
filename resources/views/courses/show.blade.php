@@ -18,7 +18,7 @@
     <meta name="twitter:card" value="summary__large_image" />
     <meta name="twitter:site" content="@Nailspot3" />
     <meta name="twitter:title" content="{{$course->seo->title}}" />
-    <meta name="twitter:description" content="{{$course->seo->seodescription}}"/>
+    <meta name="twitter:description" content="{{$course->seo->seodescription}}" />
     <meta name="twitter:creator" content="@Nailspot3" />
     <meta name="twitter:image" content="{{$courseImage}}" />
     <meta name="twitter:domain" content="{{Request::url()}}" />
@@ -37,7 +37,6 @@
     </script>
     @endsection
     @section('header')
-    <!--COmienza prueba--->
     <div class="relative p-2 pt-10 bg-purple-800 md:flex">
         <div class="sm:w-2/2 md:w-1/3 lg:w-2/4 xl:w-2/5 ">
             <section class="m-4 mt-5 mb-5 card">
@@ -78,14 +77,6 @@
                             </li>
                         </ul>
                         @endif
-                        <!--<div class="flex items-center mb-6 ml-5">
-                        <img class="w-12 h-12 mr-4 rounded-full" src="{{$course->teacher->profile_photo_url}}"
-                        alt="Avatar of Writer">
-                        <div class="text-sm ">
-                        <p class="leading-none ">{{$course->teacher->name}}</p>
-                        <p class="">Publicado: {{$course->created_at->format('d-m-Y')}}</p>
-                        </div>
-                    </div>-->
                     </div>
             </section>
         </div>
@@ -124,7 +115,7 @@
                         <h1 class="text-3xl font-bold text-center text-white">Requisitos</h1>
                         <ul class="list-disc list-inside">
                             @foreach ($course->requirements as $requirement)
-                            <li class="text-base text-white">{{$requirement->name}}</li>
+                            <li class="text-base text-white">{{$requirement->description}}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -176,9 +167,6 @@
             </div>
         </div>
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
-            <!---->
-            <!--</div>
-        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">-->
             <div class="order-2 lg:col-span-2 ">
                 <section class="mb-12 ml-4 mr-4 bg-indigo-800 ">
                     <div class="card-body">
@@ -216,5 +204,4 @@
             </div>
         </div>
     </div>
-    <!---->
 </x-app-layout>

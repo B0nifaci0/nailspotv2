@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CriterionController;
 use App\Http\Controllers\Admin\CompetenceController;
+use App\Http\Controllers\Admin\CompetenceRequirementController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\NosotroController;
 use App\Http\Controllers\ContactController;
@@ -41,6 +42,11 @@ Route::post('{id}/paid', [CourseController::class, 'paid'])->name('course.paid')
 
 Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
 Route::post('competences/assign-judge', [CompetenceController::class, 'assignJudge'])->name('competences.assign-judge');
+
+Route::get('competences/{competence}/requirements', [CompetenceRequirementController::class, 'index'])->name('competences.requirements.index');
+Route::post('competences/new-requirements', [CompetenceRequirementController::class, 'store'])->name('competences.requirements.store');
+Route::delete('competences/requirements/{requirement}', [CompetenceRequirementController::class, 'destroy'])->name('competences.requirements.destroy');
+
 Route::post('{competence}/publish', [CompetenceController::class, 'publish'])->name('publish');
 Route::get('sales/competences', [CompetenceController::class, 'sales'])->name('sales.competences');
 Route::get('sales/competence/{competence}', [CompetenceController::class, 'details'])->name('sales.competences.details');
@@ -49,11 +55,10 @@ Route::get('sales/competence/{competence}', [CompetenceController::class, 'detai
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
 
 Route::get('report/{competence}/score', TableCompetencesController::class)->name('reports.competences.score');
-Route::get('report/{course}/details', [DetailsCourseController::class,'generalReport'])->name('reports.course.details');
-Route::post('report/{course}/details/specifict/', [DetailsCourseController::class,'specificRepot'])->name('reports.course.details.specifict');
+Route::get('report/{course}/details', [DetailsCourseController::class, 'generalReport'])->name('reports.course.details');
+Route::post('report/{course}/details/specifict/', [DetailsCourseController::class, 'specificRepot'])->name('reports.course.details.specifict');
 
 Route::get('mensajes', [ContactController::class, 'indexAdmin'])->name('message.index')->middleware('auth');
 Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'])->name('message.contact.edit')->middleware('auth');
 Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
 Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth');
-

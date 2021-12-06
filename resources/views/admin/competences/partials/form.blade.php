@@ -1,7 +1,7 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', 'Nombre') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
-    <small class="text-danger">{{ $errors->first('name') }}</small> 
+    <small class="text-danger">{{ $errors->first('name') }}</small>
 </div>
 <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
     {!! Form::label('slug', 'Slug') !!}
@@ -59,7 +59,7 @@
 </div>
 <div class="form-group{{ $errors->has('pdf') ? ' has-error' : '' }}">
     {!! Form::label('pdf', 'Certificado') !!}<br>
-    {!! Form::file('pdf', ['class'=> 'form-input  w-full text-gray-700 px-3 py-2 border rounded']) !!}
+    {!! Form::file('pdf', ['class'=> 'form-input w-full text-gray-700 px-3 py-2 border rounded']) !!}
     @isset($competence->certificate)
     <iframe src="{{Storage::url($competence->certificate->url)}}"> </iframe>
     @endisset
@@ -71,7 +71,7 @@
     <small class="text-danger">{{ $errors->first('image') }}</small>
     <figure>
         @isset($competence->image)
-        <img id="file" src="{{Storage::url($competence->image->url)}}" class="img-fluid">
+        <img id="file" src="{{$competence->image->url}}" class="object-cover object-center w-full h-64">
         @endisset
     </figure>
 </div>

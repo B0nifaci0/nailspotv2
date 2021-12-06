@@ -4,26 +4,35 @@
 
 
 @section('content_header')
-<h1 class="text-bold text-center">Lista de Usuarios</h1>
+<h1 class="text-center text-bold">Lista de Usuarios</h1>
 @stop
 
 @section('content')
 @if (session('info'))
-<div class="alert alert-primary">
+<div class="alert alert-info" role="alert">
     {{(session('info'))}}
 </div>
 @endif
-@livewire('admin.users-index')
-@stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+<style>
+    .tooltip {
+        top: 0;
+    }
+</style>
+@endsection
+
+@livewire('admin.users-index')
 @stop
 
 @section('js')
 <script>
     $(document).ready(function(){
     $(".alert").delay(3000).slideUp(300);
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 @stop

@@ -15,8 +15,8 @@ class CreateRequirementsTable extends Migration
     {
         Schema::create('requirements', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('course_id')->references('id')->on('courses')->cascadeOnDelete();
+            $table->string('description');
+            $table->morphs('requirementable');
             $table->timestamps();
         });
     }

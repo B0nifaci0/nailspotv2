@@ -4,7 +4,7 @@
         {{session('info')}}
     </div>
     @endif
-    <div class="bg-purple-800  py-8">
+    <div class="py-8 bg-purple-800">
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -13,14 +13,15 @@
                     {!! Form::open(['method' => 'POST', 'route' => 'instructor.courses.store', 'files'=>true]) !!}
                     @include('instructor.courses.partials.form')
                     <div class="flex justify-end">
-                        {!! Form::submit('Crear Curso', ['class' => 'cursor-pointer block text-center bg-pink-500 hover:bg-pink-600 text-white font-bold py-2
+                        {!! Form::submit('Crear Curso', ['class' => 'cursor-pointer block text-center bg-pink-500
+                        hover:bg-pink-600 text-white font-bold py-2
                         px-4
                         rounded mt-10']) !!}
                     </div>
-                        {!! Form::close() !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
-        </div>      
+        </div>
     </div>
     <x-slot name="js">
         <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>

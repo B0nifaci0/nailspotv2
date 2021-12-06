@@ -63,9 +63,12 @@ class PayPalService
         if (session()->has('approvalId')) {
             $approvalId = session()->get('approvalId');
             $payment = $this->capturePayment($approvalId);
-
-            return redirect()
-                ->route('profile.courses');
+            if ($request->type == 0)
+                return redirect()
+                    ->route('profile.courses');
+            if ($request->type == 1)
+                return redirect()
+                    ->route('profile.competences');
         }
 
         return back()

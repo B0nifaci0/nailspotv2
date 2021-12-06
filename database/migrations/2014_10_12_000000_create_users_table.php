@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('level_id')->references('id')->on('levels')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->rememberToken();

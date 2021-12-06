@@ -46,31 +46,6 @@
                         name="password_confirmation" required autocomplete="new-password" />
                 </div>
 
-                {{-- <div x-data="{open: true}">
-                    
-                    <div class="mt-4" x-show="open">
-                        <x-jet-label for="level_id" value="{{ __('Nivel') }}" />
-                <select name="level_id" id='level_id' class='block w-full mt-1'>
-                    @foreach ($levels as $level)
-                    <option value="{{$level->id}}">{{$level->name}}</option>
-                    @endforeach
-                </select>
-                </div>
-
-                <div>
-                    <x-jet-input x-on:click="open = !open" class="isShowing = true" type="checkbox" name='judge' />
-                    Registrarse como Juez
-                </div>
-                </div> --}}
-                <div class="mt-4">
-                    <x-jet-label for="level_id" value="{{ __('Nivel') }}" />
-                    <select name="level_id" id='level_id' class='block w-full mt-1' :value="old('level_id')">
-                        @foreach ($levels as $level)
-                        <option value="{{$level->id}}">{{$level->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">

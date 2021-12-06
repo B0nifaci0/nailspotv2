@@ -10,10 +10,10 @@ use Livewire\WithPagination;
 class CoursesRequirements extends Component
 {
     use WithPagination;
-    public $course, $requirement, $name;
+    public $course, $requirement, $description;
 
     public $rules = [
-        'requirement.name' => 'required'
+        'requirement.description' => 'required'
     ];
 
     public function mount(Course $course)
@@ -24,21 +24,25 @@ class CoursesRequirements extends Component
 
     public function render()
     {
-        return view('livewire.instructor.courses-requirements',[
-            'requirements'=>Requirement::where('course_id',$this->course->id)->paginate(4),
+        $requirements = $this->course->requirements()->paginate(10);
+        return view('livewire.instructor.courses-requirements', [
+            'requirements' => $requirements,
         ]);
     }
 
     public function store()
     {
         $this->validate([
-            'name' => 'required'
+            'description' => 'required'
         ]);
 
         $this->course->requirements()->create([
-            'name' => $this->name,
+            'description' => $this->description,
+            'requirementable_type' => Course::class,
+            'requirementable_id' => $this->course->id,
         ]);
-        $this->reset('name');
+
+        $this->reset('description');
         $this->course = Course::find($this->course->id);
     }
 

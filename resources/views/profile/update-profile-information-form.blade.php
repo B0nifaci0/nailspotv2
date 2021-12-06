@@ -59,15 +59,6 @@
             <x-jet-input id="email" type="email" class="block w-full mt-1" readonly />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
-        nivel:
-        @if ($this->user->level_id==1)
-        basico
-        @elseif($this->user->level_id==2)
-        intermedio
-        @else
-        avanzado
-        @endif
-
     </x-slot>
 
     <x-slot name="actions">
