@@ -90,8 +90,16 @@ class ProfileController extends Controller
     {
 
         $this->authorize('enrolled', $competence);
+        
         $resource = CompetenceUser::whereCompetenceId($competence->id)
             ->firstWhere('user_id', auth()->user()->id);
+        $count = 1;
+        foreach ($resource->images as $image) {
+            if ($image) {
+                $image->url = $this->getS3URL("competences/resources", $resource->id . '-' . $count);
+            }
+            $count++;
+        }
 
         return view('profile.competences.resources', compact('resource'));
     }
@@ -99,10 +107,13 @@ class ProfileController extends Controller
 
     public function competenceImage(Request $request, CompetenceUser $resource)
     {
-        if ($request->hasfile('image')) {
-            $url = Storage::disk('public')->put('competences/resources', $request->file('image'));
+
+        if ($request->hasFile("image")) {
+            $image = file_get_contents($request->file("image")->path());
+            $base64Image = base64_encode($image);
+            $url = $this->saveImages($base64Image, "competences/resources", $resource->id . '-' . $resource->images_count + 1);
             $resource->images()->create([
-                'url' => $url
+                "url" => $url,
             ]);
         }
         return back();
@@ -119,10 +130,12 @@ class ProfileController extends Controller
         $taskUser = TaskUser::whereTaskId($task->id)
             ->firstWhere('user_id', $user->id);
 
-        if ($request->hasfile('image')) {
-            $url = Storage::disk('public')->put('course/tasks', $request->file('image'));
-            $taskUser->images()->create([
-                'url' => $url
+        if ($request->hasFile("image")) {
+            $image = file_get_contents($request->file("image")->path());
+            $base64Image = base64_encode($image);
+            $url = $this->saveImages($base64Image, "course/tasks", $task->id);
+            $taskUser->image()->create([
+                "url" => $url,
             ]);
         }
 

@@ -33,7 +33,7 @@
 
     <div class="flex justify-between">
         <h1 class="text-2xl font-bold uppercase">
-            Competencia {{$resource->competence->name}}
+            Competencia {{ $resource->competence->name }}
         </h1>
         <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('profile.competences') }}'>Ver
             todas
@@ -44,63 +44,64 @@
     </div>
 
     <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
-    <p class="font-bold"><i class="fas fa-exclamation-circle"></i> Nota: Las imagenes a entregar deben de ser tomadas desde los siguientes angulos (Derecho, Izquierdo, Perfil)</p>
-    @if ($resource->images_count <3) <form action="{{ route('profile.competences.image', $resource) }}" method="post"
-        enctype="multipart/form-data">
-        @csrf
-        Selecciona una imagen
-        <!--<input type="file" name="image" id="fileToUpload">-->
-        <div class="flex items-center justify-center w-full bg-grey-lighter">
-            <label
-                class="flex flex-col items-center w-64 px-4 py-6 mt-8 mb-8 tracking-wide uppercase bg-white border border-purple-800 rounded-lg shadow-lg cursor-pointer text-blue hover:bg-purple-700 hover:text-white ">
-                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path
-                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                </svg>
-                <span class="mt-2 text-base leading-normal">Selecciona un archivo</span>
-                <input type='file' class="hidden" name="image" id="fileToUpload" />
-            </label>
-        </div>
-        <button
-            class="block w-full px-4 py-2 mt-4 font-semibold text-center text-pink-700 bg-transparent border border-pink-800 rounded hover:bg-pink-500 hover:text-white hover:border-transparent rounded-xl"
-            type="submit">Enviar</button>
+    <p class="font-bold"><i class="fas fa-exclamation-circle"></i> Nota: Las imagenes a entregar deben de ser
+        tomadas desde los siguientes angulos (Derecho, Izquierdo, Perfil)</p>
+    @if ($resource->images_count < 3)
+        <form action="{{ route('profile.competences.image', $resource) }}" method="post"
+            enctype="multipart/form-data">
+            @csrf
+            Selecciona una imagen
+            <div class="flex items-center justify-center w-full bg-grey-lighter">
+                <label
+                    class="flex flex-col items-center w-64 px-4 py-6 mt-8 mb-8 tracking-wide uppercase bg-white border border-purple-800 rounded-lg shadow-lg cursor-pointer text-blue hover:bg-purple-700 hover:text-white ">
+                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                    </svg>
+                    <span class="mt-2 text-base leading-normal">Selecciona un archivo</span>
+                    <input type='file' class="hidden" name="image" id="fileToUpload" />
+                </label>
+            </div>
+            <button
+                class="block w-full px-4 py-2 mt-4 font-semibold text-center text-pink-700 bg-transparent border border-pink-800 rounded hover:bg-pink-500 hover:text-white hover:border-transparent rounded-xl"
+                type="submit">Enviar</button>
         </form>
-        @endif
+    @endif
 
-        <table class="min-w-full divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th>Criterio</th>
-                    <th>Calificacion</th>
-                </tr>
-            </thead>
-        </table>
-        <tbody>
-            @foreach ($resource->scores as $score)
+    <table class="min-w-full divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th>Criterio</th>
+                <th>Calificacion</th>
+            </tr>
+        </thead>
+    </table>
+    <tbody>
+        @foreach ($resource->scores as $score)
             <tr>
                 <td>
-                    {{$score->competenceCriterionUser->criterion->name}}:
+                    {{ $score->competenceCriterionUser->criterion->name }}:
                 </td>
                 <td>
-                    {{$score->value}}
+                    {{ $score->value }}
                 </td>
             </tr>
-            @endforeach
-        </tbody>
-        <div x-data="{}" class="px-2 mt-8 mb-8 ">
-            <div class="flex -mx-2">
-                @foreach ($resource->images as $image)
+        @endforeach
+    </tbody>
+    <div x-data="{}" class="px-2 mt-8 mb-8 ">
+        <div class="flex -mx-2">
+            @foreach ($resource->images as $image)
                 <div class="w-2/6 px-2 ">
                     <div class="">
-                        <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
+                        <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ $image->url }}'})"
                             class="cursor-pointer">
-                            <img alt="Placeholder" class="w-full object-fit rounded-xl"
-                                src="{{Storage::url($image->url)}}">
+                            <img alt="Placeholder" class="w-full object-fit rounded-xl" src="{{ $image->url }}">
                         </a>
                     </div>
                 </div>
-                @endforeach
-            </div>
+            @endforeach
         </div>
+    </div>
 
 </x-profile-layout>

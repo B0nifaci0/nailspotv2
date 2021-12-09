@@ -65,6 +65,7 @@
     @endisset
     <small class="text-danger">{{ $errors->first('pdf') }}</small>
 </div>
+
 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
     {!! Form::label('image', 'Selecciona una imagen') !!}<br>
     {!! Form::file('image', ['class' => 'w-full text-gray-700 px-3 py-2 border rounded']) !!}

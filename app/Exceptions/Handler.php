@@ -2,8 +2,17 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Exception;
 use Throwable;
+use Illuminate\Database\QueryException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -36,5 +45,71 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        $response = $this->handleException($request, $exception);
+
+        return $response;
+    }
+
+    public function handleException($request, Exception $exception)
+    {
+        if ($exception instanceof ValidationException) {
+            return $this->convertValidationExceptionToResponse($exception, $request);
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            $model = strtolower(class_basename($exception->getModel()));
+
+            return response()->json([
+                'error' => "No {$model} found with the specified ID.",
+            ], 404);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $exception);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return back()->with('error', 'You are not authorized to perform this action.');
+        }
+
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->json([
+                'error' => 'The requested URL was not found.',
+            ], 404);
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json([
+                'error' => 'The requested method is not allowed.',
+            ], 405);
+        }
+
+        if ($exception instanceof HttpException) {
+            return response()->json([
+                'error' => $exception->getMessage(),
+            ], $exception->getStatusCode());
+        }
+
+        if ($exception instanceof QueryException) {
+            $errorCode = $exception->errorInfo[1];
+
+            if ($errorCode == 1451) {
+                return response()->json([
+                    'error' => 'Cannot remove this resource permanently. It is related with another resource.',
+                ], 409);
+            }
+        }
+
+        if (config('app.debug')) {
+            return parent::render($request, $exception);
+        }
+
+        return response()->json([
+            'error' => 'Whoops, looks like something went wrong.',
+        ], 500);
     }
 }

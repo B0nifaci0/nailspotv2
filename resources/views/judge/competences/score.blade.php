@@ -35,9 +35,9 @@
     <div class="pt-8 pb-8 bg-purple-800">
         <div class="container bg-white rounded">
             <h1 class="text-2xl font-bold uppercase">
-                Competencia {{$participant->competence->name}} Criterio {{$criterion->name}}
+                Competencia {{ $participant->competence->name }} Criterio {{ $criterion->name }}
             </h1>
-            <a href="{{route('judge.competences.participants', [$participant->competence, $criterion])}}"
+            <a href="{{ route('judge.competences.participants', [$participant->competence, $criterion]) }}"
                 class="float-right text-lg text-indigo-600 hover:text-indigo-900">Regresar </a>
 
             <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
@@ -45,39 +45,40 @@
             <div x-data="{}" class="px-2">
                 <div class="flex -mx-2">
                     @foreach ($participant->images as $image)
-                    <div class="w-2/6 px-2">
-                        <div class="bg-gray-400">
-                            <a @click="$dispatch('img-modal', {  imgModalSrc: '{{Storage::url($image->url)}}'})"
-                                class="cursor-pointer">
-                                <img alt="Placeholder" class="w-full object-fit" src="{{Storage::url($image->url)}}">
-                            </a>
+                        <div class="w-2/6 px-2">
+                            <div class="bg-gray-400">
+                                <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ $image->url }}'})"
+                                    class="cursor-pointer">
+                                    <img alt="Placeholder" class="w-full object-fit" src="{{ $image->url }}">
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
             <form method="POST"
-                action="{{ route('judge.competences.score',['participant' => $participant, $criterion]) }}"
+                action="{{ route('judge.competences.score', ['participant' => $participant, $criterion]) }}"
                 class="pt-5 pb-5">
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     @if ($score)
-                    <div>
-                        <span class="text-xl font-bold text-gray-900">Calificacion: {{$score}}</span>
-                    </div>
+                        <div>
+                            <span class="text-xl font-bold text-gray-900">Calificacion: {{ $score }}</span>
+                        </div>
                     @else
-                    <div>
-                        <label>Calificacion</label>
-                        <select name="score" class="block w-full mt-1 form-input">
-                            @for ($i = 1; $i < 11; $i++) <option>{{$i}}
-                                </option>
+                        <div>
+                            <label>Calificacion</label>
+                            <select name="score" class="block w-full mt-1 form-input">
+                                @for ($i = 1; $i < 11; $i++)
+                                    <option>{{ $i }}
+                                    </option>
                                 @endfor
-                        </select>
-                    </div>
-                    <button type="submit"
-                        class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-600 hover:bg-pink-700 rounded-xl">
-                        Calificar
-                    </button>
+                            </select>
+                        </div>
+                        <button type="submit"
+                            class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-600 hover:bg-pink-700 rounded-xl">
+                            Calificar
+                        </button>
                     @endif
                 </div>
 

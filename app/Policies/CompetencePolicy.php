@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Competence;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Competence;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CompetencePolicy
@@ -23,7 +24,7 @@ class CompetencePolicy
 
     public function published(?User $user, Competence $competence)
     {
-        if ($competence->status == 2) {
+        if ($competence->status == 2 && $competence->end_date >= Carbon::today()) {
             return true;
         }
         return false;

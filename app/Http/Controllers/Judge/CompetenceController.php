@@ -31,12 +31,22 @@ class CompetenceController extends Controller
     public function show(CompetenceUser $participant, Criterion $criterion)
     {
         $score = null;
+
         foreach ($participant->scores as $scoreParticipant) {
             if ($scoreParticipant->competenceCriterionUser->criterion->id == $criterion->id) {
                 $score = $scoreParticipant->value;
                 break;
             }
         }
+        $count = 1;
+
+        foreach ($participant->images as $image) {
+            if ($image) {
+                $image->url = $this->getS3URL("competences/resources", $participant->id . '-' . $count);
+            }
+            $count++;
+        }
+
         return view('judge.competences.score', compact('participant', 'criterion', 'score'));
     }
 

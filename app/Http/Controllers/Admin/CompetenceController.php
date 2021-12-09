@@ -66,7 +66,7 @@ class CompetenceController extends Controller
         $subcategories = Subcategory::pluck('name', 'id');
 
         if ($competence->image) {
-            $competence->image->url = $this->getS3URL("courses", $competence->id);
+            $competence->image->url = $this->getS3URL("competences", $competence->id);
         }
 
         return view('admin.competences.edit', compact('levels', 'subcategories', 'competence'));
