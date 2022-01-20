@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Competence;
-use App\Models\CompetenceUser;
+use App\Models\Subcompetence;
+use App\Models\CompetenceDetail;
 use App\Models\CompetenceCriterionUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,13 +13,13 @@ class Score extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function competenceUser()
+    public function subcompetenceUser()
     {
-        return $this->belongsTo(CompetenceUser::class);
+        return $this->belongsTo(SubcompetenceUser::class);
     }
 
-    public function competenceCriterionUser()
+    public function criterionSubcompetenceUser()
     {
-        return $this->belongsTo(CompetenceCriterionUser::class);
+        return $this->belongsTo(CriterionSubcompetenceUser::class);
     }
 }

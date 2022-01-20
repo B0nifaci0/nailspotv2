@@ -13,9 +13,11 @@ use App\Http\Controllers\Admin\CompetenceController;
 use App\Http\Controllers\Admin\CompetenceRequirementController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\NosotroController;
+use App\Http\Controllers\Admin\SubcompetenceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Report\DetailsCourseController;
 use App\Http\Controllers\Report\TableCompetencesController;
+use App\Models\Subcompetence;
 
 Route::get('', [HomeController::class, 'index'])->middleware('can:Ver dashboard')->name('home');
 
@@ -28,7 +30,7 @@ Route::resource('coupons', CouponController::class)->names('coupons');
 Route::resource('competences', CompetenceController::class)->names('competences');
 Route::resource('criteria', CriterionController::class)->names('criteria');
 Route::resource('nosotros', NosotroController::class)->names('nosotros');
-
+Route::resource('competences/{competence}/{category}/subcompetences', SubcompetenceController::class)->names('subcompetences');
 
 Route::get('sales/courses', [CourseController::class, 'sales'])->name('sales.courses');
 Route::get('sales/course/{course}', [CourseController::class, 'details'])->name('sales.courses.details');
@@ -40,8 +42,8 @@ Route::post('courses/disapproved', [CourseController::class, 'disapproved'])->na
 Route::post('{id}/paid', [CourseController::class, 'paid'])->name('course.paid');
 
 
-Route::get('competences/{competence}/judges', [CompetenceController::class, 'indexCriteria'])->name('competences.index-criteria');
-Route::post('competences/assign-judge', [CompetenceController::class, 'assignJudge'])->name('competences.assign-judge');
+Route::get('competences/{competence}/{category}/{subcompetence}/judges', [SubcompetenceController::class, 'indexCriteria'])->name('subcompetences.index-criteria');
+Route::post('competences/{competence}/{category}/{subcompetence}/assign-judge', [SubcompetenceController::class, 'assignJudge'])->name('subcompetences.assign-judge');
 
 Route::get('competences/{competence}/requirements', [CompetenceRequirementController::class, 'index'])->name('competences.requirements.index');
 Route::post('competences/new-requirements', [CompetenceRequirementController::class, 'store'])->name('competences.requirements.store');
@@ -51,6 +53,8 @@ Route::post('{competence}/publish', [CompetenceController::class, 'publish'])->n
 Route::get('sales/competences', [CompetenceController::class, 'sales'])->name('sales.competences');
 Route::get('sales/competence/{competence}', [CompetenceController::class, 'details'])->name('sales.competences.details');
 
+Route::get('competences/{competence}/categories', [CompetenceController::class, 'indexCategories'])->name('competence.categories.index');
+Route::get('competences/{competence}/categories/{category}', [CompetenceController::class, 'destroyCategory'])->name('competence.categories.delete');
 
 Route::delete('competences/criterion/{id}/delete', [CompetenceController::class, 'destroyCriteria'])->name('competences.criteria.destroy');
 

@@ -95,7 +95,7 @@
                 </div>
             </div>
             @endif
-            <div class="col-span-4 container mt-5">
+            <div class="col-span-4 container mx-auto mt-5">
                 <section class="card ">
                     <main class="card-body  text-gray-500">
                         {{$slot}}

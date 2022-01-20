@@ -24,7 +24,7 @@ class Competence extends Model
     const FINALIZADO = 3;
 
     protected $guarded = ['id'];
-    protected $withCount = ['students', 'criteria'];
+    protected $withCount = ['students', 'criteria', 'categories', 'subcompetences'];
 
     public function getRouteKeyName()
     {
@@ -73,24 +73,9 @@ class Competence extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function subcategory()
-    {
-        return $this->belongsTo(Subcategory::class);
-    }
-
-    public function level()
-    {
-        return $this->belongsTo(Level::class);
-    }
-
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
-    }
-
-    public function sales()
-    {
-        return $this->morphMany(Sale::class, 'saleable');
     }
 
     public function criteria()
@@ -116,5 +101,31 @@ class Competence extends Model
     public function requirements()
     {
         return $this->morphMany(Requirement::class, "requirementable");
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function subcompetences()
+    {
+        return $this->belongsToMany(Subcompetence::class, 'category_competence_subcompetence');
+    }
+    public function categoryCompetenceSubcompetence()
+    {
+        return $this->hasMany(CategoryCompetenceSubcompetence::class);
+    }
+    public function sales()
+    {
+        return $this->morphMany(Sale::class, 'saleable');
+    }
+    public function subcompetencesDetails()
+    {
+        return $this->belongsToMany(Subcompetence::class, 'subcompetence_user');
+    }
+    public function userDetails()
+    {
+        return $this->belongsToMany(User::class, 'subcompetence_user');
     }
 }

@@ -26,6 +26,5 @@ class Notification extends Component
     public function deleteAll($user_id){
         $this->notifications=DB::table('notifications')->where('notifiable_id', $user_id)->delete();
         $this->mount();
-        $this->render();
     }
 }

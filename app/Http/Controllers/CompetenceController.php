@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Competence;
+use App\Models\CompetenceDetail;
 use Illuminate\Http\Request;
 
 class CompetenceController extends Controller
@@ -23,8 +24,14 @@ class CompetenceController extends Controller
 
     public function enrolled(Competence $competence, Request $request)
     {
-        $competence->students()->attach(auth()->user()->id);
-
+        $subcompetences = CompetenceDetail::Where('user_id', auth()->user()->id)
+            ->where('competence_id', $competence->id)
+            ->where('status', "0")
+            ->get();
+        foreach ($subcompetences as $subcompetence) {
+            $subcompetence->status = "1";
+            $subcompetence->save();
+        }
         Sale::create([
             'user_id' => auth()->user()->id,
             'saleable_id' => $competence->id,
@@ -34,6 +41,11 @@ class CompetenceController extends Controller
         ]);
 
         return redirect()->route('competences.index');
+    }
+
+    public function detailsCompetence(Competence $competence)
+    {
+        return view('competences.details', compact('competence'));
     }
 
     public function status(Competence $competence)

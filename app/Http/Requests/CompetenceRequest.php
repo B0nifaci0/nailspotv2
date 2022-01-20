@@ -28,12 +28,11 @@ class CompetenceRequest extends FormRequest
             'description' => 'required',
             'slug' => 'required',
             'url' => ['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'],
-            'level_id' => 'required',
-            'subcategory_id' => 'required',
             'price' => 'required',
             'image' => 'image',
             'start_date' => 'required',
             'end_date' => 'required',
+            'categories' => 'required'
         ];
     }
 }

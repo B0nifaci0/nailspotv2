@@ -152,15 +152,9 @@
                             curso</a>
                         @else
                         <p class="mt-3 mb-2 text-2xl font-bold text-center text-white"> $ {{$course->price}} MXN</p>
-                        <form action="{{ route('payment.checkout') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="type" value="0">
-                            <input type="hidden" name="id" value="{{$course->id}}">
-                            <button type="submit"
-                                class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">Comprar
-                                este
-                                curso</button>
-                        </form>
+                        <a href="{{ route('payment.checkout',["course", $course->id] ) }}"
+                        class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">
+                        Comprar este curso</a>
                         @endcan
                     </div>
                 </section>

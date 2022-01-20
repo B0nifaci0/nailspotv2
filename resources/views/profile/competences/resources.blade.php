@@ -33,7 +33,7 @@
 
     <div class="flex justify-between">
         <h1 class="text-2xl font-bold uppercase">
-            Competencia {{ $resource->competence->name }}
+            Subcompetencia {{ $resource->subcompetence->name }} - {{$resource->level->name}}
         </h1>
         <a class="text-indigo-600 hover:text-indigo-900" href='{{ route('profile.competences') }}'>Ver
             todas
@@ -43,7 +43,11 @@
     <div class="mb-4">
     </div>
 
-    <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
+    <div class="float-right">
+        <p>Fecha limite de entrega</p>
+        <p class="float-right">{{$resource->competence->end_date}}</p>
+    </div>
+    <h2 class="mt-8 mb-2 text-2xl font-bold">Recursos</h2>
     <p class="font-bold"><i class="fas fa-exclamation-circle"></i> Nota: Las imagenes a entregar deben de ser
         tomadas desde los siguientes angulos (Derecho, Izquierdo, Perfil)</p>
     @if ($resource->images_count < 3)
@@ -78,7 +82,7 @@
         </thead>
     </table>
     <tbody>
-        @foreach ($resource->scores as $score)
+       {{-- @foreach ($resource->scores as $score)
             <tr>
                 <td>
                     {{ $score->competenceCriterionUser->criterion->name }}:
@@ -87,7 +91,7 @@
                     {{ $score->value }}
                 </td>
             </tr>
-        @endforeach
+        @endforeach--}}
     </tbody>
     <div x-data="{}" class="px-2 mt-8 mb-8 ">
         <div class="flex -mx-2">

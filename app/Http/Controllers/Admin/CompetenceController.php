@@ -3,34 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Models\Level;
 use App\Models\Criterion;
 use App\Models\Competence;
-use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
+use App\Models\Category;
+use App\Models\CategoryCompetence;
 use App\Models\CompetenceCriterionUser;
 
 class CompetenceController extends Controller
 {
-
     public function index()
     {
-        $competences = Competence::paginate(10);
+        $competences = Competence::with('categories')->paginate(10);
         return view('admin.competences.index', compact('competences'));
     }
 
     public function create()
     {
-        $levels = Level::pluck('name', 'id');
-        $subcategories = Subcategory::pluck('name', 'id');
-        if ($subcategories->count() == 0) {
-            return redirect()->route('admin.subcategories.create')->with('info', 'Debe crear una subcategoria antes de crear una competencia');
+        $categories = Category::all();
+        if ($categories->count() == 0) {
+            return redirect()->route('admin.subcategories.create')->with('info', 'Debe crear una categoria antes de crear una competencia');
         }
-
-        return view('admin.competences.create', compact('levels', 'subcategories'));
+        return view('admin.competences.create', compact('categories'));
     }
 
     public function store(CompetenceRequest $request)
@@ -38,9 +35,8 @@ class CompetenceController extends Controller
         $request->validate([
             'name' => 'required|unique:competences'
         ]);
-
         $competence = Competence::create($request->all());
-
+        $competence->categories()->attach($request->categories);
         if ($request->hasFile("image")) {
             $image = file_get_contents($request->file("image")->path());
             $base64Image = base64_encode($image);
@@ -57,19 +53,24 @@ class CompetenceController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.competences.edit', $competence)->with('info', 'La competencia se creo con exito!');
+        return redirect()->route('admin.competences.index')->with('info', 'La competencia se creo con exito!');
+    }
+
+    public function show(Competence $competence)
+    {
+        if ($competence->image) {
+            $competence->image->url = $this->getS3URL("competences", $competence->id);
+        }
+        return view('admin.competences.show', compact('competence'));
     }
 
     public function edit(Competence $competence)
     {
-        $levels = Level::pluck('name', 'id');
-        $subcategories = Subcategory::pluck('name', 'id');
-
+        $categories = Category::all();
         if ($competence->image) {
             $competence->image->url = $this->getS3URL("competences", $competence->id);
         }
-
-        return view('admin.competences.edit', compact('levels', 'subcategories', 'competence'));
+        return view('admin.competences.edit', compact('competence', 'categories'));
     }
 
     public function update(CompetenceRequest $request, Competence $competence)
@@ -79,7 +80,7 @@ class CompetenceController extends Controller
         ]);
 
         $competence->update($request->all());
-
+        $competence->categories()->sync($request->categories);
         if ($request->hasFile("image")) {
             $image = file_get_contents($request->file("image")->path());
             $base64Image = base64_encode($image);
@@ -104,7 +105,7 @@ class CompetenceController extends Controller
             }
         }
 
-        return redirect()->route('admin.competences.edit', $competence)->with('info', 'La competencia se actualizo con exito!');
+        return redirect()->route('admin.competences.index')->with('info', 'La competencia se actualizo con exito!');
     }
 
     public function destroy(Competence $competence)
@@ -113,53 +114,16 @@ class CompetenceController extends Controller
         return redirect()->route('admin.competences.index')->with('info', 'La competencia se elimino con exito!');
     }
 
-    public function indexCriteria(Competence $competence)
-    {
-        $criteria = Criterion::pluck('name', 'id');
-        $judges = User::role('Juez')->pluck('name', 'id');
-
-        if ($criteria->count() == 0) {
-            return redirect()->route('admin.criteria.create')->with('info', 'Debe crear criterios antes de poderlos asignar a una competencia');
-        }
-
-        if ($judges->count() == 0) {
-            return redirect()->route('admin.users.index')->with('info', 'Debe asignar el rol de juez al menos a un usuario para poderlo asignar a una competencia');
-        }
-
-        $competence_criteria = CompetenceCriterionUser::whereCompetenceId($competence->id)->get();
-
-        return view('admin.competences.criteria.index', compact('competence', 'judges', 'criteria', 'competence_criteria'));
-    }
-
-    public function assignJudge(Request $request)
-    {
-        $data = $this->validate($request, [
-            'user_id' => 'required',
-            'competence_id' => 'required',
-        ]);
-
-
-        $competence = Competence::find($request->competence_id);
-
-        if (CompetenceCriterionUser::exist($request)->first()) {
-            return redirect()->route('admin.competences.index-criteria', $competence)->with('warning', 'El juez ya cuenta con ese criterio asignado!');
-        }
-
-        CompetenceCriterionUser::create($request->all());
-
-        return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido agregado con exito!');
-    }
-
-    public function destroyCriteria($id)
-    {
-        $item = CompetenceCriterionUser::find($id);
-        $competence = Competence::find($item->competence->id);
-        $item->delete();
-        return redirect()->route('admin.competences.index-criteria', $competence)->with('info', 'El criterio ha sido eliminado con exito!');
-    }
-
     public function publish(Competence $competence)
     {
+        $subcompetences =  $competence->subcompetences;
+        dd($subcompetences[0]->criteria);
+        if ($competence->categories_count <= 0) {
+            return back()->with('warning', 'Por favor agrega categorias a la competencia');
+        }
+        if ($competence->subcompetences_count <= 0) {
+            return back()->with('warning', 'Por favor agrega subcompetencias a la competencia');
+        }
         if ($competence->status == Competence::PUBLICADO) {
             $competence->status = Competence::BORRADOR;
         } else {
@@ -177,5 +141,18 @@ class CompetenceController extends Controller
     public function details(Competence $competence)
     {
         return view('admin.competences.details', compact('competence'));
+    }
+
+    public function indexCategories(Competence $competence)
+    {
+        $categories = $competence->categories;
+        return view('admin.competences.categories.index', compact('competence', 'categories'));
+    }
+
+    public function destroyCategory(Competence $competence, $category)
+    {
+        $category = CategoryCompetence::Where('category_id', $category)->Where('competence_id', $competence->id)->first();
+        $category->delete();
+        return back()->with('info', 'La categoría se elimino con exito!');
     }
 }

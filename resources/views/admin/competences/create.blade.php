@@ -6,12 +6,16 @@
 <h1 class="text-center text-bold">Nueva competencia</h1>
 @stop
 @section('content')
-<div class="card">
-    <div class="card-body">
-        {!! Form::open(['method' => 'POST', 'route' => 'admin.competences.store', 'class' => 'form-horizontal',
-        'enctype' => 'multipart/form-data']) !!}
-        @include('admin.competences.partials.form')
-        {!! Form::close() !!}
+<div class="py-8 bg-purple-800">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                 {!! Form::open(['method' => 'POST', 'route' => 'admin.competences.store', 'class' => 'form-horizontal',
+                'enctype' => 'multipart/form-data']) !!}
+                @include('admin.competences.partials.form')
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
 </div>
 @stop

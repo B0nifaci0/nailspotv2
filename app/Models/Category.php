@@ -18,4 +18,14 @@ class Category extends Model
     {
         return $this->hasMany(Course::class);
     }
+
+    public function competences()
+    {
+        return $this->belongsToMany(Competence::class);
+    }
+    
+    public function subcompetences()
+    {
+        return $this->belongsToMany(Subcompetence::class, 'category_competence_subcompetence');
+    }
 }

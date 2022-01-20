@@ -31,7 +31,6 @@ Route::get('lecciones-curso/{course}', CourseStatus::class)->middleware('auth')-
 Route::get('competencias', [CompetenceController::class, 'index'])->name('competences.index');
 Route::get('competencia/{competence}', [CompetenceController::class, 'show'])->name('competence.show');
 Route::get('estatus-competencia/{competence}', [CompetenceController::class, 'status'])->name('competence.status');
-
 Route::post('course/{course}/enrolled', [CourseController::class, 'enrolled'])->middleware('auth')->name('course.enrolled');
 Route::post('competence/{competence}/enrolled', [CompetenceController::class, 'enrolled'])->middleware('auth')->name('competence.enrolled');
 

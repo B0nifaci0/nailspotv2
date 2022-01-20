@@ -12,7 +12,11 @@ use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Models\CompetenceUser;
 use App\Events\UserNotification;
+use App\Http\Livewire\CompetenceDetails;
 use App\Http\Livewire\TasksUser;
+use App\Models\CompetenceDetail;
+use App\Models\Subcompetence;
+use App\Models\SubcompetenceUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\TasksCompleted;
@@ -42,7 +46,6 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $coursesAdquiried = Sale::whereUserId($user->id)->whereSaleableType(Course::class)->with('saleable')->paginate(8);
-
         foreach ($coursesAdquiried as $sale) {
             if ($sale->saleable->image) {
                 $sale->saleable->image->url = $this->getS3URL('courses', $sale->saleable->id);
@@ -55,14 +58,12 @@ class ProfileController extends Controller
     public function competences()
     {
         $user = auth()->user();
-        $competencesAdquiried = Sale::whereUserId($user->id)->whereSaleableType(Competence::class)->with('saleable')->paginate(8);
-
-        foreach ($competencesAdquiried as $sale) {
+        $competencesAdquiried = SubcompetenceUser::Where('user_id', $user->id)->get();
+        /*foreach ($competencesAdquiried as $sale) {
             if ($sale->saleable->image) {
                 $sale->saleable->image->url = $this->getS3URL('competences', $sale->saleable->id);
             }
-        }
-
+        }*/
         return view('profile.competences.index', compact('competencesAdquiried'));
     }
 
@@ -86,28 +87,28 @@ class ProfileController extends Controller
         }
     }
 
-    public function resources(Competence $competence)
+    public function resources(Subcompetence $subcompetence)
     {
+        $competence = $subcompetence->competences()->first();
+        //$this->authorize('enrolled', $competence);
 
-        $this->authorize('enrolled', $competence);
-        
-        $resource = CompetenceUser::whereCompetenceId($competence->id)
+        $resource = SubcompetenceUser::whereSubcompetenceId($subcompetence->id)
+            ->where('status', SubcompetenceUser::APROVED)
             ->firstWhere('user_id', auth()->user()->id);
         $count = 1;
-        foreach ($resource->images as $image) {
+        /*foreach ($resource->images as $image) {
             if ($image) {
                 $image->url = $this->getS3URL("competences/resources", $resource->id . '-' . $count);
             }
             $count++;
-        }
+        }*/
 
         return view('profile.competences.resources', compact('resource'));
     }
 
 
-    public function competenceImage(Request $request, CompetenceUser $resource)
-    {
-
+    public function competenceImage(Request $request, SubcompetenceUser $resource)
+    {   
         if ($request->hasFile("image")) {
             $image = file_get_contents($request->file("image")->path());
             $base64Image = base64_encode($image);
@@ -134,7 +135,7 @@ class ProfileController extends Controller
             $image = file_get_contents($request->file("image")->path());
             $base64Image = base64_encode($image);
             $url = $this->saveImages($base64Image, "course/tasks", $task->id);
-            $taskUser->image()->create([
+            $taskUser->images()->create([
                 "url" => $url,
             ]);
         }

@@ -15,4 +15,14 @@ class Level extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function subcompetence()
+    {
+        return $this->belongsTo(Subcompetence::class);
+    }
+
+    public function competenceDeatils()
+    {
+        return $this->belongsTo(CompetenceDetail::class);
+    }
 }

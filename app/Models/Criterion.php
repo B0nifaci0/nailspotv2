@@ -14,15 +14,14 @@ class Criterion extends Model
 
     protected $guarded = ['id'];
 
-    //competence_criterion_user
 
-    public function competences()
+    public function subcompetences()
     {
-        return $this->belongsToMany(Competence::class, 'competence_criterion_user');
+        return $this->belongsToMany(Subcompetence::class, 'criterion_subcompetence_user');
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'competence_criterion_user');
+        return $this->belongsToMany(User::class, 'criterion_subcompetence_user');
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Judge;
 
 use App\Http\Controllers\Controller;
-use App\Models\Competence;
-use App\Models\CompetenceCriterionUser;
-use App\Models\CompetenceUser;
+use App\Models\Subcompetence;
+use App\Models\CriterionSubcompetenceUser;
+use App\Models\SubcompetenceUser;
 use App\Models\Criterion;
 use App\Models\Score;
 use Illuminate\Http\Request;
@@ -22,18 +22,20 @@ class CompetenceController extends Controller
         return view('judge.competences.index');
     }
 
-    public function participants(Competence $competence, Criterion $criterion)
+    public function participants($subcompetence, $criterion)
     {
-        $participants = CompetenceUser::whereCompetenceId($competence->id)->get();
-        return view('judge.competences.participants', compact('competence', 'participants', 'criterion'));
+        $subcompetence = Subcompetence::findOrfail($subcompetence);
+        $criterion = Criterion::findOrFail($criterion);
+        $participants = SubcompetenceUser::whereCompetenceId($subcompetence->id)->get();
+        return view('judge.competences.participants', compact('subcompetence', 'participants', 'criterion'));
     }
 
-    public function show(CompetenceUser $participant, Criterion $criterion)
+    public function show(SubcompetenceUser $participant, Criterion $criterion)
     {
         $score = null;
 
         foreach ($participant->scores as $scoreParticipant) {
-            if ($scoreParticipant->competenceCriterionUser->criterion->id == $criterion->id) {
+            if ($scoreParticipant->criterionSubcompetenceUser->criterion->id == $criterion->id) {
                 $score = $scoreParticipant->value;
                 break;
             }
@@ -50,14 +52,14 @@ class CompetenceController extends Controller
         return view('judge.competences.score', compact('participant', 'criterion', 'score'));
     }
 
-    public function score(CompetenceUser $participant, Criterion $criterion, Request $request)
+    public function score(SubcompetenceUser $participant, Criterion $criterion, Request $request)
     {
-        $competence_criterion = CompetenceCriterionUser::whereCompetenceId($participant->competence_id)
+        //dd($request, $participant, $criterion);
+        $subcompetence_criterion = CriterionSubcompetenceUser::whereSubcompetenceId($participant->subcompetence_id)
             ->whereCriterionId($criterion->id)->whereUserId(auth()->user()->id)->first();
-
         Score::create([
-            'competence_user_id' => $participant->id,
-            'competence_criterion_user_id' => $competence_criterion->id,
+            'subcompetence_user_id' => $participant->id,
+            'criterion_subcompetence_user_id' => $subcompetence_criterion->id,
             'value' => $request->score
         ]);
 

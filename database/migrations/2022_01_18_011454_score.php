@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScoresTable extends Migration
+class Score extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreateScoresTable extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('competence_user_id')->references('id')->on('competence_user')->cascadeOnDelete();
-            $table->foreignId('competence_criterion_user_id')->references('id')->on('competence_criterion_user')->cascadeOnDelete();
+            $table->foreignId('subcompetence_user_id')->references('id')->on('subcompetence_user')->cascadeOnDelete();
+            $table->foreignId('criterion_subcompetence_user_id')->references('id')->on('criterion_subcompetence_user')->cascadeOnDelete();
             $table->integer('value');
             $table->timestamps();
         });

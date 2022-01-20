@@ -5,7 +5,7 @@
 @section('content_header')
 <button type="button" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#modal-default">
     Asignar Criterio </button>
-<h1 class="text-center text-bold">Asignación de criterios para {{$competence->name}}</h1>
+<h1 class="text-center text-bold">Asignación de criterios para {{$subcompetence->name}}</h1>
 @stop
 
 @section('content')
@@ -24,13 +24,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center text-bold" id="exampleModalLabel">Editar Criterio</h5>
+                <h5 class="modal-title text-center text-bold" id="exampleModalLabel">Asignar Criterio</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div> 
 
-            {!! Form::open(['method' => 'POST', 'route' => 'admin.competences.assign-judge', 'class' =>
+            {!! Form::open(['method' => 'POST', 'route' => ['admin.subcompetences.assign-judge', [$competence,$category, $subcompetence]], 'class' =>
             'form-horizontal']) !!}
 
             <div class="modal-body">
@@ -45,7 +45,7 @@
                     !!}
                     <small class="text-danger">{{ $errors->first('criteria') }}</small>
                 </div>
-                {!! Form::hidden('competence_id', $competence->id) !!}
+                {!! Form::hidden('subcompetence_id', $subcompetence->id) !!}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -60,12 +60,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Competencia</th>
+                    <th>Criterio</th>
                     <th>Juez</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($competence_criteria as $item)
+                @foreach ($criteria_subcompetence as $item)
                 <tr>
                     <td>
                         {{$item->criterion->name}}

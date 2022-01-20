@@ -7,22 +7,36 @@ use App\Models\Coupon;
 use App\Models\Competence;
 use App\Http\Livewire\Componet;
 use App\Models\PaymentPlatform;
+use App\Models\SubcompetenceUser;
+use App\Models\Level;
+use App\Models\Subcompetence;
 
 class CheckoutCompetence extends Componet
 {
+    protected $listeners = ['render'];
     public $competence, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent, $competenceId;
+    public $category, $subcompetences, $level, $saleDetail, $subtotal;
 
     public function mount(Competence $competence)
     {
         $this->competence = $competence;
         $this->competenceId = $competence->id;
-        $this->total = $competence->price;
         $this->platforms = PaymentPlatform::all();
         $this->platformCurrent = new PaymentPlatform();
+        $this->saleDetail = SubcompetenceUser::Where('competence_id', $this->competence->id)
+            ->whereStatus(SubcompetenceUser::TEMPORARY)
+            ->get();
+        $this->total = $this->saleDetail->sum(function ($subcompetence) {
+            return $subcompetence->price;
+        });
+        $this->subtotal = $this->total;
     }
-
     public function render()
     {
+        $this->saleDetail = SubcompetenceUser::Where('competence_id', $this->competence->id)
+        ->whereStatus(SubcompetenceUser::TEMPORARY)
+        ->get();
+        $levels = Level::all();
         $coupon = Coupon::firstWhere('code', $this->search);
         if ($coupon) {
             $this->current = $coupon;
@@ -30,21 +44,21 @@ class CheckoutCompetence extends Componet
             $this->current = null;
         }
 
-         if ($this->competence->image) {
+        if ($this->competence->image) {
             $this->competence->image->url = $this->getS3URL('competences', $this->competence->id);
         }
-        
-        return view('livewire.checkout-competence');
+
+        return view('livewire.checkout-competence', compact('levels'));
     }
 
     public function addCoupon()
     {
-        $this->total = $this->competence->price;
+        $this->total = $this->saleDetail->sum(function ($subcompetence) {
+            return $subcompetence->price;
+        });
         $this->active = $this->current;
-
         if ($this->active) {
             $this->exist = Sale::whereUserId(auth()->user()->id)->whereCouponId($this->active->id)->first();
-
             if ($this->exist) {
                 $this->resetErrorBag();
                 $this->addError('exist', 'Ya usaste este cupón!');
@@ -72,12 +86,38 @@ class CheckoutCompetence extends Componet
 
     public function clearActive()
     {
+        $this->total = $this->saleDetail->sum(function ($subcompetence) {
+            return $subcompetence->price;
+        });
         $this->reset('active');
-        $this->total = $this->competence->price;
     }
 
     public function selectPlatform(PaymentPlatform $platform)
     {
         $this->platformCurrent = $platform;
+    }
+
+    public function searchSubcompetence()
+    {
+        $this->subcompetences = Subcompetence::whereHas('levels', function ($query) {
+            $query->where('level_id', '=', $this->level);
+        })->whereHas('categories', function ($query) {
+            $query->where('category_id', '=', $this->category);
+        })->whereHas('competences', function ($query) {
+            $query->where('competence_id', '=', $this->competence->id);
+        })->get();
+    }
+
+    public function save($id, $price)
+    {
+        SubcompetenceUser::create([
+            'competence_id' => $this->competence->id,
+            'subcompetence_id' => $id,
+            'user_id' => auth()->user()->id,
+            'level_id' => $this->level,
+            'price' => $price
+        ]);
+        $this->total += $price;
+        $this->subtotal += $price;
     }
 }

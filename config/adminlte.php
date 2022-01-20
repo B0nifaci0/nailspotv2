@@ -454,6 +454,16 @@ return [
                 ],
             ],
         ],
+        'Design' => [
+            'active' => true,
+            'files' => [
+               [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'css/admin.css'
+               ]
+            ],
+        ],
     ],
 
     /*

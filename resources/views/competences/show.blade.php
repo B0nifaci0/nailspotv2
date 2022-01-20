@@ -16,8 +16,7 @@
                     <div class="flex flex-col flex-1 p-4">
                         <h1 class="text-5xl text-center text-bold">{{ $competence->name }}</h1>
                         <h2 class="mb-3 ml-5 text-xl ">{!! $competence->description !!}</h2>
-                        <p class="mt-2 ml-5">Nivel: {{ $competence->level->name }}</p>
-                        <p class="mt-2 ml-5 ">Categoria: {{ $competence->subcategory->name }}</p>
+
                         <p class="mt-2 ml-5 font-semibold ">Fecha inicio: {{ $competence->start_date }} </p>
                         <p class="mt-2 ml-5 font-semibold "> Fecha Fin: {{ $competence->end_date }}</p>
                         <p class="mt-2 ml-5 ">Matriculados:
@@ -29,40 +28,34 @@
             </div>
         </div>
     @endsection
-    <div class="bg-purple-800 shadow-xl ">
+    <div class="bg-purple-800 shadow-xl">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <div class="order-2 ">
                 <section class="mt-5 mb-5 ml-4 mr-4 text-white bg-indigo-800">
                     <div class="card-body roundedxl">
-                        <h1 class="mb-3 text-3xl font-bold text-center">Descripción de la competencia</h1>
+                        <h1 class="mb-3 text-3xl font-bold text-center">Categorías</h1>
                         <div class="text-base ">
-                            {!! $competence->description !!}
+                            @foreach ($competence->categories as $category)
+                                <li>{{ $category->name }}</li>
+                            @endforeach
                         </div>
                     </div>
                 </section>
             </div>
-
-
             <div class="order-2 ">
                 <section class="mt-5 mb-5 ml-4 mr-4 text-white bg-indigo-800">
                     <div class="card-body roundedxl">
-                        <h1 class="mb-3 text-3xl font-bold text-center">Criterios de la competencia</h1>
+                        <h1 class="mb-3 text-3xl font-bold text-center">Subcompetencias</h1>
                         <div class="text-base ">
-                            {!! $competence->description !!}
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="order-2">
-                <section class="mt-5 mb-5 ml-4 mr-4 bg-indigo-800">
-                    <div class="card-body">
-                        <h1 class="text-3xl font-bold text-center text-white">Requisitos</h1>
-                        <ul class="list-disc list-inside">
-                            @foreach ($competence->requirements as $requirement)
-                                <li class="text-base text-white">{{ $requirement->description }}</li>
+                            @foreach ($competence->subcompetences as $subcompetence)
+                                <ul>
+                                    <li class="font-bold">{{ $subcompetence->name }}</li>
+                                </ul>
+                                @foreach ($subcompetence->levels as $level)
+                                    <li>{{ $level->name }}</li>
+                                @endforeach
                             @endforeach
-                        </ul>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -83,16 +76,9 @@
                             <a href="{{ route('profile.competences') }}" type="submit"
                                 class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">Continuar</a>
                         @else
-                            <p class="mt-3 mb-2 text-2xl font-bold text-center text-white"> $ {{ $competence->price }}
-                                MXN
-                            </p>
-                            <form action="{{ route('payment.checkout') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="type" value="1">
-                                <input type="hidden" name="id" value="{{ $competence->id }}">
-                                <button type="submit"
-                                    class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">Participar</button>
-                            </form>
+                            <a href="{{ route('payment.checkout',["competence", $competence->id] ) }}"
+                                class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-pink-500 hover:bg-pink-600 rounded-xl">
+                                Participar</a>
                         @endcan
                     </div>
                 </section>

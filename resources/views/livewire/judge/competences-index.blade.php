@@ -7,7 +7,6 @@
 <div class="pt-8 pb-12 bg-purple-800">
     <div class="container bg-white rounded ">
         <x-table-responsive>
-
             <table class="min-w-full divide-y divide-gray-200 ">
                 <thead class="bg-gray-50">
                     <tr>
@@ -19,19 +18,27 @@
                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                             Criterio
                         </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                            Categorías
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                            Niveles
+                        </th>
                         <th>
                         </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @forelse ($competences as $item)
+                    @forelse ($subcompetences as $item)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    @isset($item->competence->image)
+                                    @isset($item->subcompetence->image)
                                         <div class="flex-shrink-0 w-10 h-10">
-                                            <img class="w-10 h-10 rounded-full" src="{{ $item->competence->image->url }}"
-                                                alt="">
+                                            <img class="w-10 h-10 rounded-full"
+                                                src="{{ $item->subcompetence->image->url }}" alt="">
                                         </div>
                                     @else
                                         <img class="w-10 h-10 rounded-full"
@@ -40,10 +47,10 @@
                                     @endisset
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{ $item->competence->name }}
+                                            {{ $item->subcompetence->name }}
                                         </div>
                                         <div class="text-sm text-gray-500">
-                                            {{ $item->competence->subcategory->name }}
+                                            {{-- $item->subcompetence->category->name --}}
                                         </div>
                                     </div>
                                 </div>
@@ -51,9 +58,17 @@
                             <td>
                                 {{ $item->criterion->name }}
                             </td>
+                            <td>
+                                {{ $item->subcompetence->categories[0]->name }}
+                            </td>
+                            <td>
+                                @foreach ($item->subcompetence->levels as $level)
+                                    <li>{{ $level->name }}</li>
+                                @endforeach
+                            </td>
                             <!-- Con este boton podemos ir a calificar la competencia -->
                             <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                                <a href="{{ route('judge.competences.participants', ['competence' => $item->competence, 'criterion' => $item->criterion]) }}"
+                                <a href="{{ route('judge.competences.participants', [$item->subcompetence, $item->criterion]) }}"
                                     class="text-indigo-600 hover:text-indigo-900"><button
                                         class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Ir
                                         a calificar</button></a>

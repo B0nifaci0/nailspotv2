@@ -14,7 +14,6 @@
 <input id="name" name="name" value="{{ auth()->user()->name }}" class='hidden'>
 <input id="email" name="email" value="{{ auth()->user()->email }}" class='hidden'>
 
-<script src="https://js.stripe.com/v3/"></script>
 
 <script>
     const stripe = Stripe('{{ config('services.stripe.key') }}');

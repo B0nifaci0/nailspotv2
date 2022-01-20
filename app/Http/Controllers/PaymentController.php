@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competence;
+use App\Models\CompetenceDetail;
 use App\Models\Sale;
 use App\Models\Course;
+use App\Models\Subcompetence;
+use App\Models\SubcompetenceUser;
 use Illuminate\Http\Request;
 use App\Resolvers\PaymentPlatformResolver;
 
@@ -19,30 +22,34 @@ class PaymentController extends Controller
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
-    public function checkout(Request $request)
+    public function checkout($route, $type)
     {
-        if ($request->type == 0) {
-            $course = Course::find($request->id);
+        if ($route == "course") {
+            $course = Course::findOrFail($type);
             if ($course->students->contains(auth()->user()->id)) {
                 return back();
             }
             return view('payment.courses.checkout', compact('course'));
         }
-        if ($request->type == 1) {
-            $competence = Competence::find($request->id);
-            if ($competence->students->contains(auth()->user()->id)) {
-                return back();
-            }
+        if ($route == "competence") {
+            $competence = Competence::findOrFail($type);
             return view('payment.competences.checkout', compact('competence'));
         }
     }
 
     public function pay(Request $request)
     {
+        $subcompetences = SubcompetenceUser::Where('competence_id', $request->competence)
+            ->where('user_id', auth()->user()->id)->whereStatus(SubcompetenceUser::TEMPORARY)
+            ->get();
+        foreach ($subcompetences as $subcompetence) {
+            $subcompetence->status = SubcompetenceUser::PENDING;
+            $subcompetence->save();
+        }
         $paymentPlatform = $this->paymentPlatformResolver
             ->resolveService($request->payment_platform);
         session()->put('paymentPlatformId', $request->payment_platform);
-        return $paymentPlatform->handlePayment($request); 
+        return $paymentPlatform->handlePayment($request);
     }
 
     public function approval(Request $request)
@@ -58,12 +65,17 @@ class PaymentController extends Controller
                 $type = Course::class;
             }
             if ($request->type == 1) {
-                $competence = Competence::find($request->item);
+                $competence = Competence::findOrFail($request->item);
+                $subcompetences = SubcompetenceUser::Where('competence_id', $competence->id)
+                    ->where('user_id', auth()->user()->id)->whereStatus(SubcompetenceUser::PENDING)
+                    ->get();
+                foreach ($subcompetences as $subcompetence) {
+                    $subcompetence->status = SubcompetenceUser::APROVED;
+                    $subcompetence->save();
+                }
                 $id = $competence->id;
-                $competence->students()->attach(auth()->user()->id);
                 $type = Competence::class;
             }
-
             Sale::create([
                 'user_id' => auth()->user()->id,
                 'saleable_id' => $id,

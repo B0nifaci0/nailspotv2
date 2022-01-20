@@ -56,4 +56,13 @@ function changeImage(event) {
     };
 
     reader.readAsDataURL(file);
-}zz
+}
+document.getElementById("filePDF").addEventListener('change', changePDF);
+function changePDF(event) {
+    let filePDF = event.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (event) => {
+        document.getElementById("pdf").setAttribute('src', event.target.result);
+    };
+    reader.readAsDataURL(filePDF);
+}

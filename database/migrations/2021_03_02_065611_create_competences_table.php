@@ -25,9 +25,7 @@ class CreateCompetencesTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', [Competence::BORRADOR, Competence::PUBLICADO, Competence::FINALIZADO])->default(Competence::BORRADOR);
-            $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('subcategory_id')->references('id')->on('subcategories')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,7 +14,7 @@
                     @forelse ($courses as $course)
                     <tr>
                         <td>
-                            <img class="rounded-circle zoom" src="{{ $course->teacher->profile_photo_url}}" />
+                            <img style="width: 4.5rem;"  class="rounded-circle" src="{{ $course->teacher->profile_photo_url}}" />
                             {{$course->teacher->name}}</td>
                         <td>{{$course->name}}</td>
                         <td>{{$course->sales->count()}}</td>
