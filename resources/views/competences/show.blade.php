@@ -11,11 +11,11 @@
                     </div>
                 </section>
             </div>
-            <div class="sm:w-2/2 md:w-2/3 lg:w-2/4 xl:w-3/5 ">
+            <div class="sm:w-2/2 md:w-2/3 lg:w-2/4 xl:w-3/5">
                 <section class="mt-5 mb-5 ml-4 mr-4 text-white bg-indigo-800">
                     <div class="flex flex-col flex-1 p-4">
                         <h1 class="text-5xl text-center text-bold">{{ $competence->name }}</h1>
-                        <h2 class="mb-3 ml-5 text-xl ">{!! $competence->description !!}</h2>
+                        <h2 class="mb-3 ml-5 text-xl break-words">{!! $competence->description !!}</h2>
 
                         <p class="mt-2 ml-5 font-semibold ">Fecha inicio: {{ $competence->start_date }} </p>
                         <p class="mt-2 ml-5 font-semibold "> Fecha Fin: {{ $competence->end_date }}</p>

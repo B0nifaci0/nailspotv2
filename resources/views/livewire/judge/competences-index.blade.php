@@ -4,10 +4,10 @@
     <!-- En esta seccion se nos muestra un listado de criterios asignados a cada juez -->
     <h1 class="pt-12 pb-6 text-3xl font-bold text-center text-white bg-purple-800">Lista de Criterios</h1>
 </div>
-<div class="pt-8 pb-12 bg-purple-800">
-    <div class="container bg-white rounded ">
+<div class="pt-8 pb-12 bg-purple-800 px-2">
+    <div class="container bg-white rounded">
         <x-table-responsive>
-            <table class="min-w-full divide-y divide-gray-200 ">
+            <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col"
@@ -26,14 +26,16 @@
                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                             Niveles
                         </th>
-                        <th>
+                        <th scope="col"
+                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                            Acciones
                         </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse ($subcompetences as $item)
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="whitespace-nowrap">
                                 <div class="flex items-center">
                                     @isset($item->subcompetence->image)
                                         <div class="flex-shrink-0 w-10 h-10">
@@ -49,9 +51,6 @@
                                         <div class="text-sm font-medium text-gray-900">
                                             {{ $item->subcompetence->name }}
                                         </div>
-                                        <div class="text-sm text-gray-500">
-                                            {{-- $item->subcompetence->category->name --}}
-                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -59,7 +58,9 @@
                                 {{ $item->criterion->name }}
                             </td>
                             <td>
-                                {{ $item->subcompetence->categories[0]->name }}
+                                @foreach ($item->subcompetence->categories as $category)
+                                    <li>{{ $category->name }}</li>
+                                @endforeach
                             </td>
                             <td>
                                 @foreach ($item->subcompetence->levels as $level)
@@ -67,7 +68,7 @@
                                 @endforeach
                             </td>
                             <!-- Con este boton podemos ir a calificar la competencia -->
-                            <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+                            <td class="text-sm font-medium whitespace-nowrap">
                                 <a href="{{ route('judge.competences.participants', [$item->subcompetence, $item->criterion]) }}"
                                     class="text-indigo-600 hover:text-indigo-900"><button
                                         class="px-4 py-2 font-bold text-white bg-pink-600 rounded hover:bg-pink-700">Ir

@@ -57,7 +57,7 @@ class SubcompetenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Competence $competence, Category $category,Subcompetence $subcompetence)
+    public function show(Competence $competence, Category $category, Subcompetence $subcompetence)
     {
         return view('admin.subcompetence.show');
     }
@@ -94,10 +94,13 @@ class SubcompetenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcompetence $subcompetence)
+    public function destroy(Competence $competence, Category $category, Subcompetence $subcompetence)
     {
-        return "Gola";
-        //$subcompetence->delete();
+        if ($competence->status == Competence::PUBLICADO) {
+            return redirect()->route('admin.subcompetences.index', compact('competence', 'category'))
+                ->with('warning', 'No se pude eliminar la subcompetencia porque la competencia esta en curso!');
+        }
+        $subcompetence->delete();
         return redirect()->route('admin.subcompetences.index', compact('competence', 'category'))->with('info', 'La subcompetencia se elimino con exito!');
     }
 
@@ -116,7 +119,7 @@ class SubcompetenceController extends Controller
 
         $criteria_subcompetence = CriterionSubcompetenceUser::whereSubcompetenceId($subcompetence->id)->get();
 
-        return view('admin.subcompetences.criteria.index', compact('competence','category', 'subcompetence', 'judges', 'criteria', 'criteria_subcompetence'));
+        return view('admin.subcompetences.criteria.index', compact('competence', 'category', 'subcompetence', 'judges', 'criteria', 'criteria_subcompetence'));
     }
 
     public function assignJudge(Request $request, Competence $competence, Category $category, Subcompetence $subcompetence)
@@ -128,12 +131,12 @@ class SubcompetenceController extends Controller
 
         $subcompetence = Subcompetence::find($request->subcompetence_id);
         if (CriterionSubcompetenceUser::exist($request)->first()) {
-            return redirect()->route('admin.subcompetences.index-criteria',compact('competence','category', 'subcompetence' ))->with('warning', 'El juez ya cuenta con ese criterio asignado!');
+            return redirect()->route('admin.subcompetences.index-criteria', compact('competence', 'category', 'subcompetence'))->with('warning', 'El juez ya cuenta con ese criterio asignado!');
         }
 
         CriterionSubcompetenceUser::create($request->all());
 
-        return redirect()->route('admin.subcompetences.index-criteria', compact('competence','category', 'subcompetence'))->with('info', 'El criterio ha sido agregado con exito!');
+        return redirect()->route('admin.subcompetences.index-criteria', compact('competence', 'category', 'subcompetence'))->with('info', 'El criterio ha sido agregado con exito!');
     }
 
     public function destroyCriteria($id)

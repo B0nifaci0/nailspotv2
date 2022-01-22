@@ -10,6 +10,7 @@ class Level extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $withCount = ['subcompetence'];
 
     public function review()
     {
@@ -18,11 +19,11 @@ class Level extends Model
 
     public function subcompetence()
     {
-        return $this->belongsTo(Subcompetence::class);
+        return $this->belongsToMany(Subcompetence::class);
     }
 
     public function competenceDeatils()
     {
-        return $this->belongsTo(CompetenceDetail::class);
+        return $this->belongsTo(SubcompetenceUser::class);
     }
 }

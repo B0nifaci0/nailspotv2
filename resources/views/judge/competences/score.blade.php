@@ -30,22 +30,24 @@
             </div>
         </template>
     </div>
-    <div class="relative flex items-center content-center justify-center pt-16 bg-purple-800">
+    <div class="relative flex items-center content-center justify-center pt-20 bg-purple-800">
     </div>
-    <div class="pt-8 pb-8 bg-purple-800">
-        <div class="container bg-white rounded">
-            <h1 class="text-2xl font-bold uppercase">
-                Competencia {{ $participant->competence->name }} Criterio {{ $criterion->name }}
+    <div class="pt-8 pb-8 bg-purple-800 px-5 pb-24">
+        <div class="container bg-white rounded py-5">
+            <h1 class="text-3xl font-bold uppercase text-center">
+                 {{ $participant->competence->name }} - {{{$participant->level->name}}}
             </h1>
-            <a href="{{ route('judge.competences.participants', [$participant->competence, $criterion]) }}"
+            <a href="{{ route('judge.competences.participants', [$participant->competence->id, $criterion]) }}"
                 class="float-right text-lg text-indigo-600 hover:text-indigo-900">Regresar </a>
 
             <h1 class="mt-8 mb-2 text-2xl font-bold">Recursos</h1>
-
+            <div>
+                <p class="text-xl font-bold">Criterio: {{$criterion->name}}</p>
+            </div>
             <div x-data="{}" class="px-2">
                 <div class="flex -mx-2">
                     @foreach ($participant->images as $image)
-                        <div class="w-2/6 px-2">
+                        <div class="w-4/6 px-2">
                             <div class="bg-gray-400">
                                 <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ $image->url }}'})"
                                     class="cursor-pointer">
@@ -63,7 +65,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     @if ($score)
                         <div>
-                            <span class="text-xl font-bold text-gray-900">Calificacion: {{ $score }}</span>
+                            <p class="text-xl font-bold text-gray-900">Calificacion: {{ $score }}</p>
                         </div>
                     @else
                         <div>

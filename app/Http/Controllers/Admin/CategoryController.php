@@ -45,6 +45,9 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if ($category->courses()->count() || $category->competences()->count()) {
+            return redirect()->route('admin.categories.index')->with('warning', 'La categoria se puede eliminar porque esta en uso!');
+        }
         $category->delete();
         return redirect()->route('admin.categories.index')->with('info', 'La categoria se elimino con exito!');
     }

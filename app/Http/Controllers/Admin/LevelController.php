@@ -51,6 +51,9 @@ class LevelController extends Controller
 
     public function destroy(Level $level)
     {
+        if ($level->subcompetence_count > 0) {
+            return redirect()->route('admin.levels.index')->with('warning', 'No se pude eliminar el nivel porque esta en uso!');
+        }
         $level->delete();
         return redirect()->route('admin.levels.index')->with('info', 'El nivel se elimino con exito!');
     }

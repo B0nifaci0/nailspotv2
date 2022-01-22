@@ -10,9 +10,14 @@ class LevelSubcompetence extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'level_subcompetence';
-
+    
     public function subcompetence()
     {
         return $this->belongsTo(Subcompetence::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 }

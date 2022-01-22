@@ -10,7 +10,7 @@ class Subcompetence extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $withCoutn = ['levels', 'users', 'criteria'];
+    protected $withCoutn = ['levels', 'users', 'criteria', 'students'];
 
     public function categories()
     {

@@ -15,7 +15,7 @@ class CheckoutCompetence extends Componet
 {
     protected $listeners = ['render'];
     public $competence, $search, $active, $current, $total, $couponId, $exist, $platforms, $platformCurrent, $competenceId;
-    public $category, $subcompetences, $level, $saleDetail, $subtotal;
+    public $category_id, $subcompetences, $level_id, $saleDetail, $subtotal;
 
     public function mount(Competence $competence)
     {

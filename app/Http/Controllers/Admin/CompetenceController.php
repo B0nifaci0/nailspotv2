@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Criterion;
 use App\Models\Competence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
 use App\Models\Category;
 use App\Models\CategoryCompetence;
-use App\Models\CompetenceCriterionUser;
 
 class CompetenceController extends Controller
 {
@@ -58,6 +55,7 @@ class CompetenceController extends Controller
 
     public function show(Competence $competence)
     {
+
         if ($competence->image) {
             $competence->image->url = $this->getS3URL("competences", $competence->id);
         }
@@ -110,6 +108,9 @@ class CompetenceController extends Controller
 
     public function destroy(Competence $competence)
     {
+        if ($competence->status == Competence::PUBLICADO) {
+            return redirect()->route('admin.competences.index')->with('warning', 'La competencia no se puede eliminar porque esta en curso!');
+        }
         $competence->delete();
         return redirect()->route('admin.competences.index')->with('info', 'La competencia se elimino con exito!');
     }
@@ -117,7 +118,6 @@ class CompetenceController extends Controller
     public function publish(Competence $competence)
     {
         $subcompetences =  $competence->subcompetences;
-        dd($subcompetences[0]->criteria);
         if ($competence->categories_count <= 0) {
             return back()->with('warning', 'Por favor agrega categorias a la competencia');
         }
@@ -151,6 +151,9 @@ class CompetenceController extends Controller
 
     public function destroyCategory(Competence $competence, $category)
     {
+        if ($competence->status == Competence::PUBLICADO) {
+            return back()->with('warning', "No se puede eliminar la categoría porque la competencia esta en curso");
+        }
         $category = CategoryCompetence::Where('category_id', $category)->Where('competence_id', $competence->id)->first();
         $category->delete();
         return back()->with('info', 'La categoría se elimino con exito!');

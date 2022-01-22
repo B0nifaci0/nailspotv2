@@ -15,6 +15,11 @@
             {{ session('info') }}
         </div>
     @endif
+    @if (session('warning'))
+        <div class="alert alert-warning">
+            {{ session('warning') }}
+        </div>
+    @endif
 @section('css')
     <style>
         .tooltip {
@@ -41,11 +46,18 @@
                         <td>{{ $category->name }}</td>
                         <td width="10px">
                             <a href="{{ route('admin.subcompetences.index', [$competence, $category]) }}"
-                                class="btn btn-success " data-toggle="tooltip" title="agregar"><i class="fas fa-plus"></i></a>
+                                class="btn btn-success " data-toggle="tooltip" title="agregar"><i
+                                    class="fas fa-plus"></i></a>
                         </td>
                         <td width="10px">
-                            <a href="{{ route('admin.competence.categories.delete', [$competence, $category]) }}"
-                            class="btn btn-danger" data-toggle="tooltip" title="Eliminar"><i class="fas fa-trash"></i></a>
+                            <form
+                                action="{{ route('admin.competence.categories.delete', [$competence, $category]) }}">
+                                @csrf
+                                @method('delete')
+                                <button class=" btn btn-danger" data-toggle="tooltip" title="Eliminar">
+                                    <i class="fas fa-trash"></i></a>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

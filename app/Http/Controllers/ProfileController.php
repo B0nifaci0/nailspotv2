@@ -96,12 +96,12 @@ class ProfileController extends Controller
             ->where('status', SubcompetenceUser::APROVED)
             ->firstWhere('user_id', auth()->user()->id);
         $count = 1;
-        /*foreach ($resource->images as $image) {
+        foreach ($resource->images as $image) {
             if ($image) {
                 $image->url = $this->getS3URL("competences/resources", $resource->id . '-' . $count);
             }
             $count++;
-        }*/
+        }
 
         return view('profile.competences.resources', compact('resource'));
     }

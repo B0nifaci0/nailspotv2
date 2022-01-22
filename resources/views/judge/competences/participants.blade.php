@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="relative pt-16 flex content-center items-center justify-center bg-purple-800">
-        <h1 class="text-4xl text-white">{{ $subcompetence->name }}</h1>
+    <div class="relative pt-40 flex content-center bg-purple-800 items-center justify-center">
+        <h1 class="text-4xl text-white font-bold">{{ $subcompetence->name }}</h1>
     </div>
-    <div class="bg-purple-800 pt-8 pb-8">
+    <div class="bg-purple-800 pt-8 pb-8 px-5">
         <div class="container bg-white rounded card mb-5 ">
             <x-table-responsive>
                 <table class="min-w-full divide-y divide-gray-200 mb-5 mt-5">
@@ -32,9 +32,8 @@
                                 @if ($participant->images_count > 0)
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('judge.competences.show', ['participant' => $participant, 'criterion' => $criterion]) }}"
-                                            class="text-indigo-600 hover:text-indigo-900"><button
-                                                class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Ver
-                                                trabajo</button></a>
+                                            class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Ver
+                                            trabajo</a>
                                     </td>
                                 @endif
                             </tr>

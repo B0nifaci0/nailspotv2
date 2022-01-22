@@ -26,11 +26,14 @@ class CriterionController extends Controller
         ]);
 
         Criterion::create($request->all());
-        return redirect()->route('admin.criteria.index')->with('info', 'El criterio se creo con exito!');
+        return redirect()->route('admin.criteria.index')->with('success', 'El criterio se creo con exito!');
     }
 
     public function edit(Criterion $criterion)
     {
+        if ($criterion->subcompetences()->count()) {
+            return redirect()->route('admin.criteria.index')->with('info', 'No se puede editar el criterio porque esta en uso!');
+        }
         return view('admin.criteria.edit', compact('criterion'));
     }
 
@@ -40,11 +43,14 @@ class CriterionController extends Controller
             'name' => 'required|unique:criteria,name,' . $criterion->id
         ]);
         $criterion->update($request->all());
-        return redirect()->route('admin.criteria.index')->with('info', 'El criterio se actualizo con exito!');
+        return redirect()->route('admin.criteria.index')->with('success', 'El criterio se actualizo con exito!');
     }
 
     public function destroy(Criterion $criterion)
     {
+        if ($criterion->subcompetences()->count()) {
+            return redirect()->route('admin.criteria.index')->with('warning', 'No se puede eliminar el criterio porque esta en uso!');
+        }
         $criterion->delete();
         return redirect()->route('admin.criteria.index')->with('info', 'El criterio se elimino con exito!');
     }

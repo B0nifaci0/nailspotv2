@@ -34,7 +34,7 @@
                     <div class="d-flex d-flex-row mb-3">
                         <h2>{{ $competence->name }}</h2>
                     </div>
-                    <div class="d-flex d-flex-row"> 
+                    <div class="d-flex d-flex-row">
                         <h5>{{ strip_tags($competence->description) }}</h5>
                     </div>
                     <div class="d-flex d-flex-row my-2">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="d-flex d-flex-row my-2">
                         <p class="text-bold mr-2">Competidores inscritos:</p>
-                        <p>{{ $competence->students_count }}</p>
+                        <p>{{ $competence->subcompetences->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -107,8 +107,9 @@
                                     <p class="text-bold mr-2">Juces y Criterios:</p>
                                     @forelse ($subcompetence->users()->distinct()->get() as $judge)
                                         <div>{{ $judge->name }}
-                                            
-                                            @foreach ($judge->criteria()->where('subcompetence_id',$subcompetence->id)->get() as $criterion)
+
+                                            @foreach ($judge->criteria()->where('subcompetence_id', $subcompetence->id)->get()
+    as $criterion)
                                                 <li class="ml-5"> {{ $criterion->name }}</li>
                                             @endforeach
                                         </div>
