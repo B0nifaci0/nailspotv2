@@ -101,6 +101,12 @@
                                 </div>
                             </div>
                         </td>
+                        @if ($competence->end_date < \Carbon\Carbon::toDay()->toString())
+                            <td>
+                                <a href="{{ route('admin.select.winner', $competence) }}" class="btn btn-success">Seleccionar
+                                    ganador</a>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

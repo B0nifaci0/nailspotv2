@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CompetenceRequest;
 use App\Models\Category;
 use App\Models\CategoryCompetence;
+use App\Models\SubcompetenceUser;
 
 class CompetenceController extends Controller
 {
@@ -117,16 +118,15 @@ class CompetenceController extends Controller
 
     public function publish(Competence $competence)
     {
-        $subcompetences =  $competence->subcompetences;
-        if ($competence->categories_count <= 0) {
-            return back()->with('warning', 'Por favor agrega categorias a la competencia');
-        }
-        if ($competence->subcompetences_count <= 0) {
-            return back()->with('warning', 'Por favor agrega subcompetencias a la competencia');
+        if ($competence->userDetails()->count() > 0) {
+            return back()->with('warning', 'La competencia ya tiene participantes inscritos!');
         }
         if ($competence->status == Competence::PUBLICADO) {
             $competence->status = Competence::BORRADOR;
         } else {
+            if ($competence->subcompetences_count <= 0) {
+                return back()->with('warning', 'Por favor agrega subcompetencias a la competencia');
+            }
             $competence->status = Competence::PUBLICADO;
         }
         $competence->save();
@@ -157,5 +157,11 @@ class CompetenceController extends Controller
         $category = CategoryCompetence::Where('category_id', $category)->Where('competence_id', $competence->id)->first();
         $category->delete();
         return back()->with('info', 'La categoría se elimino con exito!');
+    }
+
+    public function selectWinner(Competence $competence)
+    {
+        $winner = SubcompetenceUser::Where('competence_id', $competence->id)->get();
+        dd($winner);
     }
 }

@@ -66,3 +66,5 @@ Route::get('mensajes', [ContactController::class, 'indexAdmin'])->name('message.
 Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'])->name('message.contact.edit')->middleware('auth');
 Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
 Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth');
+
+Route::get('/selectWinner/{competence}', [CompetenceController::class, 'selectWinner'])->name('select.winner')->middleware('auth');

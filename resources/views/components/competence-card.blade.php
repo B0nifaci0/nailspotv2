@@ -1,7 +1,9 @@
 @props(['competence'])
 
 <article class="bg-indigo-800 hover:shadow-xl ">
-    <img class="w-full" src="{{ $competence->image->url }}" alt="">
+    @if ($competence->image)
+        <img class="w-full" src="{{ $competence->image->url }}" alt="">
+    @endif
     <div class="text-white card-body overflow-hidden">
         <h1 class="mb-2 text-2xl text-center"> {{ $competence->name }}</h1>
         <p class="text-md truncate"> {!! Str::limit($competence->description, 50, '...') !!}</p>

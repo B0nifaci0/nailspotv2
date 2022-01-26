@@ -22,7 +22,9 @@
 @endsection
 <div class="container-fluid">
     <div class="card overflow-hidden">
-        <img id="picture" src="{{ $competence->image->url }}" class="picture">
+        @if ($competence->image)
+            <img id="picture" src="{{ $competence->image->url }}" class="picture">
+        @endif
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
