@@ -10,6 +10,7 @@ use App\Http\Requests\CompetenceRequest;
 use App\Models\Category;
 use App\Models\CategoryCompetence;
 use App\Models\SubcompetenceUser;
+use App\Models\Score;
 
 class CompetenceController extends Controller
 {
@@ -160,8 +161,15 @@ class CompetenceController extends Controller
     }
 
     public function selectWinner(Competence $competence)
-    {
-        $winner = SubcompetenceUser::Where('competence_id', $competence->id)->get();
-        dd($winner);
+    {        
+        /*$win=[];
+        $winners = Score::WhereHas('subcompetenceUser', function($query){
+            $query->Where('competence_id',1)->orderBy('value','asc');
+        })->get();
+        foreach ($winners as $key => $winner) {
+            if($winner->value != $winner[$key-1]){
+                return $winner;
+            }
+        }*/
     }
 }

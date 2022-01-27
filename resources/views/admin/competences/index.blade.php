@@ -103,8 +103,8 @@
                         </td>
                         @if ($competence->end_date < \Carbon\Carbon::toDay()->toString())
                             <td>
-                                <a href="{{ route('admin.select.winner', $competence) }}" class="btn btn-success">Seleccionar
-                                    ganador</a>
+                                <a href="{{ route('admin.winner.index', $competence) }}" class="btn btn-success">Seleccionar
+                                    ganadores</a>
                             </td>
                         @endif
                     </tr>

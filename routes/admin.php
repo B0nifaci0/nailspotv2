@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\CompetenceRequirementController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\NosotroController;
 use App\Http\Controllers\Admin\SubcompetenceController;
+use App\Http\Controllers\Admin\WinnerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Report\DetailsCourseController;
 use App\Http\Controllers\Report\TableCompetencesController;
@@ -67,4 +68,5 @@ Route::get('mensajes/contacto/{contact}', [ContactController::class, 'editAdmin'
 Route::patch('mensajes/contacto/{contact}/update', [ContactController::class, 'update'])->name('message.contact.update')->middleware('auth');
 Route::delete('mensajes/{message}/delete', [ContactController::class, 'destroy'])->name('message.delete')->middleware('auth');
 
-Route::get('/selectWinner/{competence}', [CompetenceController::class, 'selectWinner'])->name('select.winner')->middleware('auth');
+Route::get('competences/subcompetence/winner/{competence}', [WinnerController::class, 'index'])->name('winner.index')->middleware('auth');
+Route::get('competences/subcompetence/selectWinner/{subcompetence}', [WinnerController::class, 'selectWinner'])->name('winner.selectWinner')->middleware('auth');
