@@ -19,7 +19,7 @@
                         @forelse ($participants as $key=>$participant)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ $key + 1 }}
+                                    {{ $participant->participant_code }}
                                 </td>
                                 @forelse ($participant->scores as $score)
                                     @if ($score->criterionSubcompetenceUser->criterion->id == $criterion->id && $score->criterionSubcompetenceUser->user->id == auth()->user()->id)

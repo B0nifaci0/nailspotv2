@@ -19,6 +19,7 @@ class SubcompetenceUser extends Migration
             $table->foreignId('subcompetence_id')->references('id')->on('subcompetences')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
+            $table->string('participant_code')->nullable();
             $table->double('price')->nullable();
             $table->enum('status', [1, 2, 3])->default(1);
             $table->timestamps();

@@ -19,6 +19,7 @@ trait S3ImageManager
 
         $path = env('S3_ENVIRONMENT') . '/' . $path . '/' . $name;
         Storage::disk('s3')->put($path, $image);
+        dd($path);
         return  $path;
     }
 
@@ -26,7 +27,7 @@ trait S3ImageManager
     {
         $adapter = Storage::disk('s3')->getDriver()->getAdapter();
 
-        $path = env('S3_ENVIRONMENT') . $path . '/' . $id;
+        $path = env('S3_ENVIRONMENT') . '/' . $path . '/' . $id;
 
         $command = $adapter->getClient()->getCommand('GetObject', [
             'Bucket' => $adapter->getBucket(),

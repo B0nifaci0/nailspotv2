@@ -48,7 +48,6 @@ class CompetenceController extends Controller
             }
             $count++;
         }
-
         return view('judge.competences.score', compact('participant', 'criterion', 'score'));
     }
 

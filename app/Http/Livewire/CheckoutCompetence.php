@@ -115,7 +115,8 @@ class CheckoutCompetence extends Componet
             'subcompetence_id' => $id,
             'user_id' => auth()->user()->id,
             'level_id' => $this->level,
-            'price' => $price
+            'price' => $price,
+            'participant_code'=> random_int(1000, 2500)
         ]);
         $this->total += $price;
         $this->subtotal += $price;

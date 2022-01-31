@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TiedMail;
 use App\Models\Competence;
+use App\Models\CriterionSubcompetenceUser;
 use App\Models\Subcompetence;
 use App\Models\Score;
+use Illuminate\Support\Facades\Mail;
 
 class WinnerController extends Controller
 {
@@ -37,8 +40,17 @@ class WinnerController extends Controller
                 if ($before != null) {
                     if ($win[$i]['value'] > $before['value']) {
                         array_push($w, $win[$i]);
-                    } else {
-                        
+                    }
+                    if ($win[$i]['value'] == $before['value']) {
+                        $tied = $winners->where('value', $win[$i]['value']);
+                        $judges = CriterionSubcompetenceUser::Where('subcompetence_id', $subcompetence->id)->get(); 
+                        for ($j=0; $j<count($w); $j++) {                            
+                            $w[$j]->update(['value'=>$w[$j]['value']+10]);
+                        }
+                        foreach ($judges as $key => $judge) {                       
+                            $tiedMail = new TiedMail($tied, $subcompetence);
+                            Mail::to($judge->user->email)->queue($tiedMail);
+                        }
                     }
                 } else {
                     array_push($w, $win[$i]);
