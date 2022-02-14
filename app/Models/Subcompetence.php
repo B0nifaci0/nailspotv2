@@ -52,4 +52,12 @@ class Subcompetence extends Model
     {
         return $this->belongsToMany(User::class, 'subcompetence_user');
     }
+    public function getScoreAttribute()
+    {
+        return $this->criteria_count * 10;
+    }
+    public function subcompetenceUser()
+    {
+        return $this->hasMany(SubcompetenceUser::class);
+    }
 }

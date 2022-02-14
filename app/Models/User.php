@@ -140,4 +140,5 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Subcompetence::class, 'subcompetence_user');
     }
+
 }

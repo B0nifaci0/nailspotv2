@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\TiedMail;
 use App\Models\Competence;
-use App\Models\CriterionSubcompetenceUser;
 use App\Models\Subcompetence;
-use App\Models\Score;
+use App\Models\CriterionSubcompetenceUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class WinnerController extends Controller
 {
-    public $subcompetenceID = null, $level = null;
 
     public function index(Competence $competence)
     {
@@ -20,44 +19,33 @@ class WinnerController extends Controller
         return view('admin.competences.winner.index', compact('subcompetences'));
     }
 
-    public function selectWinner(Subcompetence $subcompetence)
+    public function selectWinner(Subcompetence $subcompetence, Request $request)
     {
-        $w = [];
         $before = null;
-        $data = [];
-        $levels = $subcompetence->levels;
-        $this->subcompetenceID = $subcompetence->id;
-        foreach ($levels as $key => $this->level) {
-            $winners = Score::WhereHas('subcompetenceUser', function ($query) {
-                $query->where('subcompetence_id', $this->subcompetenceID);
-            })->WhereHas('subcompetenceUser', function ($query) {
-                $query->where('level_id', $this->level->id);
-            })->get();
-            array_push($data, $winners);
-        }
-        foreach ($data as $key => $win) {
-            for ($i = 0; $i < count($win); $i++) {
-                if ($before != null) {
-                    if ($win[$i]['value'] > $before['value']) {
-                        array_push($w, $win[$i]);
+        $winners = [];
+        $participant = [];
+        $subcompetencesUser = $subcompetence->subcompetenceUser()
+            ->where('level_id', $request->level)
+            ->get();
+        for ($i = 0; $i < count($subcompetencesUser); $i++) {
+            if ($before != null) {
+                if ($subcompetencesUser[$i]->final_score > $before->final_score) {
+                    array_push($winners, $subcompetencesUser[$i]);
+                } 
+                if ($subcompetencesUser[$i]->final_score == $before->final_score) {
+                    $tied = $subcompetencesUser->where('final_score', $subcompetencesUser[$i]->final_score);
+                    $judges = CriterionSubcompetenceUser::Where('subcompetence_id', $subcompetence->id)->get();
+                    foreach ($judges as $key => $judge) {
+                        $tiedMail = new TiedMail($tied, $subcompetence);
+                        Mail::to($judge->user->email)->queue($tiedMail);
                     }
-                    if ($win[$i]['value'] == $before['value']) {
-                        $tied = $winners->where('value', $win[$i]['value']);
-                        $judges = CriterionSubcompetenceUser::Where('subcompetence_id', $subcompetence->id)->get(); 
-                        for ($j=0; $j<count($w); $j++) {                            
-                            $w[$j]->update(['value'=>$w[$j]['value']+10]);
-                        }
-                        foreach ($judges as $key => $judge) {                       
-                            $tiedMail = new TiedMail($tied, $subcompetence);
-                            Mail::to($judge->user->email)->queue($tiedMail);
-                        }
-                    }
-                } else {
-                    array_push($w, $win[$i]);
                 }
-                $before = $win[$i];
+            } else {
+                array_push($winners, $subcompetencesUser[$i]);
             }
+            $before = $subcompetencesUser[$i];
+        
         }
-        return view('admin.competences.winner.winners', compact('subcompetence', 'data', 'levels', 'w'));
+        return view('admin.competences.winner.winners', compact('winners', 'subcompetence'));
     }
 }

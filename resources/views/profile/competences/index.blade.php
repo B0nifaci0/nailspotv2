@@ -85,7 +85,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         {{ $subcompetences->level->name }}
                     </td>
-                    @if ($subcompetences->status == '3' && $subcompetences->competence->end_date > \Carbon\Carbon::toDay()->toString()) )
+                    @if ($subcompetences->status == '3' )
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ route('profile.resources', $subcompetences->subcompetence) }}"> <button
                                     class="px-4 py-2 font-bold text-white bg-pink-500 rounded hover:bg-pink-600">Entregable</button>

@@ -19,7 +19,6 @@ trait S3ImageManager
 
         $path = env('S3_ENVIRONMENT') . '/' . $path . '/' . $name;
         Storage::disk('s3')->put($path, $image);
-        dd($path);
         return  $path;
     }
 

@@ -23,7 +23,6 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Precio</th>
-                    <th>Niveles</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -34,18 +33,16 @@
                         <td>{{ strip_tags($subcompetence->description) }}</td>
                         <td>${{ $subcompetence->price }}</td>
                         <td>
-                            @foreach ($subcompetence->levels as $level)
-                                <li>{{ $level->name }}</li>
-                            @endforeach
+                            <form action="{{route('admin.winner.selectWinner', [$subcompetence])}}" method="post">
+                                @csrf
+                                <select name="level">
+                                    @foreach ($subcompetence->levels as $level)
+                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button class="btn btn-success">Selecionar ganador</button>
+                            </form>
                         </td>
-                        @if ($subcompetence->competenceDetails->count() > 1)
-                            <td>
-                                <a href="{{ route('admin.winner.selectWinner', $subcompetence) }}"
-                                    class="btn btn-success">Selecionar ganador</a>
-                            </td>
-                        @else
-                            <td>No hay competidores inscritos</td>
-                        @endif
                     </tr>
                 @endforeach
             </tbody>

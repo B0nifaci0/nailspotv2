@@ -26,7 +26,7 @@ class CompetenceController extends Controller
     {
         $subcompetence = Subcompetence::findOrfail($subcompetence);
         $criterion = Criterion::findOrFail($criterion);
-        $participants = SubcompetenceUser::whereCompetenceId($subcompetence->id)->get();
+        $participants = SubcompetenceUser::whereSubcompetenceId($subcompetence->id)->get();        
         return view('judge.competences.participants', compact('subcompetence', 'participants', 'criterion'));
     }
 
@@ -48,6 +48,7 @@ class CompetenceController extends Controller
             }
             $count++;
         }
+
         return view('judge.competences.score', compact('participant', 'criterion', 'score'));
     }
 

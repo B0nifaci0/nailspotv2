@@ -41,4 +41,10 @@ class SubcompetenceUser extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    public function getFinalScoreAttribute(){
+        return $this->scores->avg(function($score){
+            return $score->value;
+        });
+    }
 }

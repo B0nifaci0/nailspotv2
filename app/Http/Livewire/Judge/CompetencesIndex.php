@@ -14,7 +14,6 @@ class CompetencesIndex extends Componet
     public function render()
     {
         $subcompetences = CriterionSubcompetenceUser::whereUserId(auth()->user()->id)->get();
-
         /*foreach ($subcompetences as $item) {
             if ($item->competence->image) {
                 $item->competence->image->url = $this->getS3URL('competences', $item->competence->id);

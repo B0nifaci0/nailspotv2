@@ -26,14 +26,15 @@
                     <th>Nivel</th>
                 </tr>
             </thead>
-            <tbody>                
-                @foreach ($w as $item)
-                        <tr>
-                            <td>{{ $item->subcompetenceUser->user->name }}</td>
-                            <td>{{ $item->subcompetenceUser->user->email }}</td>
-                            <td>{{ $item->value }}</td>
-                            <td>{{ $item->subcompetenceUser->level->name }}</td>
-                        </tr>
+            <tbody>
+                {{dd($winners)}}
+                @foreach ($winners as $item)
+                    <tr>
+                        <td>{{ $item->user->name }}</td>
+                        <td>{{ $item->user->email }}</td>
+                        <td>{{ $item->final_score }}</td>
+                        <td>{{ $item->user->name }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

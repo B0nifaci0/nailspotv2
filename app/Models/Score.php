@@ -12,6 +12,7 @@ class Score extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $withCount = ['subcompetenceUser'];
 
     public function subcompetenceUser()
     {
@@ -22,4 +23,10 @@ class Score extends Model
     {
         return $this->belongsTo(CriterionSubcompetenceUser::class);
     }
+
+    public function scopeSubcompetenceUserId($query, $subcompetence_user_id)
+    {
+        return $query->whereSubcompetenceUserId($subcompetence_user_id);
+    }
+
 }
